@@ -9594,6 +9594,11 @@ public final class Settings {
         private static final Validator VOLUME_LINK_NOTIFICATION_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * @hide
+         */
+        public static final String DEVICE_HOSTNAME = "device_hostname";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
