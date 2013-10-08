@@ -136,5 +136,8 @@
         <item>com.trtf.blue</item>   
          <item>com.facebook.katana.LoginActivity</item> 
     </string-array> 
+
+    <!-- True if the gesture service should be started at system start -->
+    <bool name="config_enableGestureService">false</bool>
    
 </resources>
