@@ -5056,6 +5056,12 @@ public final class Settings {
         public static final String AMBIENT_MUSIC_TICKER = "ambient_music_ticker";
 
         /**
+         * Boolean value whether to link ringtone and notification volume
+         * @hide
+         */
+        public static final String OMNI_VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+
+        /**
          * These are all public system settings
          *
          * @hide
