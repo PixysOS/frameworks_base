@@ -18,6 +18,8 @@ package com.android.keyguard;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.provider.Settings;
+import android.provider.Settings.Secure;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,9 @@ import com.android.settingslib.animation.AppearAnimationUtils;
 import com.android.settingslib.animation.DisappearAnimationUtils;
 import com.android.systemui.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,6 +51,10 @@ public class KeyguardPINView extends KeyguardPinBasedInputView {
     private ViewGroup mRow3;
     private int mDisappearYTranslation;
     private View[][] mViews;
+
+    // Keyguard scramble
+    private boolean mScramblePin;
+    private static List<Integer> sNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
 
     public KeyguardPINView(Context context) {
         this(context, null);
@@ -140,6 +149,30 @@ public class KeyguardPINView extends KeyguardPinBasedInputView {
                 new View[]{
                         null, mEcaView, null
                 }};
+
+        mScramblePin = Settings.Secure.getInt(getContext().getContentResolver(),
+                Settings.Secure.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, 0) == 1;
+        if (mScramblePin) {
+            Collections.shuffle(sNumbers);
+            // get all children who are NumPadKey's
+            List<NumPadKey> views = new ArrayList<NumPadKey>();
+            for (int i = 0; i < mContainer.getChildCount(); i++) {
+                if (mContainer.getChildAt(i) instanceof LinearLayout) {
+                    LinearLayout nestedLayout = ((LinearLayout) mContainer.getChildAt(i));
+                    for (int j = 0; j < nestedLayout.getChildCount(); j++){
+                        View view = nestedLayout.getChildAt(j);
+                        if (view.getClass() == NumPadKey.class) {
+                            views.add((NumPadKey) view);
+                        }
+                    }
+                }
+            }
+            // reset the digits in the views
+            for (int i = 0; i < sNumbers.size(); i++) {
+                NumPadKey view = views.get(i);
+                view.setDigit(sNumbers.get(i));
+            }
+        }
     }
 
     @Override
@@ -192,6 +225,14 @@ public class KeyguardPINView extends KeyguardPinBasedInputView {
         mRow2.setClipToPadding(enable);
         mRow3.setClipToPadding(enable);
         setClipChildren(enable);
+    }
+
+    @Override
+    protected int getNumberIndex(int number) {
+        if (mScramblePin) {
+            return (sNumbers.indexOf(number) + 1) % sNumbers.size();
+        }
+        return super.getNumberIndex(number);
     }
 
     @Override
