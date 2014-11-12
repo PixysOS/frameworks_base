@@ -16,4 +16,11 @@
     <color name="ssos_foreground">@android:color/system_accent2_50</color>
     <color name="system_text_color_ssos">@android:color/system_accent1_900</color>
     <color name="ssos_foreground_secondary">@android:color/system_accent1_0</color>
+
+   <!-- OnTheSpot: OTS snackbar background color. -->
+    <color name="on_the_spot_background">#FF263238</color>
+    <!-- OnTheSpot: OTS snackbar background shadow color. -->
+    <color name="on_the_spot_shadow">#33000000</color>
+    <!-- OnTheSpot: OTS snackbar action denial button text color. -->
+    <color name="on_the_spot_deny_text">#FF9B9B9B</color>
 </resources>
