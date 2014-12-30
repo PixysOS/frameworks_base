@@ -405,6 +405,7 @@ public final class ViewRootImpl implements ViewParent,
     @UnsupportedAppUsage
     FallbackEventHandler mFallbackEventHandler;
     Choreographer mChoreographer;
+    boolean mDebugCpuRendVsync;
 
     final Rect mTempRect; // used in the transaction to not thrash the heap.
     final Rect mVisRect; // used to retrieve visible rect of focused view.
@@ -645,6 +646,7 @@ public final class ViewRootImpl implements ViewParent,
         mNoncompatDensity = context.getResources().getDisplayMetrics().noncompatDensityDpi;
         mFallbackEventHandler = new PhoneFallbackEventHandler(context);
         mChoreographer = Choreographer.getInstance();
+        mDebugCpuRendVsync = SystemProperties.getBoolean("debug.cpurend.vsync", true);
         mDisplayManager = (DisplayManager)context.getSystemService(Context.DISPLAY_SERVICE);
 
         String processorOverrideName = context.getResources().getString(
@@ -840,6 +842,15 @@ public final class ViewRootImpl implements ViewParent,
                         // but end just in case.
                         endDragResizing();
                         mUseMTRenderer = useMTRenderer;
+                    }
+                }
+
+                if (!mDebugCpuRendVsync) {
+                    if(!mAttachInfo.mHardwareAccelerated ||
+                            mAttachInfo.mThreadedRenderer == null) {
+                        mChoreographer.setSoftwareRendering(true);
+                    } else {
+                        mChoreographer.setSoftwareRendering(false);
                     }
                 }
 
