@@ -22,6 +22,7 @@ import com.android.systemui.qs.tiles.CellularTile
 import com.android.systemui.qs.tiles.PowerShareTile
 import com.android.systemui.qs.tiles.HeadsUpTile
 import com.android.systemui.qs.tiles.AODTile
+import com.android.systemui.qs.tiles.SyncTile
 import com.android.systemui.qs.tiles.WifiTile
 import dagger.Binds
 import dagger.Module
@@ -61,6 +62,12 @@ interface QSModulePixys {
     @StringKey(AODTile.TILE_SPEC)
     fun bindAODTile(aodTile: AODTile): QSTileImpl<*>
 
+    /** Inject SyncTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(SyncTile.TILE_SPEC)
+    fun bindSyncTile(syncTile: SyncTile): QSTileImpl<*>
+    
     /** Inject WifiTile into tileMap in QSModule */
     @Binds
     @IntoMap
