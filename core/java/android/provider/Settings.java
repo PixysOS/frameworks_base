@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2006 The Android Open Source Project
  *
@@ -5505,6 +5504,11 @@ public final class Settings {
          */
         @Readable
         public static final String KEYGAURD_MEDIA_ART = "keygaurd_media_art";
+
+        /**
+         * @hide
+         */
+        public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
