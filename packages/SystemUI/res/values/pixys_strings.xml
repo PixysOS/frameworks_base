@@ -192,4 +192,10 @@
     <!-- Ambient Display Pixel-Like string -->
     <string name="ambientmusic_songinfo">%s by %s</string>
 
+    <!-- Heads up QS tile -->
+    <string name="quick_settings_heads_up_label">Heads-up notifications</string>
+    <string name="accessibility_quick_settings_heads_up_off">Heads-up notifications disabled.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Heads-up notifications enabled.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Heads-up notifications turned off.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Heads-up notifications turned on.</string>
 </resources>
