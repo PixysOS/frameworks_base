@@ -4480,6 +4480,12 @@ public final class Settings {
          */
         public static final String USER_ROTATION = "user_rotation";
 
+       /**
+         * Three Finger Gesture from Oppo
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
         /**
          * Control whether the rotation lock toggle in the System UI should be hidden.
          * Typically this is done for accessibility purposes to make it harder for
