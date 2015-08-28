@@ -5101,6 +5101,12 @@ public final class Settings {
         private static final Validator VIBRATE_ON_DISCONNECT_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Toast icon
+         * @hide
+         */
+        public static final String TOAST_ICON = "toast_icon";
+
          /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5352,6 +5358,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VIBRATE_ON_CONNECT);
             PRIVATE_SETTINGS.add(VIBRATE_ON_CALLWAITING);
             PRIVATE_SETTINGS.add(VIBRATE_ON_DISCONNECT);
+            PRIVATE_SETTINGS.add(TOAST_ICON);
         }
 
         /**
