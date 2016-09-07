@@ -82,6 +82,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final com.android.systemui.shade.ShadeController mShadeController;
     private final CommandQueue mCommandQueue;
     private final ShadeViewController mShadeViewController;
+    private final FlashlightController mFlashlightController;
     private final RemoteInputQuickSettingsDisabler mRemoteInputQuickSettingsDisabler;
     private final MetricsLogger mMetricsLogger;
     private final KeyguardUpdateMonitor mKeyguardUpdateMonitor;
@@ -550,4 +551,5 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
         }
     }
+
 }
