@@ -62,6 +62,7 @@ import com.android.systemui.statusbar.notification.stack.NotificationStackScroll
 import com.android.systemui.statusbar.phone.dagger.CentralSurfacesComponent;
 import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
+import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
@@ -77,6 +78,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final Context mContext;
     private final ShadeController mShadeController;
     private final CommandQueue mCommandQueue;
+    private final FlashlightController mFlashlightController;
     private final NotificationPanelViewController mNotificationPanelViewController;
     private final RemoteInputQuickSettingsDisabler mRemoteInputQuickSettingsDisabler;
     private final MetricsLogger mMetricsLogger;
@@ -96,7 +98,6 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final VibratorHelper mVibratorHelper;
     private final Optional<Vibrator> mVibratorOptional;
     private final LightBarController mLightBarController;
-    private final FlashlightController mFlashlightController;
     private final DisableFlagsLogger mDisableFlagsLogger;
     private final int mDisplayId;
     private final boolean mVibrateOnOpening;
@@ -602,4 +603,5 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
         }
         return VibrationEffect.createWaveform(timings, /* repeat= */ -1);
     }
+
 }
