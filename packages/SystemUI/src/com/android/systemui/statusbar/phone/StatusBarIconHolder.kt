@@ -25,7 +25,7 @@ import com.android.systemui.statusbar.pipeline.icons.shared.model.ModernStatusBa
 
 /** Wraps [com.android.internal.statusbar.StatusBarIcon] so we can still have a uniform list */
 open class StatusBarIconHolder private constructor() {
-    @IntDef(TYPE_ICON, TYPE_MOBILE_NEW, TYPE_WIFI_NEW, TYPE_BINDABLE)
+    @IntDef(TYPE_ICON, TYPE_MOBILE_NEW, TYPE_WIFI_NEW, TYPE_BINDABLE, TYPE_NETWORK_TRAFFIC)
     @Retention(AnnotationRetention.SOURCE)
     internal annotation class IconType
 
@@ -48,7 +48,8 @@ open class StatusBarIconHolder private constructor() {
                 // this is effectively an unused return value.
                 TYPE_BINDABLE,
                 TYPE_MOBILE_NEW,
-                TYPE_WIFI_NEW -> true
+                TYPE_WIFI_NEW,
+                TYPE_NETWORK_TRAFFIC -> true
                 else -> true
             }
         set(visible) {
@@ -59,7 +60,8 @@ open class StatusBarIconHolder private constructor() {
                 TYPE_ICON -> icon!!.visible = visible
                 TYPE_BINDABLE,
                 TYPE_MOBILE_NEW,
-                TYPE_WIFI_NEW -> {}
+                TYPE_WIFI_NEW,
+                TYPE_NETWORK_TRAFFIC -> {}
             }
         }
 
@@ -100,12 +102,15 @@ open class StatusBarIconHolder private constructor() {
         /** Only applicable to [BindableIconHolder] */
         const val TYPE_BINDABLE = 5
 
+        const val TYPE_NETWORK_TRAFFIC = 6
+
         /** Returns a human-readable string representing the given type. */
         fun getTypeString(@IconType type: Int): String {
             return when (type) {
                 TYPE_ICON -> "ICON"
                 TYPE_MOBILE_NEW -> "MOBILE_NEW"
                 TYPE_WIFI_NEW -> "WIFI_NEW"
+                TYPE_NETWORK_TRAFFIC -> "NETWORK_TRAFFIC"
                 else -> "UNKNOWN"
             }
         }
@@ -122,6 +127,14 @@ open class StatusBarIconHolder private constructor() {
         fun forNewWifiIcon(): StatusBarIconHolder {
             val holder = StatusBarIconHolder()
             holder.type = TYPE_WIFI_NEW
+            return holder
+        }
+
+      /** Creates a new holder with for the Network traffic icon. */
+        @JvmStatic
+        fun fromNetworkTraffic(): StatusBarIconHolder {
+            val holder = StatusBarIconHolder()
+            holder.type = TYPE_NETWORK_TRAFFIC
             return holder
         }
 
@@ -180,5 +193,6 @@ open class StatusBarIconHolder private constructor() {
         override fun toString(): String {
             return ("StatusBarIconHolder(type=BINDABLE)")
         }
+
     }
 }
