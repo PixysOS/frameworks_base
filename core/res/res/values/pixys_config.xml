@@ -44,5 +44,8 @@
     <!-- Full screen aspect ratio -->
     <bool name="config_haveHigherAspectRatioScreen">false</bool>
     <item name="config_screenAspectRatio" format="float" type="dimen">2.1</item>
+    
+    <!-- Whether to show emergency button in power menu -->
+    <bool name="config_showEmergencyButtonInPowerMenu">false</bool>
    
 </resources>
