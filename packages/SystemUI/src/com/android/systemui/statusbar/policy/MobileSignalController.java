@@ -16,14 +16,18 @@
 package com.android.systemui.statusbar.policy;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.net.NetworkCapabilities;
+import android.net.Uri;
 import android.os.Handler;
+import android.os.UserHandle;
 import android.os.Looper;
+import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.telephony.NetworkRegistrationInfo;
 import android.telephony.ims.ImsMmTelManager;
@@ -94,6 +98,8 @@ public class MobileSignalController extends SignalController<
     private ImsManager.Connector mImsManagerConnector;
     private int mCallState = TelephonyManager.CALL_STATE_IDLE;
 
+    private boolean mRoamingIconAllowed;
+
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
     public MobileSignalController(Context context, Config config, boolean hasMobileData,
@@ -149,6 +155,42 @@ public class MobileSignalController extends SignalController<
                 updateTelephony();
             }
         };
+
+        Handler mHandler = new Handler();
+        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
+        settingsObserver.observe();
+    }
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            Uri uri = Settings.System.getUriFor(Settings.System.ROAMING_INDICATOR_ICON);
+            resolver.registerContentObserver(uri, false,
+                    this, UserHandle.USER_ALL);
+            updateSettings();
+        }
+
+        /*
+         *  @hide
+         */
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+    }
+
+    private void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        mRoamingIconAllowed = Settings.System.getIntForUser(resolver,
+                Settings.System.ROAMING_INDICATOR_ICON, 1,
+                UserHandle.USER_CURRENT) == 1;
+
+        updateTelephony();
     }
 
     public void setConfiguration(Config config) {
@@ -594,7 +636,7 @@ public class MobileSignalController extends SignalController<
         mCurrentState.dataConnected = mCurrentState.connected
                 && mDataState == TelephonyManager.DATA_CONNECTED;
 
-        mCurrentState.roaming = isRoaming();
+        mCurrentState.roaming = isRoaming() && mRoamingIconAllowed;
         if (isCarrierNetworkChangeActive()) {
             mCurrentState.iconGroup = TelephonyIcons.CARRIER_NETWORK_CHANGE;
         } else if (isDataDisabled() && !mConfig.alwaysShowDataRatIcon) {
