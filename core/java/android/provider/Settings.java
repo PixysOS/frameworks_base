@@ -5516,6 +5516,14 @@ public final class Settings {
         public static final String DESKTOP_MODE = "desktop_mode";
 
         /**
+         * Whether the button backlight is only lit when pressed (and not when screen is touched)
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED =
+                "button_backlight_only_when_pressed";
+
+        /**
          * Whether to show volume panel on the left side
          * Defaults to com.android.systemui.R.bool.config_audioPanelOnLeftSide
          * @hide
@@ -5906,6 +5914,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HIGH_TOUCH_POLLING_RATE_ENABLE);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(CUSTOM_UI_TOGGLE);
+            PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED);
         }
 
         /**

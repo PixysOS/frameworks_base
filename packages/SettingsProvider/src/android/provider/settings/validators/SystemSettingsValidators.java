@@ -221,5 +221,6 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.HIGH_TOUCH_POLLING_RATE_ENABLE, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.FULLSCREEN_GESTURES, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.TORCH_POWER_BUTTON_GESTURE, new InclusiveIntegerRangeValidator(0, 2));
+        VALIDATORS.put(System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED, BOOLEAN_VALIDATOR);
     }
 }
