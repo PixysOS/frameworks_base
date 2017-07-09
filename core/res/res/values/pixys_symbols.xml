@@ -113,4 +113,6 @@
  <!-- Camera key type -->
  <java-symbol type="bool" name="config_singleStageCameraKey" />
 
+    <!-- Sensor block -->
+    <java-symbol type="array" name="config_blockPackagesSensorDrain" />
 </resources>
