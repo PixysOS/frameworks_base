@@ -54,6 +54,10 @@
         android:key="wifi"
         android:title="@string/quick_settings_wifi_label" />
 
+        <com.android.systemui.tuner.StatusBarSwitch
+            android:key="ims"
+            android:title="@string/status_bar_ims" />
+
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="ethernet"
         android:title="@string/status_bar_ethernet" />
@@ -91,7 +95,6 @@
             android:key="nfc"
             android:persistent="false"
             android:title="@string/status_bar_nfc" />
-
     <com.android.systemui.tuner.BatteryPreference
         android:title="@string/battery"
         android:summary="%s"
