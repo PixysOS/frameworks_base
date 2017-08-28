@@ -55,7 +55,7 @@ public class ShutdownUi {
      * @param isReboot Whether the device will be rebooting after this shutdown.
      * @param reason Cause for the shutdown.
      */
-    public void showShutdownUi(boolean isReboot, String reason) {
+    public void showShutdownUi(boolean isReboot, String reason, boolean rebootCustom) {
         ScrimDrawable background = new ScrimDrawable();
 
         final Dialog d = new Dialog(mContext,
@@ -120,7 +120,7 @@ public class ShutdownUi {
         messageView.setTextColor(color);
 
         messageView.setText(getRebootMessage(isReboot, reason));
-        String rebootReasonMessage = getReasonMessage(reason);
+        String rebootReasonMessage = getReasonMessage(reason, rebootCustom);
         if (rebootReasonMessage != null) {
             reasonView.setVisibility(View.VISIBLE);
             reasonView.setText(rebootReasonMessage);
@@ -143,7 +143,9 @@ public class ShutdownUi {
         if (reason != null && reason.startsWith(PowerManager.REBOOT_RECOVERY_UPDATE)) {
             return R.string.reboot_to_update_reboot;
         } else if (reason != null && reason.equals(PowerManager.REBOOT_RECOVERY)) {
-            return R.string.reboot_to_reset_message;
+            return com.android.internal.R.string.reboot_to_recovery_message;
+        } else if (reason != null && reason.equals(PowerManager.REBOOT_BOOTLOADER)) {
+            return com.android.internal.R.string.reboot_to_bootloader_message;
         } else if (isReboot) {
             return R.string.reboot_to_reset_message;
         } else {
@@ -152,10 +154,10 @@ public class ShutdownUi {
     }
 
     @Nullable
-    @VisibleForTesting String getReasonMessage(@Nullable String reason) {
+    @VisibleForTesting String getReasonMessage(@Nullable String reason, boolean custom) {
         if (reason != null && reason.startsWith(PowerManager.REBOOT_RECOVERY_UPDATE)) {
             return mContext.getString(R.string.reboot_to_update_title);
-        } else if (reason != null && reason.equals(PowerManager.REBOOT_RECOVERY)) {
+        } else if (reason != null && reason.equals(PowerManager.REBOOT_RECOVERY) && !custom) {
             return mContext.getString(R.string.reboot_to_reset_title);
         } else {
             return null;
