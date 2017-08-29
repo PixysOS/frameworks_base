@@ -441,8 +441,10 @@ public class NotificationPanelView extends PanelView implements
      */
     private boolean mDelayShowingKeyguardStatusBar;
 
-    private GestureDetector mLockscreenDoubleTapToSleep;
+    private GestureDetector mDoubleTapToSleepGesture;
     private boolean mIsLockscreenDoubleTapEnabled;
+
+    private int mStatusBarHeaderHeight;
 
     @Inject
     public NotificationPanelView(@Named(VIEW_CONTEXT) Context context, AttributeSet attrs,
@@ -485,7 +487,7 @@ public class NotificationPanelView extends PanelView implements
         mBottomAreaShadeAlphaAnimator.setDuration(160);
         mBottomAreaShadeAlphaAnimator.setInterpolator(Interpolators.ALPHA_OUT);
 
-        mLockscreenDoubleTapToSleep = new GestureDetector(context,
+        mDoubleTapToSleepGesture = new GestureDetector(context,
                 new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
@@ -600,6 +602,8 @@ public class NotificationPanelView extends PanelView implements
                 com.android.internal.R.dimen.status_bar_height);
         mHeadsUpInset = statusbarHeight + getResources().getDimensionPixelSize(
                 R.dimen.heads_up_status_bar_padding);
+        mStatusBarHeaderHeight = getResources().getDimensionPixelSize(
+                R.dimen.status_bar_height);
     }
 
     /**
@@ -3522,4 +3526,7 @@ public class NotificationPanelView extends PanelView implements
         mOnReinflationListener = onReinflationListener;
     }
 
+    public void updateDoubleTapToSleep(boolean doubleTapToSleepEnabled) {
+        mDoubleTapToSleepEnabled = doubleTapToSleepEnabled;
+    }
 }
