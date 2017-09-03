@@ -846,6 +846,7 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
         }
     }
 
+    @Override
     public void toggleCameraFlash() {
         synchronized (mLock) {
             mHandler.removeMessages(MSG_TOGGLE_CAMERA_FLASH);
