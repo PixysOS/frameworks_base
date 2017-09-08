@@ -17,11 +17,9 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="global_action_restart_advanced">Advanced reboot</string>
-
-    <!-- Screenshot delete toast -->
-    <string name="delete_screenshot_toast">Screenshot deleted</string>
-
-    <string name="statusbar_items_title">Statusbar icon</string>
+    <!-- Pure Tuner Theme-->
+    <style name="ExTunerSettings" parent="@android:style/Theme.DeviceDefault.Settings">
+        <item name="preferenceTheme">@style/TunerPreferenceTheme</item>
+    </style>
 
 </resources>
