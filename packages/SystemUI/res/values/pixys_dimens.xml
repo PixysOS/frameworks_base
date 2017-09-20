@@ -23,4 +23,7 @@
     <!-- Network traffic -->
     <dimen name="net_traffic_text_size">8sp</dimen>
 
+    <!-- QS tile title -->
+    <dimen name="qs_tile_height_wo_label">48dp</dimen>
+
 </resources>
