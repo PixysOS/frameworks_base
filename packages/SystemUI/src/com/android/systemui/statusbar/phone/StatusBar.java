@@ -3945,6 +3945,16 @@ public class StatusBar extends SystemUI implements DemoMode,
         mNotificationInterruptionStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
     }
 
+    private void setHeadsUpStoplist() {
+        if (mPresenter != null)
+            mPresenter.setHeadsUpStoplist();
+    }
+
+    private void setHeadsUpBlacklist() {
+        if (mPresenter != null)
+            mPresenter.setHeadsUpBlacklist();
+    }
+
     public int getWakefulnessState() {
         return mWakefulnessLifecycle.getWakefulness();
     }
@@ -4476,6 +4486,10 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LESS_BORING_HEADS_UP),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_STOPLIST_VALUES), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES), false, this);
         }
 
         @Override
@@ -4498,6 +4512,8 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateCutoutOverlay();
             setQsColumns();
             setUseLessBoringHeadsUp();
+            setHeadsUpStoplist();
+            setHeadsUpBlacklist();
         }
     }
 
