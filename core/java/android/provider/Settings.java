@@ -4914,6 +4914,12 @@ public final class Settings {
          */
         public static final String FORCE_AMBIENT_FOR_MEDIA = "force_ambient_for_media";
 
+	/**
+         * Whether to control brightness from status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5129,8 +5135,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DEVICE_INTRODUCTION_COMPLETED);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
 	    PRIVATE_SETTINGS.add(NAVIGATION_BAR_MENU_ARROW_KEYS);
-        }
-
+            PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
+       }
 
         /**
          * Whether to display the torch option in the power menu
