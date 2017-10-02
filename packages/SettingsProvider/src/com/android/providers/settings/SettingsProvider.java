@@ -2889,7 +2889,7 @@ public class SettingsProvider extends ContentProvider {
         }
 
         private final class UpgradeController {
-            private static final int SETTINGS_VERSION = 148;
+            private static final int SETTINGS_VERSION = 149;
 
             private final int mUserId;
 
@@ -3316,7 +3316,7 @@ public class SettingsProvider extends ContentProvider {
                             Settings.Secure.INSTALL_NON_MARKET_APPS).getValue().equals("0")) {
 
                         secureSetting.insertSettingLocked(Settings.Secure.INSTALL_NON_MARKET_APPS,
-                                "1", null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+                                "0", null, true, SettingsState.SYSTEM_PACKAGE_NAME);
                         // For managed profiles with profile owners, DevicePolicyManagerService
                         // may want to set the user restriction in this case
                         secureSetting.insertSettingLocked(
@@ -3456,6 +3456,34 @@ public class SettingsProvider extends ContentProvider {
                         }
                     }
                     currentVersion = 148;
+                }
+
+                if (currentVersion == 148) {
+                    // Version 149
+                    /* Pixel Launcher checks this Setting to show Adaptive Icons options
+                        and anyway we need to enable dev settings for our stuff so we set
+                        this to enabled once forever */
+                    if (userId == UserHandle.USER_SYSTEM) {
+                        final SettingsState globalSettings = getGlobalSettingsLocked();
+                        Setting currentSetting = globalSettings.getSettingLocked(
+                                Settings.Global.DEVELOPMENT_SETTINGS_ENABLED);
+                        if (currentSetting.isNull()) {
+                            globalSettings.insertSettingLocked(
+                                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
+                                    "1", null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+                        }
+                        /* Play services check this Setting internally to notify about
+                            new OTA so we force it to disabled once forever */
+                        currentSetting = globalSettings.getSettingLocked(
+                                Settings.Global.OTA_DISABLE_AUTOMATIC_UPDATE);
+                        if (currentSetting.isNull()) {
+                            globalSettings.insertSettingLocked(
+                                    Settings.Global.OTA_DISABLE_AUTOMATIC_UPDATE,
+                                    "1", null, true, SettingsState.SYSTEM_PACKAGE_NAME);
+                        }
+                    }
+
+                    currentVersion = 149;
                 }
 
                 // vXXX: Add new settings above this point.
