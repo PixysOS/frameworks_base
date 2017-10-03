@@ -5897,6 +5897,13 @@ public final class Settings {
         public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
 
         /**
+         *  Enable statusbar double tap gesture on to put device to sleep
+         *  0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
+        /**
          * Whether allowing pocket service to register sensors and dispatch informations.
          *   0 = disabled
          *   1 = enabled
