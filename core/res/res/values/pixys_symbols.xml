@@ -32,4 +32,8 @@
 
     <!-- Device has OnePlus haptic motor -->
     <java-symbol type="bool" name="config_hasOnePlusHapticMotor" />
+
+    <!-- Device keyhandlers -->
+    <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
+    <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
 </resources>
