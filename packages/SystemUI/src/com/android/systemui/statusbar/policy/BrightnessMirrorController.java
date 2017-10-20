@@ -56,6 +56,7 @@ public class BrightnessMirrorController
         mContext = context;     
         mStatusBarWindow = statusBarWindow;
         mBrightnessMirror = statusBarWindow.findViewById(R.id.brightness_mirror);
+        setPadding();
         mNotificationPanel = statusBarWindow.findViewById(R.id.notification_panel);
         mNotificationPanel.setPanelAlphaEndAction(() -> {
             mBrightnessMirror.setVisibility(View.INVISIBLE);
@@ -121,11 +122,18 @@ public class BrightnessMirrorController
         mStatusBarWindow.removeView(mBrightnessMirror);
         mBrightnessMirror = LayoutInflater.from(qsThemeContext).inflate(
                 R.layout.brightness_mirror, mStatusBarWindow, false);
+        setPadding();         
         mStatusBarWindow.addView(mBrightnessMirror, index);
 
         for (int i = 0; i < mBrightnessMirrorListeners.size(); i++) {
             mBrightnessMirrorListeners.valueAt(i).onBrightnessMirrorReinflated(mBrightnessMirror);
         }
+    }
+
+    private void setPadding(){
+        mBrightnessMirror.setPadding(mBrightnessMirror.getPaddingLeft(),
+                    mBrightnessMirror.getPaddingTop(), mBrightnessMirror.getPaddingRight(),
+                    mContext.getResources().getDimensionPixelSize(R.dimen.qs_brightness_footer_padding));
     }
 
     private void updateIcon() {
