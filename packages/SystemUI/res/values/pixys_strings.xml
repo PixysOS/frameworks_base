@@ -28,4 +28,7 @@
     <string name="global_action_restart_hot">Quick</string>
     <string name="global_action_restart_ui">SystemUI</string>
 
+    <!-- Screenshot delete toast -->
+    <string name="delete_screenshot_toast">Screenshot deleted</string>
+
 </resources>
