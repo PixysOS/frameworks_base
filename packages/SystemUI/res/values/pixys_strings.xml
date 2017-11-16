@@ -19,4 +19,7 @@
 
     <string name="global_action_restart_advanced">Advanced reboot</string>
 
+    <!-- Screenshot delete toast -->
+    <string name="delete_screenshot_toast">Screenshot deleted</string>
+
 </resources>
