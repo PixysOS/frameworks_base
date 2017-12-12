@@ -38,6 +38,10 @@
         android:key="ethernet"
         android:title="@string/status_bar_ethernet" />
 
+        <com.android.systemui.tuner.StatusBarSwitch
+            android:key="vpn"
+            android:title="@string/status_bar_vpn" />
+
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="headset"
         android:title="@string/headset" />
@@ -79,4 +83,5 @@
         android:title="@string/battery"
         android:summary="%s"
         android:entries="@array/battery_options" />
+
 </PreferenceScreen>

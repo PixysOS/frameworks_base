@@ -61,4 +61,7 @@
 
     <!-- Statusbar tuner -->
     <string name="statusbar_items_title">Statusbar icon</string>
+
+    <!-- Name of the VPN status bar icon. -->
+    <string name="status_bar_vpn">VPN</string>
 </resources>
