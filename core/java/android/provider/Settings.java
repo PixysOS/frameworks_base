@@ -4114,7 +4114,7 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
-        
+
         /**
          * Toast icon
          * @hide
@@ -4190,6 +4190,14 @@ public final class Settings {
          * @hide
          */
         public static final String POWERMENU_LOGOUT = "powermenu_logout";
+
+        /**
+         * 0 - wallpaper based
+         * 1 - force light
+         * 2 - force dark
+         * @hide
+         */
+        public static final String SYSTEM_THEME_STYLE = "system_theme_style";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
