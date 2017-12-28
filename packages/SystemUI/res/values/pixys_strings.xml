@@ -115,4 +115,10 @@
     <string name="quick_settings_qr_description">Tap to scan</string>
     <string name="qr_code_activity_title">QR code scanner</string>
     <string name="delete_text_history">Clear history</string>
+    
+    <!-- Screen pinning dialog description. (for devices without navbar) -->
+    <string name="screen_pinning_description_no_navbar">This keeps it in view until you unpin. Touch &amp; hold Back to unpin.</string>
+
+    <!-- Notify use that they are in Lock-to-app (for devices without navbar)-->
+    <string name="screen_pinning_toast_no_navbar">To unpin this screen, touch &amp; hold Back button</string> 
 </resources>
