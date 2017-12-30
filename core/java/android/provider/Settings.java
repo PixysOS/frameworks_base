@@ -4328,6 +4328,12 @@ public final class Settings {
          */
         public static final String POWERMENU_LOGOUT = "powermenu_logout";
 
+        /**
+         * Whether to display the power menu dialog while on the lockscreen
+         * @hide
+         */
+        public static final String POWERMENU_LOCKSCREEN = "powermenu_lockscreen";
+
         /** some devices have a extra hw button e.g. n3 on the back on the
          * fingerprint sensor. allow mapping button to key
          *
