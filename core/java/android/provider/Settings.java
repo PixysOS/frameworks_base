@@ -4804,6 +4804,11 @@ public final class Settings {
          * Applications list where heasdup should't show
          *
          * @hide
+        /**
+         * IMPORTANT: If you add a new public settings you also have to add it to
+         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
+         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
+         * the setting value. See an example above.
          */
         public static final String HEADS_UP_STOPLIST_VALUES = "heads_up_stoplist_values";
         /** @hide */
@@ -4983,6 +4988,14 @@ public final class Settings {
          * @hide
          */
         public static final String GAMING_MODE_DYNAMIC_STATE = "gaming_mode_dynamic_state";
+
+        /**
+         * Wheter to play notification sound and vibration if screen is ON
+         * 0 - never
+         * 1 - always
+         * @hide
+         */
+        public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
