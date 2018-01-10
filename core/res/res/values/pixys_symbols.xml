@@ -96,4 +96,6 @@
     <!-- Toast animation -->
     <java-symbol type="style" name="Animation.Toast.Material" />
 
+    <java-symbol type="integer" name="config_flashlightProximityTimeout" />
+
 </resources>
