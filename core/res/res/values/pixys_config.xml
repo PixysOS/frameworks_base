@@ -160,4 +160,7 @@
     <!-- Default state for LiveDisplay -->
     <bool name="config_liveDisplayAvailable">false</bool>
 
+    <!-- Proximity check for powerbutton flashlight toggle -->
+    <integer name="config_flashlightProximityTimeout">300</integer>
+
 </resources>

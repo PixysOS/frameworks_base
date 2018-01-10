@@ -178,4 +178,7 @@
     <!-- Clipboard force notify packages -->
     <java-symbol type="array" name="config_notifyClipboardPackages" />
 
+    <!-- Proximity check for powerbutton flashlight toggle -->
+    <java-symbol type="integer" name="config_flashlightProximityTimeout" />
+
 </resources>
