@@ -101,4 +101,8 @@
     <!-- Whether device supports internal audio recording -->
     <bool name="config_hasInternalAudioRecordingSupport">true</bool>
 
+    <!-- Time to give to the proximity sensor before toggling the
+         flashlight with the Power button. -->
+    <integer name="config_flashlightProximityTimeout">300</integer>
+
 </resources>
