@@ -17,7 +17,11 @@
 -->
 <resources>
 
-	<!-- Sets a custom extra padding for the QS icons and statusbar date -->
-	<dimen name="qs_items_padding">8dp</dimen>
+    <!-- Sets a custom extra padding for the QS icons and statusbar date -->
+    <dimen name="qs_items_padding">8dp</dimen>
+
+    <!-- Network traffic -->
+    <dimen name="net_traffic_single_text_size">14sp</dimen>
+    <dimen name="net_traffic_multi_text_size">8sp</dimen>
 
 </resources>
