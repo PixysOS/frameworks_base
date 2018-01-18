@@ -169,4 +169,7 @@
     <!-- Whether device ignores the RSSNR signal implementation -->
     <bool name="config_ignoreRssnrSignalLevel">false</bool>
 
+    <!-- Ambient display music ticker -->
+    <bool name="config_canForceDozeNotifications">true</bool>
+
 </resources>
