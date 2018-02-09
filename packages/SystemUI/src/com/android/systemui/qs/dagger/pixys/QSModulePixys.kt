@@ -24,6 +24,7 @@ import com.android.systemui.qs.tiles.DataSwitchTile
 import com.android.systemui.qs.tiles.PowerShareTile
 import com.android.systemui.qs.tiles.HeadsUpTile
 import com.android.systemui.qs.tiles.AODTile
+import com.android.systemui.qs.tiles.SoundSearchTile
 import com.android.systemui.qs.tiles.SyncTile
 import com.android.systemui.qs.tiles.WifiTile
 import dagger.Binds
@@ -75,6 +76,12 @@ interface QSModulePixys {
     @IntoMap
     @StringKey(AODTile.TILE_SPEC)
     fun bindAODTile(aodTile: AODTile): QSTileImpl<*>
+
+    /** Inject SoundSearchTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(SoundSearchTile.TILE_SPEC)
+    fun bindSoundSearchTile(soundSearchTile: SoundSearchTile): QSTileImpl<*>
 
     /** Inject SyncTile into tileMap in QSModule */
     @Binds
