@@ -489,6 +489,7 @@ public class NotificationColorUtil {
         final int resolvedColor = resolveColor(context, notificationColor);
 
         int color = resolvedColor;
+        isDark = isDark || context.getResources().getBoolean(R.bool.config_useDarkBgNotificationIconTextTinting);
         color = NotificationColorUtil.ensureTextContrast(color, backgroundColor, isDark);
 
         if (color != resolvedColor) {
