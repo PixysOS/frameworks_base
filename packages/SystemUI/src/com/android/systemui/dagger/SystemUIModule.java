@@ -55,6 +55,7 @@ import com.android.systemui.model.SysUiState;
 import com.android.systemui.motiontool.MotionToolModule;
 import com.android.systemui.navigationbar.NavigationBarComponent;
 import com.android.systemui.notetask.NoteTaskModule;
+import com.android.systemui.pixys.AODModule;
 import com.android.systemui.pixys.CaffeineModule;
 import com.android.systemui.pixys.HeadsUpModule;
 import com.android.systemui.pixys.DataSwitchModule;
@@ -142,6 +143,7 @@ import dagger.Provides;
  */
 @Module(includes = {
             AccessibilityModule.class,
+            AODModule.class,
             AppOpsModule.class,
             AssistModule.class,
             BiometricsModule.class,

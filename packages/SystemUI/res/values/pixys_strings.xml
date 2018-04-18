@@ -77,4 +77,7 @@
 
     <!-- SoundSearch Tile -->
     <string name="quick_settings_sound_search">Sound search</string>
+
+    <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">AOD</string>
 </resources>
