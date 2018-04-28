@@ -24,4 +24,7 @@
     <color name="immersive_cling_text_color">@android:color/white</color>
     <color name="immersive_cling_button_text_color">@android:color/white</color>
 
+    <!-- Two target preference vertical divider color -->
+    <color name="list_divider_dark">#64000000</color>
+
 </resources>
