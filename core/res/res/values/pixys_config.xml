@@ -72,4 +72,8 @@
 
      <!-- Display color inversion availability -->
     <bool name="config_displayInversionAvailable">true</bool>
+
+    <!-- Whether device has an alert slider. -->
+    <bool name="config_hasAlertSlider">false</bool>
+
 </resources>
