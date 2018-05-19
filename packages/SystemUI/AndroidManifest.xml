@@ -233,6 +233,12 @@
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
+    <!-- Ambient Indication -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <protected-broadcast android:name="android.intent.action.SCREEN_STATE_SERVICE_UPDATE" />
+
     <!-- Reboot -->
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.RECOVERY" />
@@ -240,6 +246,7 @@
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
+        android:usesCleartextTraffic="true"
         android:allowClearUserData="false"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
