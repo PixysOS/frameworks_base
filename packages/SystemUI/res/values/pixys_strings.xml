@@ -96,4 +96,8 @@
     <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_running_services">Open Running Services screen.</string>
 
+    <!-- AmbientPlay: The contents of the displayed recognition. -->
+    <string name="ambient_recognition_notification">Now Playing</string>
+    <string name="ambient_recognition_information">%1$s by %2$s</string>
+
 </resources>
