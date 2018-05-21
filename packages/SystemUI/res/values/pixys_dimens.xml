@@ -38,4 +38,8 @@
     <!-- QS detail view scrolling -->
     <dimen name="qs_detail_item_height_twoline">72dp</dimen>
 
+    <!-- The width/height of the charging indicator view on keyguard. -->
+    <dimen name="keyguard_charging_indication_height">48dp</dimen>
+    <dimen name="keyguard_charging_indication_width">24dp</dimen>
+
 </resources>
