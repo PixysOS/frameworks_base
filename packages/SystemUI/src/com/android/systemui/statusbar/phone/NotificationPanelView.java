@@ -391,6 +391,11 @@ public class NotificationPanelView extends PanelView implements
             @Override
             public boolean onDoubleTap(MotionEvent e) {
                 PixysUtils.switchScreenOff(context);
+                // quick pulldown can trigger those values
+                // on double tap - so reset them
+                mQsExpandImmediate = false;
+                requestPanelHeightUpdate();
+                setListening(false);
                 return true;
             }
         });
