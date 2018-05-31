@@ -160,7 +160,8 @@
     <!-- Default state for LiveDisplay -->
     <bool name="config_liveDisplayAvailable">false</bool>
 
-    <!-- Proximity check for powerbutton flashlight toggle -->
+    <!-- Time to give to the proximity sensor before toggling the flashlight with the Power button.
+    Set to -1 to disable the proximity sensor check at all -->
     <integer name="config_flashlightProximityTimeout">300</integer>
 
 </resources>
