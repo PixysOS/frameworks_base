@@ -580,6 +580,9 @@ public class StatusBar extends SystemUI implements DemoMode,
     private boolean mScreenOn;
     private boolean mKeyguardShowingMedia;
 
+    // LS visualizer on Ambient Display
+    private boolean mAmbientVisualizer;
+
     private BroadcastReceiver mWallpaperChangedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -5172,6 +5175,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             mEntryManager.updateNotifications();
             updateDozingState();
             updateReportRejectedTouchVisibility();
+            if (mAmbientVisualizer && mDozing) {
+                mVisualizerView.setVisible(true);
+            }
         }
         Trace.endSection();
     }
@@ -5611,6 +5617,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 	    resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LESS_BORING_HEADS_UP),
                     false, this, UserHandle.USER_ALL);
+	    resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.Secure.AMBIENT_VISUALIZER_ENABLED),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -5662,6 +5671,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.LESS_BORING_HEADS_UP))) {
                 setUseLessBoringHeadsUp();
+            } else if (uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.AMBIENT_VISUALIZER_ENABLED))) {
+                setAmbientVis();
             }
             update();
         }
@@ -5676,6 +5688,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 	    setFpToDismissNotifications();
 	    setOldMobileType();
             setUseLessBoringHeadsUp();
+            setAmbientVis();
         }
     }
 
@@ -5741,6 +5754,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             ((AmbientIndicationContainer)mAmbientIndicationContainer).setIndication(
                     notificationText);
         }
+    }
+
+    private void setAmbientVis() {
+        mAmbientVisualizer = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(), Settings.Secure.AMBIENT_VISUALIZER_ENABLED, 0,
+                UserHandle.USER_CURRENT) == 1;
     }
 
     private boolean isAmbientContainerAvailable() {
