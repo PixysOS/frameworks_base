@@ -140,6 +140,7 @@ import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.internal.util.hwkeys.PackageMonitor;
 import com.android.internal.util.hwkeys.PackageMonitor.PackageChangedListener;
 import com.android.internal.util.hwkeys.PackageMonitor.PackageState;
+import com.android.internal.util.pixys.PixysUtils;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardUpdateMonitorCallback;
@@ -515,6 +516,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     protected NotificationLockscreenUserManager mLockscreenUserManager;
     protected NotificationRemoteInputManager mRemoteInputManager;
     private boolean mWallpaperSupported;
+
+    private boolean mShowNavBar;
 
     private boolean mWallpaperSupportsAmbientMode;
     private final BroadcastReceiver mWallpaperChangedReceiver = new BroadcastReceiver() {
@@ -936,7 +939,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         mNotificationLogger.setHeadsUpManager(mHeadsUpManager);
         putComponent(HeadsUpManager.class, mHeadsUpManager);
 
-        createNavigationBar(result);
+        updateNavigationBar(true);
 
         if (ENABLE_LOCKSCREEN_WALLPAPER && mWallpaperSupported) {
             mLockscreenWallpaper = new LockscreenWallpaper(mContext, this, mHandler);
@@ -4588,6 +4591,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_BLUR_INTENSITY),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.FORCE_SHOW_NAVBAR),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4617,6 +4623,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setHeadsUpBlacklist();
             setPulseOnNewTracks();
             setGamingMode();
+            updateNavigationBar(false);
         }
     }
 
@@ -4965,4 +4972,21 @@ public class StatusBar extends SystemUI implements DemoMode,
         return mStatusBarMode;
     }
 
+    private void updateNavigationBar(boolean init) {
+        boolean showNavBar = PixysUtils.deviceSupportNavigationBar(mContext);
+        if (init) {
+            if (showNavBar) {
+                mNavigationBarController.createNavigationBars(true, null);
+            }
+        } else {
+            if (showNavBar != mShowNavBar) {
+                if (showNavBar) {
+                    mNavigationBarController.createNavigationBars(true, null);
+                } else {
+                    mNavigationBarController.removeNavigationBar(mDisplayId);
+                }
+            }
+        }
+        mShowNavBar = showNavBar;
+    }
 }
