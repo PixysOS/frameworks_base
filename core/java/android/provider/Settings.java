@@ -4461,8 +4461,34 @@ public final class Settings {
         private static final Validator SHOW_BATTERY_PERCENT_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+<<<<<<< HEAD
          * The time in ms to keep the button backlight on after pressing a button.
          * A value of 0 will keep the buttons on for as long as the screen is on.
+=======
+         * IMPORTANT: If you add a new public settings you also have to add it to
+         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
+         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
+         * the setting value. See an example above.
+         */
+
+         /**
+         * Whether to show the battery info on the lockscreen while charging
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
+
+
+        /**
+         * Whether to display sound panel in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_SOUNDPANEL = "powermenu_soundpanel";
+
+        /**
+         * Whether to display screenshot in the power menu
+         *
+>>>>>>> c35b4a8e23d... LockscreenCharging: squashed (1/3)
          * @hide
          */
         public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
@@ -4501,6 +4527,12 @@ public final class Settings {
         /** @hide */
         public static final Validator PROXIMITY_ON_WAKE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
+         /**
+         * Whether to show the battery info on the lockscreen while charging
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
