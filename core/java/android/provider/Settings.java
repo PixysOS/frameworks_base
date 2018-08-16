@@ -4109,6 +4109,13 @@ public final class Settings {
          * the setting value. See an example above.
          */
 
+         /**
+         * Whether to show the battery info on the lockscreen while charging
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
+
+
         /**
          * Whether to display sound panel in the power menu
          *
