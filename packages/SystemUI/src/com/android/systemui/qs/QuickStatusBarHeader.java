@@ -33,11 +33,13 @@ import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
 import android.provider.AlarmClock;
 import android.provider.DeviceConfig;
+import android.provider.CalendarContract;
 import android.provider.Settings;
 import android.service.notification.ZenModeConfig;
 import android.text.format.DateUtils;
@@ -247,6 +249,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mClockView.setOnClickListener(this);
         mClockView.setClockHideableByUser(false);
         mDateView = findViewById(R.id.date);
+        mDateView.setOnClickListener(this);
         mSpace = findViewById(R.id.space);
         mDateView.setOnClickListener(this);
         mClockView.setQsHeader(mDateView);
@@ -567,7 +570,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
     @Override
     public void onClick(View v) {
-        if (v == mClockView) {
+        if (v == mClockView || v == mNextAlarmTextView) {
             mActivityStarter.postStartActivityDismissingKeyguard(new Intent(
                     AlarmClock.ACTION_SHOW_ALARMS), 0);
         } else if (v == mNextAlarmContainer && mNextAlarmContainer.isVisibleToUser()) {
@@ -594,6 +597,12 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         } else if (v == mRingerContainer && mRingerContainer.isVisibleToUser()) {
             mActivityStarter.postStartActivityDismissingKeyguard(new Intent(
                     Settings.ACTION_SOUND_SETTINGS), 0);
+        } else if (v == mDateView) {
+            Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
+            builder.appendPath("time");
+            builder.appendPath(Long.toString(System.currentTimeMillis()));
+            Intent todayIntent = new Intent(Intent.ACTION_VIEW, builder.build());
+            mActivityStarter.postStartActivityDismissingKeyguard(todayIntent, 0);
         }
     }
 
