@@ -6122,6 +6122,7 @@ message MetricsEvent {
 
     // PIXYS custom constants
     PIXYS = 1500;
+    PIXYS_SETTINGS = 1501;
 
   }
 }
