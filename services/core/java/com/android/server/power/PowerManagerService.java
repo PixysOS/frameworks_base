@@ -1040,7 +1040,7 @@ public final class PowerManagerService extends SystemService
 
         mProximityWakeEnabled = Settings.System.getInt(resolver,
 		Settings.System.PROXIMITY_ON_WAKE,
-                Settings.System.PROXIMITY_ON_WAKE, 0) == 1;
+                mProximityWakeEnabledByDefaultConfig ? 1 : 0) == 1;
 
         mDirty |= DIRTY_SETTINGS;
     }
@@ -4768,17 +4768,6 @@ public final class PowerManagerService extends SystemService
                 }
             } finally {
                 Binder.restoreCallingIdentity(ident);
-            }
-        }
-
-        @Override
-        /* updates the blocked uids, so if a wake lock is acquired for it
-         * can be released.
-         */
-        public void updateBlockedUids(int uid, boolean isBlocked) {
-            synchronized(mLock) {
-                qcNsrmPowExt.processPmsBlockedUid(uid, isBlocked,
-                                                             mWakeLocks);
             }
         }
     }
