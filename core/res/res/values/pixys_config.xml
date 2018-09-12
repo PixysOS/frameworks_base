@@ -141,5 +141,6 @@
     backgrounds (requires config_allowNotificationIconTextTinting to be true)-->
     <bool name="config_useDarkBgNotificationTinting_override">false</bool>
     <bool name="config_notificationTinting_override">false</bool>
+    <bool name="config_useDarkBgNotificationIconTextTinting">false</bool>
    
 </resources>
