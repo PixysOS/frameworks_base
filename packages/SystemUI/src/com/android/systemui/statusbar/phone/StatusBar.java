@@ -5469,9 +5469,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.DOUBLE_TAP_SLEEP_GESTURE))) {
                 setLockscreenDoubleTapToSleep();
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.NAVIGATION_BAR_SHOW))) {
-                updateNavigationBar();
-            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_STOPLIST_VALUES))) {
                 setHeadsUpStoplist();
             } else if (uri.equals(Settings.System.getUriFor(
