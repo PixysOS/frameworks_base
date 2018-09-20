@@ -49,6 +49,7 @@ import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
 import com.android.systemui.util.leak.GarbageMonitor;
+import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.AmbientDisplayTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
@@ -87,6 +88,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<SyncTile> mSyncTileProvider;
     private final Provider<LteTile> mLteTileProvider;
     private final Provider<ScreenRecordTile> mScreenRecordTileProvider;
+    private final Provider<CompassTile> mCompassTileProvider;
 
     private QSTileHost mHost;
 
@@ -115,7 +117,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<UsbTetherTile> usbTetherTileProvider,
             Provider<SyncTile> syncTileProvider,
             Provider<LteTile> lteTileProvider,
-            Provider<ScreenRecordTile> screenRecordTileProvider) {
+            Provider<ScreenRecordTile> screenRecordTileProvider
+            Provider<CompassTile> compassTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -141,6 +144,7 @@ public class QSFactoryImpl implements QSFactory {
         mSyncTileProvider = syncTileProvider;
         mLteTileProvider = lteTileProvider;
         mScreenRecordTileProvider = screenRecordTileProvider;
+        mCompassTileProvider = compassTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -206,6 +210,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mLteTileProvider.get();
             case "screenrecord":
                 return mScreenRecordTileProvider.get();
+            case "compass":
+                return mCompassTile.get();
         }
 
         // Intent tiles.
