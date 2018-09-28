@@ -73,12 +73,14 @@ public class ThemeAccentUtils {
         "com.android.system.theme.darktheem", // 0
         "com.android.settings.theme.darktheem", // 1
         "com.android.systemui.theme.darktheem", // 2
+        "com.android.updater.theme.dark.pixys", // 3
     };
 
     private static final String[] BLACK_THEMES = {
         "com.android.system.theme.blacktheem", // 0
         "com.android.settings.theme.blacktheem", // 1
         "com.android.systemui.theme.blacktheem", // 2
+        "com.android.updater.theme.black.pixys", // 3
     };
 
     // Switches theme accent from to another or back to stock
