@@ -27,6 +27,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -44,10 +45,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
+import android.os.RemoteException;
+import android.os.Process;
+import android.os.UserHandle;
+import android.app.ActivityManager;
+import android.app.IActivityManager;
+import android.app.ActivityManagerNative;
+
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.util.Log;
 import android.view.Display;
 import android.view.IWindowManager;
 import android.view.View;
@@ -60,6 +69,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.util.hwkeys.ActionConstants.Defaults;
@@ -84,6 +94,65 @@ public final class ActionUtils {
     public static final String STRING = "string";
     public static final String ANIM = "anim";
 
+    private static final String TAG = ActionUtils.class.getSimpleName();
+    /**
+     * Kills the top most / most recent user application, but leaves out the launcher.
+     * This is function governed by {@link Settings.Secure.KILL_APP_LONGPRESS_BACK}.
+     *
+     * @param context the current context, used to retrieve the package manager.
+     * @param userId the ID of the currently active user
+     * @return {@code true} when a user application was found and closed.
+     */
+    public static boolean killForegroundApp(Context context, int userId) {
+        try {
+            return killForegroundAppInternal(context, userId);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Could not kill foreground app");
+        }
+        return false;
+    }
+
+    private static boolean killForegroundAppInternal(Context context, int userId)
+            throws RemoteException {
+        try {
+            final Intent intent = new Intent(Intent.ACTION_MAIN);
+            String defaultHomePackage = "com.android.launcher";
+            intent.addCategory(Intent.CATEGORY_HOME);
+            final ResolveInfo res = context.getPackageManager().resolveActivity(intent, 0);
+
+            if (res.activityInfo != null && !res.activityInfo.packageName.equals("android")) {
+                defaultHomePackage = res.activityInfo.packageName;
+            }
+
+            IActivityManager am = ActivityManagerNative.getDefault();
+            List<ActivityManager.RunningAppProcessInfo> apps = am.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo appInfo : apps) {
+                int uid = appInfo.uid;
+                // Make sure it's a foreground user application (not system,
+                // root, phone, etc.)
+                if (uid >= Process.FIRST_APPLICATION_UID && uid <= Process.LAST_APPLICATION_UID
+                        && appInfo.importance ==
+                        ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                    if (appInfo.pkgList != null && (appInfo.pkgList.length > 0)) {
+                        for (String pkg : appInfo.pkgList) {
+                            if (!pkg.equals(PACKAGE_SYSTEMUI)
+                                    && !pkg.equals(defaultHomePackage)) {
+                                am.forceStopPackage(pkg, UserHandle.USER_CURRENT);
+                                return true;
+                            }
+                        }
+                    } else {
+                        Process.killProcess(appInfo.pid);
+                        return true;
+                    }
+                }
+            }
+        } catch (RemoteException remoteException) {
+            // Do nothing; just let it go.
+        }
+        return false;
+    }
+    
     // 10 inch tablets
     public static boolean isXLargeScreen() {
         int screenLayout = Resources.getSystem().getConfiguration().screenLayout &
