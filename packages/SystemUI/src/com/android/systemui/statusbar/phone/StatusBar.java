@@ -4251,9 +4251,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         ThemeAccentUtils.updateTileStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId(), qsTileStyle);
     }
 
-    // Unload all qs tile styles back to stock
-    public void stockTileStyle() {
-        ThemeAccentUtils.stockTileStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+    // Unload all the qs tile styles
+    public void unlockQsTileStyles() {
+        ThemeAccentUtils.unlockQsTileStyles(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
     }
 
     private void updateDozingState() {
@@ -5432,6 +5432,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_SHOW),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_TILE_STYLE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -5459,6 +5462,10 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.SYSTEM_THEME_STYLE))) {
                 getCurrentThemeSetting();
                 updateTheme();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_TILE_STYLE))) {
+                unlockQsTileStyles();
+                updateTileStyle();
         }
             update();
         }
