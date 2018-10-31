@@ -98,4 +98,8 @@ public class FakeBluetoothController extends BaseLeakChecker<Callback> implement
             BluetoothAdapter.OnMetadataChangedListener listener) {
 
     }
+
+    public int getBatteryLevel() {
+        return 0;
+    }
 }
