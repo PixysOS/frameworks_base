@@ -4536,8 +4536,14 @@ public final class Settings {
          */
         public static final String VIBRATE_ON_CALLWAITING = "vibrate_on_callwaiting";
 
+        /**
+         * Whether to use icon pack for Recents
+         * @hide
+         */
+        public static final String RECENTS_ICON_PACK = "recents_icon_pack";
+
          /**
-         * Whether the phone vibrates on disconnect
+         * Whether the phone vibrates on disconnect 
          * @hide
          */
         public static final String VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
