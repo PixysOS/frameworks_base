@@ -6121,8 +6121,8 @@ message MetricsEvent {
     // END OF AOSP CONSTANTS
 
     // PIXYS custom constants
-    PIXYS = 1500;
-    PIXYS_SETTINGS = 1501;
+    PIXYS = 2500;
+    PIXYS_SETTINGS = 2501;
 
   }
 }
