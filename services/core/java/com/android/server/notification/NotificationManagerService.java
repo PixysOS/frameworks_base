@@ -349,10 +349,8 @@ public class NotificationManagerService extends SystemService {
     private int mInterruptionFilter = NotificationListenerService.INTERRUPTION_FILTER_UNKNOWN;
 
     // for enabling and disabling notification pulse behavior
-    private boolean mScreenOn = true;
     boolean mScreenOn = true;
     protected boolean mInCall = false;
-    private boolean mNotificationPulseEnabled;
     boolean mNotificationPulseEnabled;
 
     private Uri mInCallNotificationUri;

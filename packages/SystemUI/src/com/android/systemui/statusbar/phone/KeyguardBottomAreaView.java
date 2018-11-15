@@ -599,6 +599,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
             return;
         }
         mDarkAmount = darkAmount;
+       }
 
     private static boolean isSuccessfulLaunch(int result) {
         return result == ActivityManager.START_SUCCESS
