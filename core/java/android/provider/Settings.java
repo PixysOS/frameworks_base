@@ -1579,6 +1579,20 @@ public final class Settings {
     public static final String ACTION_STORAGE_VOLUME_ACCESS_SETTINGS =
             "android.settings.STORAGE_VOLUME_ACCESS_SETTINGS";
 
+    /**
+     * Activity Action: Show first time device intro
+     * <p>
+     * In some cases, a matching Activity may not exist, so ensure you
+     * safeguard against this.
+     * <p>
+     * Input: Nothing.
+     * <p>
+     * Output: Nothing
+     */
+    @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
+    public static final String ACTION_DEVICE_INTRODUCTION =
+        "android.settings.DEVICE_INTRODUCTION";
+
     // End of Intent actions for Settings
 
     /**
@@ -4241,6 +4255,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Weather the device introduction is completed
+         * @hide
+         */
+        public static final String DEVICE_INTRODUCTION_COMPLETED = "device_introduction_completed";
+
+        /** @hide */
+        private static final Validator DEVICE_INTRODUCTION_COMPLETED_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -5034,6 +5058,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_DISPLAY);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_STYLE);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
+            PRIVATE_SETTINGS.add(DEVICE_INTRODUCTION_COMPLETED);
         }
 
 
@@ -5150,6 +5175,7 @@ public final class Settings {
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_DISPLAY, STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_STYLE, STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_FORMAT, STATUSBAR_CLOCK_DATE_FORMAT_VALIDATOR);
+            VALIDATORS.put(DEVICE_INTRODUCTION_COMPLETED, DEVICE_INTRODUCTION_COMPLETED_VALIDATOR);
         }
 
         /**
