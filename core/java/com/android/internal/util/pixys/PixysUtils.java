@@ -23,7 +23,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.hardware.input.InputManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Handler;
@@ -142,6 +144,26 @@ public class PixysUtils {
 
     public static boolean deviceSupportNavigationBar(Context context) {
         return deviceSupportNavigationBarForUser(context, UserHandle.USER_CURRENT);
+    }
+
+    // Check to see if a package is installed
+    public static boolean isPackageInstalled(Context context, String pkg, boolean ignoreState) {
+        if (pkg != null) {
+            try {
+                PackageInfo pi = context.getPackageManager().getPackageInfo(pkg, 0);
+                if (!pi.applicationInfo.enabled && !ignoreState) {
+                    return false;
+                }
+            } catch (NameNotFoundException e) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isPackageInstalled(Context context, String pkg) {
+        return isPackageInstalled(context, pkg, true);
     }
 
     public static void restartSystemUi(Context context) {
