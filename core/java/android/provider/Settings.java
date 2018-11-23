@@ -4669,6 +4669,10 @@ public final class Settings {
         private static final Validator CUSTOM_DEVICE_FEATURE_SETTINGS_VALIDATOR =
                 ANY_STRING_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String FULL_GESTURE_NAVBAR = "full_gesture_navbar";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
