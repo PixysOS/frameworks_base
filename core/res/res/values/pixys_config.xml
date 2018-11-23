@@ -166,4 +166,7 @@
     <!-- Name of that alternative key handler class -->
     <string name="config_alternativeDeviceKeyHandlerClass" translatable="false"></string>
 
+    <!-- Whether device ignores the RSSNR signal implementation -->
+    <bool name="config_ignoreRssnrSignalLevel">false</bool>
+
 </resources>
