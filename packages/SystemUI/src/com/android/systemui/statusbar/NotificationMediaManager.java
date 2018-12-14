@@ -331,6 +331,7 @@ public class NotificationMediaManager implements Dumpable {
 
             if (mListener != null) {
                 mListener.onMediaUpdated(true);
+
             }
         } else {
             mEntryManager.setEntryToRefresh(null);
