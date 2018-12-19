@@ -5694,6 +5694,12 @@ public final class Settings {
          */
         public static final String HIGH_TOUCH_POLLING_RATE_ENABLE =
                 "high_touch_polling_rate_enable";
+        
+        /**
+         * Volume panel on left
+         * @hide
+         */
+        public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
 
 	/**
          * Whether to play notification sound and vibration if screen is ON
