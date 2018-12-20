@@ -90,10 +90,6 @@
        this value will apply on Launcher3 quickstep view and also the normal recents -->
     <java-symbol type="dimen" name="recents_task_view_rounded_corners_radius" />
 
-    <!-- Ambient play -->
-    <java-symbol type="string" name="ambient_recognition_notification" />
-    <java-symbol type="string" name="ambient_recognition_information" />
-
     <!-- Device keyhandlers -->
     <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
     <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
