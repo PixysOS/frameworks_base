@@ -4189,9 +4189,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                     && (config.uiMode & Configuration.UI_MODE_NIGHT_MASK)
                         == Configuration.UI_MODE_NIGHT_YES;
             useDarkTheme = wallpaperWantsDarkTheme || nightModeWantsDarkTheme;
-                    // Check for black and white accent so we don't end up
-            // with white on white or black on black
-            unfuckBlackWhiteAccent();
             useBlackTheme = false;
         } else {
             useDarkTheme = mCurrentTheme == 2;
@@ -5416,6 +5413,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEM_THEME_STYLE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_GESTURE),
