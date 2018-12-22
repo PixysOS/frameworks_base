@@ -18,9 +18,6 @@ package android.telephony.ims.aidl;
 
 import android.os.Bundle;
 
-import android.telephony.ims.ImsCallProfile;
-import android.telephony.ims.ImsReasonInfo;
-
 import com.android.ims.internal.IImsCallSession;
 
 /**
@@ -29,6 +26,5 @@ import com.android.ims.internal.IImsCallSession;
  */
 oneway interface IImsMmTelListener {
     void onIncomingCall(IImsCallSession c, in Bundle extras);
-    void onRejectedCall(in ImsCallProfile callProfile, in ImsReasonInfo reason);
     void onVoiceMessageCountUpdate(int count);
 }

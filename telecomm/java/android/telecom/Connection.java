@@ -333,23 +333,8 @@ public abstract class Connection extends Conferenceable {
     /** Call supports the deflect feature. */
     public static final int CAPABILITY_SUPPORT_DEFLECT = 0x02000000;
 
-    /**
-     * Add participant in an active or conference call option
-     *
-     * @hide
-     */
-    public static final int CAPABILITY_ADD_PARTICIPANT = 0x04000000;
-
-
-    /**
-     * Remote device supports RTT.
-     * @hide
-     */
-
-    public static final int CAPABILITY_SUPPORTS_RTT_REMOTE = 0x08000000;
-
     //**********************************************************************************************
-    // Next CAPABILITY value: 0x10000000
+    // Next CAPABILITY value: 0x04000000
     //**********************************************************************************************
 
     /**
@@ -507,14 +492,6 @@ public abstract class Connection extends Conferenceable {
             "android.telecom.extra.ORIGINAL_CONNECTION_ID";
 
     /**
-     * Integer connection extra key on a {@link Connection} to indicate that there is an updated
-     * call property
-     * @hide
-     */
-    public static final String EXTRA_CALL_PROPERTY =
-            "android.telecom.extra.EXTRA_CALL_PROPERTY";
-
-    /**
      * Connection event used to inform Telecom that it should play the on hold tone.  This is used
      * to play a tone when the peer puts the current call on hold.  Sent to Telecom via
      * {@link #sendConnectionEvent(String, Bundle)}.
@@ -620,24 +597,8 @@ public abstract class Connection extends Conferenceable {
     public static final String EVENT_HANDOVER_FAILED =
             "android.telecom.event.HANDOVER_FAILED";
 
-    /**
-     * Connection event used to inform an {@link InCallService} that the call session property
-     * has changed
-     * @hide
-     */
-    public static final String EVENT_CALL_PROPERTY_CHANGED =
-            "android.telecom.event.EVENT_CALL_PROPERTY_CHANGED";
-
     // Flag controlling whether PII is emitted into the logs
     private static final boolean PII_DEBUG = Log.isLoggable(android.util.Log.DEBUG);
-
-    /**
-     * Indicates that the connection has speech from remote user for a RTT call when set.
-     * If the property is unset, that indicates silence from remote user
-     *
-     * @hide
-     */
-    public static final int PROPERTY_RTT_AUDIO_SPEECH = 0x1;
 
     /**
      * Whether the given capabilities support the specified capability.
@@ -774,9 +735,7 @@ public abstract class Connection extends Conferenceable {
         if (can(capabilities, CAPABILITY_SUPPORT_DEFLECT)) {
             builder.append(isLong ? " CAPABILITY_SUPPORT_DEFLECT" : " sup_def");
         }
-        if (can(capabilities, CAPABILITY_SUPPORTS_RTT_REMOTE)) {
-            builder.append(isLong ? " CAPABILITY_SUPPORTS_RTT_REMOTE" : " sup_rtt");
-        }
+
         builder.append("]");
         return builder.toString();
     }
@@ -884,7 +843,6 @@ public abstract class Connection extends Conferenceable {
         public void onRemoteRttRequest(Connection c) {}
         /** @hide */
         public void onPhoneAccountChanged(Connection c, PhoneAccountHandle pHandle) {}
-        public void onCdmaConnectionTimeReset(Connection c) {}
     }
 
     /**
@@ -2411,16 +2369,6 @@ public abstract class Connection extends Conferenceable {
             }
         }
         fireOnConferenceableConnectionsChanged();
-    }
-
-    /**
-       *@hide
-       * Resets the cdma connection time.
-       */
-    public final void resetCdmaConnectionTime() {
-        for (Listener l : mListeners) {
-            l.onCdmaConnectionTimeReset(this);
-        }
     }
 
     /**

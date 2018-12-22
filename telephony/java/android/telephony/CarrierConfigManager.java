@@ -137,13 +137,6 @@ public class CarrierConfigManager {
     public static final String
             KEY_SIM_NETWORK_UNLOCK_ALLOW_DISMISS_BOOL = "sim_network_unlock_allow_dismiss_bool";
 
-    /**
-     * Indicates if carrier supports emergency sms.
-     * @hide
-     */
-    public static final String
-            KEY_EMERGENCY_SMS_SUPPORT_BOOL = "emergency_sms_support_bool";
-
     /** Flag indicating if the phone is a world phone */
     public static final String KEY_WORLD_PHONE_BOOL = "world_phone_bool";
 
@@ -476,14 +469,6 @@ public class CarrierConfigManager {
      * @hide
      */
     public static final String KEY_VILTE_DATA_IS_METERED_BOOL = "vilte_data_is_metered_bool";
-
-    /**
-     * Flag indicating whether we should reset UT capability or not for IMS deregistration
-     * and for IMS feature state not ready
-     * @hide
-     */
-    public static final String KEY_IGNORE_RESET_UT_CAPABILITY_BOOL =
-            "ignore_reset_ut_capability_bool";
 
     /**
      * Flag specifying whether WFC over IMS should be available for carrier: independent of
@@ -1153,12 +1138,6 @@ public class CarrierConfigManager {
     public static final String KEY_SHOW_PRECISE_FAILED_CAUSE_BOOL =
             "show_precise_failed_cause_bool";
 
-    /**
-     * Flag specifying whether CDMA call waiting and call forwarding are enabled
-     * @hide
-     */
-    public static final String KEY_CDMA_CW_CF_ENABLED_BOOL = "cdma_cw_cf_enabled_bool";
-
     // These variables are used by the MMS service and exposed through another API, {@link
     // SmsManager}. The variable names and string values are copied from there.
     public static final String KEY_MMS_ALIAS_ENABLED_BOOL = "aliasEnabled";
@@ -1525,13 +1504,6 @@ public class CarrierConfigManager {
      */
     public static final String KEY_ALLOW_ADD_CALL_DURING_VIDEO_CALL_BOOL =
             "allow_add_call_during_video_call";
-
-    /**
-     * When false, indicates that holding a video call is disabled
-     * @hide
-     */
-    public static final String KEY_ALLOW_HOLDING_VIDEO_CALL_BOOL =
-            "allow_holding_video_call";
 
     /**
      * When true, indicates that the HD audio icon in the in-call screen should not be shown for
@@ -2072,7 +2044,6 @@ public class CarrierConfigManager {
         sDefaults.putBoolean(KEY_CONFIG_TELEPHONY_USE_OWN_NUMBER_FOR_VOICEMAIL_BOOL, false);
         sDefaults.putBoolean(KEY_IGNORE_DATA_ENABLED_CHANGED_FOR_VIDEO_CALLS, true);
         sDefaults.putBoolean(KEY_VILTE_DATA_IS_METERED_BOOL, true);
-        sDefaults.putBoolean(KEY_IGNORE_RESET_UT_CAPABILITY_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_WFC_IMS_AVAILABLE_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_WFC_SUPPORTS_WIFI_ONLY_BOOL, false);
         sDefaults.putBoolean(KEY_CARRIER_DEFAULT_WFC_IMS_ENABLED_BOOL, false);
@@ -2179,7 +2150,6 @@ public class CarrierConfigManager {
         // Todo: This will be fixed in Q when IWLAN full refactoring is completed.
         sDefaults.putStringArray(KEY_CARRIER_METERED_IWLAN_APN_TYPES_STRINGS,
                 new String[]{"default"});
-        sDefaults.putBoolean(KEY_CDMA_CW_CF_ENABLED_BOOL, false);
 
         sDefaults.putIntArray(KEY_ONLY_SINGLE_DC_ALLOWED_INT_ARRAY,
                 new int[]{
@@ -2319,7 +2289,6 @@ public class CarrierConfigManager {
         sDefaults.putBoolean(KEY_DROP_VIDEO_CALL_WHEN_ANSWERING_AUDIO_CALL_BOOL, false);
         sDefaults.putBoolean(KEY_ALLOW_MERGE_WIFI_CALLS_WHEN_VOWIFI_OFF_BOOL, true);
         sDefaults.putBoolean(KEY_ALLOW_ADD_CALL_DURING_VIDEO_CALL_BOOL, true);
-        sDefaults.putBoolean(KEY_ALLOW_HOLDING_VIDEO_CALL_BOOL, true);
         sDefaults.putBoolean(KEY_WIFI_CALLS_CAN_BE_HD_AUDIO, true);
         sDefaults.putBoolean(KEY_VIDEO_CALLS_CAN_BE_HD_AUDIO, true);
         sDefaults.putBoolean(KEY_GSM_CDMA_CALLS_CAN_BE_HD_AUDIO, false);

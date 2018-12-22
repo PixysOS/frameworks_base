@@ -590,10 +590,5 @@ public class ImsCallSessionImplBase extends IImsCallSession.Stub {
         public void callSessionRttMessageReceived(String rttMessage) throws RemoteException {
             mNewListener.callSessionRttMessageReceived(rttMessage);
         }
-
-        @Override
-        public void callSessionPropertyChanged(int property) throws RemoteException {
-            mNewListener.callSessionPropertyChanged(property);
-        }
     }
 }

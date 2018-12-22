@@ -272,17 +272,6 @@ public final class SmsManager {
     private static final int SMS_PICK = 2;
 
     /**
-     * 3gpp2 SMS priority is not specified
-     * @hide
-     */
-    public static final int SMS_MESSAGE_PRIORITY_NOT_SPECIFIED = -1;
-    /**
-     * 3gpp SMS period is not specified
-     * @hide
-     */
-    public static final int SMS_MESSAGE_PERIOD_NOT_SPECIFIED = -1;
-
-    /**
      * Send a text based SMS.
      *
      * <p class="note"><strong>Note:</strong> Using this method requires that your app has the
@@ -474,11 +463,11 @@ public final class SmsManager {
         }
 
         if (priority < 0x00 || priority > 0x03) {
-            priority = SMS_MESSAGE_PRIORITY_NOT_SPECIFIED;
+            throw new IllegalArgumentException("Invalid priority");
         }
 
         if (validityPeriod < 0x05 || validityPeriod > 0x09b0a0) {
-            validityPeriod = SMS_MESSAGE_PERIOD_NOT_SPECIFIED;
+            throw new IllegalArgumentException("Invalid validity period");
         }
 
         try {
@@ -736,8 +725,7 @@ public final class SmsManager {
             ArrayList<PendingIntent> sentIntents, ArrayList<PendingIntent> deliveryIntents,
             int priority, boolean expectMore, int validityPeriod) {
         sendMultipartTextMessageInternal(destinationAddress, scAddress, parts, sentIntents,
-                deliveryIntents, true /* persistMessage*/, priority, expectMore,
-                validityPeriod);
+                deliveryIntents, true /* persistMessage*/);
     }
 
     private void sendMultipartTextMessageInternal(
@@ -752,11 +740,11 @@ public final class SmsManager {
         }
 
         if (priority < 0x00 || priority > 0x03) {
-           priority = SMS_MESSAGE_PRIORITY_NOT_SPECIFIED;
+            throw new IllegalArgumentException("Invalid priority");
         }
 
         if (validityPeriod < 0x05 || validityPeriod > 0x09b0a0) {
-           validityPeriod = SMS_MESSAGE_PERIOD_NOT_SPECIFIED;
+            throw new IllegalArgumentException("Invalid validity period");
         }
 
         if (parts.size() > 1) {
@@ -1375,25 +1363,6 @@ public final class SmsManager {
         } catch (NullPointerException ex) {
             return false;
         }
-    }
-
-    /**
-     * Get the capacity count of sms on Icc card
-     *
-     * @return the capacity count of sms on Icc card
-     * @hide
-     */
-    public int getSmsCapacityOnIcc() {
-        int ret = -1;
-        try {
-            ISms iccISms = getISmsService();
-            if (iccISms != null) {
-                ret = iccISms.getSmsCapacityOnIccForSubscriber(getSubscriptionId());
-            }
-        } catch (RemoteException ex) {
-            //ignore it
-        }
-        return ret;
     }
 
     // see SmsMessage.getStatusOnIcc
