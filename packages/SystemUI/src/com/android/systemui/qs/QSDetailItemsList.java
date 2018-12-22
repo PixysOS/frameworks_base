@@ -118,7 +118,6 @@ public class QSDetailItemsList extends LinearLayout {
             }
 
             final ImageView iv = (ImageView) view.findViewById(android.R.id.icon);
-            iv.setImageResource(item.icon);
             if (item.doDisableTint) {
                 iv.setColorFilter(null);
                 iv.setImageTintList(null);
