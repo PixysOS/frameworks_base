@@ -5435,6 +5435,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_TILE_STYLE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_CLOCK),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_INFO),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -5452,6 +5458,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_BLACKLIST_VALUES))) {
                 setHeadsUpBlacklist();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK)) ||
+                   uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_INFO))) {
+                updateKeyguardStatusSettings();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.ACCENT_PICKER))) {
                 // Unload the accents and update the accent only when the user asks.
@@ -5475,6 +5484,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setHeadsUpStoplist();
             setHeadsUpBlacklist();
             updateNavigationBar();
+            updateKeyguardStatusSettings();
         }
     }
 
@@ -5522,6 +5532,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         final String blackString = Settings.System.getString(mContext.getContentResolver(),
                     Settings.System.HEADS_UP_BLACKLIST_VALUES);
         splitAndAddToArrayList(mBlacklist, blackString, "\\|");
+    }
+
+    private void updateKeyguardStatusSettings() {
+        mNotificationPanel.updateKeyguardStatusSettings();
     }
 
     private final BroadcastReceiver mBannerActionBroadcastReceiver = new BroadcastReceiver() {
