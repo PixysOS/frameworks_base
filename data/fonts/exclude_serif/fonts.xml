@@ -74,9 +74,6 @@
     <alias name="fantasy" to="serif" />
     <alias name="ITC Stone Serif" to="serif" />
 
-    <family name="monospace">
-        <font weight="400" style="normal">DroidSansMono.ttf</font>
-    </family>
     <alias name="sans-serif-monospace" to="monospace" />
     <alias name="monaco" to="monospace" />
 
