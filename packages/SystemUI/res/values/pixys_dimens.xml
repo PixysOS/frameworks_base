@@ -39,4 +39,9 @@
         <dimen name="status_bar_mobile_signal_with_type_width">22dp</dimen>
         <dimen name="status_bar_mobile_signal_width">16dp</dimen>
         <dimen name="status_bar_mobile_type_height">10dp</dimen>
+
+    <!-- Network traffic monitor -->
+    <dimen name="net_traffic_multi_text_size">8dp</dimen>
+    <dimen name="net_traffic_txt_img_padding">2dp</dimen>
+
 </resources>
