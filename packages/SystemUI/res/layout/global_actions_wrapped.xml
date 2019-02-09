@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/global_actions_top_padding"
     android:layout_gravity="top|right"
     android:orientation="vertical"
-    android:layout_marginBottom="@dimen/global_actions_top_padding"
     android:paddingTop="@dimen/global_actions_top_padding"
     android:clipToPadding="false"
     android:theme="@style/qs_theme"
@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-        android:padding="@dimen/global_actions_padding"
-        android:translationZ="@dimen/global_actions_translate" />
+            android:padding="@dimen/global_actions_padding"
+            android:translationZ="@dimen/global_actions_translate" />
 
     </ScrollView>
 
