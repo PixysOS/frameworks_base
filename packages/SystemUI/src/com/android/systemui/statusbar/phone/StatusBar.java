@@ -5545,15 +5545,14 @@ public class StatusBar extends SystemUI implements DemoMode,
                 Settings.System.FORCE_AMBIENT_FOR_MEDIA, 1,
                 UserHandle.USER_CURRENT) != 0;
         if (isAmbientContainerAvailable()) {
-            ((AmbientIndicationContainer)mAmbientIndicationContainer).setIndication(
-                    mMediaManager.getMediaMetadata(), null);
+            ((AmbientIndicationContainer)mAmbientIndicationContainer).setIndication(null);
         }
     }
 
-    public void setAmbientMusicInfo(MediaMetadata mediaMetadata, String notificationText) {
+    public void setAmbientMusicInfo(String notificationText) {
         if (isAmbientContainerAvailable()) {
             ((AmbientIndicationContainer)mAmbientIndicationContainer).setIndication(
-                    mediaMetadata, notificationText);
+                    notificationText);
         }
     }
 

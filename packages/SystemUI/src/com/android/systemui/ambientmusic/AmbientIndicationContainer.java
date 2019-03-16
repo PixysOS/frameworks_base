@@ -1,9 +1,7 @@
 package com.android.systemui.ambientmusic;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.media.MediaMetadata;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
@@ -11,8 +9,6 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.FrameLayout.LayoutParams;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.systemui.AutoReinflateContainer;
@@ -23,14 +19,15 @@ import com.android.systemui.statusbar.phone.StatusBar;
 
 import com.android.systemui.ambientmusic.AmbientIndicationInflateListener;
 
+import java.util.Locale;
+
 public class AmbientIndicationContainer extends AutoReinflateContainer {
     private View mAmbientIndication;
-    private ImageView mIcon;
     private CharSequence mIndication;
     private StatusBar mStatusBar;
+    private AnimatedVectorDrawable mAnimatedIcon;
     private TextView mText;
     private Context mContext;
-    private MediaMetadata mMediaMetaData;
     private String mMediaText;
     private boolean mForcedMediaDoze;
     private Handler mHandler;
@@ -44,11 +41,16 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
     public AmbientIndicationContainer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         mContext = context;
-        mTrackInfoSeparator = getResources().getString(R.string.ambientmusic_songinfo);
+        final int iconSize = mContext.getResources().getDimensionPixelSize(
+                R.dimen.notification_menu_icon_padding);
+        mAnimatedIcon = (AnimatedVectorDrawable) mContext.getDrawable(
+                R.drawable.audioanim_animation).getConstantState().newDrawable();
+        mAnimatedIcon.setBounds(0, 0, iconSize, iconSize);
     }
 
     public void hideIndication() {
-        setIndication(null, null);
+        setIndication(null);
+        mAnimatedIcon.stop();
     }
 
     public void initializeView(StatusBar statusBar, Handler handler) {
@@ -60,13 +62,11 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
     public void updateAmbientIndicationView(View view) {
         mAmbientIndication = findViewById(R.id.ambient_indication);
         mText = (TextView)findViewById(R.id.ambient_indication_text);
-        mIcon = (ImageView)findViewById(R.id.ambient_indication_icon);
-        setIndication(mMediaMetaData, mMediaText);
+        setIndication(mMediaText);
     }
 
     public void updateKeyguardState(boolean keyguard) {
         mKeyguard = keyguard;
-        setTickerMarquee(keyguard, false);
         if (keyguard && mInfoAvailable) {
             mText.setText(mInfoToSet);
             mLastInfo = mInfoToSet;
@@ -80,8 +80,7 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
     }
 
     private void setTickerMarquee(boolean enable, boolean extendPulseOnNewTrack) {
-        // If it's enabled and we are supposed to show.
-        if (enable && shouldShow()) {
+        if (enable) {
             setTickerMarquee(false, false);
             mHandler.postDelayed(new Runnable() {
                 @Override
@@ -89,6 +88,7 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
                     mText.setEllipsize(TruncateAt.MARQUEE);
                     mText.setMarqueeRepeatLimit(2);
                     mText.setSelected(true);
+                    mAnimatedIcon.start();
                     if (extendPulseOnNewTrack && mStatusBar.isPulsing()) {
                         mStatusBar.getDozeScrimController().extendPulseForMusicTicker();
                     }
@@ -97,6 +97,7 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
         } else {
             mText.setEllipsize(null);
             mText.setSelected(false);
+            mAnimatedIcon.stop();
         }
     }
 
@@ -118,38 +119,26 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
         this.setLayoutParams(lp);
     }
 
-    public void setIndication(MediaMetadata mediaMetaData, String notificationText) {
-        CharSequence charSequence = null;
+    public void setIndication(String notificationText) {
         mInfoToSet = null;
-        if (mediaMetaData != null) {
-            CharSequence artist = mediaMetaData.getText(MediaMetadata.METADATA_KEY_ARTIST);
-            CharSequence album = mediaMetaData.getText(MediaMetadata.METADATA_KEY_ALBUM);
-            CharSequence title = mediaMetaData.getText(MediaMetadata.METADATA_KEY_TITLE);
-            if (artist != null && album != null && title != null) {
-                /* considering we are in Ambient mode here, it's not worth it to show
-                    too many infos, so let's skip album name to keep a smaller text */
-                charSequence = String.format(mTrackInfoSeparator, title.toString(), artist.toString());
-            }
-        }
+
         if (mKeyguard) {
             // if we are already showing an Ambient Notification with track info,
             // stop the current scrolling and start it delayed again for the next song
-            setTickerMarquee(true, true);
         }
 
-        if (!TextUtils.isEmpty(charSequence)) {
-            mInfoToSet = charSequence.toString();
-        } else if (!TextUtils.isEmpty(notificationText)) {
+        if (!TextUtils.isEmpty(notificationText)) {
             mInfoToSet = notificationText;
         }
 
         mInfoAvailable = mInfoToSet != null;
         if (mInfoAvailable) {
-            mMediaMetaData = mediaMetaData;
             mMediaText = notificationText;
             boolean isAnotherTrack = mInfoAvailable
-                    && (TextUtils.isEmpty(mLastInfo) || (!TextUtils.isEmpty(mLastInfo) && !mLastInfo.equals(mInfoToSet)));
-            if (!DozeParameters.getInstance(mContext).getAlwaysOn() && mStatusBar != null && isAnotherTrack) {
+                    && (TextUtils.isEmpty(mLastInfo) || (!TextUtils.isEmpty(mLastInfo)
+                    && !mLastInfo.equals(mInfoToSet)));
+            if (!DozeParameters.getInstance(mContext).getAlwaysOn() && mStatusBar != null
+                    && isAnotherTrack) {
                 mStatusBar.triggerAmbientForMedia();
             }
             if (mKeyguard) {
