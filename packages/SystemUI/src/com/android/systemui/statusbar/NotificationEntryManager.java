@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
+import android.media.MediaMetadata;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.RemoteException;
@@ -129,6 +130,8 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
     protected boolean mDisableNotificationAlerts;
     protected NotificationListContainer mListContainer;
     private ExpandableNotificationRow.OnAppOpsClickListener mOnAppOpsClickListener;
+
+    private String mTrackInfoSeparator;
 
     private NotificationData.Entry mEntryToRefresh;
 
@@ -244,6 +247,8 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
         mMessagingUtil = new NotificationMessagingUtil(context);
         mSystemServicesProxy = SystemServicesProxy.getInstance(mContext);
         mGroupManager.setPendingEntries(mPendingNotifications);
+
+        mTrackInfoSeparator = mContext.getResources().getString(R.string.ambientmusic_songinfo);
     }
 
     public void setUpWithPresenter(NotificationPresenter presenter,
@@ -475,12 +480,15 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
         entry.row.setLowPriorityStateUpdated(false);
 
         if (mEntryToRefresh == entry && mMediaManager.isMediaNotification(entry)) {
-            final Notification n = entry.notification.getNotification();
             String notificationText = null;
-            final String title = n.extras.getString(Notification.EXTRA_TITLE);
-            final String text = n.extras.getString(Notification.EXTRA_TEXT);
-            if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(text)) {
-                notificationText = title + " - " + text;
+            final MediaMetadata data = mMediaManager.getMediaMetadata();
+            if (data != null) {
+                CharSequence artist = data.getText(MediaMetadata.METADATA_KEY_ARTIST);
+                //CharSequence album = data.getText(MediaMetadata.METADATA_KEY_ALBUM);
+                CharSequence title = data.getText(MediaMetadata.METADATA_KEY_TITLE);
+                if (artist != null && title != null) {
+                    notificationText = String.format(mTrackInfoSeparator, title.toString(), artist.toString());
+                }
             }
             mMediaManager.setMediaNotificationText(notificationText);
         }
