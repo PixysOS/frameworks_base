@@ -66,7 +66,6 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
     }
 
     public void updateKeyguardState(boolean keyguard) {
-        mKeyguard = keyguard;
         if (keyguard && mInfoAvailable) {
             mText.setText(mInfoToSet);
             mLastInfo = mInfoToSet;
@@ -77,6 +76,11 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
             mAmbientIndication.setVisibility(View.INVISIBLE);
             mText.setText(null);
         }
+        if (mKeyguard != keyguard) {
+            setTickerMarquee(keyguard, false);
+        }
+        mKeyguard = keyguard;
+        // StatusBar.updateKeyguardState will call updateDozingState later
     }
 
     private void setTickerMarquee(boolean enable, boolean extendPulseOnNewTrack) {
@@ -86,7 +90,11 @@ public class AmbientIndicationContainer extends AutoReinflateContainer {
                 @Override
                 public void run() {
                     mText.setEllipsize(TruncateAt.MARQUEE);
-                    mText.setMarqueeRepeatLimit(2);
+                    mText.setMarqueeRepeatLimit(5);
+                    boolean rtl = TextUtils.getLayoutDirectionFromLocale(
+                            Locale.getDefault()) == View.LAYOUT_DIRECTION_RTL;
+                    mText.setCompoundDrawables(rtl ? null : mAnimatedIcon, null, rtl ?
+                            mAnimatedIcon : null, null);
                     mText.setSelected(true);
                     mAnimatedIcon.start();
                     if (extendPulseOnNewTrack && mStatusBar.isPulsing()) {
