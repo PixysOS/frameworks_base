@@ -454,36 +454,42 @@ public class KeyguardStatusView extends GridLayout implements
                        View.GONE) : View.VISIBLE);
                 mCustomClockView.setVisibility(View.GONE);
                 mDuClockView.setVisibility(View.GONE);
+		mTextClock.setVisibility(View.GONE);
                 break;
             case 1: // digital (bold)
                 mClockView.setVisibility(mDarkAmount != 1 ? (mShowClock ? View.VISIBLE :
                        View.GONE) : View.VISIBLE);
                 mCustomClockView.setVisibility(View.GONE);
                 mDuClockView.setVisibility(View.GONE);
+		mTextClock.setVisibility(View.GONE);
                 break;
             case 2: // custom analog
                 mCustomClockView.setVisibility(mDarkAmount != 1 ? (mShowClock ? View.VISIBLE :
                        View.GONE) : View.VISIBLE);
                 mClockView.setVisibility(View.GONE);
                 mDuClockView.setVisibility(View.GONE);
+		mTextClock.setVisibility(View.GONE);
                 break;
             case 3: // du analog
                 mDuClockView.setVisibility(mDarkAmount != 1 ? (mShowClock ? View.VISIBLE :
                        View.GONE) : View.VISIBLE);
                 mClockView.setVisibility(View.GONE);
                 mCustomClockView.setVisibility(View.GONE);
+		mTextClock.setVisibility(View.GONE);
                 break;
             case 4: // sammy
                 mClockView.setVisibility(mDarkAmount != 1 ? (mShowClock ? View.VISIBLE :
                        View.GONE) : View.VISIBLE);
                 mCustomClockView.setVisibility(View.GONE);
                 mDuClockView.setVisibility(View.GONE);
+		mTextClock.setVisibility(View.GONE);
                 break;
             case 5: // sammy (bold)
                 mClockView.setVisibility(mDarkAmount != 1 ? (mShowClock ? View.VISIBLE :
                        View.GONE) : View.VISIBLE);
                 mCustomClockView.setVisibility(View.GONE);
                 mDuClockView.setVisibility(View.GONE);
+		mTextClock.setVisibility(View.GONE);
                 break;
             case 6: // custom text clock
                 mTextClock.setVisibility(mDarkAmount != 1 ? (mShowClock ? View.VISIBLE :
