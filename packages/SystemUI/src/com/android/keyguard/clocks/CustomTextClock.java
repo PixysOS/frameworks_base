@@ -42,6 +42,18 @@ import android.text.format.Time;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
+import android.provider.Settings;
+import android.app.WallpaperManager;
+import android.graphics.Color;
+import android.app.WallpaperColors;
+import android.support.v7.graphics.Palette;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import java.lang.NullPointerException;
+import java.lang.IllegalStateException;
+import android.graphics.Paint;
+import android.os.ParcelFileDescriptor;
+import android.graphics.BitmapFactory;
 
 import com.android.internal.util.ArrayUtils;
 
@@ -261,7 +273,7 @@ public class CustomTextClock extends TextView {
                              NumString = TensString[tens] + UnitsString[units].toLowerCase();
                     }
                 } else {
-                    NumString = TensString[tens]+" "+UnitsString[units].substring(2, UnitsString[units].length());
+                    NumString = TensString[tens]+" "+UnitsString[units];
                 }
             }
         } else if (num < 20 ) {
@@ -299,7 +311,7 @@ public class CustomTextClock extends TextView {
                              NumString = TensString[tens] + UnitsString[units].toLowerCase();
                     }
                 } else {
-                    NumString = TensString[tens]+" "+UnitsString[units].substring(2, UnitsString[units].length());
+                    NumString = TensString[tens]+" "+UnitsString[units];
                 }
             }
         } else if (num < 10 ) {
@@ -321,5 +333,14 @@ public class CustomTextClock extends TextView {
 
     private boolean langExEval (String langVal) {
         return (ArrayUtils.contains(langExceptions, langVal) ? true : false);
+    }
+
+    private Bitmap drawEmpty() {
+        Bitmap convertedBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(convertedBitmap);
+        Paint paint = new Paint();
+        paint.setColor(Color.YELLOW);
+        canvas.drawPaint(paint);
+        return convertedBitmap;
     }
 }
