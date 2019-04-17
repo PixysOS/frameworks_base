@@ -24,10 +24,10 @@ public class CustomTextClock extends TextView {
 
     final Resources res = getResources();
 
-    private final String[] TensString = res.getStringArray(R.array.TensString);
-    private final String[] UnitsString = res.getStringArray(R.array.UnitsString);
-    private final String[] TensStringH = res.getStringArray(R.array.TensStringH);
-    private final String[] UnitsStringH = res.getStringArray(R.array.UnitsStringH);
+    private String[] TensString = res.getStringArray(R.array.TensString);
+    private String[] UnitsString = res.getStringArray(R.array.UnitsString);
+    private String[] TensStringH = res.getStringArray(R.array.TensStringH);
+    private String[] UnitsStringH = res.getStringArray(R.array.UnitsStringH);
 
     private Time mCalendar;
     private boolean mAttached;
@@ -60,6 +60,7 @@ public class CustomTextClock extends TextView {
             filter.addAction(Intent.ACTION_TIME_TICK);
             filter.addAction(Intent.ACTION_TIME_CHANGED);
             filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+            filter.addAction(Intent.ACTION_LOCALE_CHANGED);
 
             // OK, this is gross but needed. This class is supported by the
             // remote views machanism and as a part of that the remote views
@@ -140,6 +141,14 @@ public class CustomTextClock extends TextView {
                 String tz = intent.getStringExtra("time-zone");
                 mCalendar = new Time(TimeZone.getTimeZone(tz).getID());
             }
+
+            if (intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
+                TensString = getResources().getStringArray(R.array.TensString);
+                UnitsString = getResources().getStringArray(R.array.UnitsString);
+                TensStringH = getResources().getStringArray(R.array.TensStringH);
+                UnitsStringH = getResources().getStringArray(R.array.UnitsStringH);
+            }
+
             onTimeChanged();
             invalidate();
         }
