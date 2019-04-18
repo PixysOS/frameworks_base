@@ -75,6 +75,7 @@ public class CustomTextClock extends TextView {
     private String[] UnitsStringH = getResources().getStringArray(R.array.UnitsStringH);
     private String[] langExceptions = getResources().getStringArray(R.array.langExceptions);
     private String curLang = Locale.getDefault().getLanguage();
+    private boolean langHasChanged;
     private String topText = getResources().getString(R.string.custom_text_clock_top_text_default);
     private String highNoonFirstRow = getResources().getString(R.string.high_noon_first_row);
     private String highNoonSecondRow = getResources().getString(R.string.high_noon_second_row);
@@ -148,7 +149,10 @@ public class CustomTextClock extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (handType == 2) {
-            //setText(topText);
+            if (langHasChanged) {
+                setText(topText);
+                langHasChanged = false;
+            }
             setTextColor(ColorText.getWallColor(mContext));
         }
 
@@ -205,6 +209,7 @@ public class CustomTextClock extends TextView {
                 topText = getResources().getString(R.string.custom_text_clock_top_text_default);
                 highNoonFirstRow = getResources().getString(R.string.high_noon_first_row);
                 highNoonSecondRow = getResources().getString(R.string.high_noon_second_row);
+                langHasChanged = true;
             }
             onTimeChanged();
             invalidate();
