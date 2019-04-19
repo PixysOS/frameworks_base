@@ -35,7 +35,7 @@ public class LangGuard {
                 if (units == 1) {
                     numString = TensString[tens].substring(0, TensString[tens].length() - 1)+
                                 UnitsString[units].toLowerCase();
-                    return numString;                    
+                    return numString;
                 } else if (units == 3) {
                     numString = TensString[tens] + "tré";
                     return numString; 
@@ -48,12 +48,18 @@ public class LangGuard {
                 numString = TensString[tens] + "e " + UnitsString[units].toLowerCase();
                 return numString;
 
-            case "fr":
-                if (units == 1) {
-                    numString = TensString[tens] + "et un";
-                } else {
-                    numString = TensString[tens] + UnitsString[units].toLowerCase();
+            case "ru":
+                if (num < 20) {
+                   if (!hours && num < 10 ) {
+                       numString = "Ноль " + UnitsString[num];
+                   } else
+                    numString = UnitsString[num];
+                    return numString;
                 }
+                numString = TensString[tens] + " "+ UnitsString[units];
+                return numString;
+
+            case "fr":
                 return numString;
         }
         return numString;
