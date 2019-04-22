@@ -61,6 +61,9 @@ public class LangGuard {
 
             case "fr":
                 return numString;
+
+            case "ja":
+                numString = TensString[tens] + UnitsString[units];
         }
         return numString;
     }
