@@ -5372,6 +5372,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 	    resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS),
                     false, this, UserHandle.USER_ALL);
+	    resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_TEXT_CLOCK_ALIGN),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -5392,7 +5395,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setHeadsUpBlacklist();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK)) ||
                    uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_INFO)) ||
-                   uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK_SELECTION))) {
+                   uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK_SELECTION)) ||
+                   uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_TEXT_CLOCK_ALIGN))) {
                 updateKeyguardStatusSettings();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.ACCENT_PICKER))) {
