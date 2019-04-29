@@ -5022,6 +5022,15 @@ public final class Settings {
                 SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
 
         /**
+         * Force full screen for devices with cutout
+         * @hide
+         */
+        public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
+
+        /** @hide */
+        private static final Validator FORCE_FULLSCREEN_CUTOUT_APPS_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5241,6 +5250,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_UNITS);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_SHOW_UNITS);
             PRIVATE_SETTINGS.add(DISPLAY_CUTOUT_HIDDEN);
+            PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
        }
 
         /**
@@ -5366,6 +5376,7 @@ public final class Settings {
             VALIDATORS.put(NETWORK_TRAFFIC_UNITS, NETWORK_TRAFFIC_UNITS_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_SHOW_UNITS, NETWORK_TRAFFIC_SHOW_UNITS_VALIDATOR);
             VALIDATORS.put(DISPLAY_CUTOUT_HIDDEN, DISPLAY_CUTOUT_HIDDEN_VALIDATOR);
+            VALIDATORS.put(FORCE_FULLSCREEN_CUTOUT_APPS, FORCE_FULLSCREEN_CUTOUT_APPS_VALIDATOR);
         }
 
         /**
