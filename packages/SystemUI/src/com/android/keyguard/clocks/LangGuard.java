@@ -130,6 +130,15 @@ public class LangGuard {
                 }
                 numString = TensString[tens] + UnitsString[units];
                 return numString;
+
+            case "de":
+                if (hours) {
+                    numString = UnitsString[num] + " Uhr";
+                    return numString;
+                }
+                numString = UnitsString[num];
+                return numString;
+
         }
         return numString;
     }
