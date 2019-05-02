@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2019 The PixelDust Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string-array translatable="true" name="TensString">
+        <item></item>
+        <item>Zehn</item>
+        <item>Zwanzig</item>
+        <item>Dreißig</item>
+        <item>Vierzig</item>
+        <item>Fünfzig</item>
+        <item>Sechzig</item>
+    </string-array>
+
+    <string-array translatable="true" name="UnitsString">
+        <item></item>          
+        <item>Eins</item>          
+        <item>Zwei</item>    
+        <item>Drei</item>    
+        <item>Vier</item>     
+        <item>Fünf</item>     
+        <item>Sechs</item>
+        <item>Sieben</item>
+        <item>Acht</item>
+        <item>Neun</item>
+        <item>Zehn</item>
+        <item>Elf</item>
+        <item>Zwölf</item>
+        <item>Dreizehn</item>
+        <item>Vierzehn</item>
+        <item>Fünfzehn</item>
+        <item>Sechzehn</item>
+        <item>Siebzehn</item>
+        <item>Achzehn</item>
+        <item>Neunzehn</item>
+        <item>Zwanzig</item>
+        <item>Einundzwanzig</item>
+        <item>Zweiundzwanzig</item>
+        <item>Dreiundzwanzig</item>
+        <item>Vierundzwanzig</item>
+        <item>Fünfundzwanzig</item>
+        <item>Sechsundzwanzig</item>
+        <item>Siebenundzwanzig</item>
+        <item>Achtundzwanzig</item>
+        <item>Neunundzwanzig</item>
+        <item>Dreißig</item>
+        <item>Einunddreißig</item>
+        <item>Zweiunddreißig</item>
+        <item>Dreiunddreißig</item>
+        <item>Vierunddreißig</item>
+        <item>Fünfunddreißig</item>
+        <item>Sechsunddreißig</item>
+        <item>Siebenunddreißig</item>
+        <item>Achtunddreißig</item>
+        <item>Neununddreißig</item>
+        <item>Vierzig</item>
+        <item>Einundvierzig</item>
+        <item>Zweiundvierzig</item>
+        <item>Dreiundvierzig</item>
+        <item>Vierundvierzig</item>
+        <item>Fünfundvierzig</item>
+        <item>Sechsundvierzig</item>
+        <item>Siebenundvierzig</item>
+        <item>Achtundvierzig</item>
+        <item>Neunundvierzig</item>
+        <item>Fünfzig</item>
+        <item>Einundfünfzig</item>
+        <item>Zweiundfünfzig</item>
+        <item>Dreiundfünfzig</item>
+        <item>Vierundfünfzig</item>
+        <item>Fünfundfünfzig</item>
+        <item>Sechsundfünfzig</item>
+        <item>Siebenundfünfzig</item>
+        <item>Achtundfünfzig</item>
+        <item>Neunundfünfzig</item>
+    </string-array>
+</resources>
