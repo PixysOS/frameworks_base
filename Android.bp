@@ -701,6 +701,11 @@ java_defaults {
         "core/java/com/android/internal/custom/longshot/ILongScreenshotCallback.aidl",
         "core/java/com/android/internal/custom/longshot/ILongScreenshotListener.aidl",
         "core/java/com/android/internal/custom/longshot/ILongScreenshotManager.aidl",
+
+        // LiveDisplay
+        "core/java/com/android/internal/custom/hardware/ILineageHardwareService.aidl",
+        "core/java/com/android/internal/custom/hardware/ILiveDisplayService.aidl",
+
     ],
 
     aidl: {
@@ -786,6 +791,7 @@ java_defaults {
         "android.hardware.vibrator-V1.3-java",
         "android.hardware.wifi-V1.0-java-constants",
         "devicepolicyprotosnano",
+        "vendor.lineage.livedisplay-V2.0-java",
     ],
 
     required: [
