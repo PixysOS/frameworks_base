@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,12 +32,10 @@ import java.util.TimeZone;
 
 public class CustomTextClock extends TextView {
 
-    final Resources res = getResources();
-
-    private String[] TensString = res.getStringArray(R.array.TensString);
-    private String[] UnitsString = res.getStringArray(R.array.UnitsString);
-    private String[] TensStringH = res.getStringArray(R.array.TensStringH);
-    private String[] UnitsStringH = res.getStringArray(R.array.UnitsStringH);
+    private final String[] TensString = {"", "", "Twenty","Thirty","Forty", "Fifty", "Sixty"};
+    private final String[] UnitsString = {"Clock", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+    private final String[] TensStringH = {"", "", "Twenty","Thirty","Forty", "Fifty", "Sixty"};
+    private final String[] UnitsStringH = {"Twelve", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
 
     private Time mCalendar;
     private boolean mAttached;
@@ -164,14 +161,14 @@ public class CustomTextClock extends TextView {
         switch(handType){
             case 0:
                 if (hour == 12 && minute == 0) {
-                setText(res.getString(R.string.text_clock_high));
+                setText("High");
                 } else {
                 setText(getIntStringHour(hour));
                 }
                 break;
             case 1:
                 if (hour == 12 && minute == 0) {
-                setText(res.getString(R.string.text_clock_noon));
+                setText("Noon");
                 } else {
                 setText(getIntStringMin(minute));
                 }
@@ -237,11 +234,10 @@ public class CustomTextClock extends TextView {
             if ( units == 0 ) {
                 NumString = TensString[tens];
             } else {
-                NumString = TensString[tens] + " " + UnitsString[units];
+                NumString = TensString[tens]+" "+UnitsString[units];
             }
         } else if (num < 10 ) {
-            NumString = res.getString(R.string.text_clock_zero_h_min) +
-                            " " + UnitsString[num];
+            NumString = "O\'"+UnitsString[num];
         } else if (num >= 10 && num < 20) {
             NumString = UnitsString[num];
         }
