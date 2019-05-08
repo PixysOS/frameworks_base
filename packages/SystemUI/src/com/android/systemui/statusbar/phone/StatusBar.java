@@ -5396,6 +5396,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.LOCKSCREEN_ALBUM_ART_FILTER))) {
                 updateLockscreenFilter();
             }
+            update();
         }
 
         public void update() {
