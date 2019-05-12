@@ -5381,7 +5381,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.LOCKSCREEN_TEXT_CLOCK_ALIGN),
                     false, this, UserHandle.USER_ALL);
 	    resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_USE_OLD_MOBILETYPE),
+                    Settings.System.USE_OLD_MOBILETYPE),
                     false, this, UserHandle.USER_ALL);
             update();
         }
@@ -5426,6 +5426,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 	    } else if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS))) {
                 setFpToDismissNotifications();
+	    } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.USE_OLD_MOBILETYPE))) {
+                setOldMobileType();
             }
             update();
         }
@@ -5438,10 +5441,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateKeyguardStatusSettings();
             updateLockscreenFilter();
 	    setFpToDismissNotifications();
-	    USE_OLD_MOBILETYPE = Settings.System.getIntForUser(mContext.getContentResolver(),
-	            Settings.System.OMNI_USE_OLD_MOBILETYPE, 0,
-        	    UserHandle.USER_CURRENT) != 0;
-            TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
+	    setOldMobileType();
         }
     }
 
@@ -5477,6 +5477,13 @@ public class StatusBar extends SystemUI implements DemoMode,
                   }
            }
         }
+    }
+
+    private void setOldMobileType() {
+        USE_OLD_MOBILETYPE = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.USE_OLD_MOBILETYPE, 0,
+                UserHandle.USER_CURRENT) != 0;
+        TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
     }
 
     private void setFpToDismissNotifications() {
