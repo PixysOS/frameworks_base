@@ -4886,6 +4886,17 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
 
+       /**
+         * enable or disable single handed mode
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_MENU_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
+        /** @hide */
+        private static final Validator NAVIGATION_BAR_MENU_ARROW_KEYS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+
+
         /**
          * @hide
          */
@@ -4970,7 +4981,8 @@ public final class Settings {
             STATUSBAR_CLOCK_DATE_STYLE,
             STATUSBAR_CLOCK_DATE_FORMAT,
             NOTIFICATION_LIGHT_PULSE,
-            DOZE_ON_CHARGE
+            DOZE_ON_CHARGE,
+	    NAVIGATION_BAR_MENU_ARROW_KEYS
         };
 
         /**
@@ -5038,6 +5050,7 @@ public final class Settings {
             PUBLIC_SETTINGS.add(HAPTIC_FEEDBACK_ENABLED);
             PUBLIC_SETTINGS.add(SHOW_WEB_SUGGESTIONS);
             PUBLIC_SETTINGS.add(VIBRATE_WHEN_RINGING);
+	    PUBLIC_SETTINGS.add(NAVIGATION_BAR_MENU_ARROW_KEYS);
         }
 
         /**
@@ -5107,6 +5120,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
             PRIVATE_SETTINGS.add(DEVICE_INTRODUCTION_COMPLETED);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
+	    PRIVATE_SETTINGS.add(NAVIGATION_BAR_MENU_ARROW_KEYS);
         }
 
 
@@ -5227,6 +5241,7 @@ public final class Settings {
             VALIDATORS.put(DEVICE_INTRODUCTION_COMPLETED, DEVICE_INTRODUCTION_COMPLETED_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
+	    VALIDATORS.put(NAVIGATION_BAR_MENU_ARROW_KEYS, NAVIGATION_BAR_MENU_ARROW_KEYS_VALIDATOR);
         }
 
         /**
