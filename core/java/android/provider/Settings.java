@@ -4475,18 +4475,13 @@ public final class Settings {
         public static final String ACCENT_PICKER = "accent_picker";
 
         /**
-         * Network traffic indicator mode
-         * 0 = Don't show network traffic indicator
-         * 1 = Display up-stream traffic only
-         * 2 = Display down-stream traffic only
-         * 3 = Display both up- and down-stream traffic
+         * Whether to show the network traffic indicator
          * @hide
          */
-        public static final String NETWORK_TRAFFIC_MODE = "network_traffic_mode";
+        public static final String NETWORK_TRAFFIC_ENABLED = "network_traffic_enabled";
 
         /** @hide */
-        public static final Validator NETWORK_TRAFFIC_MODE_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
+        public static final Validator NETWORK_TRAFFIC_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Whether or not to hide the network traffic indicator when there is no activity
@@ -5230,7 +5225,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DEVICE_INTRODUCTION_COMPLETED);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
-	    PRIVATE_SETTINGS.add(POCKET_JUDGE);
+            PRIVATE_SETTINGS.add(POCKET_JUDGE);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_ENABLED);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_UNITS);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_SHOW_UNITS);
        }
 
         /**
@@ -5350,7 +5349,11 @@ public final class Settings {
             VALIDATORS.put(DEVICE_INTRODUCTION_COMPLETED, DEVICE_INTRODUCTION_COMPLETED_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
-	    VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
+	          VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
+            VALIDATORS.put(NETWORK_TRAFFIC_ENABLED, NETWORK_TRAFFIC_ENABLED_VALIDATOR);
+            VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE, NETWORK_TRAFFIC_AUTOHIDE_VALIDATOR);
+            VALIDATORS.put(NETWORK_TRAFFIC_UNITS, NETWORK_TRAFFIC_UNITS_VALIDATOR);
+            VALIDATORS.put(NETWORK_TRAFFIC_SHOW_UNITS, NETWORK_TRAFFIC_SHOW_UNITS_VALIDATOR);
         }
 
         /**
