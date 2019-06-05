@@ -45,4 +45,6 @@
     <!-- Height of the status bar header bar -->
     <dimen name="status_bar_header_height">130dp</dimen>
 
+    <!-- The padding on the start and the end of the statusbar -->
+    <dimen name="status_bar_extra_padding">0dp</dimen>
 </resources>
