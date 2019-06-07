@@ -62,6 +62,7 @@ public class AppOpsControllerImpl implements AppOpsController,
     private H mBGHandler;
     private final List<AppOpsController.Callback> mCallbacks = new ArrayList<>();
     private final ArrayMap<Integer, Set<Callback>> mCallbacksByCode = new ArrayMap<>();
+    private final PermissionFlagsCache mFlagsCache;
     private boolean mListening;
 
     @GuardedBy("mActiveItems")
@@ -79,8 +80,14 @@ public class AppOpsControllerImpl implements AppOpsController,
 
     @Inject
     public AppOpsControllerImpl(Context context, @Named(BG_LOOPER_NAME) Looper bgLooper) {
+        this(context, bgLooper, new PermissionFlagsCache(context));
+    }
+
+    @VisibleForTesting
+    protected AppOpsControllerImpl(Context context, Looper bgLooper, PermissionFlagsCache cache) {
         mContext = context;
         mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+        mFlagsCache = cache;
         mBGHandler = new H(bgLooper);
         final int numOps = OPS.length;
         for (int i = 0; i < numOps; i++) {
@@ -239,7 +246,7 @@ public class AppOpsControllerImpl implements AppOpsController,
         if (permission == null) {
             return false;
         }
-        int permFlags = mContext.getPackageManager().getPermissionFlags(permission,
+        int permFlags = mFlagsCache.getPermissionFlags(permission,
                 packageName, UserHandle.getUserHandleForUid(uid));
         return (permFlags & PackageManager.FLAG_PERMISSION_USER_SENSITIVE_WHEN_GRANTED) != 0;
     }
@@ -321,21 +328,7 @@ public class AppOpsControllerImpl implements AppOpsController,
 
     @Override
     public void onOpActiveChanged(int code, int uid, String packageName, boolean active) {
-        if (DEBUG) {
-            Log.w(TAG, String.format("onActiveChanged(%d,%d,%s,%s", code, uid, packageName,
-                    Boolean.toString(active)));
-        }
-        boolean activeChanged = updateActives(code, uid, packageName, active);
-        if (!activeChanged) return; // early return
-        // Check if the item is also noted, in that case, there's no update.
-        boolean alsoNoted;
-        synchronized (mNotedItems) {
-            alsoNoted = getAppOpItem(mNotedItems, code, uid, packageName) != null;
-        }
-        // If active is true, we only send the update if the op is not actively noted (already true)
-        // If active is false, we only send the update if the op is not actively noted (prevent
-        // early removal)
-        if (!alsoNoted) {
+        if (updateActives(code, uid, packageName, active)) {
             mBGHandler.post(() -> notifySuscribers(code, uid, packageName, active));
         }
     }
@@ -347,15 +340,8 @@ public class AppOpsControllerImpl implements AppOpsController,
                     + AppOpsManager.MODE_NAMES[result] + " for package " + packageName);
         }
         if (result != AppOpsManager.MODE_ALLOWED) return;
-        boolean notedAdded = addNoted(code, uid, packageName);
-        if (!notedAdded) return; // early return
-        boolean alsoActive;
-        synchronized (mActiveItems) {
-            alsoActive = getAppOpItem(mActiveItems, code, uid, packageName) != null;
-        }
-        if (!alsoActive) {
-            mBGHandler.post(() -> notifySuscribers(code, uid, packageName, true));
-        }
+        addNoted(code, uid, packageName);
+        mBGHandler.post(() -> notifySuscribers(code, uid, packageName, true));
     }
 
     private void notifySuscribers(int code, int uid, String packageName, boolean active) {
