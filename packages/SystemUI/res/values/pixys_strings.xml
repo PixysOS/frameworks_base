@@ -185,10 +185,6 @@
     <string name="accessibility_quick_settings_cpuinfo_changed_off">CPU Info turned off</string>
     <string name="accessibility_quick_settings_cpuinfo_changed_on">CPU Info turned on</string>
 
-   <!-- Navigation bar dpad -->
-    <string name="accessibility_dpad_left">Cursor left</string>
-    <string name="accessibility_dpad_right">Cursor right</string>
-
     <!-- Ambient Display Pixel-Like string -->
     <string name="ambientmusic_songinfo">%s by %s</string>
 

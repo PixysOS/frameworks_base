@@ -87,6 +87,8 @@ import com.android.systemui.statusbar.policy.KeyButtonDrawable;
 import com.android.systemui.statusbar.policy.TintedKeyButtonDrawable;
 import com.android.systemui.tuner.TunerService;
 
+import lineageos.providers.LineageSettings;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.function.Consumer;
@@ -102,7 +104,7 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
     final static String TAG = "StatusBar/NavBarView";
 
     private static final String NAVIGATION_BAR_MENU_ARROW_KEYS =
-            "system:" + Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS;
+            "lineagesystem:" + LineageSettings.System.NAVIGATION_BAR_MENU_ARROW_KEYS;
 
     // slippery nav bar when everything is disabled, e.g. during setup
     final static boolean SLIPPERY_WHEN_DISABLED = true;
