@@ -77,6 +77,8 @@ public class NotificationInterruptionStateProvider {
 
     private boolean mLessBoringHeadsUp;
 
+    private boolean mSkipHeadsUp;
+
     @Inject
     public NotificationInterruptionStateProvider(Context context, NotificationFilter filter,
             StatusBarStateController stateController, BatteryController batteryController) {
@@ -361,12 +363,16 @@ public class NotificationInterruptionStateProvider {
         mLessBoringHeadsUp = lessBoring;
     }
 
+    public void setGamingPeekMode(boolean skipHeadsUp) {
+        mSkipHeadsUp = skipHeadsUp;
+    }
+
     public boolean shouldSkipHeadsUp(StatusBarNotification sbn) {
         boolean isImportantHeadsUp = false;
         String notificationPackageName = sbn.getPackageName().toLowerCase();
         isImportantHeadsUp = notificationPackageName.contains("dialer") ||
                 notificationPackageName.contains("messaging");
-        return !getShadeController().isDozing() && mLessBoringHeadsUp && !isImportantHeadsUp;
+        return mLessBoringHeadsUp && mSkipHeadsUp && !isImportantHeadsUp;
     }
 
     /**
