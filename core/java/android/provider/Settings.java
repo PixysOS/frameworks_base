@@ -4927,6 +4927,12 @@ public final class Settings {
          */
         public static final String LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR = "lock_screen_visualizer_custom_color";
 
+	/**
+         * Whether to show charging animation
+	 * @hide
+         */
+        public static final String CHARGING_ANIMATION = "charging_animation";
+
         /**
          * Whether to show the battery bar
          * @hide
