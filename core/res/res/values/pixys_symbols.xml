@@ -130,13 +130,18 @@
     <!-- Ambient display music ticker -->
     <java-symbol type="bool" name="config_canForceDozeNotifications" />
 
-  <!-- Media notification seekbar control -->
-  <java-symbol type="id" name="notification_media_seekbar_container" />
-  <java-symbol type="layout" name="notification_material_media_seekbar" />
-  <java-symbol type="id" name="notification_media_progress" />
-  <java-symbol type="id" name="notification_media_progress_bar" />
-  <java-symbol type="id" name="notification_media_progress_time" />
-  <java-symbol type="id" name="notification_media_elapsed_time" />
-  <java-symbol type="id" name="notification_media_total_time" />
+    <!-- Media notification seekbar control -->
+    <java-symbol type="id" name="notification_media_seekbar_container" />
+    <java-symbol type="layout" name="notification_material_media_seekbar" />
+    <java-symbol type="id" name="notification_media_progress" />
+    <java-symbol type="id" name="notification_media_progress_bar" />
+    <java-symbol type="id" name="notification_media_progress_time" />
+    <java-symbol type="id" name="notification_media_elapsed_time" />
+    <java-symbol type="id" name="notification_media_total_time" />
 
+    <!-- Pocket Lock -->
+    <java-symbol type="layout" name="pocket_lock_view_layout" />
+    <java-symbol type="id" name="pocket_hint_container" />
+    <java-symbol type="id" name="pocket_hint_image" />
+    <java-symbol type="id" name="pocket_hint_message" />
 </resources>
