@@ -274,6 +274,10 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         }
     };
 
+	public boolean isPocketLockVisible(){
+        return mPocketManager.isPocketLockVisible();
+    }
+
     // For face unlock identification
     private String lastBroadcastActionReceived;
 

@@ -36,4 +36,7 @@ interface IPocketService {
     // check if device is in pocket.
     boolean isDeviceInPocket();
 
+    // Custom methods
+    void setPocketLockVisible(boolean visible);
+    boolean isPocketLockVisible();
 }
