@@ -4238,6 +4238,19 @@ public final class Settings {
         private static final Validator DEVICE_INTRODUCTION_COMPLETED_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+	/**
+        * Whether allowing pocket service to register sensors and dispatch informations.
+        *   0 = disabled
+        *   1 = enabled
+        * @author Carlo Savignano
+        * @hide
+        */
+        public static final String POCKET_JUDGE = "pocket_judge";
+
+        /** @hide */
+        private static final Validator POCKET_JUDGE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
@@ -5054,7 +5067,8 @@ public final class Settings {
             STATUSBAR_CLOCK_DATE_STYLE,
             STATUSBAR_CLOCK_DATE_FORMAT,
             NOTIFICATION_LIGHT_PULSE,
-            DOZE_ON_CHARGE
+            DOZE_ON_CHARGE,
+	    POCKET_JUDGE,
         };
 
         /**
@@ -5192,6 +5206,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DEVICE_INTRODUCTION_COMPLETED);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
+	    PRIVATE_SETTINGS.add(POCKET_JUDGE);
        }
 
         /**
@@ -5311,6 +5326,7 @@ public final class Settings {
             VALIDATORS.put(DEVICE_INTRODUCTION_COMPLETED, DEVICE_INTRODUCTION_COMPLETED_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
+	    VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
         }
 
         /**
