@@ -1483,7 +1483,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mScreenshotChordPowerKeyTime = event.getDownTime();
                 interceptScreenshotChord();
                 interceptRingerToggleChord();
-                interceptScreenrecordChord();
             }
         }
 
