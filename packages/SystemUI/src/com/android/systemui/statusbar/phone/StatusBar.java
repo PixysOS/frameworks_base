@@ -3938,6 +3938,13 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
+    private void setUseLessBoringHeadsUp() {
+        boolean lessBoringHeadsUp = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.LESS_BORING_HEADS_UP, 0,
+                UserHandle.USER_CURRENT) == 1;
+        mNotificationInterruptionStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
+    }
+
     public int getWakefulnessState() {
         return mWakefulnessLifecycle.getWakefulness();
     }
@@ -4466,6 +4473,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_TILE_TITLE_VISIBILITY),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LESS_BORING_HEADS_UP),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4487,6 +4497,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setLockscreenDoubleTapToSleep();
             updateCutoutOverlay();
             setQsColumns();
+            setUseLessBoringHeadsUp();
         }
     }
 
