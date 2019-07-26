@@ -5626,7 +5626,6 @@ public final class Settings {
         public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
 
         /**
-<<<<<<< HEAD
          * Adaptive playback
          * Automatically pause media when the volume is muted and
          * will resume automatically when volume is restored.
@@ -5735,6 +5734,12 @@ public final class Settings {
          * @hide
          */
         public static final String FINGERPRINT_WAKE_UNLOCK = "fingerprint_wake_unlock";
+
+       /**
+         * Whether to show heads up only for dialer and sms apps
+         * @hide
+         */
+        public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to

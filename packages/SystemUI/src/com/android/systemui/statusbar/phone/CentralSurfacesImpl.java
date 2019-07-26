@@ -240,6 +240,7 @@ import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.statusbar.window.StatusBarWindowController;
 import com.android.systemui.statusbar.window.StatusBarWindowStateController;
 import com.android.systemui.surfaceeffects.ripple.RippleShader.RippleShape;
+import com.android.systemui.tuner.TunerService;
 import com.android.systemui.util.DumpUtilsKt;
 import com.android.systemui.util.WallpaperController;
 import com.android.systemui.util.concurrency.DelayableExecutor;
@@ -275,12 +276,15 @@ import dagger.Lazy;
  * </b>
  */
 @SysUISingleton
-public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
+public class CentralSurfacesImpl implements CoreStartable, TunerService.Tunable, CentralSurfaces {
 
     private static final String BANNER_ACTION_CANCEL =
             "com.android.systemui.statusbar.banner_action_cancel";
     private static final String BANNER_ACTION_SETUP =
             "com.android.systemui.statusbar.banner_action_setup";
+
+    private static final String LESS_BORING_HEADS_UP =
+            "system:" + Settings.System.LESS_BORING_HEADS_UP;
 
     private static final int MSG_OPEN_SETTINGS_PANEL = 1002;
     private static final int MSG_LAUNCH_TRANSITION_TIMEOUT = 1003;
@@ -533,6 +537,7 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
     private final KeyguardUnlockAnimationController mKeyguardUnlockAnimationController;
     private final MessageRouter mMessageRouter;
     private final WallpaperManager mWallpaperManager;
+    private final TunerService mTunerService;
 
     private CentralSurfacesComponent mCentralSurfacesComponent;
 
@@ -775,6 +780,7 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
             InteractionJankMonitor jankMonitor,
             DeviceStateManager deviceStateManager,
             WiredChargingRippleController wiredChargingRippleController,
+            TunerService tunerService,
             IDreamManager dreamManager,
             Lazy<CameraLauncher> cameraLauncherLazy,
             Lazy<LightRevealScrimViewModel> lightRevealScrimViewModelLazy) {
@@ -857,6 +863,7 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
         mWallpaperManager = wallpaperManager;
         mJankMonitor = jankMonitor;
         mCameraLauncherLazy = cameraLauncherLazy;
+        mTunerService = tunerService;
 
         mLockscreenShadeTransitionController = lockscreenShadeTransitionController;
         mStartingSurfaceOptional = startingSurfaceOptional;
@@ -916,6 +923,8 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
         mKeyguardIndicationController.init();
 
         mColorExtractor.addOnColorsChangedListener(mOnColorsChangedListener);
+
+        mTunerService.addTunable(this, LESS_BORING_HEADS_UP);
 
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
 
@@ -4106,6 +4115,18 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
         return mStatusBarKeyguardViewManager.isSecure();
     }
 
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case LESS_BORING_HEADS_UP:
+                boolean lessBoringHeadsUp =
+                        TunerService.parseIntegerSwitch(newValue, false);
+                mNotificationInterruptStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
+                break;
+            default:
+                break;
+         }
+    }
     // End Extra BaseStatusBarMethods.
 
     @Override
