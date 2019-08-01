@@ -108,6 +108,9 @@ public class StatusBarSignalPolicy implements NetworkControllerImpl.SignalCallba
                 if (!isProvisioned) {
                     state.visible = false;
                 }
+                // Make sure that applyMobileState() gets called
+                mIconController.setMobileIcons(
+                        mSlotMobile, MobileIconState.copyStates(mMobileStates));
             }
 
             mNetworkController.removeCallback(this);
