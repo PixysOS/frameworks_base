@@ -4475,22 +4475,46 @@ public final class Settings {
         public static final String ACCENT_PICKER = "accent_picker";
 
         /**
-         * Whether to show network traffic indicator in statusbar
+         * Network traffic indicator mode
+         * 0 = Don't show network traffic indicator
+         * 1 = Display up-stream traffic only
+         * 2 = Display down-stream traffic only
+         * 3 = Display both up- and down-stream traffic
          * @hide
          */
-        public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+        public static final String NETWORK_TRAFFIC_MODE = "network_traffic_mode";
+
+        /** @hide */
+        public static final Validator NETWORK_TRAFFIC_MODE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
         /**
-         * What to show in network traffic indicator in statusbar
+         * Whether or not to hide the network traffic indicator when there is no activity
          * @hide
          */
-        public static final String NETWORK_TRAFFIC_TYPE = "network_traffic_type";
+        public static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
+
+        /** @hide */
+        public static final Validator NETWORK_TRAFFIC_AUTOHIDE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-         * Network traffic inactivity threshold (default is 1 kBs)
+         * Measurement unit preference for network traffic
          * @hide
          */
-        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+        public static final String NETWORK_TRAFFIC_UNITS = "network_traffic_units";
+
+        /** @hide */
+        public static final Validator NETWORK_TRAFFIC_UNITS_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
+
+        /**
+         * Whether or not to show measurement units in the network traffic indiciator
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_SHOW_UNITS = "network_traffic_show_units";
+
+        /** @hide */
+        public static final Validator NETWORK_TRAFFIC_SHOW_UNITS_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Applications list where heasdup should't show

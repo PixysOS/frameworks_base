@@ -101,21 +101,29 @@
             android:gravity="center_horizontal|center_vertical"
         />
 
-        <com.android.keyguard.AlphaOptimizedLinearLayout android:id="@+id/system_icon_area"
+        <com.android.systemui.statusbar.CustomStatusBarItemHolder
+            android:id="@+id/network_traffic_holder"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:gravity="start|center_vertical"
             >
 
-            <com.android.systemui.statusbar.policy.NetworkTraffic
-                android:id="@+id/networkTraffic"
+            <com.android.systemui.statusbar.NetworkTraffic
+                android:id="@+id/network_traffic"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:singleLine="false"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="right|center_vertical"/>
+                android:maxLines="2"
+                android:gravity="center_vertical|start" />
+
+        </com.android.systemui.statusbar.CustomStatusBarItemHolder>
+
+        <com.android.keyguard.AlphaOptimizedLinearLayout android:id="@+id/system_icon_area"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|end"
+            >
 
             <include layout="@layout/system_icons" />
         </com.android.keyguard.AlphaOptimizedLinearLayout>
