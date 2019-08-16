@@ -208,5 +208,6 @@ public class SecureSettings {
         Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
         Settings.Secure.STATUS_BAR_SHOW_VIBRATE_ICON,
         Settings.Secure.SHOW_WIFI_STANDARD_ICON,
+        Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS,
     };
 }
