@@ -120,4 +120,7 @@
     <!-- Whether device supports internal audio recording -->
     <bool name="config_hasInternalAudioRecordingSupport">true</bool>
 
+    <!-- Whether to post reset runnable for all clients. Needed for some older vendor fingerprint HAL implementations. -->
+    <bool name="config_fingerprintPostResetRunnableForAllClients">false</bool>
+
 </resources>
