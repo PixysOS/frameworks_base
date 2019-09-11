@@ -58,4 +58,7 @@
     <!-- Whether device has a physical display cutout -->
     <bool name="config_physicalDisplayCutout">false</bool>
 
+    <!-- Whether device ignores the RSSNR signal implementation -->
+    <bool name="config_ignoreRssnrSignalLevel">false</bool>
+
 </resources>
