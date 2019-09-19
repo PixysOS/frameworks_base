@@ -139,6 +139,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
         mQsTileRevealController = new QSTileRevealController(mContext, this,
                 (PagedTileLayout) mTileLayout);
+        updateSettings();
 
         addDivider();
 
@@ -723,6 +724,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
         boolean updateResources();
 
+        void updateSettings();
+
         void setListening(boolean listening);
 
         default void setExpansion(float expansion) {}
@@ -787,6 +790,12 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     t.click();
                     setAnimationTile(v);
             });
+        }
+    }
+
+    public void updateSettings() {
+        if (mTileLayout != null) {
+            mTileLayout.updateSettings();
         }
     }
 }
