@@ -370,5 +370,6 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.MONET_ENGINE_WHITE_LUMINANCE, new InclusiveIntegerRangeValidator(0, 1000));
         VALIDATORS.put(Secure.FACE_UNLOCK_METHOD, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.TETHERING_ALLOW_VPN_UPSTREAMS, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.DOZE_ON_CHARGE, BOOLEAN_VALIDATOR);
     }
 }
