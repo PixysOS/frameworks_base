@@ -99,4 +99,8 @@
     <!--Screenrecord Tile-->
     <string name="screenrecorder_title_tile">Screenrecord</string>
 
+    <!-- Screenrecord -->
+    <string name="screenrecord_stopdot_label">Show stop dot</string>
+    <string name="global_action_screenshot_cust">Screenshot/Rec</string>
+
 </resources>
