@@ -43,8 +43,7 @@ import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
 
-fun isPermissionsHubEnabled() = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
-                SystemUiDeviceConfigFlags.PROPERTY_PERMISSIONS_HUB_ENABLED, true)
+fun isPermissionsHubEnabled() = true
 
 @Singleton
 class PrivacyItemController @Inject constructor(
@@ -56,10 +55,41 @@ class PrivacyItemController @Inject constructor(
 
     @VisibleForTesting
     internal companion object {
-        val OPS = intArrayOf(AppOpsManager.OP_CAMERA,
-                AppOpsManager.OP_RECORD_AUDIO,
+        val OPS = intArrayOf(//AppOpsManager.OP_ACTIVITY_RECOGNITION,
+                AppOpsManager.OP_READ_MEDIA_AUDIO,
+                AppOpsManager.OP_WRITE_MEDIA_AUDIO,
+                AppOpsManager.OP_BODY_SENSORS,
+                AppOpsManager.OP_READ_CALENDAR,
+                AppOpsManager.OP_WRITE_CALENDAR,
+                AppOpsManager.OP_READ_CALL_LOG,
+                AppOpsManager.OP_WRITE_CALL_LOG,
+                AppOpsManager.OP_CAMERA,
+                AppOpsManager.OP_READ_CONTACTS,
+                AppOpsManager.OP_WRITE_CONTACTS,
+                AppOpsManager.OP_GET_ACCOUNTS,
                 AppOpsManager.OP_COARSE_LOCATION,
-                AppOpsManager.OP_FINE_LOCATION)
+                AppOpsManager.OP_FINE_LOCATION,
+                AppOpsManager.OP_RECORD_AUDIO,
+                AppOpsManager.OP_READ_PHONE_STATE,
+                AppOpsManager.OP_READ_PHONE_NUMBERS,
+                AppOpsManager.OP_CALL_PHONE,
+                AppOpsManager.OP_ADD_VOICEMAIL,
+                AppOpsManager.OP_USE_SIP,
+                AppOpsManager.OP_PROCESS_OUTGOING_CALLS,
+                AppOpsManager.OP_ANSWER_PHONE_CALLS,
+                AppOpsManager.OP_ACCEPT_HANDOVER,
+                AppOpsManager.OP_SEND_SMS,
+                AppOpsManager.OP_RECEIVE_SMS,
+                AppOpsManager.OP_READ_SMS,
+                AppOpsManager.OP_RECEIVE_WAP_PUSH,
+                AppOpsManager.OP_RECEIVE_MMS,
+                AppOpsManager.OP_READ_CELL_BROADCASTS,
+                AppOpsManager.OP_READ_EXTERNAL_STORAGE,
+                AppOpsManager.OP_WRITE_EXTERNAL_STORAGE,
+                AppOpsManager.OP_READ_MEDIA_VIDEO,
+                AppOpsManager.OP_WRITE_MEDIA_VIDEO,
+                AppOpsManager.OP_READ_MEDIA_IMAGES,
+                AppOpsManager.OP_WRITE_MEDIA_IMAGES)
         val intents = listOf(Intent.ACTION_USER_FOREGROUND,
                 Intent.ACTION_MANAGED_PROFILE_ADDED,
                 Intent.ACTION_MANAGED_PROFILE_REMOVED)
@@ -216,10 +246,41 @@ class PrivacyItemController @Inject constructor(
 
     private fun toPrivacyItem(appOpItem: AppOpItem): PrivacyItem? {
         val type: PrivacyType = when (appOpItem.code) {
+            //AppOpsManager.OP_ACTIVITY_RECOGNITION -> PrivacyType.TYPE_ACTIVITY
+            AppOpsManager.OP_READ_MEDIA_AUDIO -> PrivacyType.TYPE_AURAL
+            AppOpsManager.OP_WRITE_MEDIA_AUDIO -> PrivacyType.TYPE_AURAL
+            AppOpsManager.OP_BODY_SENSORS -> PrivacyType.TYPE_SENSOR
+            AppOpsManager.OP_READ_CALENDAR -> PrivacyType.TYPE_CALENDAR
+            AppOpsManager.OP_WRITE_CALENDAR -> PrivacyType.TYPE_CALENDAR
+            AppOpsManager.OP_READ_CALL_LOG -> PrivacyType.TYPE_CALL_LOG
+            AppOpsManager.OP_WRITE_CALL_LOG -> PrivacyType.TYPE_CALL_LOG
             AppOpsManager.OP_CAMERA -> PrivacyType.TYPE_CAMERA
+            AppOpsManager.OP_READ_CONTACTS -> PrivacyType.TYPE_CONTACTS
+            AppOpsManager.OP_WRITE_CONTACTS -> PrivacyType.TYPE_CONTACTS
+            AppOpsManager.OP_GET_ACCOUNTS -> PrivacyType.TYPE_CONTACTS
             AppOpsManager.OP_COARSE_LOCATION -> PrivacyType.TYPE_LOCATION
             AppOpsManager.OP_FINE_LOCATION -> PrivacyType.TYPE_LOCATION
             AppOpsManager.OP_RECORD_AUDIO -> PrivacyType.TYPE_MICROPHONE
+            AppOpsManager.OP_READ_PHONE_STATE -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_READ_PHONE_NUMBERS -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_CALL_PHONE -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_ADD_VOICEMAIL -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_USE_SIP -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_PROCESS_OUTGOING_CALLS -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_ANSWER_PHONE_CALLS -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_ACCEPT_HANDOVER -> PrivacyType.TYPE_PHONE
+            AppOpsManager.OP_SEND_SMS -> PrivacyType.TYPE_SMS
+            AppOpsManager.OP_RECEIVE_SMS -> PrivacyType.TYPE_SMS
+            AppOpsManager.OP_READ_SMS -> PrivacyType.TYPE_SMS
+            AppOpsManager.OP_RECEIVE_WAP_PUSH -> PrivacyType.TYPE_SMS
+            AppOpsManager.OP_RECEIVE_MMS -> PrivacyType.TYPE_SMS
+            AppOpsManager.OP_READ_CELL_BROADCASTS -> PrivacyType.TYPE_SMS
+            AppOpsManager.OP_READ_EXTERNAL_STORAGE -> PrivacyType.TYPE_STORAGE
+            AppOpsManager.OP_WRITE_EXTERNAL_STORAGE -> PrivacyType.TYPE_STORAGE
+            AppOpsManager.OP_READ_MEDIA_VIDEO -> PrivacyType.TYPE_VISUAL
+            AppOpsManager.OP_WRITE_MEDIA_VIDEO -> PrivacyType.TYPE_VISUAL
+            AppOpsManager.OP_READ_MEDIA_IMAGES -> PrivacyType.TYPE_VISUAL
+            AppOpsManager.OP_WRITE_MEDIA_IMAGES -> PrivacyType.TYPE_VISUAL
             else -> return null
         }
         if (appOpItem.uid == SYSTEM_UID) return PrivacyItem(type, systemApp)

@@ -118,7 +118,6 @@ public class PhoneStatusBarPolicy
     private final String mSlotHeadset;
     private final String mSlotDataSaver;
     private final String mSlotLocation;
-    private final String mSlotMicrophone;
     private final String mSlotCamera;
     private final String mSlotSensorsOff;
     private final String mSlotFlashlight;
@@ -189,7 +188,6 @@ public class PhoneStatusBarPolicy
         mSlotHeadset = context.getString(com.android.internal.R.string.status_bar_headset);
         mSlotDataSaver = context.getString(com.android.internal.R.string.status_bar_data_saver);
         mSlotLocation = context.getString(com.android.internal.R.string.status_bar_location);
-        mSlotMicrophone = context.getString(com.android.internal.R.string.status_bar_microphone);
         mSlotCamera = context.getString(com.android.internal.R.string.status_bar_camera);
         mSlotSensorsOff = context.getString(com.android.internal.R.string.status_bar_sensors_off);
         mSlotFlashlight = context.getString(com.android.internal.R.string.status_bar_flashlight);
@@ -253,10 +251,7 @@ public class PhoneStatusBarPolicy
         mIconController.setIconVisibility(mSlotDataSaver, false);
 
         // privacy items
-        mIconController.setIcon(mSlotMicrophone, PrivacyType.TYPE_MICROPHONE.getIconId(),
-                PrivacyType.TYPE_MICROPHONE.getName(mContext));
-        mIconController.setIconVisibility(mSlotMicrophone, false);
-        mIconController.setIcon(mSlotCamera, PrivacyType.TYPE_CAMERA.getIconId(),
+        mIconController.setIcon(mSlotCamera, R.drawable.perm_group_privacy,
                 PrivacyType.TYPE_CAMERA.getName(mContext));
         mIconController.setIconVisibility(mSlotCamera, false);
         mIconController.setIcon(mSlotLocation, LOCATION_STATUS_ICON_ID,
@@ -709,7 +704,6 @@ public class PhoneStatusBarPolicy
 
     private void updatePrivacyItems(List<PrivacyItem> items) {
         boolean showCamera = false;
-        boolean showMicrophone = false;
         boolean showLocation = false;
         for (PrivacyItem item : items) {
             if (item == null /* b/124234367 */) {
@@ -722,20 +716,27 @@ public class PhoneStatusBarPolicy
                 continue;
             }
             switch (item.getPrivacyType()) {
+                //case TYPE_ACTIVITY:
+                case TYPE_AURAL:
+                case TYPE_SENSOR:
+                case TYPE_CALENDAR:
+                case TYPE_CALL_LOG:
                 case TYPE_CAMERA:
+                case TYPE_CONTACTS:
+                case TYPE_MICROPHONE:
+                case TYPE_PHONE:
+                case TYPE_SMS:
+                case TYPE_STORAGE:
+                case TYPE_VISUAL:
                     showCamera = true;
                     break;
                 case TYPE_LOCATION:
                     showLocation = true;
                     break;
-                case TYPE_MICROPHONE:
-                    showMicrophone = true;
-                    break;
             }
         }
 
         mIconController.setIconVisibility(mSlotCamera, showCamera);
-        mIconController.setIconVisibility(mSlotMicrophone, showMicrophone);
         mIconController.setIconVisibility(mSlotLocation, showLocation);
     }
 

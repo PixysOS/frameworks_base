@@ -71,11 +71,56 @@ public class AppOpsControllerImpl implements AppOpsController,
     private final List<AppOpItem> mNotedItems = new ArrayList<>();
 
     protected static final int[] OPS = new int[] {
-            AppOpsManager.OP_CAMERA,
+            // APPOP PERMISSIONS
             AppOpsManager.OP_SYSTEM_ALERT_WINDOW,
-            AppOpsManager.OP_RECORD_AUDIO,
+            // Activity recognition
+            //AppOpsManager.OP_ACTIVITY_RECOGNITION,
+            // Aural
+            AppOpsManager.OP_READ_MEDIA_AUDIO,
+            AppOpsManager.OP_WRITE_MEDIA_AUDIO,
+            // Body Sensor
+            AppOpsManager.OP_BODY_SENSORS,
+            // Calendar
+            AppOpsManager.OP_READ_CALENDAR,
+            AppOpsManager.OP_WRITE_CALENDAR,
+            // Call Logs
+            AppOpsManager.OP_READ_CALL_LOG,
+            AppOpsManager.OP_WRITE_CALL_LOG,
+            // Camera
+            AppOpsManager.OP_CAMERA,
+            // Contacts
+            AppOpsManager.OP_READ_CONTACTS,
+            AppOpsManager.OP_WRITE_CONTACTS,
+            AppOpsManager.OP_GET_ACCOUNTS,
+            // Location
             AppOpsManager.OP_COARSE_LOCATION,
-            AppOpsManager.OP_FINE_LOCATION
+            AppOpsManager.OP_FINE_LOCATION,
+            // Microphone
+            AppOpsManager.OP_RECORD_AUDIO,
+            // Phone
+            AppOpsManager.OP_READ_PHONE_STATE,
+            AppOpsManager.OP_READ_PHONE_NUMBERS,
+            AppOpsManager.OP_CALL_PHONE,
+            AppOpsManager.OP_ADD_VOICEMAIL,
+            AppOpsManager.OP_USE_SIP,
+            AppOpsManager.OP_PROCESS_OUTGOING_CALLS,
+            AppOpsManager.OP_ANSWER_PHONE_CALLS,
+            AppOpsManager.OP_ACCEPT_HANDOVER,
+            // SMS
+            AppOpsManager.OP_SEND_SMS,
+            AppOpsManager.OP_RECEIVE_SMS,
+            AppOpsManager.OP_READ_SMS,
+            AppOpsManager.OP_RECEIVE_WAP_PUSH,
+            AppOpsManager.OP_RECEIVE_MMS,
+            AppOpsManager.OP_READ_CELL_BROADCASTS,
+            // Storage
+            AppOpsManager.OP_READ_EXTERNAL_STORAGE,
+            AppOpsManager.OP_WRITE_EXTERNAL_STORAGE,
+            // Visual
+            AppOpsManager.OP_READ_MEDIA_VIDEO,
+            AppOpsManager.OP_WRITE_MEDIA_VIDEO,
+            AppOpsManager.OP_READ_MEDIA_IMAGES,
+            AppOpsManager.OP_WRITE_MEDIA_IMAGES,
     };
 
     @Inject
