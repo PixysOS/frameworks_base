@@ -5737,6 +5737,15 @@ public final class Settings {
         public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
 
         /**
+         * Whether allowing pocket service to register sensors and dispatch informations.
+         *   0 = disabled
+         *   1 = enabled
+         * @author Carlo Savignano
+         * @hide
+         */
+        public static final String POCKET_JUDGE = "pocket_judge";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -5892,6 +5901,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
             PRIVATE_SETTINGS.add(HIGH_TOUCH_SENSITIVITY_ENABLE);
             PRIVATE_SETTINGS.add(HIGH_TOUCH_POLLING_RATE_ENABLE);
+            PRIVATE_SETTINGS.add(POCKET_JUDGE);
         }
 
         /**
