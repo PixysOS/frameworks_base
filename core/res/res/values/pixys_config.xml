@@ -111,4 +111,7 @@
          Used to decide if we show pulse settings -->
     <bool name="config_ledCanPulse">true</bool>
 
+    <!-- Whether device has notification LED -->
+    <bool name="config_hasNotificationLed">true</bool>
+
 </resources>
