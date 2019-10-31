@@ -96,4 +96,7 @@
     <!-- LTE QS Tile -->
     <string name="qs_lte_label">LTE</string>
 
+    <!--Screenrecord Tile-->
+    <string name="screenrecorder_title_tile">Screenrecord</string>
+
 </resources>
