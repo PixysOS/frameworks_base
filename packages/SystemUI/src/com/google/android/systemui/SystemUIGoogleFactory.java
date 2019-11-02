@@ -14,6 +14,8 @@ import com.android.systemui.statusbar.phone.ScrimState;
 import com.android.systemui.statusbar.phone.LockscreenWallpaper;
 import com.android.systemui.statusbar.policy.KeyguardMonitor;
 
+import com.android.systemui.statusbar.policy.KeyguardMonitor;
+
 import java.util.function.Consumer;
 
 public class SystemUIGoogleFactory extends SystemUIFactory {
