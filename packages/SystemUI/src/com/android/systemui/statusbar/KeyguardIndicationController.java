@@ -433,12 +433,11 @@ public class KeyguardIndicationController {
     }
 
     private void updateResting() {
-        if (!TextUtils.isEmpty(mRestingIndication)
-                && !mRotateTextViewController.hasIndications()) {
+        if (!mRotateTextViewController.hasIndications()) {
             mRotateTextViewController.updateIndication(
                     INDICATION_TYPE_RESTING,
                     new KeyguardIndication.Builder()
-                            .setMessage(mRestingIndication)
+                            .setMessage(mContext.getResources().getString(R.string.keyguard_unlock))
                             .setTextColor(mInitialTextColorState)
                             .build(),
                     false);
