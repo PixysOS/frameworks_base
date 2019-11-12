@@ -5245,6 +5245,12 @@ public final class Settings {
         public static final String SCREENRECORD_VIDEO_BITRATE = "screenrecord_video_bitrate";
 
         /**
+         * Enable\Disable visibility of privacy_chip view in QS
+         * @hide
+         */
+        public static final String PRIVACY_CHIP_VIEW = "privacy_chip_view";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
