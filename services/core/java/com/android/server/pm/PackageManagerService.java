@@ -2625,7 +2625,7 @@ public class PackageManagerService extends IPackageManager.Stub
                 }
             }
 
-            mCacheDir = preparePackageParserCache();
+            mCacheDir = preparePackageParserCache(mIsUpgrade);
 
             // Set flag to monitor and not change apk file paths when
             // scanning install directories.
@@ -3663,7 +3663,7 @@ public class PackageManagerService extends IPackageManager.Stub
         setUpInstantAppInstallerActivityLP(getInstantAppInstallerLPr());
     }
 
-    private static @Nullable File preparePackageParserCache() {
+    private static @Nullable File preparePackageParserCache(boolean isUpgrade) {
         if (!DEFAULT_PACKAGE_PARSER_CACHE_ENABLED) {
             return null;
         }
