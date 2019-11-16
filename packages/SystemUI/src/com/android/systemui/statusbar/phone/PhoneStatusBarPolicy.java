@@ -706,6 +706,8 @@ public class PhoneStatusBarPolicy
     private void updatePrivacyItems(List<PrivacyItem> items) {
         final boolean chipVisibilityDisabled = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PRIVACY_CHIP_VIEW, 1) == 1;
+        final boolean chipStatusbarVisibility = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PRIVACY_CHIP_STATUSBAR_VIEW, 1) == 1;
         boolean showCamera = false;
         boolean showLocation = false;
         for (PrivacyItem item : items) {
@@ -737,9 +739,8 @@ public class PhoneStatusBarPolicy
                     showLocation = true;
                     break;
             }
-            if (chipVisibilityDisabled) {
+            if (!chipVisibilityDisabled || !chipStatusbarVisibility) {
                 showCamera = false;
-                showLocation = false;
             }
         }
 

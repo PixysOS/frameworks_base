@@ -301,7 +301,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private void setChipVisibility(boolean chipVisible) {
         final boolean chipVisibilityDisabled = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PRIVACY_CHIP_VIEW, 1) == 1;
-        if (chipVisible && mPermissionsHubEnabled && !chipVisibilityDisabled) {
+        if (chipVisible && mPermissionsHubEnabled && chipVisibilityDisabled) {
             mPrivacyChip.setVisibility(View.VISIBLE);
             // Makes sure that the chip is logged as viewed at most once each time QS is opened
             // mListening makes sure that the callback didn't return after the user closed QS
