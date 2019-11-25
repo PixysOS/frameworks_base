@@ -550,7 +550,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
         if (mTileLayout != null) {
             mTileLayout.addTile(r);
-            configureTile(r.tile, r.tileView);
+            tileClickListener(r.tile, r.tileView);
         }
 
         return r;
