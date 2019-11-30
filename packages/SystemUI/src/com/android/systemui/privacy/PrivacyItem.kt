@@ -27,31 +27,31 @@ typealias Privacy = PrivacyType
 enum class PrivacyType(private val nameId: Int, val iconId: Int) {
     // This is uses the icons used by the corresponding permission groups in the AndroidManifest
     //TYPE_ACTIVITY(R.string.privacy_type_activity_recognition,
-    //        R.drawable.perm_group_activity_recognition),
+    //        com.android.internal.R.drawable.perm_group_activity_recognition),
     TYPE_AURAL(R.string.privacy_type_aural,
-            R.drawable.perm_group_aural),
+            com.android.internal.R.drawable.perm_group_aural),
     TYPE_SENSOR(R.string.privacy_type_sensors,
-            R.drawable.perm_group_sensors),
+            com.android.internal.R.drawable.perm_group_sensors),
     TYPE_CALENDAR(R.string.privacy_type_calendar,
-            R.drawable.perm_group_calendar),
+            com.android.internal.R.drawable.perm_group_calendar),
     TYPE_CALL_LOG(R.string.privacy_type_call_logs,
-            R.drawable.perm_group_call_log),
+            com.android.internal.R.drawable.perm_group_call_log),
     TYPE_CAMERA(R.string.privacy_type_camera,
             com.android.internal.R.drawable.perm_group_camera),
     TYPE_CONTACTS(R.string.privacy_type_contacts,
-            R.drawable.perm_group_contacts),
+            com.android.internal.R.drawable.perm_group_contacts),
     TYPE_LOCATION(R.string.privacy_type_location,
             com.android.internal.R.drawable.perm_group_location),
     TYPE_MICROPHONE(R.string.privacy_type_microphone,
             com.android.internal.R.drawable.perm_group_microphone),
     TYPE_PHONE(R.string.privacy_type_phone_calls,
-            R.drawable.perm_group_phone_calls),
+            com.android.internal.R.drawable.perm_group_phone_calls),
     TYPE_SMS(R.string.privacy_type_sms,
-            R.drawable.perm_group_sms),
+            com.android.internal.R.drawable.perm_group_sms),
     TYPE_STORAGE(R.string.privacy_type_storage,
-            R.drawable.perm_group_storage),
+            com.android.internal.R.drawable.perm_group_storage),
     TYPE_VISUAL(R.string.privacy_type_visual,
-            R.drawable.perm_group_visual);
+            com.android.internal.R.drawable.perm_group_visual);
 
     fun getName(context: Context) = context.resources.getString(nameId)
 

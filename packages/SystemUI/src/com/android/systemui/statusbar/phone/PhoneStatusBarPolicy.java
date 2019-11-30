@@ -251,7 +251,7 @@ public class PhoneStatusBarPolicy
         mIconController.setIconVisibility(mSlotDataSaver, false);
 
         // privacy items
-        mIconController.setIcon(mSlotCamera, R.drawable.perm_group_privacy,
+        mIconController.setIcon(mSlotCamera, com.android.internal.R.drawable.perm_group_privacy,
                 PrivacyType.TYPE_CAMERA.getName(mContext));
         mIconController.setIconVisibility(mSlotCamera, false);
         mIconController.setIcon(mSlotLocation, LOCATION_STATUS_ICON_ID,
