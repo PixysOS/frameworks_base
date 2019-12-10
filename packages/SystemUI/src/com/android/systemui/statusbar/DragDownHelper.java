@@ -30,7 +30,6 @@ import com.android.systemui.ExpandHelper;
 import com.android.systemui.Gefingerpoken;
 import com.android.systemui.Interpolators;
 import com.android.systemui.R;
-import com.android.systemui.classifier.FalsingManagerFactory;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.statusbar.notification.row.ExpandableView;
 
@@ -67,7 +66,8 @@ public class DragDownHelper implements Gefingerpoken {
     private Runnable mGoToSleep;
 
     public DragDownHelper(Context context, View host, ExpandHelper.Callback callback,
-            DragDownCallback dragDownCallback) {
+            DragDownCallback dragDownCallback,
+            FalsingManager falsingManager) {
         mMinDragDistance = context.getResources().getDimensionPixelSize(
                 R.dimen.keyguard_drag_down_min_distance);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -75,7 +75,7 @@ public class DragDownHelper implements Gefingerpoken {
         mCallback = callback;
         mDragDownCallback = dragDownCallback;
         mHost = host;
-        mFalsingManager = FalsingManagerFactory.getInstance(context);
+        mFalsingManager = falsingManager;
         mStatusBarHeaderHeight = context
                 .getResources().getDimensionPixelSize(R.dimen.status_bar_header_height_keyguard);
         mGoToSleep = new Runnable() {

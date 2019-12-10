@@ -3838,4 +3838,5 @@
 
   <java-symbol type="array" name="config_highRefreshRateBlacklist" />
 
+  <java-symbol type="bool" name="config_automotiveHideNavBarForKeyboard" />
 </resources>

@@ -23,16 +23,6 @@ import com.google.android.systemui.statusbar.NotificationEntryManagerGoogle;
 
 public class SystemUIGoogleFactory extends SystemUIFactory {
     @Override
-    public NotificationEntryManager provideNotificationEntryManager(Context context) {
-        return new NotificationEntryManagerGoogle(context);
-    }
-
-    @Override
-    public NotificationLockscreenUserManager provideNotificationLockscreenUserManager(Context context) {
-        return new NotificationLockscreenUserManagerGoogle(context);
-    }
-
-    @Override
     public ScrimController createScrimController(ScrimView scrimBehind, ScrimView scrimInFront,
             LockscreenWallpaper lockscreenWallpaper,
             TriConsumer<ScrimState, Float, GradientColors> scrimStateListener,
