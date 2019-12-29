@@ -29,6 +29,8 @@ LOCAL_REQUIRED_MODULES := \
 	DisplayCutoutEmulationTallOverlay \
 	FontArbutusSourceOverlay \
 	FontArvoLatoOverlay \
+	FontComicSansSourceOverlay \
+	FontGoogleSansSourceOverlay \
 	FontNotoSerifSourceOverlay \
 	FontRubikRubikOverlay \
 	FontOneplusSlateSource \
