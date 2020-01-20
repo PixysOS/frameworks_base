@@ -82,6 +82,7 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     private boolean mIsBiometricRunning;
     private boolean mIsBouncer;
     private boolean mIsDreaming;
+    private boolean mIsKeyguard;
     private boolean mIsCircleShowing;
     private boolean mIsKeyguard;
 
@@ -151,6 +152,12 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
             if (mFODAnimation != null) {
                 mFODAnimation.setAnimationKeyguard(mIsKeyguard);
             }
+        }
+
+        @Override
+        public void onKeyguardVisibilityChanged(boolean showing) {
+            mIsKeyguard = showing;
+            updatePosition();
         }
 
         @Override
@@ -452,6 +459,11 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
 
         mPressedParams.x = mParams.x = x;
         mPressedParams.y = mParams.y = y;
+
+        if (mIsKeyguard) {
+            mParams.x = mPositionX;
+            mParams.y = mPositionY;
+        }
 
         if (mIsDreaming) {
             mParams.y += mDreamingOffsetY;
