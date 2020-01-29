@@ -21,4 +21,6 @@
     <dimen name="binary_clock_width">100dp</dimen>
     <dimen name="binary_clock_height">100dp</dimen>
 
+    <dimen name="custom_clock_left_padding">32dp</dimen>
+
 </resources>
