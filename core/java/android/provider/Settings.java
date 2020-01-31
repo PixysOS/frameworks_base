@@ -5456,6 +5456,12 @@ public final class Settings {
         public static final Validator REFRESH_RATE_SETTING_VALIDATOR = NON_NEGATIVE_INTEGER_VALIDATOR;
 
         /**
+         * FOD pressed state
+         * @hide
+         */
+        public static final String FOD_PRESSED_STATE = "fod_pressed_state";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
