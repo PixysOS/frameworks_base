@@ -669,6 +669,11 @@ class GlobalScreenshot {
     }
 
     void takeScreenshot(Runnable finisher, boolean statusBarVisible, boolean navBarVisible) {
+        if (mScreenshotLayout.getParent() != null) {
+            finisher.run();
+            return;
+        }
+
         mPartialShot = false;
         mDisplay.getRealMetrics(mDisplayMetrics);
         takeScreenshot(finisher, statusBarVisible, navBarVisible,
@@ -680,6 +685,11 @@ class GlobalScreenshot {
      */
     void takeScreenshotPartial(final Runnable finisher, final boolean statusBarVisible,
             final boolean navBarVisible) {
+        if (mScreenshotLayout.getParent() != null) {
+            finisher.run();
+            return;
+        }
+
         mWindowManager.addView(mScreenshotLayout, mWindowLayoutParams);
         mScreenshotSelectorView.setSelectionListener(
                 new ScreenshotSelectorView.OnSelectionListener() {
