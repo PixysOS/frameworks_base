@@ -91,5 +91,6 @@ public class SystemSettings {
         Settings.System.NETWORK_TRAFFIC_FONT_SIZE,
         Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION,
         Settings.System.NOTIFICATION_HEADERS,
+        Settings.System.RINGTONE_VIBRATION_PATTERN,
     };
 }
