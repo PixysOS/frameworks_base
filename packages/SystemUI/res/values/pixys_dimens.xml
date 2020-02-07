@@ -35,4 +35,7 @@
     <!-- Size of Screen Record Dot. -->
     <dimen name="screenrecord_dot_size">48dp</dimen>
 
+    <!-- Padding after battery level text in status bar, QS, and Keyguard -->
+    <dimen name="battery_level_padding_end">2dp</dimen>
+
 </resources>
