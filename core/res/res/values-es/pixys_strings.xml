@@ -17,8 +17,18 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Advanced reboot -->
+    <string name="reboot_title">Reiniciar</string>
+    <string name="reboot_message">Reiniciando sistema</string>
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Falsificar firma del paquete</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Permite a la aplicación se ejecute como una aplicación diferente. Aplicaciones maliciosas pueden usar esto para acceder a datos personales. ¡Conceda este permiso con mucho cuidado!</string>
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Su imagen del proveedor no coincide con el sistema. Por favor instale la imagen del fabricante <xliff:g id="string">%s</xliff:g> para su dispositivo</string>
     <!-- Gaming mode -->
+    <string name="notification_channel_gaming">Modo gaming</string>
+    <string name="gaming_mode_notification_title">Modo gaming activado</string>
+    <string name="gaming_mode_notification_content">Toca para desactivar modo gaming</string>
+    <string name="gaming_mode_enabled_toast">Modo gaming activado</string>
+    <string name="gaming_mode_disabled_toast">Modo gaming desactivado</string>
 </resources>

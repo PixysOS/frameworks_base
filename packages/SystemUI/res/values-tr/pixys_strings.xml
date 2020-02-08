@@ -127,4 +127,6 @@
     <string name="accessibility_quick_settings_gaming_mode_disabled">Oyun modu kapatıldı.</string>
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_enabled">Oyun modu aktifleştirildi.</string>
+    <!-- Music tile -->
+    <!-- Smart Pixels QS Tile -->
 </resources>

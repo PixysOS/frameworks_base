@@ -19,24 +19,114 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Заборона сну</string>
+    <string name="accessibility_quick_settings_caffeine_off">Кофеїн вимкнено</string>
+    <string name="accessibility_quick_settings_caffeine_on">Кофеїн увімкнено</string>
     <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Ambient display</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Ambient Display вимкнено.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ambient Display увімкнено.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display вимкнутий.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient дисплей увімкнено.</string>
     <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">USB-модем</string>
     <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Синхронізація</string>
+    <string name="accessibility_quick_settings_sync_off">Синхронізацію вимкнено</string>
+    <string name="accessibility_quick_settings_sync_on">Синхронізація увімкнена</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Синхронізацію вимкнено</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Синхронізація увімкнуто</string>
     <!-- Advanced Location Tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Надсилання місця розташування: економія батареї.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Служби геолокації: тільки датчики пристрою.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Служби геолокації: режим високої точністі.</string>
+    <string name="quick_settings_location_battery_saving_label">Енергозбереження</string>
+    <string name="quick_settings_location_battery_saving_label_twoline">Економія\nбатареї</string>
+    <string name="quick_settings_location_gps_only_label">Тільки GPS</string>
+    <string name="quick_settings_location_gps_only_label_twoline">Тільки GPS</string>
+    <string name="quick_settings_location_high_accuracy_label">Висока точність</string>
+    <string name="quick_settings_location_high_accuracy_label_twoline">Висока\nточність</string>
+    <string name="quick_settings_location_detail_title">Місцезнаходження</string>
+    <string name="quick_settings_location_detail_menu_title">Обрати режим:</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_title">Висока точність</string>
+    <string name="quick_settings_location_detail_mode_battery_saving_title">Енергозбереження</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_title">Лише датчики пристрою</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_description">Використовувати GPS, Wi\u2011Fi, Bluetooth і мобільні мережі, щоб визначати місцезнаходження </string>
+    <string name="quick_settings_location_detail_mode_battery_saving_description">Використовувати Wi‑Fi, Bluetooth і мобільні мережі, щоб визначати місцезнаходження</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_description">Використовувати GPS для визначення місцезнаходження</string>
     <!-- SystemUI Tuner -->
+    <string name="statusbar_items_title">Елементи рядку стану</string>
+    <string name="lockscreen_default">За замовчанням</string>
+    <string name="lockscreen_hidden">Нічого</string>
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
+    <string name="custom_hint">Проведіть від іконки для запуску</string>
     <!-- Advanced reboot -->
+    <string name="global_action_restart_advanced">Додатково</string>
+    <string name="global_action_restart_recovery">Рекавері</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">Перезавантажити системний інтерфейс</string>
     <!-- Status bar network traffic monitor strings -->
+    <string name="kilobitspersecond_short">кб/с</string>
+    <string name="megabitspersecond_short">Мб/с</string>
+    <string name="kilobytespersecond_short">кБ/c</string>
+    <string name="megabytespersecond_short">МБ/с</string>
     <!-- QS Config -->
+    <string name="qs_menu_item_columns">Стовпці</string>
+    <string name="qs_menu_item_columns_landscape">Стовпці (альбомна орієнтація)</string>
+    <string name="qs_menu_item_columns_three">3</string>
+    <string name="qs_menu_item_columns_four">4</string>
+    <string name="qs_menu_item_columns_five">5</string>
+    <string name="qs_menu_item_columns_six">6</string>
+    <string name="qs_menu_item_columns_seven">7</string>
+    <string name="qs_menu_item_columns_eight">8</string>
+    <string name="qs_menu_item_reset">Скинути</string>
+    <string name="qs_menu_item_titles">Показувати підписи</string>
+    <string name="qs_menu_item_qs_columns">Стовпці (Швидкий доступ)</string>
+    <string name="qs_menu_item_columns_auto">Автоматично</string>
     <!-- LTE QS Tile -->
+    <string name="qs_lte_label">LTE</string>
     <!--Screenrecord Tile-->
+    <string name="screenrecorder_title_tile">Запис екрану</string>
     <!-- Screenrecord -->
+    <string name="screenrecord_stopdot_label">Показувати кнопку зупинки</string>
+    <string name="screenrecord_low_quality_label">Низька якість</string>
+    <string name="global_action_screenshot_cust">Скріншот/Запис з екрану</string>
     <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Компас</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Ініціалізація</string>
+    <string name="accessibility_quick_settings_compass_off">Компас вимкнено.</string>
+    <string name="accessibility_quick_settings_compass_on">Компас увімкнено.</string>
+    <string name="quick_settings_compass_N">Пн</string>
+    <string name="quick_settings_compass_NE">ПнСх</string>
+    <string name="quick_settings_compass_E">Сх</string>
+    <string name="quick_settings_compass_SE">ПдСх</string>
+    <string name="quick_settings_compass_S">Пд</string>
+    <string name="quick_settings_compass_SW">ПдЗх</string>
+    <string name="quick_settings_compass_W">Зх</string>
+    <string name="quick_settings_compass_NW">ПнЗх</string>
     <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Спливаючі сповіщення вимкнено на 1 хвилину.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Спливаючі сповіщення вимкнено на <xliff:g id="number">%d</xliff:g> хвилин.</string>
     <!-- Heads up QS tile -->
+    <string name="quick_settings_heads_up_label">Спливаючі сповіщення</string>
+    <string name="accessibility_quick_settings_heads_up_off">Спливаючі сповіщення вимкнено.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Спливаючі сповіщення увімкнено.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Спливаючі сповіщення вимкнено.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Спливаючі сповіщення увімкнено.</string>
     <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Скріншот</string>
+    <string name="quick_settings_region_screenshot_label">Частковий скріншот</string>
     <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Перевантажити</string>
+    <string name="quick_settings_reboot_recovery_label">Рекавері</string>
     <!-- Gaming mode -->
+    <string name="gaming_mode_not_enabled">Ігровий режим відключено в налаштуваннях</string>
+    <string name="quick_settings_gaming_mode_label">Ігровий режим</string>
     <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Ігровий режим вимкнено.</string>
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Ігровий режим увімкнено.</string>
+    <!-- Music tile -->
+    <!-- Smart Pixels QS Tile -->
 </resources>
