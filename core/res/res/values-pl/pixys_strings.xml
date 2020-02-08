@@ -26,4 +26,9 @@
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
     <string name="system_error_vendorprint">Twój obraz dostawcy nie jest zgodny z systemem. Wgraj <xliff:g id="string">%s</xliff:g> obraz dostawcy dla swojego urządzenia</string>
     <!-- Gaming mode -->
+    <string name="notification_channel_gaming">Tryb gry</string>
+    <string name="gaming_mode_notification_title">Włączono Tryb grania</string>
+    <string name="gaming_mode_notification_content">Naciśnij, aby wyłączyć tryb gry</string>
+    <string name="gaming_mode_enabled_toast">Tryb gry włączony</string>
+    <string name="gaming_mode_disabled_toast">Tryb gry wyłączony</string>
 </resources>

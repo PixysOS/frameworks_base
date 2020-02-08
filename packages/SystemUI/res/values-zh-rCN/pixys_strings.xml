@@ -68,4 +68,6 @@
     <!-- Gaming mode -->
     <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <!-- Music tile -->
+    <!-- Smart Pixels QS Tile -->
 </resources>

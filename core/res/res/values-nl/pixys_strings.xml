@@ -17,8 +17,16 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Advanced reboot -->
+    <string name="reboot_title">Herstart</string>
+    <string name="reboot_message">Herstart Systeem</string>
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Geeft de app toestemming om zich te voordoen als een andere app. Schadelijke apps kunnen dit mogelijk gebruiken om toegang te krijgen tot privé gegevens van apps. Verleen deze toestemming alleen met voorzichtigheid!</string>
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
     <!-- Gaming mode -->
+    <string name="notification_channel_gaming">Spelmodus</string>
+    <string name="gaming_mode_notification_title">Spelmodus ingeschakeld</string>
+    <string name="gaming_mode_notification_content">Tik om spelmodus uit te schakelen</string>
+    <string name="gaming_mode_enabled_toast">Spelmodus aan</string>
+    <string name="gaming_mode_disabled_toast">Spelmodus uit</string>
 </resources>
