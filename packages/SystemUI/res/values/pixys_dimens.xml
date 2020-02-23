@@ -50,4 +50,6 @@
     <dimen name="keyguard_charging_indication_height">48dp</dimen>
     <dimen name="keyguard_charging_indication_width">24dp</dimen>
 
+    <!-- Size of the FOD animation -->
+    <dimen name="fod_animation_size">310dp</dimen>
 </resources>
