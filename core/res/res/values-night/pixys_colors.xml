@@ -17,6 +17,5 @@
 <resources>
 
     <color name="toast_bg">@color/material_grey_800</color>
-    <color name="toast_text">@color/white</color>
-
+   <color name="toast_text">@color/white</color>
 </resources>
