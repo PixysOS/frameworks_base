@@ -7431,5 +7431,9 @@ message MetricsEvent {
 
     // ARROW Metrics
     PIXYS = 2772;
+
+     // Panel for Bluetooth
+    PANEL_BLUETOOTH = 9004;
+
   }
 }
