@@ -7440,5 +7440,8 @@ message MetricsEvent {
 
     // PIXYS Metrics
     PIXYS = 2772;
+
+    // Panel for Bluetooth
+    PANEL_BLUETOOTH = 2003;
   }
 }
