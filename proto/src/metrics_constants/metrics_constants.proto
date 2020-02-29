@@ -7437,5 +7437,7 @@ message MetricsEvent {
     //PixysOS Metrics Constants
     PIXYS = 2000;
 
+    // Panel for Bluetooth
+    PANEL_BLUETOOTH = 9004;
   }
 }
