@@ -403,7 +403,9 @@ public class PhoneStatusBarPolicy
                 mContext.getString(R.string.accessibility_quick_settings_bluetooth_on);
         boolean bluetoothVisible = false;
         if (mBluetooth != null) {
-            if (mBluetooth.isBluetoothConnected()) {
+            if (mBluetooth.isBluetoothConnected()
+                    && (mBluetooth.isBluetoothAudioActive()
+                    || !mBluetooth.isBluetoothAudioProfileOnly())) {
                 List<CachedBluetoothDevice> connectedDevices = mBluetooth.getConnectedDevices();
                 int batteryLevel = connectedDevices.isEmpty() ?
                         -1 : connectedDevices.get(0).getBatteryLevel();
