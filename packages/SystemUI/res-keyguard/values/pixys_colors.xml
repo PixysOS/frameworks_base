@@ -21,4 +21,7 @@
     <color name="binary_clock_ambient_dot_color">#ffffff</color>
     <color name="binary_clock_ambient_empty_dot_color">#ffffff</color>
 
+    <!-- Allow devices to hide black gradient behind QS Panel -->
+    <bool name="config_hideQSBlackGradient">false</bool>
+
 </resources>
