@@ -11689,6 +11689,7 @@ public final class Settings {
         public static final String SWAP_CAPACITIVE_KEYS = "swap_capacitive_keys";
 
         /**
+<<<<<<< HEAD
          * Whether to show ambient instead of waking for the dt2w gesture
          * @hide
          */
@@ -11706,6 +11707,12 @@ public final class Settings {
          * @hide
          */
         public static final String DOZE_SINGLE_TAP_GESTURE_AMBIENT = "doze_single_tap_gesture_ambient";
+
+       /**
+         * Face Unlock Method
+         * @hide
+         */
+        public static final String FACE_UNLOCK_METHOD = "face_unlock_method";
 
         /**
          * These entries are considered common between the personal and the managed profile,
