@@ -4538,13 +4538,6 @@ public final class Settings {
         };
 
         /**
-         * Screenshod sound enable, This is the noise made when taking a screesnhot
-         * Defaults to 1 - sounds enabled
-         * @hide
-         */
-        public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
-
-        /**
          * Setting to determine whether or not to show the battery percentage in the status bar.
          *    0 - Don't show percentage
          *    1 - Show percentage
@@ -5159,6 +5152,15 @@ public final class Settings {
         public static final String BATTERY_BAR_USE_GRADIENT_COLOR = "battery_bar_use_gradient_color";
 
         /**
+         * Enable/Disable screenshot sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
+        /** @hide */
+        private static final Validator SCREENSHOT_SOUND_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5250,6 +5252,7 @@ public final class Settings {
             VIBRATE_ON_CONNECT,
             VIBRATE_ON_CALLWAITING,
             VIBRATE_ON_DISCONNECT,
+            SCREENSHOT_SOUND,
         };
 
         /**
@@ -5410,6 +5413,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VIBRATE_ON_CALLWAITING);
             PRIVATE_SETTINGS.add(VIBRATE_ON_DISCONNECT);
             PRIVATE_SETTINGS.add(TOAST_ICON);
+            PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
         }
 
         /**
@@ -5540,6 +5544,7 @@ public final class Settings {
             VALIDATORS.put(VIBRATE_ON_CONNECT, VIBRATE_ON_CONNECT_VALIDATOR);
             VALIDATORS.put(VIBRATE_ON_CALLWAITING, VIBRATE_ON_CALLWAITING_VALIDATOR);
             VALIDATORS.put(VIBRATE_ON_DISCONNECT, VIBRATE_ON_DISCONNECT_VALIDATOR);
+            VALIDATORS.put(SCREENSHOT_SOUND, SCREENSHOT_SOUND_VALIDATOR);
         }
 
         /**
