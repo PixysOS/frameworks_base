@@ -17,7 +17,6 @@
 package com.android.systemui.statusbar.phone;
 
 import static com.android.systemui.statusbar.phone.StatusBarIconController.TAG_PRIMARY;
-import com.android.systemui.statusbar.NetworkTraffic;
 
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -36,8 +35,6 @@ public class StatusBarIconList {
         for (int i=0; i < N; i++) {
             mSlots.add(new Slot(slots[i], null));
         }
-        // Network traffic slot
-        mSlots.add(0, new Slot(NetworkTraffic.SLOT, StatusBarIconHolder.fromNetworkTraffic()));
     }
 
     public int getSlotIndex(String slot) {
@@ -48,8 +45,8 @@ public class StatusBarIconList {
                 return i;
             }
         }
-        // Auto insert new items behind network traffic
-        mSlots.add(1, new Slot(slot, null));
+        // Auto insert new items at the beginning.
+        mSlots.add(0, new Slot(slot, null));
         return 0;
     }
 
