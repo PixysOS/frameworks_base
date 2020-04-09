@@ -27,22 +27,6 @@ LOCAL_REQUIRED_MODULES := \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
 	DisplayCutoutEmulationTallOverlay \
-	FontArbutusSourceOverlay \
-	FontArvoLatoOverlay \
-	FontNotoSerifSourceOverlay \
-	FontRubikRubikOverlay \
-	FontAclonicaSourceOverlay \
-	FontAmaranteSourceOverlay \
-	FontBariolSourceOverlay \
-	FontCagliostroSourceOverlay \
-	FontComicSansSourceOverlay \
-	FontCoolstorySourceOverlay \
-	FontGoogleSansSourceOverlay \
-	FontLGSmartGothicSourceOverlay \
-	FontNotoSerifSourceOverlay \
-	FontRosemarySourceOverlay \
-	FontSonySketchSourceOverlay \
-	FontSurferSourceOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularLauncherOverlay \
 	IconPackCircularSettingsOverlay \
