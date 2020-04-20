@@ -33,4 +33,10 @@
     <string name="qs_data_switch_text_2">SIM 2</string>
     <string name="qs_data_switch_changed_1">Switched data card to SIM 1.</string>
     <string name="qs_data_switch_changed_2">Switched data card to SIM 2.</string>
+
+    <!-- PowerShare QS tile -->
+    <string name="quick_settings_powershare_label">Wireless PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">Wireless PowerShare off\nBattery saver</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Wireless PowerShare off\nBattery too low</string>
+    <string name="quick_settings_powershare_enabled_label">Wireless PowerShare is enabled</string>
 </resources>
