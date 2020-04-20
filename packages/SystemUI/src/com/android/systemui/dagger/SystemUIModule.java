@@ -158,6 +158,7 @@ import com.android.systemui.util.time.SystemClockImpl;
 import com.android.systemui.wallet.dagger.WalletModule;
 import com.android.systemui.wmshell.BubblesManager;
 import com.android.wm.shell.bubbles.Bubbles;
+import com.android.systemui.qs.dagger.pixys.QSModulePixys;
 
 import com.google.android.systemui.smartspace.BcSmartspaceDataProvider;
 import com.google.android.systemui.smartspace.KeyguardMediaViewController;
@@ -261,7 +262,8 @@ import javax.inject.Named;
         UserModule.class,
         UtilModule.class,
         NoteTaskModule.class,
-        WalletModule.class
+        WalletModule.class,
+        QSModulePixys.class
         },
         subcomponents = {
             ComplicationComponent.class,

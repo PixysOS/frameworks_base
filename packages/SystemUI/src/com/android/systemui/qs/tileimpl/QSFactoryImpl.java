@@ -80,7 +80,6 @@ public class QSFactoryImpl implements QSFactory {
         if (mTileMap.containsKey(tileSpec)) {
             return mTileMap.get(tileSpec).get();
         }
-
         // Custom tiles
         if (tileSpec.startsWith(CustomTile.PREFIX)) {
             return CustomTile.create(
