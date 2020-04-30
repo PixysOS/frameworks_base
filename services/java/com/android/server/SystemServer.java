@@ -182,6 +182,7 @@ import com.android.server.utils.TimingsTraceAndSlog;
 import com.android.server.vr.VrManagerService;
 import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.ActivityTaskManagerService;
+import com.android.server.wm.AppLockService;
 import com.android.server.wm.WindowManagerGlobalLock;
 import com.android.server.wm.WindowManagerService;
 
@@ -1293,6 +1294,10 @@ public final class SystemServer {
 
             t.traceBegin("IorapForwardingService");
             mSystemServiceManager.startService(IorapForwardingService.class);
+            t.traceEnd();
+
+            t.traceBegin("StartAppLockService");
+            mSystemServiceManager.startService(AppLockService.class);
             t.traceEnd();
 
             t.traceBegin("SignedConfigService");
