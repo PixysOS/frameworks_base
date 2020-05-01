@@ -37,4 +37,7 @@
         <item>@string/screenrecord_audio_recording_internal</item>
         <item>@string/screenrecord_audio_recording_microphone</item>
     </string-array>
+    <!-- Allow devices to enforce the H265 encoder for screen recordings -->
+    <bool name="config_useNewScreenRecEncoder">true</bool>
+
 </resources>
