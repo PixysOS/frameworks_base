@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (C) 2015 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -307,7 +307,12 @@ class TaskPositioner implements IBinder.DeathRecipient {
         mDisplayContent.pauseRotationLocked();
 
         // Notify InputMonitor to take mDragWindowHandle.
-        mDisplayContent.getInputMonitor().updateInputWindowsLw(true /*force*/);
+        // We must add mDragWindowHandle to InputManager immediately although
+        // there is pending for updateInputWindows. Otherwise, the
+        // InputManager.transferTouchFocus will fail because of not-found
+        // mDragWindowHandle(to window).
+        mDisplayContent.getInputMonitor().updateInputWindowsImmediately(true);
+        new SurfaceControl.Transaction().syncInputWindows().apply();
 
         mSideMargin = dipToPixel(SIDE_MARGIN_DIP, mDisplayMetrics);
         mMinVisibleWidth = dipToPixel(MINIMUM_VISIBLE_WIDTH_IN_DP, mDisplayMetrics);
