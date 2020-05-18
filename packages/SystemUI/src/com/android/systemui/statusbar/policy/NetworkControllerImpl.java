@@ -1148,7 +1148,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         boolean alwaysShowDataRatIcon = false;
         boolean showVolteIcon;
         boolean showHDVolteIcon;
-
+        boolean showVowifiIcon = false;
         public String patternOfCarrierSpecificDataIcon = "";
         public long nrIconDisplayGracePeriodMs;
 
@@ -1210,6 +1210,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
 
             config.showVolteIcon = res.getBoolean(R.bool.config_display_volte);
             config.showHDVolteIcon = res.getBoolean(R.bool.config_display_hd_volte);
+            config.showVowifiIcon = res.getBoolean(R.bool.config_display_vowifi);
             return config;
         }
 
