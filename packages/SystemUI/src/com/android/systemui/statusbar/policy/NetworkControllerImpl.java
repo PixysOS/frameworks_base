@@ -1200,6 +1200,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
         boolean alwaysShowDataRatIcon = false;
         boolean showVolteIcon;
 
+        boolean showVowifiIcon = false;
+
         static Config readConfig(Context context) {
             Config config = new Config();
             Resources res = context.getResources();
@@ -1230,6 +1232,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
             }
 
             config.showVolteIcon = res.getBoolean(R.bool.config_display_volte);
+            config.showVowifiIcon = res.getBoolean(R.bool.config_display_vowifi);
+
             return config;
         }
     }
