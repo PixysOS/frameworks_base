@@ -286,7 +286,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         final boolean isDemo = UserManager.isDeviceInDemoMode(mContext);
         mEditContainer.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
         mEdit.setVisibility(isEditEnabled() ? View.VISIBLE : View.GONE);
-        mSettingsButton.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
+        mSettingsButton.setVisibility(isDemo || !mExpanded ? View.VISIBLE : View.VISIBLE);
     }
 
     private boolean showUserSwitcher() {
