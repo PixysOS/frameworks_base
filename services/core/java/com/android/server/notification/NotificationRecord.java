@@ -333,7 +333,6 @@ public final class NotificationRecord {
         VibratorHelper helper = new VibratorHelper(mContext);
         final Notification notification = getSbn().getNotification();
         final boolean insistent = (notification.flags & Notification.FLAG_INSISTENT) != 0;
-
         if (mPreChannelsNotification
                 && (getChannel().getUserLockedFields()
                 & NotificationChannel.USER_LOCKED_VIBRATION) == 0) {
