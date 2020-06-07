@@ -93,4 +93,6 @@
     <!-- Default value for Horizon light color (Blue) -->
     <integer name="config_AmbientPulseLightColor">0x3980FF</integer>
 
+    <!-- FOD icon dim-->
+    <bool name="config_targetUsesInKernelDimming">false</bool>
 </resources>
