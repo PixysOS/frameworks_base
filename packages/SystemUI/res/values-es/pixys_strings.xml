@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2019, PixysOS
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Cafeína</string>
+    <string name="accessibility_quick_settings_caffeine_off">Cafeína desactivada</string>
+    <string name="accessibility_quick_settings_caffeine_on">Cafeína activada</string>
+    <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Pantalla ambiente</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambiente desactivada.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambiente activada.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Se ha desactivado la pantalla ambiente.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Se ha activado la pantalla ambiente.</string>
+    <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">Anclaje de red vía USB</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Sincronización</string>
+    <string name="accessibility_quick_settings_sync_off">Sincronización desactivada</string>
+    <string name="accessibility_quick_settings_sync_on">Sincronización activada</string>
+    <string name="accessibility_quick_settings_sync_changed_off">La sincronización ha sido desactivada</string>
+    <string name="accessibility_quick_settings_sync_changed_on">La sincronización ha sido activada</string>
+    <!-- Advanced Location Tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Ubicación: modo ahorro de batería.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Ubicación: Solo sensor GPS.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Ubicación: Alta precisión.</string>
+    <string name="quick_settings_location_battery_saving_label">Ahorro de batería</string>
+    <string name="quick_settings_location_battery_saving_label_twoline">Ahorro\nde batería</string>
+    <string name="quick_settings_location_gps_only_label">Sólo GPS</string>
+    <string name="quick_settings_location_gps_only_label_twoline">Sólo GPS</string>
+    <string name="quick_settings_location_high_accuracy_label">Alta precisión</string>
+    <string name="quick_settings_location_high_accuracy_label_twoline">Alta\nprecisión</string>
+    <string name="quick_settings_location_detail_title">Ubicación</string>
+    <string name="quick_settings_location_detail_menu_title">Seleccione modo:</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_title">Alta precisión</string>
+    <string name="quick_settings_location_detail_mode_battery_saving_title">Ahorro de batería</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_title">Sólo dispositivo</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_description">Determinar ubicación con GPS, Wi‑Fi, Bluetooth o redes móviles </string>
+    <string name="quick_settings_location_detail_mode_battery_saving_description">Determinar ubicación con Wi-Fi, Bluetooth o redes móviles</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_description">Usar GPS para determinar tu localización</string>
+    <!-- SystemUI Tuner -->
+    <string name="statusbar_items_title">Iconos de la barra de estado</string>
+    <string name="lockscreen_default">Por defecto</string>
+    <string name="lockscreen_hidden">Ninguno</string>
+    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
+    <string name="custom_hint">Desliza desde el icono para abrir</string>
+    <!-- Advanced reboot -->
+    <string name="global_action_restart_advanced">Avanzado</string>
+    <string name="global_action_restart_recovery">Modo Recovery</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">SystemUI</string>
+    <!-- QS Config -->
+    <string name="qs_menu_item_columns">Columnas</string>
+    <string name="qs_menu_item_columns_landscape">Columnas (Horizontal)</string>
+    <string name="qs_menu_item_rows">Filas</string>
+    <string name="qs_menu_item_rows_landscape">Filas (horizontal)</string>
+    <string name="qs_menu_item_columns_one">1</string>
+    <string name="qs_menu_item_columns_two">2</string>
+    <string name="qs_menu_item_columns_three">3</string>
+    <string name="qs_menu_item_columns_four">4</string>
+    <string name="qs_menu_item_columns_five">5</string>
+    <string name="qs_menu_item_columns_six">6</string>
+    <string name="qs_menu_item_columns_seven">7</string>
+    <string name="qs_menu_item_columns_eight">8</string>
+    <string name="qs_menu_item_reset">Restablecer</string>
+    <string name="qs_menu_item_titles">Mostrar etiquetas</string>
+    <string name="qs_menu_item_qs_columns">Columnas (barra rápida)</string>
+    <string name="qs_menu_item_columns_auto">Automático</string>
+    <!-- LTE QS Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <!--Screenrecord Tile-->
+    <string name="screenrecorder_title_tile">Grabación de pantalla</string>
+    <!-- Screenrecord -->
+    <string name="screenrecord_dialog_title">¿Iniciar grabación?</string>
+    <string name="screenrecord_dialog_summary">Durante la grabación, el sistema Android puede capturar cualquier información sensible que sea visible en tu pantalla o reproducida en tu dispositivo. Esto incluye contraseñas, información de pago, fotos, mensajes y audio.</string>
+    <string name="screenrecord_dialog_start">Iniciar</string>
+    <string name="screenrecord_dialog_cancel">Cancelar</string>
+    <string name="screenrecord_audio_title">Fuente de audio</string>
+    <string name="screenrecord_audio_recording_internal">Interna</string>
+    <string name="screenrecord_audio_recording_microphone">Micrófono</string>
+    <string name="screenrecord_audio_recording_off">Desactivado</string>
+    <string name="screenrecord_taps_title">Mostrar toques en pantalla</string>
+    <string name="screenrecord_stopdot_title">Mostrar punto de finalizar</string>
+    <string name="screenrecord_video_bitrate_title">Bitrate de vídeo</string>
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Brújula</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Iniciando\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Brújula desactivada.</string>
+    <string name="accessibility_quick_settings_compass_on">Brújula activada.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SO</string>
+    <string name="quick_settings_compass_W">O</string>
+    <string name="quick_settings_compass_NW">NO</string>
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas 1 minuto.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas por <xliff:g id="number">%d</xliff:g> minutos.</string>
+    <!-- Heads up QS tile -->
+    <string name="quick_settings_heads_up_label">Notificaciones emergentes</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notificaciones emergentes desactivadas.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notificaciones emergentes activadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Notificaciones emergentes desactivadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Notificaciones emergentes activadas.</string>
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Captura de Pantalla</string>
+    <string name="quick_settings_region_screenshot_label">Captura de pantalla parcial</string>
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Reiniciar</string>
+    <string name="quick_settings_reboot_recovery_label">Modo Recovery</string>
+    <!-- Gaming mode -->
+    <string name="gaming_mode_not_enabled">Modo Gaming está desactivado en los ajustes</string>
+    <string name="quick_settings_gaming_mode_label">Modo Gaming</string>
+    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Modo gaming desactivado.</string>
+    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Modo gaming activado.</string>
+    <!-- Music tile -->
+    <string name="quick_settings_music_label">Música</string>
+    <string name="quick_settings_music_play">Reproducir</string>
+    <string name="quick_settings_music_pause">Pausar</string>
+    <!-- Smart Pixels QS Tile -->
+    <string name="quick_settings_smart_pixels">Píxeles Inteligentes</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Habilitar píxeles inteligentes automáticamente</string>
+    <!-- Alerting notification header label -->
+    <string name="notification_section_header_alerting">Alerta de notificaciones</string>
+    <!-- Text for activity recognition app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_activity_recognition">Actividad</string>
+    <!-- Text for aural app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_aural">Aural</string>
+    <!-- Text for body sensor app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sensors">Sensor</string>
+    <!-- Text for calendar app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_calendar">Calendario</string>
+    <!-- Text for call logs app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_call_logs">Registro de llamadas</string>
+    <!-- Text for contacts app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_contacts">Contactos</string>
+    <!-- Text for phone app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_phone_calls">Teléfono</string>
+    <!-- Text for sms app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sms">SMS</string>
+    <!-- Text for storage app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_storage">Almacenamiento</string>
+    <!-- Text for visual app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_visual">Visual</string>
+</resources>

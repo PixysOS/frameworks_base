@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2019, PixysOS
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Caffeine QS Tile -->
+    <!-- Ambient display QS tile -->
+    <!-- USB tethering QS tile -->
+    <!-- Sync QS Tile -->
+    <!-- Advanced Location Tile -->
+    <!-- SystemUI Tuner -->
+    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
+    <!-- Advanced reboot -->
+    <!-- QS Config -->
+    <!-- LTE QS Tile -->
+    <!--Screenrecord Tile-->
+    <!-- Screenrecord -->
+    <!-- Compass QS Tile -->
+    <!-- Heads up snooze toast -->
+    <!-- Heads up QS tile -->
+    <!-- Screenshot QS tile -->
+    <!-- Reboot/Recovery QS Tile -->
+    <!-- Gaming mode -->
+    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <!-- Music tile -->
+    <!-- Smart Pixels QS Tile -->
+    <!-- Alerting notification header label -->
+    <!-- Text for activity recognition app op [CHAR LIMIT=20]-->
+    <!-- Text for aural app op [CHAR LIMIT=20]-->
+    <!-- Text for body sensor app op [CHAR LIMIT=20]-->
+    <!-- Text for calendar app op [CHAR LIMIT=20]-->
+    <!-- Text for call logs app op [CHAR LIMIT=20]-->
+    <!-- Text for contacts app op [CHAR LIMIT=20]-->
+    <!-- Text for phone app op [CHAR LIMIT=20]-->
+    <!-- Text for sms app op [CHAR LIMIT=20]-->
+    <!-- Text for storage app op [CHAR LIMIT=20]-->
+    <!-- Text for visual app op [CHAR LIMIT=20]-->
+</resources>

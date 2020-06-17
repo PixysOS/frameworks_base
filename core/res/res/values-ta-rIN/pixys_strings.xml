@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2020 Pixys OS Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Popup camera dialog -->
+    <string name="popup_camera_dialog_message">முன்னோக்கு புகைப்படக்கருவியினை உயர்த்த வேண்டுமா?</string>
+    <string name="popup_camera_dialog_no">வேண்டாம்</string>
+    <string name="popup_camera_dialog_raise">வேண்டும்</string>
+    <!-- Advanced reboot -->
+    <string name="reboot_title">மறுதொடக்கம்</string>
+    <string name="reboot_message">அமைப்பை மறுதொடக்கம் செய்கிறது</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">தொகுப்பு கையோப்பத்தை ஏமாற்று</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">இந்த செயலியை மற்ற ஒரு செயலியாக பாசாங்கு செய அனுமதிக்கின்றது. தீங்கிழைக்கும் செயலிகள் இதனை வைத்து உங்களது அந்தரங்க தகவல்களை அணுக இயலும். ஆதலால் எச்சரிக்கையுடன் அனுமதியை தரவும்!</string>
+    <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">உங்களது vendor image அமைப்புடன் பொருந்தவில்லை. தயவு செய்து <xliff:g id="string">%s</xliff:g> vendor imageஐ ஃபிளாஷ் செய்யவும்</string>
+    <!-- Gaming mode -->
+    <string name="notification_channel_gaming">கேமிங் பயன்முறை</string>
+    <string name="gaming_mode_notification_title">கேமிங் பயன்முறை இயக்கப்பட்டது</string>
+    <string name="gaming_mode_notification_content">கேமிங் பயன்முறை அனைக தட்டவும்</string>
+    <string name="gaming_mode_enabled_toast">கேமிங் பயன்முறை இயக்கப்பட்டது</string>
+    <string name="gaming_mode_disabled_toast">கேமிங் பயன்முறை அனைகப்படது</string>
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">செயலிழப்பு பதிவின் URLஐ நகல் எடு</string>
+    <string name="url_copy_success">URL வெற்றிகரமாக நகலெடுக்கப்பட்டது</string>
+    <string name="url_copy_failed">பதிவினை dogbinர்கு பதிவேற்றம் செய்யும்பொழுது பிழை நிகழ்ந்துவிட்டது</string>
+</resources>
