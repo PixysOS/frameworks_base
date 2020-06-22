@@ -105,6 +105,9 @@ public class MobileSignalController extends SignalController<
 
     private boolean mShow4gForLte;
 
+    // VoWiFi Icon
+    private int mVoWiFiIcon;
+
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
     public MobileSignalController(Context context, Config config, boolean hasMobileData,
@@ -182,16 +185,20 @@ public class MobileSignalController extends SignalController<
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.SHOW_VOLTE_ICON), false,
                     this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.VOWIFI_ICON),
+                  false,this, UserHandle.USER_ALL);
+           updateSettings();
+        }
+
+        /*
+         *  @hide
+         */
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
             updateSettings();
         }
 
-         /*
-          *  @hide
-          */
-         @Override
-         public void onChange(boolean selfChange) {
-             updateSettings();
-         }
      }
 
      private void updateSettings() {
@@ -205,6 +212,9 @@ public class MobileSignalController extends SignalController<
                 Settings.System.SHOW_VOLTE_ICON, 1,
                 UserHandle.USER_CURRENT) == 1;
 
+        mVoWiFiIcon = Settings.System.getIntForUser(resolver,
+                Settings.System.VOWIFI_ICON, 0,
+                UserHandle.USER_CURRENT);
         mapIconSets();
         updateTelephony();
         notifyListeners();
@@ -453,6 +463,21 @@ public class MobileSignalController extends SignalController<
         return mImsManager != null && mImsManager.isEnhanced4gLteModeSettingEnabledByUser();
     }
 
+    private int getVolteResId() {
+        int resId = 0;
+
+        if (mVoWiFiIcon == 2 && isVowifiAvailable()) {
+            return resId;
+        }
+
+        if ( (mCurrentState.voiceCapable || mCurrentState.videoCapable)
+                &&  mCurrentState.imsRegistered && mVoLTEicon ) {
+            resId = R.drawable.ic_volte;
+
+        }
+        return resId;
+    }
+
     private void setListeners() {
         if (mImsManager == null) {
             Log.e(mTag, "setListeners mImsManager is null");
@@ -552,7 +577,7 @@ public class MobileSignalController extends SignalController<
         int volteIcon = mConfig.showVolteIcon && isVolteSwitchOn() ? resId : 0;
 
         MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
-        if ( mConfig.showVowifiIcon && vowifiIconGroup != null ) {
+        if ( vowifiIconGroup != null && (mVoWiFiIcon >= 1) ) {
             typeIcon = vowifiIconGroup.mDataType;
             statusIcon = new IconState(true,
                     mCurrentState.enabled && !mCurrentState.airplaneMode? statusIcon.icon : 0,
