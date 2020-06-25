@@ -707,7 +707,7 @@ public class PhoneStatusBarPolicy
         final boolean chipVisibilityDisabled = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PRIVACY_CHIP_VIEW, 1) == 1;
         final boolean chipStatusbarVisibility = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PRIVACY_CHIP_STATUSBAR_VIEW, 1) == 1;
+                Settings.System.PRIVACY_CHIP_STATUSBAR_VIEW, 0) == 1;
         boolean showCamera = false;
         boolean showLocation = false;
         for (PrivacyItem item : items) {
