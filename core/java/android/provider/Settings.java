@@ -5462,6 +5462,14 @@ public final class Settings {
 
         public static final String SHOW_CLIPBOARD_TOAST = "show_clipboard_toast";
 
+	/**
+         * Data usage period
+         * 0: Daily
+         * 1: Monthly
+         * @hide
+         */
+        public static final String DATA_USAGE_PERIOD = "data_usage_period";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
