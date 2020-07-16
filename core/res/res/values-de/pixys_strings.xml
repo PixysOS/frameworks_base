@@ -16,10 +16,27 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Popup camera dialog -->
+    <string name="popup_camera_dialog_message">Möchten Sie die Frontkamera anheben?</string>
+    <string name="popup_camera_dialog_no">Nein</string>
+    <string name="popup_camera_dialog_raise">Ja</string>
     <!-- Advanced reboot -->
+    <string name="reboot_title">Neustart</string>
+    <string name="reboot_message">Neustart ins System</string>
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Paketsignatur fälschen</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Erlaubt der App, sich als eine andere auszugeben. Böswillige Anwendungen können dadurch eventuell auf ihre persönlichen Nutzerdaten zugreifen. Erteilen Sie diese Berechtigung mit Vorsicht!</string>
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Das Firmware-Image ist nicht passend für dieses System. Bitte installieren Sie das Hersteller-Image <xliff:g id="string">%s</xliff:g> für ihr Gerät</string>
     <!-- Gaming mode -->
+    <string name="notification_channel_gaming">Spielmodus</string>
+    <string name="gaming_mode_notification_title">Spielmodus eingeschaltet</string>
+    <string name="gaming_mode_notification_content">Tippen, um den Spielmodus auszuschalten</string>
+    <string name="gaming_mode_enabled_toast">Spielmodus eingeschaltet</string>
+    <string name="gaming_mode_disabled_toast">Spielmodus ausgeschaltet</string>
     <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">URL des Absturzberichts kopieren</string>
+    <string name="url_copy_success">URL kopiert</string>
+    <string name="url_copy_failed">Beim Upload des Protokolls zu dogbin ist ein Fehler aufgetreten</string>
+    <!-- LiveDisplay strings -->
 </resources>

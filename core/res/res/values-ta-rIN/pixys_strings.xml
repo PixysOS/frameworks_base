@@ -38,4 +38,5 @@
     <string name="aerr_copy">செயலிழப்பு பதிவின் URLஐ நகல் எடு</string>
     <string name="url_copy_success">URL வெற்றிகரமாக நகலெடுக்கப்பட்டது</string>
     <string name="url_copy_failed">பதிவினை dogbinர்கு பதிவேற்றம் செய்யும்பொழுது பிழை நிகழ்ந்துவிட்டது</string>
+    <!-- LiveDisplay strings -->
 </resources>

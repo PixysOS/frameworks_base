@@ -162,4 +162,5 @@
     <string name="privacy_type_storage">Almacenamiento</string>
     <!-- Text for visual app op [CHAR LIMIT=20]-->
     <string name="privacy_type_visual">Visual</string>
+    <!-- Reader mode QS tile -->
 </resources>

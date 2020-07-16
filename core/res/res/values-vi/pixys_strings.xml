@@ -22,4 +22,7 @@
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
     <!-- Gaming mode -->
     <!-- Button that copies the url to the log of a crashed application -->
+    <string name="url_copy_success">Sao chép URL thành công</string>
+    <string name="url_copy_failed">Đã xảy ra lỗi khi tải nhật ký lên dogbin</string>
+    <!-- LiveDisplay strings -->
 </resources>

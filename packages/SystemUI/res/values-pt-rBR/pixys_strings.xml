@@ -104,10 +104,10 @@
     <string name="accessibility_quick_settings_compass_off">Bússola desligada.</string>
     <string name="accessibility_quick_settings_compass_on">Bússola ligada.</string>
     <string name="quick_settings_compass_N">Norte</string>
-    <string name="quick_settings_compass_NE">NE</string>
-    <string name="quick_settings_compass_E">L</string>
+    <string name="quick_settings_compass_NE">Nordeste</string>
+    <string name="quick_settings_compass_E">Leste</string>
     <string name="quick_settings_compass_SE">Sudeste</string>
-    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_S">Sul</string>
     <string name="quick_settings_compass_SW">Sudoeste</string>
     <string name="quick_settings_compass_W">Oeste</string>
     <string name="quick_settings_compass_NW">Noroeste</string>
@@ -162,4 +162,5 @@
     <string name="privacy_type_storage">Armazenamento</string>
     <!-- Text for visual app op [CHAR LIMIT=20]-->
     <string name="privacy_type_visual">Visual</string>
+    <!-- Reader mode QS tile -->
 </resources>

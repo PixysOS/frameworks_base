@@ -18,10 +18,38 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Koffein</string>
+    <string name="accessibility_quick_settings_caffeine_off">Koffein aus</string>
+    <string name="accessibility_quick_settings_caffeine_on">Koffein an</string>
     <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Ambient-Display</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Ambient-Display aus.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ambient Display an.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient-Display ausgeschaltet.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient-Display eingeschaltet.</string>
     <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">USB-Tethering</string>
     <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Synchronisieren</string>
+    <string name="accessibility_quick_settings_sync_off">Synchronisierung aus</string>
+    <string name="accessibility_quick_settings_sync_on">Synchronisierung an</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Synchronisierung ausgeschaltet</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Synchronisation angeschaltet</string>
     <!-- Advanced Location Tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Standortdienste: Energiesparmodus.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Standortdienste: Nur Sensoren.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Standortdienste: Hohe Genauigkeit.</string>
+    <string name="quick_settings_location_battery_saving_label">Energiesparmodus</string>
+    <string name="quick_settings_location_battery_saving_label_twoline">Energiespar-\nmodus</string>
+    <string name="quick_settings_location_gps_only_label">Nur GPS</string>
+    <string name="quick_settings_location_gps_only_label_twoline">Nur GPS</string>
+    <string name="quick_settings_location_high_accuracy_label">Hohe Genauigkeit</string>
+    <string name="quick_settings_location_high_accuracy_label_twoline">Hohe\nGenauigkeit</string>
+    <string name="quick_settings_location_detail_title">Standort</string>
+    <string name="quick_settings_location_detail_menu_title">Modus:</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_title">Hohe Genauigkeit</string>
+    <string name="quick_settings_location_detail_mode_battery_saving_title">Energiesparmodus</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_title">Nur Gerät</string>
     <!-- SystemUI Tuner -->
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <!-- Advanced reboot -->
@@ -50,4 +78,5 @@
     <!-- Text for sms app op [CHAR LIMIT=20]-->
     <!-- Text for storage app op [CHAR LIMIT=20]-->
     <!-- Text for visual app op [CHAR LIMIT=20]-->
+    <!-- Reader mode QS tile -->
 </resources>

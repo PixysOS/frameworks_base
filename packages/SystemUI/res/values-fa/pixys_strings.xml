@@ -50,4 +50,5 @@
     <!-- Text for sms app op [CHAR LIMIT=20]-->
     <!-- Text for storage app op [CHAR LIMIT=20]-->
     <!-- Text for visual app op [CHAR LIMIT=20]-->
+    <!-- Reader mode QS tile -->
 </resources>
