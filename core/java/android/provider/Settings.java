@@ -5456,6 +5456,24 @@ public final class Settings {
         public static final Validator REFRESH_RATE_SETTING_VALIDATOR = NON_NEGATIVE_INTEGER_VALIDATOR;
 
         /**
+<<<<<<< HEAD
+=======
+         * Data usage period
+         * 0: Daily
+         * 1: Monthly
+         * @hide
+         */
+        public static final String DATA_USAGE_PERIOD = "data_usage_period";
+
+        /**
+         * Toggle for clipboard access toast.
+         * @hide
+         */
+
+        public static final String SHOW_CLIPBOARD_TOAST = "show_clipboard_toast";
+
+        /**
+>>>>>>> 67df4f2b0e6... base: clipboard toast toggle [1/2]
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
