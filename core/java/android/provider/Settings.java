@@ -5092,6 +5092,12 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
         /**
+         * Toggle for clipboard access toast.
+         * @hide
+         */
+        public static final String SHOW_CLIPBOARD_TOAST = "show_clipboard_toast";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
