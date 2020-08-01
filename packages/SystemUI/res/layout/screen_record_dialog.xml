@@ -15,6 +15,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_background"
+    android:layout_gravity="bottom"
     android:orientation="vertical">
 
     <ScrollView
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:nestedScrollingEnabled="true">
 
+        <!-- Header & warning -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +53,7 @@
                 android:id="@+id/summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="42dp"
                 android:paddingStart="?android:attr/dialogPreferredPadding"
                 android:paddingEnd="?android:attr/dialogPreferredPadding"
                 android:gravity="start"
@@ -64,15 +66,14 @@
                 android:id="@+id/video_bitrate_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="?android:attr/dialogPreferredPadding"
-                android:paddingEnd="?android:attr/dialogPreferredPadding">
+                android:layout_marginBottom="32dp"
+                android:paddingStart="?android:attr/dialogPreferredPadding">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="24dp">
+                    android:paddingEnd="120dp">
 
                     <TextView
                         android:id="@android:id/title"
@@ -89,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@android:id/title"
                         android:layout_alignStart="@android:id/title"
-                        android:layout_marginEnd="140dp"
+                        android:paddingEnd="?android:attr/dialogPreferredPadding"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="?android:attr/textColorSecondary"
                         android:text="@string/screenrecord_video_bitrate_summary" />
@@ -106,9 +107,12 @@
                 <Spinner
                     android:id="@+id/spinner_video_bitrate"
                     android:layout_width="130dp"
-                    android:layout_height="48dp"
-                    android:entries="@array/screen_video_quality_entries"
-                    android:layout_gravity="center|end" />
+                    android:layout_height="40dp"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_gravity="top|end" />
 
             </FrameLayout>
             <!-- Audio Recording -->
@@ -116,15 +120,14 @@
                 android:id="@+id/audio_source_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="?android:attr/dialogPreferredPadding"
-                android:paddingEnd="?android:attr/dialogPreferredPadding">
+                android:layout_marginBottom="32dp"
+                android:paddingStart="?android:attr/dialogPreferredPadding">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="12dp">
+                    android:paddingEnd="120dp">
 
                     <TextView
                         android:id="@android:id/title"
@@ -141,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@android:id/title"
                         android:layout_alignStart="@android:id/title"
-                        android:layout_marginEnd="110dp"
+                        android:paddingEnd="?android:attr/dialogPreferredPadding"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="?android:attr/textColorSecondary"
                         android:text="@string/screenrecord_audio_summary" />
@@ -158,8 +161,11 @@
                 <Spinner
                     android:id="@+id/spinner_audio_source"
                     android:layout_width="130dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center|end" />
+                    android:layout_height="40dp"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_gravity="top|end" />
 
             </FrameLayout>
             <!-- Show taps in screen -->
@@ -167,6 +173,7 @@
                 android:id="@+id/show_taps_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
                 android:paddingStart="?android:attr/dialogPreferredPadding"
                 android:paddingEnd="?android:attr/dialogPreferredPadding">
 
@@ -174,8 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginEnd="50dp">
 
                     <TextView
                         android:id="@android:id/title"
@@ -192,6 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@android:id/title"
                         android:layout_alignStart="@android:id/title"
+                        android:paddingEnd="?android:attr/dialogPreferredPadding"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="?android:attr/textColorSecondary"
                         android:text="@string/screenrecord_taps_summary" />
@@ -207,8 +214,8 @@
 
                 <Switch
                     android:id="@+id/switch_taps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center|end" />
 
             </FrameLayout>
@@ -218,14 +225,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="?android:attr/dialogPreferredPadding"
-                android:paddingEnd="?android:attr/dialogPreferredPadding">
+                android:paddingEnd="?android:attr/dialogPreferredPadding"
+                android:layout_marginBottom="26dp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginEnd="50dp">
 
                     <TextView
                         android:id="@android:id/title"
@@ -242,7 +249,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@android:id/title"
                         android:layout_alignStart="@android:id/title"
-                        android:layout_marginEnd="90dp"
+                        android:lines="2"
+                        android:paddingEnd="?android:attr/dialogPreferredPadding"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="?android:attr/textColorSecondary"
                         android:text="@string/screenrecord_stopdot_summary" />
@@ -258,34 +266,36 @@
 
                 <Switch
                     android:id="@+id/switch_stopdot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center|end" />
 
             </FrameLayout>
-
+            <!-- Divider -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="24dp"
                 android:background="#e3e3e3"/>
-
+            <!-- Bottom buttons -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="?android:attr/dialogPreferredPadding"
                 android:paddingEnd="?android:attr/dialogPreferredPadding"
-                android:paddingBottom="?android:attr/dialogPreferredPadding">
+                android:paddingBottom="24dp">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/cancel_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/screenrecord_dialog_cancel"
                     android:textAllCaps="false"
-                    style="@*android:style/Widget.DeviceDefault.Button.Borderless.Colored" />
+                    android:textColor="?android:textColorPrimary"
+                    android:strokeColor="?android:attr/colorAccent"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/record_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -293,7 +303,8 @@
                     android:backgroundTint="?android:attr/colorAccent"
                     android:textColor="?android:textColorPrimaryInverse"
                     android:text="@string/screenrecord_dialog_start"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    style="@style/Widget.MaterialComponents.Button" />
 
             </RelativeLayout>
 

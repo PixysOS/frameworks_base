@@ -97,18 +97,23 @@
     <!--Screenrecord Tile-->
     <string name="screenrecorder_title_tile">Screenrecord</string>
 
-    <!-- Screenrecord -->
-    <string name="screenrecord_dialog_title">Start recording?</string>
-    <string name="screenrecord_dialog_summary">While recording, Android system can capture any sensitive information that\'s visible on your screen or played on your device. This includes passwords, payment info, photos, messages, and audio.</string>
+    <!-- Screen recorder -->
+    <string name="screenrecord_dialog_title">Screen recorder</string>
+    <string name="screenrecord_dialog_summary">Android system can capture any sensitive information visible on your screen while recording (such as passwords, payment information, etc.). This includes audio as well.</string>
+    <string name="screenrecord_dialog_settings">Settings</string>
     <string name="screenrecord_dialog_start">Start</string>
     <string name="screenrecord_dialog_cancel">Cancel</string>
-    <string name="screenrecord_audio_title">Audio source</string> 
-    <string name="screenrecord_audio_recording_internal">Internal</string> 
-    <string name="screenrecord_audio_recording_microphone">Microphone</string>
-    <string name="screenrecord_audio_recording_off">Disabled</string>
-    <string name="screenrecord_taps_title">Show touches on screen</string>
-     <string name="screenrecord_stopdot_title">Show stop dot</string>
-     <string name="screenrecord_video_bitrate_title">Video Bitrate</string>
+    <string name="screenrecord_audio_title">Audio source</string>
+    <string name="screenrecord_audio_summary">Select audio input type</string>
+    <string name="screenrecord_audio_recording_internal">Internal</string>
+    <string name="screenrecord_audio_recording_microphone">Mic</string>
+    <string name="screenrecord_audio_recording_off">None</string>
+    <string name="screenrecord_taps_title">Show screen touches</string>
+    <string name="screenrecord_taps_summary">Displays screen surface touches</string>
+    <string name="screenrecord_stopdot_title">Show stop dot</string>
+    <string name="screenrecord_stopdot_summary">Tap red dot to stop recording. \nLong-press to change dot location</string>
+    <string name="screenrecord_video_bitrate_title">Video bitrate</string>
+    <string name="screenrecord_video_bitrate_summary">Select desired video quality</string>
 
     <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Compass</string>
