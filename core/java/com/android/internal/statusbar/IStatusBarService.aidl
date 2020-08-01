@@ -111,7 +111,6 @@ interface IStatusBarService
     void onBiometricError(String error);
     // Used to hide the biometric dialog when the AuthenticationClient is stopped
     void hideBiometricDialog();
-
     /**
      * PixysOS
      */
@@ -121,9 +120,7 @@ interface IStatusBarService
     void preloadRecentApps();
     void cancelPreloadRecentApps();
     void startAssist(in Bundle args);
-
     // Used to show or hide in display fingerprint view
     void showInDisplayFingerprintView();
     void hideInDisplayFingerprintView();
-
 }

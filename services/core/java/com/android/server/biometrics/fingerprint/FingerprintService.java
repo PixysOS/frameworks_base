@@ -60,7 +60,6 @@ import android.util.SparseIntArray;
 import android.util.proto.ProtoOutputStream;
 
 import com.android.internal.annotations.GuardedBy;
-import com.android.internal.custom.app.LineageContextConstants;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.util.DumpUtils;
 import com.android.server.SystemServerInitThreadPool;
@@ -106,7 +105,7 @@ public class FingerprintService extends BiometricServiceBase {
     private static final long FAIL_LOCKOUT_TIMEOUT_MS = 30 * 1000;
     private static final String KEY_LOCKOUT_RESET_USER = "lockout_reset_user";
 
-    private final boolean mHasFod;
+    private boolean mDisplayFODView;
     private boolean mIsKeyguard;
 
     private final class ResetFailedAttemptsForUserRunnable implements Runnable {
@@ -599,7 +598,7 @@ public class FingerprintService extends BiometricServiceBase {
                         new Fingerprint(getBiometricUtils().getUniqueName(getContext(), groupId),
                                 groupId, fingerId, deviceId);
                 FingerprintService.super.handleEnrollResult(fingerprint, remaining);
-                if (remaining == 0 && mHasFod) {
+                if (remaining == 0 && mDisplayFODView) {
                     IFingerprintInscreen fodDaemon = getFingerprintInScreenDaemon();
                     if (fodDaemon != null) {
                         try {
@@ -640,7 +639,7 @@ public class FingerprintService extends BiometricServiceBase {
             mHandler.post(() -> {
                 Fingerprint fp = new Fingerprint("", groupId, fingerId, deviceId);
                 FingerprintService.super.handleAuthenticated(fp, token);
-                if (mHasFod && fp.getBiometricId() != 0) {
+                if (mDisplayFODView && fp.getBiometricId() != 0) {
                     try {
                         mStatusBarService.hideInDisplayFingerprintView();
                     } catch (RemoteException e) {
@@ -710,7 +709,7 @@ public class FingerprintService extends BiometricServiceBase {
                 Slog.w(TAG, "authenticate(): no fingerprint HAL!");
                 return ERROR_ESRCH;
             }
-            if (mHasFod) {
+            if (mDisplayFODView) {
                 IFingerprintInscreen fodDaemon = getFingerprintInScreenDaemon();
                 if (fodDaemon != null) {
                     try {
@@ -735,7 +734,7 @@ public class FingerprintService extends BiometricServiceBase {
                 Slog.w(TAG, "cancel(): no fingerprint HAL!");
                 return ERROR_ESRCH;
             }
-            if (mHasFod) {
+            if (mDisplayFODView) {
                 try {
                     mStatusBarService.hideInDisplayFingerprintView();
                 } catch (RemoteException e) {
@@ -773,7 +772,7 @@ public class FingerprintService extends BiometricServiceBase {
                 Slog.w(TAG, "enroll(): no fingerprint HAL!");
                 return ERROR_ESRCH;
             }
-            if (mHasFod) {
+            if (mDisplayFODView) {
                 IFingerprintInscreen fodDaemon = getFingerprintInScreenDaemon();
                 if (fodDaemon != null) {
                     try {
@@ -807,8 +806,8 @@ public class FingerprintService extends BiometricServiceBase {
         context.registerReceiver(mLockoutReceiver, new IntentFilter(getLockoutResetIntent()),
                 getLockoutBroadcastPermission(), null /* handler */);
 
-        PackageManager packageManager = context.getPackageManager();
-        mHasFod = packageManager.hasSystemFeature(LineageContextConstants.Features.FOD);
+        mDisplayFODView = context.getResources().getBoolean(
+                com.android.internal.R.bool.config_needCustomFODView);
     }
 
     @Override
@@ -1032,7 +1031,7 @@ public class FingerprintService extends BiometricServiceBase {
     }
 
     private synchronized IFingerprintInscreen getFingerprintInScreenDaemon() {
-        if (!mHasFod) {
+        if (!mDisplayFODView) {
             return null;
         }
 
