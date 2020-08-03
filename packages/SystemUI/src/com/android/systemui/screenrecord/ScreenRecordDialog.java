@@ -107,6 +107,10 @@ public class ScreenRecordDialog extends Activity {
         audioSourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         audioSourceSpinner.setAdapter(audioSourceAdapter);
 
+        // Offset dropdown lists vertically
+        bitrateSpinner.setDropDownVerticalOffset(100);
+        audioSourceSpinner.setDropDownVerticalOffset(100);
+
         initialCheckSpinner(bitrateSpinner, SCREENRECORD_VIDEO_BITRATE, 2 /* average option */);
         initialCheckSpinner(audioSourceSpinner, SCREENRECORD_AUDIO_SOURCE, 0 /* disabled */);
         initialCheckSwitch(tapsSwitch, SCREENRECORD_SHOW_TAPS);
