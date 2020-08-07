@@ -72,7 +72,8 @@ public class TunerServiceImpl extends TunerService {
     private static final String[] RESET_BLACKLIST = new String[] {
             QSTileHost.TILES_SETTING,
             Settings.Secure.DOZE_ALWAYS_ON,
-            Settings.Secure.MEDIA_CONTROLS_RESUME
+            Settings.Secure.MEDIA_CONTROLS_RESUME,
+            Secure.MEDIA_CONTROLS_RESUME_BLOCKED
     };
 
     private static final int CURRENT_TUNER_VERSION = 5;
