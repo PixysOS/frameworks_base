@@ -20,13 +20,14 @@ import android.content.pm.PackageManager;
 import android.util.Slog;
 import android.view.View;
 
-import com.android.internal.custom.app.LineageContextConstants;
 import com.android.systemui.SystemUI;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.CommandQueue.Callbacks;
 
+
 public class FODCircleViewImpl extends SystemUI implements CommandQueue.Callbacks {
     private static final String TAG = "FODCircleViewImpl";
+    private static final String FOD = "vendor.lineage.biometrics.fingerprint.inscreen";
 
     private FODCircleView mFodCircleView;
 
@@ -34,7 +35,7 @@ public class FODCircleViewImpl extends SystemUI implements CommandQueue.Callback
     public void start() {
         PackageManager packageManager = mContext.getPackageManager();
         if (!packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT) ||
-                !packageManager.hasSystemFeature(LineageContextConstants.Features.FOD)) {
+                !packageManager.hasSystemFeature(FOD)) {
             return;
         }
         getComponent(CommandQueue.class).addCallback(this);
