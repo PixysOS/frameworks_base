@@ -178,4 +178,6 @@
     <!-- Clipboard force notify packages -->
     <java-symbol type="array" name="config_notifyClipboardPackages" />
 
+    <!-- Whether to show a custom view for FOD -->
+    <java-symbol type="bool" name="config_needCustomFODView" />
 </resources>
