@@ -60,7 +60,6 @@ import android.util.SparseIntArray;
 import android.util.proto.ProtoOutputStream;
 
 import com.android.internal.annotations.GuardedBy;
-import com.android.internal.custom.app.LineageContextConstants;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.util.DumpUtils;
 import com.android.server.SystemServerInitThreadPool;
@@ -105,6 +104,7 @@ public class FingerprintService extends BiometricServiceBase {
     private static final int MAX_FAILED_ATTEMPTS_LOCKOUT_PERMANENT = 20;
     private static final long FAIL_LOCKOUT_TIMEOUT_MS = 30 * 1000;
     private static final String KEY_LOCKOUT_RESET_USER = "lockout_reset_user";
+    private static final String FOD = "vendor.lineage.biometrics.fingerprint.inscreen";
 
     private final boolean mHasFod;
     private boolean mIsKeyguard;
@@ -808,7 +808,7 @@ public class FingerprintService extends BiometricServiceBase {
                 getLockoutBroadcastPermission(), null /* handler */);
 
         PackageManager packageManager = context.getPackageManager();
-        mHasFod = packageManager.hasSystemFeature(LineageContextConstants.Features.FOD);
+        mHasFod = packageManager.hasSystemFeature(FOD);
     }
 
     @Override

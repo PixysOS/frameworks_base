@@ -27,7 +27,6 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.PowerManager;
 import android.os.RemoteException;
 import android.provider.Settings;
 import android.view.Display;
@@ -71,20 +70,14 @@ public class FODCircleView extends ImageView {
 
     private boolean mIsBouncer;
     private boolean mIsDreaming;
-    private boolean mIsKeyguard;
     private boolean mIsShowing;
     private boolean mIsCircleShowing;
-
-    private float mCurrentDimAmount = 0.0f;
 
     private Handler mHandler;
 
     private LockPatternUtils mLockPatternUtils;
 
     private Timer mBurnInProtectionTimer;
-
-    private PowerManager mPowerManager;
-    private PowerManager.WakeLock mWakeLock;
 
     private IFingerprintInscreenCallback mFingerprintInscreenCallback =
             new IFingerprintInscreenCallback.Stub() {
@@ -113,12 +106,6 @@ public class FODCircleView extends ImageView {
             } else if (mBurnInProtectionTimer != null) {
                 mBurnInProtectionTimer.cancel();
             }
-        }
-
-        @Override
-        public void onKeyguardVisibilityChanged(boolean showing) {
-            mIsKeyguard = showing;
-            updatePosition();
         }
 
         @Override
@@ -204,37 +191,12 @@ public class FODCircleView extends ImageView {
 
         mUpdateMonitor = KeyguardUpdateMonitor.getInstance(context);
         mUpdateMonitor.registerCallback(mMonitorCallback);
-
-        getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-            float drawingDimAmount = mParams.dimAmount;
-            if (mCurrentDimAmount == 0.0f && drawingDimAmount > 0.0f) {
-                dispatchPress();
-                mCurrentDimAmount = drawingDimAmount;
-            } else if (mCurrentDimAmount > 0.0f && drawingDimAmount == 0.0f) {
-                mCurrentDimAmount = drawingDimAmount;
-            }
-        });
-
-        mPowerManager = context.getSystemService(PowerManager.class);
-        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                FODCircleView.class.getSimpleName());
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprint);
         super.onDraw(canvas);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-
-        if (mIsCircleShowing) {
-            dispatchPress();
-        } else {
-            dispatchRelease();
-        }
     }
 
     @Override
@@ -320,9 +282,9 @@ public class FODCircleView extends ImageView {
 
         setKeepScreenOn(true);
 
-        if (mIsDreaming) mWakeLock.acquire(500);
         setDim(true);
         updateAlpha();
+        dispatchPress();
 
         mPaintFingerprint.setColor(mColor);
         setImageDrawable(null);
@@ -335,6 +297,8 @@ public class FODCircleView extends ImageView {
         mPaintFingerprint.setColor(mColorBackground);
         setImageResource(R.drawable.fod_icon_default);
         invalidate();
+
+        dispatchRelease();
 
         setDim(false);
         updateAlpha();
@@ -354,6 +318,8 @@ public class FODCircleView extends ImageView {
         }
 
         mIsShowing = true;
+
+        updatePosition();
 
         updatePosition();
 
@@ -403,11 +369,6 @@ public class FODCircleView extends ImageView {
                 break;
             default:
                 throw new IllegalArgumentException("Unknown rotation: " + rotation);
-        }
-
-        if (mIsKeyguard) {
-            mParams.x = mPositionX;
-            mParams.y = mPositionY;
         }
 
         if (mIsDreaming) {
