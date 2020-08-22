@@ -163,4 +163,9 @@
     <!-- Text for visual app op [CHAR LIMIT=20]-->
     <string name="privacy_type_visual">Visual</string>
     <!-- Reader mode QS tile -->
+    <string name="quick_settings_reading_mode">Modo lectura</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Modo lectura activado.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Modo lectura desactivado.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Modo de lectura activado.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Modo de lectura desactivado.</string>
 </resources>

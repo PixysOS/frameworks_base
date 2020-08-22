@@ -163,4 +163,9 @@
     <!-- Text for visual app op [CHAR LIMIT=20]-->
     <string name="privacy_type_visual">Отображение</string>
     <!-- Reader mode QS tile -->
+    <string name="quick_settings_reading_mode">Режим чтения</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Режим чтения включён.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Режим чтения выключен.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Режим чтения активирован.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Режим чтения выключен.</string>
 </resources>
