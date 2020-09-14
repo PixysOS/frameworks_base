@@ -235,5 +235,6 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.KEYGUARD_MEDIA_ART, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.KEYGUARD_MEDIA_ART_ENABLE_BLUR, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.KEYGUARD_MEDIA_ART_BLUR_RADIUS, new InclusiveFloatRangeValidator(1f, 25f));
+        VALIDATORS.put(System.DESCENDANT_IDLE_MANAGER, ANY_INTEGER_VALIDATOR);
     }
 }
