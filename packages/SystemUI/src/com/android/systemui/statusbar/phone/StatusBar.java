@@ -140,6 +140,8 @@ import com.android.keyguard.ViewMediatorCallback;
 import com.android.systemui.ActivityIntentHelper;
 import com.android.systemui.AutoReinflateContainer;
 import com.android.systemui.DejankUtils;
+import com.android.systemui.Dependency;
+import com.android.systemui.DescendantIdleManager;
 import com.android.systemui.Dumpable;
 import com.android.systemui.Dependency;
 import com.android.systemui.EventLogTags;
@@ -448,6 +450,9 @@ public class StatusBar extends SystemUI implements DemoMode,
     // expanded notifications
     // the sliding/resizing panel within the notification window
     protected NotificationPanelViewController mNotificationPanelViewController;
+
+    // Descendant Idle
+    private boolean isIdleManagerIstantiated = false;
 
     // settings
     private QSPanelController mQSPanelController;
@@ -4163,6 +4168,17 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (mDozeParameters.shouldControlUnlockedScreenOff()) {
                 makeExpandedVisible(true);
             }
+            if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                                              Settings.System.DESCENDANT_IDLE_MANAGER, 1,
+                                              mLockscreenUserManager.getCurrentUserId()) == 1) {
+                if (!isIdleManagerIstantiated) {
+                    DescendantIdleManager.initManager(mContext);
+                    isIdleManagerIstantiated = true;
+                    DescendantIdleManager.executeManager();
+                } else {
+                    DescendantIdleManager.executeManager();
+                }
+            }
 
             DejankUtils.stopDetectingBlockingIpcs(tag);
         }
@@ -4193,6 +4209,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             }
 
             DejankUtils.stopDetectingBlockingIpcs(tag);
+            if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                                              Settings.System.DESCENDANT_IDLE_MANAGER, 1,
+                                              mLockscreenUserManager.getCurrentUserId()) == 1) {
+                DescendantIdleManager.haltManager();
+            }
+
         }
 
         @Override
