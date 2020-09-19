@@ -16,7 +16,12 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Popup camera dialog -->
+    <string name="popup_camera_dialog_message">Vil du heve kameraet framover?</string>
+    <string name="popup_camera_dialog_no">Nei</string>
+    <string name="popup_camera_dialog_raise">Ja</string>
     <!-- Advanced reboot -->
+    <string name="reboot_title">Start på nytt</string>
+    <string name="reboot_message">Starter systemet på nytt</string>
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->

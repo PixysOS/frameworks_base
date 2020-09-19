@@ -18,37 +18,159 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Caffeine</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine tắt</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine bật</string>
     <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Màn hình sáng</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Ambient display tắt.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ambient display bật.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient display đã tắt.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient display đã bật.</string>
     <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">Chia sẻ kết nối qua USB</string>
     <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Đồng bộ hoá</string>
+    <string name="accessibility_quick_settings_sync_off">Đồng bộ hoá tắt</string>
+    <string name="accessibility_quick_settings_sync_on">Đồng bộ hoá bật</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Đã tắt đồng bộ hoá</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Đã bật đồng bộ hoá</string>
     <!-- Advanced Location Tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Báo cáo vị trí: chế độ tiết kiệm pin.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Báo cáo vị trí: chỉ các cảm biến.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Báo cáo vị trí đã thay đổi thành chế độ chính xác cao.</string>
+    <string name="quick_settings_location_battery_saving_label">Chế độ tiết kiệm pin</string>
+    <string name="quick_settings_location_battery_saving_label_twoline">Tiết kiệm\npin</string>
+    <string name="quick_settings_location_gps_only_label">Chỉ GPS</string>
+    <string name="quick_settings_location_gps_only_label_twoline">Chỉ GPS</string>
+    <string name="quick_settings_location_high_accuracy_label">Độ chính xác cao</string>
+    <string name="quick_settings_location_high_accuracy_label_twoline">Chính xác\ncao</string>
+    <string name="quick_settings_location_detail_title">Vị trí</string>
+    <string name="quick_settings_location_detail_menu_title">Chọn chế độ:</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_title">Độ chính xác cao</string>
+    <string name="quick_settings_location_detail_mode_battery_saving_title">Chế độ tiết kiệm pin</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_title">Chỉ thiết bị</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_description">Sử dụng GPS, Wi\u2011Fi, Bluetooth hoặc mạng di động để xác định vị trí </string>
+    <string name="quick_settings_location_detail_mode_battery_saving_description">Sử dụng Wi‑Fi, Bluetooth hoặc mạng di động để xác định vị trí</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_description">Sử dụng GPS để xác định vị trí của bạn</string>
     <!-- SystemUI Tuner -->
+    <string name="statusbar_items_title">Biểu tượng thanh trạng thái</string>
+    <string name="lockscreen_default">Mặc định</string>
+    <string name="lockscreen_hidden">Không</string>
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
+    <string name="custom_hint">Trượt từ biểu tượng để khởi chạy</string>
     <!-- Advanced reboot -->
+    <string name="global_action_restart_advanced">Tuỳ chọn nâng cao</string>
+    <string name="global_action_restart_recovery">Recovery</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">SystemUI</string>
     <!-- QS Config -->
+    <string name="qs_menu_item_columns">Nhiều cột</string>
+    <string name="qs_menu_item_columns_landscape">Cột (màn hình ngang)</string>
+    <string name="qs_menu_item_rows">Số hàng</string>
+    <string name="qs_menu_item_rows_landscape">Cột (màn hình ngang)</string>
+    <string name="qs_menu_item_columns_one">1</string>
+    <string name="qs_menu_item_columns_two">2</string>
+    <string name="qs_menu_item_columns_three">3</string>
+    <string name="qs_menu_item_columns_four">4</string>
+    <string name="qs_menu_item_columns_five">5</string>
+    <string name="qs_menu_item_columns_six">6</string>
+    <string name="qs_menu_item_columns_seven">7</string>
+    <string name="qs_menu_item_columns_eight">8</string>
+    <string name="qs_menu_item_reset">Thiết lập lại</string>
+    <string name="qs_menu_item_titles">Hiển thị nhãn</string>
+    <string name="qs_menu_item_qs_columns">Cột (Thanh xem nhanh)</string>
+    <string name="qs_menu_item_columns_auto">Tự động</string>
     <!-- LTE QS Tile -->
+    <string name="qs_lte_label">LTE</string>
     <!--Screenrecord Tile-->
-    <!-- Screenrecord -->
+    <string name="screenrecorder_title_tile">Quay màn hình</string>
+    <!-- Screen recorder -->
+    <string name="screenrecord_dialog_title">Quay màn hình</string>
+    <string name="screenrecord_dialog_summary">Hệ thống Android có thể nắm bắt bất kỳ thông tin nhạy cảm nào hiển thị trên màn hình của bạn trong khi ghi (chẳng hạn như mật khẩu, thông tin thanh toán, v. v.). Điều này bao gồm cả âm thanh.</string>
+    <string name="screenrecord_dialog_settings">Cài đặt</string>
+    <string name="screenrecord_dialog_start">Bắt đầu</string>
+    <string name="screenrecord_dialog_cancel">Hủy bỏ</string>
+    <string name="screenrecord_audio_title">Nguồn audio</string>
+    <string name="screenrecord_audio_summary">Chọn loại đầu vào âm thanh</string>
+    <string name="screenrecord_audio_recording_internal">Hệ thống</string>
+    <string name="screenrecord_audio_recording_microphone">Mic</string>
+    <string name="screenrecord_audio_recording_off">Không</string>
+    <string name="screenrecord_taps_title">Hiển thị các lần chạm màn hình</string>
+    <string name="screenrecord_taps_summary">Hiển thị cảm ứng bề mặt màn hình</string>
+    <string name="screenrecord_stopdot_title">Hiển thị dấu chấm</string>
+    <string name="screenrecord_stopdot_summary">Chạm vào dấu chấm đỏ để dừng quay. \nẤn giữ để thay đổi vị trí dấu chấm</string>
+    <string name="screenrecord_video_bitrate_title">Tộc độ bit video</string>
+    <string name="screenrecord_video_bitrate_summary">Chọn chất lượng video mong muốn</string>
     <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">La bàn</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Đang khởi tạo\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">La bàn tắt.</string>
+    <string name="accessibility_quick_settings_compass_on">La bàn bật.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SW</string>
+    <string name="quick_settings_compass_W">W</string>
+    <string name="quick_settings_compass_NW">NW</string>
     <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Thông báo nổi sẽ báo lại sau 1 phút.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Thông báo nổi sẽ báo lại trong <xliff:g id="number">%d</xliff:g> phút.</string>
     <!-- Heads up QS tile -->
+    <string name="quick_settings_heads_up_label">Hiện trên cùng</string>
+    <string name="accessibility_quick_settings_heads_up_off">Heads up tắt.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Heads up bật.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Thông báo nổi đã tắt.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Đã bật thông báo nhanh.</string>
     <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Chụp màn hình</string>
+    <string name="quick_settings_region_screenshot_label">Chụp một phần màn hình</string>
     <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Khởi động lại</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
     <!-- Gaming mode -->
+    <string name="gaming_mode_not_enabled">Chế độ chơi game đã tắt trong cài đặt</string>
+    <string name="quick_settings_gaming_mode_label">Chế độ Chơi game</string>
     <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Chế độ chơi game đã tắt.</string>
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Chế độ chơi game đã bật.</string>
     <!-- Music tile -->
+    <string name="quick_settings_music_label">Nhạc</string>
+    <string name="quick_settings_music_play">Chạy</string>
+    <string name="quick_settings_music_pause">Tạm dừng</string>
     <!-- Smart Pixels QS Tile -->
+    <string name="quick_settings_smart_pixels">Pixel thông minh</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Tự động bật Pixel thông minh</string>
     <!-- Alerting notification header label -->
+    <string name="notification_section_header_alerting">Thông báo chưa xem</string>
     <!-- Text for activity recognition app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_activity_recognition">Kích hoạt</string>
     <!-- Text for aural app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_aural">Aural</string>
     <!-- Text for body sensor app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sensors">Cảm biến</string>
     <!-- Text for calendar app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_calendar">Lịch</string>
     <!-- Text for call logs app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_call_logs">Nhật ký cuộc gọi</string>
     <!-- Text for contacts app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_contacts">Danh bạ</string>
     <!-- Text for phone app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_phone_calls">Điện thoại</string>
     <!-- Text for sms app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sms">Tin nhắn SMS</string>
     <!-- Text for storage app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_storage">Bộ nhớ</string>
     <!-- Text for visual app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_visual">Trực quan</string>
     <!-- Reader mode QS tile -->
+    <string name="quick_settings_reading_mode">Chế độ Đọc</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Chế độ đọc bật.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Chế độ đọc đang tắt.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Chế độ đọc đã được bật.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Chế độ đọc đã được tắt.</string>
 </resources>

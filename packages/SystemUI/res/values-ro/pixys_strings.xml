@@ -18,9 +18,20 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Cafenie</string>
+    <string name="accessibility_quick_settings_caffeine_off">Cafenie oprită</string>
+    <string name="accessibility_quick_settings_caffeine_on">Cafenie pornită</string>
     <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Ecran Ambiental</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Ecran Ambiental dezactivat.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ecran Ambiental activat.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ecranul Ambiental a fost dezactivat.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ecranul Ambiental a fost activat.</string>
     <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">Tethering prin USB</string>
     <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Sincronizare</string>
+    <string name="accessibility_quick_settings_sync_off">Sincronizare dezactivata</string>
     <!-- Advanced Location Tile -->
     <!-- SystemUI Tuner -->
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
@@ -28,7 +39,7 @@
     <!-- QS Config -->
     <!-- LTE QS Tile -->
     <!--Screenrecord Tile-->
-    <!-- Screenrecord -->
+    <!-- Screen recorder -->
     <!-- Compass QS Tile -->
     <!-- Heads up snooze toast -->
     <!-- Heads up QS tile -->

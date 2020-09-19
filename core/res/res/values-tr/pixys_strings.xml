@@ -16,6 +16,8 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Popup camera dialog -->
+    <string name="popup_camera_dialog_message">Popup_kamera_metin_mesajı
+Popup kamera mesajı?</string>
     <!-- Advanced reboot -->
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

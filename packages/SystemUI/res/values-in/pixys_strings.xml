@@ -18,37 +18,106 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Kafein</string>
+    <string name="accessibility_quick_settings_caffeine_off">Kafein nonaktif</string>
+    <string name="accessibility_quick_settings_caffeine_on">Kafein aktif</string>
     <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Tampilan Ambient</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Tampilan Ambient nonaktif.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Tampilan Ambient aktif.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Tampilan Ambien telah dimatikan.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Tampilan Ambient telah dihidupkan.</string>
     <!-- USB tethering QS tile -->
+    <string name="quick_settings_usb_tether_label">Penambatan USB</string>
     <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Sinkronisasi</string>
+    <string name="accessibility_quick_settings_sync_off">Sinkronisasi mati</string>
+    <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Sinkronisasi dinonaktifkan</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Sinkronisasi dihidupkan</string>
     <!-- Advanced Location Tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Laporan Lokasi: Mode Hemat Baterai.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Laporan Lokasi: Hanya Mode Sensor.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Laporan Lokasi: Mode Akurasi Tinggi.</string>
+    <string name="quick_settings_location_battery_saving_label">Hemat Baterai</string>
+    <string name="quick_settings_location_battery_saving_label_twoline">Hemat\nbaterai</string>
+    <string name="quick_settings_location_gps_only_label">Hanya GPS</string>
+    <string name="quick_settings_location_gps_only_label_twoline">Hanya GPS</string>
+    <string name="quick_settings_location_high_accuracy_label">Akurasi Tinggi</string>
+    <string name="quick_settings_location_high_accuracy_label_twoline">Akurasi\ntinggi</string>
+    <string name="quick_settings_location_detail_title">Lokasi</string>
+    <string name="quick_settings_location_detail_menu_title">Pilih Mode:</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_title">Akurasi Tinggi</string>
+    <string name="quick_settings_location_detail_mode_battery_saving_title">Hemat Baterai</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_title">Hanya Perangkat</string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_description">Gunakan GPS, Wi\u2011Fi, Bluetooth atau jaringan seluler untuk menentukan lokasi </string>
+    <string name="quick_settings_location_detail_mode_battery_saving_description">Gunakan Wi\u2011Fi, Bluetooth, atau jaringan seluler untuk menentukan lokasi</string>
+    <string name="quick_settings_location_detail_mode_sensors_only_description">Gunakan GPS untuk Menentukan Lokasi</string>
     <!-- SystemUI Tuner -->
+    <string name="statusbar_items_title">Ikon bilah status</string>
+    <string name="lockscreen_default">Bawaan</string>
+    <string name="lockscreen_hidden">Tidak ada</string>
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
+    <string name="custom_hint">Usap dari ikon untuk meluncurkan</string>
     <!-- Advanced reboot -->
+    <string name="global_action_restart_advanced">Lanjutan</string>
+    <string name="global_action_restart_recovery">Pemulihan</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">Ui Sistem</string>
     <!-- QS Config -->
+    <string name="qs_menu_item_columns">Kolom</string>
+    <string name="qs_menu_item_columns_landscape">Kolom (Lanskap)</string>
+    <string name="qs_menu_item_rows">Baris</string>
+    <string name="qs_menu_item_rows_landscape">Baris (Lanskap)</string>
+    <string name="qs_menu_item_columns_one">1</string>
+    <string name="qs_menu_item_columns_two">2</string>
+    <string name="qs_menu_item_columns_three">3</string>
+    <string name="qs_menu_item_columns_four">4</string>
+    <string name="qs_menu_item_columns_five">5</string>
     <!-- LTE QS Tile -->
     <!--Screenrecord Tile-->
-    <!-- Screenrecord -->
+    <!-- Screen recorder -->
     <!-- Compass QS Tile -->
     <!-- Heads up snooze toast -->
     <!-- Heads up QS tile -->
     <!-- Screenshot QS tile -->
     <!-- Reboot/Recovery QS Tile -->
     <!-- Gaming mode -->
+    <string name="quick_settings_gaming_mode_label">Mode Permainan</string>
     <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Mode Permainan dinonaktifkan.</string>
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Mode Permainan dihidupkan.</string>
     <!-- Music tile -->
+    <string name="quick_settings_music_label">Musik</string>
+    <string name="quick_settings_music_play">Mainkan</string>
+    <string name="quick_settings_music_pause">Jeda</string>
     <!-- Smart Pixels QS Tile -->
+    <string name="quick_settings_smart_pixels">Piksel Cerdas</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Otomatis hidupkan Piksel Cerdas</string>
     <!-- Alerting notification header label -->
+    <string name="notification_section_header_alerting">Peringatan Notifikasi</string>
     <!-- Text for activity recognition app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_activity_recognition">Kegiatan</string>
     <!-- Text for aural app op [CHAR LIMIT=20]-->
     <!-- Text for body sensor app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sensors">Sensor</string>
     <!-- Text for calendar app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_calendar">Kalender</string>
     <!-- Text for call logs app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_call_logs">Log Panggilan</string>
     <!-- Text for contacts app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_contacts">Kontak</string>
     <!-- Text for phone app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_phone_calls">Telepon</string>
     <!-- Text for sms app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sms">SMS</string>
     <!-- Text for storage app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_storage">Penyimpanan</string>
     <!-- Text for visual app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_visual">Visual</string>
     <!-- Reader mode QS tile -->
+    <string name="quick_settings_reading_mode">Mode membaca</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Mode membaca aktif.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Mode membaca nonaktif.</string>
 </resources>

@@ -16,13 +16,48 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Popup camera dialog -->
+    <string name="popup_camera_dialog_message">Bạn có muốn nâng camera trước lên không?</string>
+    <string name="popup_camera_dialog_no">Không</string>
+    <string name="popup_camera_dialog_raise">Có</string>
     <!-- Advanced reboot -->
+    <string name="reboot_title">Khởi động lại</string>
+    <string name="reboot_message">Đang khởi động lại hệ thống</string>
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Chữ ký gói giả mạo</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Cho phép ứng dụng có thể giả mạo làm ứng dụng khác. Các ứng dụng độc hại có thể sử dụng quyền này để truy cập trái phép vào dữ liệu riêng tư của bạn. Hãy thận trọng khi cấp quyền này!</string>
     <!-- Vendor mismatch fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Vendor image không phù hợp với phiên bản hệ thống. Xin vui lòng flash <xliff:g id="string">%s</xliff:g> vendor image phù hợp cho thiết bị của bạn</string>
     <!-- Gaming mode -->
+    <string name="notification_channel_gaming">Chế độ Chơi game</string>
+    <string name="gaming_mode_notification_title">Chế độ chơi game đã được bật</string>
+    <string name="gaming_mode_notification_content">Nhấn để tắt chế độ chơi game</string>
+    <string name="gaming_mode_enabled_toast">Chế độ chơi game đã bật</string>
+    <string name="gaming_mode_disabled_toast">Chế độ chơi game đã tắt</string>
     <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Sao chép URL nhật ký lỗi</string>
     <string name="url_copy_success">Sao chép URL thành công</string>
     <string name="url_copy_failed">Đã xảy ra lỗi khi tải nhật ký lên dogbin</string>
     <!-- LiveDisplay strings -->
+    <string name="live_display_auto">Tự động</string>
+    <string name="live_display_auto_summary">Tự động chỉnh nhiệt độ màu của màn hình theo ngày và đêm</string>
+    <string name="live_display_off">Tắt</string>
+    <string name="live_display_off_summary">Vô hiệu hoá tất cả các điều chỉnh</string>
+    <string name="live_display_day">Ngày</string>
+    <string name="live_display_day_summary">Chỉ sử dụng cài đặt ban ngày</string>
+    <string name="live_display_night">Đêm</string>
+    <string name="live_display_night_summary">Chỉ sử dụng cài đặt ban đêm</string>
+    <string name="live_display_outdoor">Ngoài trời (ánh sáng mạnh)</string>
+    <string name="live_display_outdoor_summary">Chỉ sử dụng cài đặt ban ngày</string>
+    <string name="live_display_hint">LiveDisplay có thể giúp giảm mỏi mắt và giúp bạn ngủ vào ban đêm. Nhấn vào đây để thử!</string>
+    <string name="accessibility_quick_settings_live_display_off">LiveDisplay tắt.</string>
+    <string name="accessibility_quick_settings_live_display_auto">LiveDisplay: chế độ tự động.</string>
+    <string name="accessibility_quick_settings_live_display_day">LiveDisplay: chế độ ngày.</string>
+    <string name="accessibility_quick_settings_live_display_night">LiveDisplay: chế độ đêm.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LiveDisplay: chế độ ngoài trời.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LiveDisplay đã tắt.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LiveDisplay thay đổi chế độ tự động.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay chuyển sang chế độ ngày.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay đã đổi sang chế độ ban đêm.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay đã đổi sang chế độ ngoài trời.</string>
 </resources>

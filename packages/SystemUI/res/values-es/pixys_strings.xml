@@ -85,18 +85,12 @@
     <string name="qs_lte_label">LTE</string>
     <!--Screenrecord Tile-->
     <string name="screenrecorder_title_tile">Grabación de pantalla</string>
-    <!-- Screenrecord -->
-    <string name="screenrecord_dialog_title">¿Iniciar grabación?</string>
-    <string name="screenrecord_dialog_summary">Durante la grabación, el sistema Android puede capturar cualquier información sensible que sea visible en tu pantalla o reproducida en tu dispositivo. Esto incluye contraseñas, información de pago, fotos, mensajes y audio.</string>
+    <!-- Screen recorder -->
     <string name="screenrecord_dialog_start">Iniciar</string>
     <string name="screenrecord_dialog_cancel">Cancelar</string>
     <string name="screenrecord_audio_title">Fuente de audio</string>
     <string name="screenrecord_audio_recording_internal">Interna</string>
-    <string name="screenrecord_audio_recording_microphone">Micrófono</string>
-    <string name="screenrecord_audio_recording_off">Desactivado</string>
-    <string name="screenrecord_taps_title">Mostrar toques en pantalla</string>
     <string name="screenrecord_stopdot_title">Mostrar punto de finalizar</string>
-    <string name="screenrecord_video_bitrate_title">Bitrate de vídeo</string>
     <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Brújula</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
