@@ -139,9 +139,6 @@
   <java-symbol type="drawable" name="perm_group_storage" />
   <java-symbol type="drawable" name="perm_group_visual" />
 
-    <!-- Whether device supports variable refresh rate -->
-    <java-symbol type="bool" name="config_hasVariableRefreshRate" />
-
     <!-- LiveDisplay -->
     <java-symbol type="string" name="live_display_title" />
     <java-symbol type="string" name="live_display_hint" />
