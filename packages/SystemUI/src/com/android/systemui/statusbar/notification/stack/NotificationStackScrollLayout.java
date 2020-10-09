@@ -33,6 +33,7 @@ import android.annotation.ColorInt;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -44,6 +45,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.IndentingPrintWriter;
@@ -588,7 +590,9 @@ public class NotificationStackScrollLayout extends ViewGroup implements Dumpable
         mScreenOffAnimationController =
                 Dependency.get(ScreenOffAnimationController.class);
         updateSplitNotificationShade();
-        mSectionsManager.initialize(this);
+        boolean showHeaders = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.NOTIFICATION_HEADERS, 1, UserHandle.USER_CURRENT) == 1;
+        mSectionsManager.initialize(this, showHeaders);
         mSections = mSectionsManager.createSectionsForBuckets();
 
         mAmbientState = Dependency.get(AmbientState.class);
