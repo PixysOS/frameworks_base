@@ -44,6 +44,7 @@ import static com.android.systemui.statusbar.StatusBarState.KEYGUARD;
 import static com.android.systemui.statusbar.StatusBarState.SHADE;
 import static com.android.systemui.statusbar.StatusBarState.SHADE_LOCKED;
 import static com.android.systemui.statusbar.notification.stack.StackStateAnimator.ANIMATION_DURATION_FOLD_TO_AOD;
+import static com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayout.ROWS_HIGH_PRIORITY;
 import static com.android.systemui.util.DumpUtilsKt.asIndenting;
 import static com.android.systemui.util.kotlin.JavaAdapterKt.collectFlow;
 
@@ -54,6 +55,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.app.Notification;
 import android.app.StatusBarManager;
 import android.content.ContentResolver;
 import android.content.res.Resources;
@@ -65,6 +67,7 @@ import android.graphics.Region;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Trace;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
 import android.util.IndentingPrintWriter;
@@ -233,6 +236,7 @@ import com.android.systemui.util.time.SystemClock;
 import com.android.wm.shell.animation.FlingAnimationUtils;
 
 import dalvik.annotation.optimization.NeverCompile;
+import com.android.systemui.aospa.NotificationLightsView;
 
 import kotlin.Unit;
 
@@ -254,6 +258,9 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private static final boolean DEBUG_LOGCAT = Compile.IS_DEBUG && Log.isLoggable(TAG, Log.DEBUG);
     private static final boolean SPEW_LOGCAT = Compile.IS_DEBUG && Log.isLoggable(TAG, Log.VERBOSE);
     private static final boolean DEBUG_DRAWABLE = false;
+    private static final boolean DEBUG = false;
+    private static final boolean DEBUG_PULSE_LIGHT = false;
+
     /** The parallax amount of the quick settings translation when dragging down the panel. */
     public static final float QS_PARALLAX_AMOUNT = 0.175f;
     private static final int NO_FIXED_DURATION = -1;
@@ -437,6 +444,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private final FalsingCollector mFalsingCollector;
     private final ShadeHeadsUpTrackerImpl mShadeHeadsUpTracker = new ShadeHeadsUpTrackerImpl();
     private final ShadeFoldAnimator mShadeFoldAnimator = new ShadeFoldAnimatorImpl();
+    private NotificationLightsView mPulseLightsView;
 
     private boolean mShowIconsWhenExpanded;
     private int mIndicationBottomPadding;
@@ -533,6 +541,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private final NotificationListContainer mNotificationListContainer;
     private final NotificationStackSizeCalculator mNotificationStackSizeCalculator;
     private final NPVCDownEventState.Buffer mLastDownEvents;
+    private NotificationStackScrollLayout mStackScrollLayout;
     private final KeyguardBottomAreaViewModel mKeyguardBottomAreaViewModel;
     private final KeyguardBottomAreaInteractor mKeyguardBottomAreaInteractor;
     private final KeyguardClockInteractor mKeyguardClockInteractor;
@@ -1063,6 +1072,8 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
         mNotificationContainerParent = mView.findViewById(R.id.notification_container_parent);
         updateViewControllers(userAvatarContainer, keyguardUserSwitcherView);
 
+        mStackScrollLayout = mView.findViewById(
+                R.id.notification_stack_scroller);
         mNotificationStackScrollLayoutController.setOnHeightChangedListener(
                 new NsslHeightChangedListener());
         mNotificationStackScrollLayoutController.setOnEmptySpaceClickListener(
@@ -1073,6 +1084,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
         if (!keyguardBottomAreaRefactor()) {
             setKeyguardBottomArea(mView.findViewById(R.id.keyguard_bottom_area));
         }
+        mPulseLightsView = (NotificationLightsView) mView.findViewById(R.id.lights_container);
 
         initBottomArea();
 
@@ -3208,9 +3220,57 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
         final boolean
                 animatePulse =
                 !mDozeParameters.getDisplayNeedsBlanking() && mDozeParameters.getAlwaysOn();
+        ContentResolver resolver = mView.getContext().getContentResolver();
+        boolean pulseLights = Settings.System.getIntForUser(resolver,
+                Settings.System.AMBIENT_NOTIFICATION_LIGHT, 1, UserHandle.USER_CURRENT) != 0;
+        ExpandableNotificationRow row = mStackScrollLayout.getFirstActiveClearableNotification(ROWS_HIGH_PRIORITY);
+        boolean activeNotif = row != null;
+        int pulseReason = Settings.System.getIntForUser(resolver,
+                Settings.System.PULSE_TRIGGER_REASON, DozeLog.PULSE_REASON_NONE, UserHandle.USER_CURRENT);
+        boolean pulseReasonNotification = pulseReason == DozeLog.PULSE_REASON_NOTIFICATION;
+        boolean pulseColorAutomatic = Settings.System.getIntForUser(resolver,
+                Settings.System.AMBIENT_NOTIFICATION_LIGHT_AUTOMATIC, 1, UserHandle.USER_CURRENT) != 0;
         if (animatePulse) {
             mAnimateNextPositionUpdate = true;
         }
+
+        if (DEBUG_PULSE_LIGHT) {
+            Log.d(TAG, "setPulsing pulsing = " + pulsing + " pulseLights = " + pulseLights
+                    + " activeNotif = " + activeNotif + " pulseColorAutomatic = " + pulseColorAutomatic
+                    + " mDozing = " + mDozing + " pulseReasonNotification = " + pulseReasonNotification);
+        }
+        if (mPulseLightsView != null) {
+            int pulseColor = mPulseLightsView.getNotificationLightsColor();
+            if (row != null) {
+                if (pulseColorAutomatic) {
+                    int notificationColor = row.getEntry().getSbn().getNotification().color;
+                    if (notificationColor != Notification.COLOR_DEFAULT) {
+                        pulseColor = notificationColor;
+                    }
+                } else {
+                    pulseColor = mPulseLightsView.getNotificationLightsColor();
+                }
+            }
+            pulseColor |= 0xFF000000;
+            if (mPulsing) {
+                if (activeNotif && pulseReasonNotification) {
+                    // show the bars if we have to
+                    if (pulseLights) {
+                        mPulseLightsView.animateNotificationWithColor(pulseColor);
+                        mPulseLightsView.setVisibility(View.VISIBLE);
+                    } else {
+                        // bars can still be visible as leftover
+                        // but we dont want them here
+                        mPulseLightsView.endAnimation();
+                        mPulseLightsView.setVisibility(View.GONE);
+                    }
+                }
+            } else {
+                mPulseLightsView.endAnimation();
+                mPulseLightsView.setVisibility(View.GONE);
+            }
+        }
+
         // Do not animate the clock when waking up from a pulse.
         // The height callback will take care of pushing the clock to the right position.
         if (!mPulsing && !mDozing) {
@@ -4541,6 +4601,37 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
             mInterpolatedDarkAmount = amount;
             mLinearDarkAmount = linearAmount;
             positionClockAndNotifications();
+        }
+    }
+
+    public void updateAmbientPulse() {
+        if (mPulseLightsView != null) {
+            if (mPulsing) {
+                ContentResolver resolver = mView.getContext().getContentResolver();
+                boolean pulseLights = Settings.System.getIntForUser(resolver,
+                        Settings.System.AMBIENT_NOTIFICATION_LIGHT, 1, UserHandle.USER_CURRENT) != 0;
+                boolean pulseColorAutomatic = Settings.System.getIntForUser(resolver,
+                        Settings.System.AMBIENT_NOTIFICATION_LIGHT_AUTOMATIC, 1, UserHandle.USER_CURRENT) != 0;
+                if (pulseLights && pulseColorAutomatic) {
+                    int pulseColor = mPulseLightsView.getNotificationLightsColor();
+                    if (pulseColorAutomatic) {
+                        ExpandableNotificationRow row = mStackScrollLayout.getFirstActiveClearableNotification(ROWS_HIGH_PRIORITY);
+                        int notificationColor = pulseColor;
+                        if (row != null) {
+                            notificationColor = row.getEntry().getSbn().getNotification().color;
+                        }
+                        if (notificationColor != Notification.COLOR_DEFAULT ) {
+                            pulseColor = notificationColor;
+                        }
+                    }
+                    pulseColor |= 0xFF000000;
+                    mPulseLightsView.animateNotificationWithColor(pulseColor);
+                    mPulseLightsView.setVisibility(View.VISIBLE);
+                }
+            } else {
+                mPulseLightsView.endAnimation();
+                mPulseLightsView.setVisibility(View.GONE);
+            }
         }
     }
 

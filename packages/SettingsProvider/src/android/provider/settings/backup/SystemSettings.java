@@ -121,6 +121,8 @@ public class SystemSettings {
         Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
         Settings.System.NOTIFICATION_VIBRATION_PATTERN,
         Settings.System.CUSTOM_NOTIFICATION_VIBRATION_PATTERN,
+        Settings.System.AMBIENT_NOTIFICATION_LIGHT,
+        Settings.System.AMBIENT_NOTIFICATION_LIGHT_AUTOMATIC
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);
