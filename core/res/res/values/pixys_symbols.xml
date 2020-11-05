@@ -80,4 +80,8 @@
 
  <!-- FOD icon dimming -->
   <java-symbol type="bool" name="config_targetUsesInKernelDimming" />
+
+    <!-- Horizon Light -->
+    <java-symbol type="integer" name="config_AmbientPulseLightColor" />
+
 </resources>
