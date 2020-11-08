@@ -286,6 +286,9 @@
     <permission android:name="com.breel.wallpapers.notifications"/>
     <uses-permission android:name="com.breel.wallpapers.notifications"/>
 
+    <!-- Ambient Music -->
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
