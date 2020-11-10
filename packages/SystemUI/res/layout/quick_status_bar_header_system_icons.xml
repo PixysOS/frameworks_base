@@ -51,7 +51,7 @@
            android:layout_height="match_parent"
            android:layout_width="wrap_content"
            android:layout_gravity="center_vertical|end"
-           systemui:textAppearance="@style/TextAppearance.QS.Status"
+           systemui:textAppearance="@style/TextAppearance.StatusBar.Clock"
            android:paddingEnd="2dp" />
 
 </FrameLayout>
