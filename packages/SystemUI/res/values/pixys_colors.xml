@@ -17,4 +17,5 @@
 
     <color name="qs_background_dark_color">@android:color/white</color>
 
+    <color name="qs_footer_drag_handle">#e5e5e5</color>
 </resources>
