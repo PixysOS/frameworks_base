@@ -98,5 +98,8 @@ public class SystemSettings {
         Settings.System.VIBRATE_ON_DISCONNECT,
         Settings.System.FLASHLIGHT_ON_CALL,
         Settings.System.LOCKSCREEN_SMALL_CLOCK,
+        Settings.System.KEYGUARD_MEDIA_ART,
+        Settings.System.KEYGUARD_MEDIA_ART_ENABLE_BLUR,
+        Settings.System.KEYGUARD_MEDIA_ART_BLUR_RADIUS,
     };
 }

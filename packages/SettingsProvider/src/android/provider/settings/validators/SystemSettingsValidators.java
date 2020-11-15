@@ -232,5 +232,8 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.VIBRATE_ON_DISCONNECT, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.FLASHLIGHT_ON_CALL, new InclusiveIntegerRangeValidator(0, 4));
         VALIDATORS.put(System.LOCKSCREEN_SMALL_CLOCK, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.KEYGUARD_MEDIA_ART, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.KEYGUARD_MEDIA_ART_ENABLE_BLUR, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.KEYGUARD_MEDIA_ART_BLUR_RADIUS, new InclusiveFloatRangeValidator(1f, 25f));
     }
 }
