@@ -22,6 +22,30 @@
       "revId": "f11b344f7680756f349b47e361b12ba3dad6704b",
       "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3ee4e74_072e51cc",
+        "filename": "services/core/java/com/android/server/pm/permission/DefaultPermissionGrantPolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-11-18T16:19:27Z",
+      "side": 1,
+      "message": "Oof nais typo lol",
+      "parentUuid": "7b730c20_50b3d19c",
+      "range": {
+        "startLine": 932,
+        "startChar": 67,
+        "endLine": 932,
+        "endChar": 68
+      },
+      "revId": "f11b344f7680756f349b47e361b12ba3dad6704b",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028",
+      "unresolved": false
     }
   ]
 }
