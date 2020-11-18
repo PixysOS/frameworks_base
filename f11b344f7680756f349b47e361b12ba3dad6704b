@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b730c20_50b3d19c",
+        "filename": "services/core/java/com/android/server/pm/permission/DefaultPermissionGrantPolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1000050
+      },
+      "writtenOn": "2020-11-18T16:10:17Z",
+      "side": 1,
+      "message": "this space will break stuff for sure",
+      "range": {
+        "startLine": 932,
+        "startChar": 67,
+        "endLine": 932,
+        "endChar": 68
+      },
+      "revId": "f11b344f7680756f349b47e361b12ba3dad6704b",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028",
+      "unresolved": true
+    }
+  ]
+}
