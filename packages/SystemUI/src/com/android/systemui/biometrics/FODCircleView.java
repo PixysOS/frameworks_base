@@ -69,7 +69,7 @@ import java.util.TimerTask;
 public class FODCircleView extends ImageView implements TunerService.Tunable {
     private static final String DOZE_INTENT = "com.android.systemui.doze.pulse";
     private static final String FOD_GESTURE = "system:" + Settings.System.FOD_GESTURE;
-    private static final int FADE_ANIM_DURATION = 250;
+    private static final int FADE_ANIM_DURATION = 125;
     private final String SCREEN_BRIGHTNESS = "system:" + Settings.System.SCREEN_BRIGHTNESS;
     private final int[][] BRIGHTNESS_ALPHA_ARRAY = {
         new int[]{0, 255},
