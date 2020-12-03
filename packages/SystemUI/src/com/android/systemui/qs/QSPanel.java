@@ -570,10 +570,14 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
             mTileLayout = newLayout;
             if (mHost != null) setTiles(mHost.getTiles());
             newLayout.setListening(mListening);
-            if (needsDynamicRowsAndColumns()) {
-                boolean isLandscape = getResources().getConfiguration().orientation
-                            == Configuration.ORIENTATION_LANDSCAPE;
-                newLayout.setMinRows(horizontal ? 2 : (mMediaHost.getVisible() ? 2 : (isLandscape ? 1 : 3)));
+            boolean landscapeAndMedia =
+                    horizontal && mUsingMediaPlayer && mMediaHost.getVisible();
+            if (needsDynamicRowsAndColumns() /*expanded qs panel*/) {
+                /* if no media notification allow custom rows/columns,
+                otherwise if landscape and media notification set a fixed value*/
+                newLayout.setMinRows(landscapeAndMedia ? 2 : 1);
+                // Let's use 3 columns to match the current layout
+                newLayout.setMaxColumns(landscapeAndMedia ? 3 : TileLayout.NO_MAX_COLUMNS);
             }
             updateTileLayoutMargins();
             updateFooterMargin();
