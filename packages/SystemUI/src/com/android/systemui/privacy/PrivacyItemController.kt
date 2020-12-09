@@ -86,7 +86,7 @@ class PrivacyItemController @Inject constructor(
 
     private fun isMicCameraEnabled(): Boolean {
         return deviceConfigProxy.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
-                MIC_CAMERA, false)
+                MIC_CAMERA, true)
     }
 
     private var currentUserIds = emptyList<Int>()
