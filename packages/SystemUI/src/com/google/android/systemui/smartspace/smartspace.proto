@@ -76,7 +76,9 @@ message SmartspaceUpdate {
         required int64 eventTimeMillis = 10;
         required int64 eventDurationMillis = 11;
         required ExpiryCriteria expiryCriteria = 12;
-        required int32 cardPriority =13;
+        required int32 cardPriority = 13;
+        required bool isSensitive = 14;
+        required bool isWorkProfile = 15;
     }
 
     repeated SmartspaceCard card = 1;

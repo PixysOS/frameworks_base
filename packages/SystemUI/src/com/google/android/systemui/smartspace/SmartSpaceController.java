@@ -16,17 +16,21 @@ import android.util.Log;
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardUpdateMonitorCallback;
 import com.android.systemui.Dumpable;
-import com.google.android.systemui.smartspace.nano.SmartspaceProto.CardWrapper;
+import com.android.systemui.dump.DumpManager;
 import com.android.systemui.util.Assert;
-import com.android.systemui.Dependency;
+
+import com.google.android.systemui.smartspace.nano.SmartspaceProto.CardWrapper;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class SmartSpaceController implements Dumpable {
     static final boolean DEBUG = Log.isLoggable("SmartSpaceController", 3);
-    private static SmartSpaceController sInstance;
     private final AlarmManager mAlarmManager;
     private boolean mAlarmRegistered;
     private final Context mAppContext;
@@ -34,7 +38,6 @@ public class SmartSpaceController implements Dumpable {
     private final Context mContext;
     public int mCurrentUserId;
     public final SmartSpaceData mData;
-    private final KeyguardUpdateMonitor mKeyguardUpdateMonitor;
     private final OnAlarmListener mExpireAlarmAction = new OnAlarmListener() {
         @Override
         public final void onAlarm() {
@@ -42,6 +45,7 @@ public class SmartSpaceController implements Dumpable {
         }
     };
     private boolean mHidePrivateData;
+    private boolean mHideWorkData;
     private final KeyguardUpdateMonitorCallback mKeyguardMonitorCallback = new KeyguardUpdateMonitorCallback() {
         public void onTimeChanged() {
             if (mData != null && mData.hasCurrent() && mData.getExpirationRemainingMillis() > 0) {
@@ -58,6 +62,7 @@ public class SmartSpaceController implements Dumpable {
         private UserSwitchReceiver() {
         }
 
+        @Override
         public void onReceive(Context context, Intent intent) {
             if (SmartSpaceController.DEBUG) {
                 StringBuilder sb = new StringBuilder();
@@ -76,30 +81,19 @@ public class SmartSpaceController implements Dumpable {
         }
     }
 
-    public static SmartSpaceController get(Context context) {
-        if (sInstance == null) {
-            if (DEBUG) {
-                Log.d("SmartSpaceController", "controller created");
-            }
-            sInstance = new SmartSpaceController(context.getApplicationContext());
-        }
-        return sInstance;
-    }
-
-    private SmartSpaceController(Context context) {
+    @Inject
+    public SmartSpaceController(Context context, KeyguardUpdateMonitor keyguardUpdateMonitor, Handler handler, AlarmManager alarmManager, DumpManager dumpManager) {
         mContext = context;
         mUiHandler = new Handler(Looper.getMainLooper());
         mStore = new ProtoStore(mContext);
-        HandlerThread handlerThread = new HandlerThread("smartspace-background");
-        handlerThread.start();
-        mBackgroundHandler = new Handler(handlerThread.getLooper());
+        new HandlerThread("smartspace-background").start();
+        mBackgroundHandler = handler;
         mCurrentUserId = UserHandle.myUserId();
         mAppContext = context;
-        mAlarmManager = (AlarmManager) context.getSystemService(AlarmManager.class);
+        mAlarmManager = alarmManager;
         mData = new SmartSpaceData();
-        mKeyguardUpdateMonitor = Dependency.get(KeyguardUpdateMonitor.class);
         if (!isSmartSpaceDisabledByExperiments()) {
-            mKeyguardUpdateMonitor.registerCallback(mKeyguardMonitorCallback);
+            keyguardUpdateMonitor.registerCallback(mKeyguardMonitorCallback);
             reloadData();
             onGsaChanged();
             context.registerReceiver(new BroadcastReceiver() {
@@ -111,7 +105,8 @@ public class SmartSpaceController implements Dumpable {
             intentFilter.addAction("android.intent.action.USER_SWITCHED");
             intentFilter.addAction("android.intent.action.USER_UNLOCKED");
             context.registerReceiver(new UserSwitchReceiver(), intentFilter);
-            context.registerReceiver(new SmartSpaceBroadcastReceiver(this), new IntentFilter("com.google.android.apps.nexuslauncher.UPDATE_SMARTSPACE"));
+            context.registerReceiver(new SmartSpaceBroadcastReceiver(this), new IntentFilter("com.google.android.apps.nexuslauncher.UPDATE_SMARTSPACE"), "android.permission.CAPTURE_AUDIO_HOTWORD", mUiHandler);
+            dumpManager.registerDumpable(SmartSpaceController.class.getName(), this);
         }
     }
 
@@ -153,7 +148,7 @@ public class SmartSpaceController implements Dumpable {
                 @Override
                 public final void run() {
                     final CardWrapper wrapper = newCardInfo.toWrapper(mContext);
-                    if (!mHidePrivateData) {
+                    if (!mHidePrivateData || !mHideWorkData) {
                         ProtoStore protoStore = mStore;
                         StringBuilder sb = new StringBuilder();
                         sb.append("smartspace_");
@@ -235,25 +230,26 @@ public class SmartSpaceController implements Dumpable {
         String str = "SmartSpaceController";
         if (mData.handleExpire() || z) {
             update();
-            if (UserHandle.myUserId() == 0) {
-                if (DEBUG) {
-                    Log.d(str, "onExpire - sent");
-                }
-                mAppContext.sendBroadcast(new Intent("com.google.android.systemui.smartspace.EXPIRE_EVENT").setPackage("com.google.android.googlequicksearchbox").addFlags(268435456));
-            }
         } else if (DEBUG) {
             Log.d(str, "onExpire - cancelled");
         }
     }
 
-    public void setHideSensitiveData(boolean z) {
-        mHidePrivateData = z;
-        ArrayList arrayList = new ArrayList(mListeners);
-        for (int i = 0; i < arrayList.size(); i++) {
-            ((SmartSpaceUpdateListener) arrayList.get(i)).onSensitiveModeChanged(z);
-        }
-        if (mHidePrivateData) {
-            clearStore();
+    public void setHideSensitiveData(boolean hideSensitiveData, boolean hideWorkData) {
+        if (mHidePrivateData != hideSensitiveData && mHideWorkData != hideWorkData) {
+            mHidePrivateData = hideSensitiveData;
+            mHideWorkData = hideWorkData;
+            ArrayList arrayList = new ArrayList(mListeners);
+            for (int i = 0; i < arrayList.size(); i++) {
+                ((SmartSpaceUpdateListener) arrayList.get(i)).onSensitiveModeChanged(mHidePrivateData, mHideWorkData);
+            }
+            if (mData.getCurrentCard() != null) {
+                boolean shouldClear = (mHidePrivateData && !mData.getCurrentCard().isWorkProfile()) ||
+                    (mHideWorkData && mData.getCurrentCard().isWorkProfile());
+                if (shouldClear) {
+                    clearStore();
+                }
+            }
         }
     }
 
@@ -278,19 +274,6 @@ public class SmartSpaceController implements Dumpable {
     }
 
     private boolean isSmartSpaceDisabledByExperiments() {
-        boolean z;
-        String string = Global.getString(mContext.getContentResolver(), "always_on_display_constants");
-        KeyValueListParser keyValueListParser = new KeyValueListParser(',');
-        try {
-            keyValueListParser.setString(string);
-            z = keyValueListParser.getBoolean("smart_space_enabled", true);
-        } catch (IllegalArgumentException unused) {
-            Log.e("SmartSpaceController", "Bad AOD constants");
-            z = true;
-        }
-        if (!z) {
-            return true;
-        }
         return false;
     }
 
@@ -333,6 +316,9 @@ public class SmartSpaceController implements Dumpable {
         SmartSpaceData smartSpaceData = mData;
         if (smartSpaceData != null && smartSpaceUpdateListener != null) {
             smartSpaceUpdateListener.onSmartSpaceUpdated(smartSpaceData);
+        }
+        if (smartSpaceUpdateListener != null) {
+            smartSpaceUpdateListener.onSensitiveModeChanged(mHidePrivateData, mHideWorkData);
         }
     }
 

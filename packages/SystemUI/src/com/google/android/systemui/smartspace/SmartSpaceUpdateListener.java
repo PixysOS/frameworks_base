@@ -4,7 +4,7 @@ public interface SmartSpaceUpdateListener {
     default void onGsaChanged(){
     }
 
-    default void onSensitiveModeChanged(boolean z){
+    default void onSensitiveModeChanged(boolean hideSensitiveData, boolean hideWorkData){
     }
 
     void onSmartSpaceUpdated(SmartSpaceData smartSpaceData);

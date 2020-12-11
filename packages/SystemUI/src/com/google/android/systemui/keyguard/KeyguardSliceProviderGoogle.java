@@ -20,15 +20,25 @@ import androidx.slice.builders.ListBuilder.HeaderBuilder;
 import androidx.slice.builders.ListBuilder.RowBuilder;
 import androidx.slice.builders.SliceAction;
 import com.android.systemui.R;
+import com.android.systemui.SystemUIFactory;
 import com.android.systemui.keyguard.KeyguardSliceProvider;
+
 import com.google.android.systemui.smartspace.SmartSpaceCard;
 import com.google.android.systemui.smartspace.SmartSpaceController;
 import com.google.android.systemui.smartspace.SmartSpaceData;
 import com.google.android.systemui.smartspace.SmartSpaceUpdateListener;
+
 import java.lang.ref.WeakReference;
 
+import javax.inject.Inject;
+
 public class KeyguardSliceProviderGoogle extends KeyguardSliceProvider implements SmartSpaceUpdateListener {
+    private static final boolean DEBUG = Log.isLoggable("KeyguardSliceProvider", 3);
     private final Uri mCalendarUri = Uri.parse("content://com.android.systemui.keyguard/smartSpace/calendar");
+    private boolean mHideSensitiveContent;
+    private boolean mHideWorkContent = true;
+    @Inject
+    public SmartSpaceController mSmartSpaceController;
     private SmartSpaceData mSmartSpaceData;
     private final Uri mWeatherUri = Uri.parse("content://com.android.systemui.keyguard/smartSpace/weather");
 
@@ -81,34 +91,40 @@ public class KeyguardSliceProviderGoogle extends KeyguardSliceProvider implement
     @Override
     public boolean onCreateSliceProvider() {
         boolean onCreateSliceProvider = super.onCreateSliceProvider();
-        SmartSpaceController.get(getContext()).addListener(this);
+        SystemUIFactory.getInstance().getRootComponent().inject(this);
         mSmartSpaceData = new SmartSpaceData();
+        mSmartSpaceController.addListener(this);
         return onCreateSliceProvider;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mSmartSpaceController.removeListener(this);
     }
 
     @Override
     public Slice onBindSlice(Uri uri) {
         Trace.beginSection("KeyguardSliceProviderGoogle#onBindSlice");
         Slice slice;
+        IconCompat iconCompat;
+        ListBuilder listBuilder = new ListBuilder(getContext(), mSliceUri, -1);
         synchronized (this) {
-            ListBuilder listBuilder = new ListBuilder(getContext(), mSliceUri, -1);
             SmartSpaceCard currentCard = mSmartSpaceData.getCurrentCard();
-            if (currentCard == null || currentCard.isExpired() || TextUtils.isEmpty(currentCard.getTitle())) {
-                if (needsMediaLocked()) {
-                    addMediaLocked(listBuilder);
-                } else {
-                    RowBuilder rowBuilder = new RowBuilder(mDateUri);
-                    rowBuilder.setTitle(getFormattedDateLocked());
-                    listBuilder.addRow(rowBuilder);
+            boolean hasAction = false;
+            if (currentCard != null && !currentCard.isExpired() && !TextUtils.isEmpty(currentCard.getTitle())) {
+                boolean isSensitive = currentCard.isSensitive();
+                if(!isSensitive){
+                    hasAction = true;
+                }else if (isSensitive && !mHideSensitiveContent && !currentCard.isWorkProfile()){
+                    hasAction = true;
+                }else if (isSensitive && !mHideWorkContent && currentCard.isWorkProfile()){
+                    hasAction = true;
                 }
-                addWeather(listBuilder);
-                addNextAlarmLocked(listBuilder);
-                addZenModeLocked(listBuilder);
-                addPrimaryActionLocked(listBuilder);
-            } else {
+            }
+            if (hasAction) {
                 Bitmap icon = currentCard.getIcon();
                 SliceAction sliceAction = null;
-                IconCompat iconCompat;
                 if (icon == null) {
                     iconCompat = null;
                 } else {
@@ -120,7 +136,7 @@ public class KeyguardSliceProviderGoogle extends KeyguardSliceProvider implement
                         sliceAction = SliceAction.create(pendingIntent, iconCompat, 1, currentCard.getTitle());
                     }
                 }
-                HeaderBuilder headerBuilder = new HeaderBuilder(mHeaderUri);
+                ListBuilder.HeaderBuilder headerBuilder = new ListBuilder.HeaderBuilder(mHeaderUri);
                 headerBuilder.setTitle(currentCard.getFormattedTitle());
                 if (sliceAction != null) {
                     headerBuilder.setPrimaryAction(sliceAction);
@@ -128,17 +144,29 @@ public class KeyguardSliceProviderGoogle extends KeyguardSliceProvider implement
                 listBuilder.setHeader(headerBuilder);
                 String subtitle = currentCard.getSubtitle();
                 if (subtitle != null) {
-                    RowBuilder rowBuilder2 = new RowBuilder(mCalendarUri);
-                    rowBuilder2.setTitle(subtitle);
+                    ListBuilder.RowBuilder rowBuilder = new ListBuilder.RowBuilder(mCalendarUri);
+                    rowBuilder.setTitle(subtitle);
                     if (iconCompat != null) {
-                        rowBuilder2.addEndItem(iconCompat, 1);
+                        rowBuilder.addEndItem(iconCompat, 1);
                     }
                     if (sliceAction != null) {
-                        rowBuilder2.setPrimaryAction(sliceAction);
+                        rowBuilder.setPrimaryAction(sliceAction);
                     }
+                    listBuilder.addRow(rowBuilder);
+                }
+                addWeather(listBuilder);
+                addZenModeLocked(listBuilder);
+                addPrimaryActionLocked(listBuilder);
+            }else{
+                if (needsMediaLocked()) {
+                    addMediaLocked(listBuilder);
+                }else{
+                    ListBuilder.RowBuilder rowBuilder2 = new ListBuilder.RowBuilder(mDateUri);
+                    rowBuilder2.setTitle(getFormattedDateLocked());
                     listBuilder.addRow(rowBuilder2);
                 }
                 addWeather(listBuilder);
+                addNextAlarmLocked(listBuilder);
                 addZenModeLocked(listBuilder);
                 addPrimaryActionLocked(listBuilder);
             }
@@ -175,6 +203,30 @@ public class KeyguardSliceProviderGoogle extends KeyguardSliceProvider implement
         }
         weatherCard.setIconProcessed(true);
         new AddShadowTask(this, weatherCard).execute(new Bitmap[]{weatherCard.getIcon()});
+    }
+
+    @Override
+    public void onSensitiveModeChanged(boolean hideSensitiveContent, boolean hideWorkContent) {
+        synchronized (this) {
+            boolean changed = false;
+            if (mHideSensitiveContent != hideSensitiveContent) {
+                mHideSensitiveContent = hideSensitiveContent;
+                if (DEBUG) {
+                    Log.d("KeyguardSliceProvider", "Public mode changed, hide data: " + hideSensitiveContent);
+                }
+                changed = true;
+            }
+            if (mHideWorkContent != hideWorkContent) {
+                mHideWorkContent = hideWorkContent;
+                if (DEBUG) {
+                    Log.d("KeyguardSliceProvider", "Public work mode changed, hide data: " + hideWorkContent);
+                }
+                changed = true;
+            }
+            if (changed) {
+                notifyChange();
+            }
+        }
     }
 
     @Override

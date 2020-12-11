@@ -32,7 +32,8 @@ import com.android.systemui.pip.phone.dagger.PipModule;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.util.InjectionInflationController;
 
-import com.google.android.systemui.SystemUIGoogleModule;
+import com.google.android.systemui.dagger.SystemUIGoogleModule;
+import com.google.android.systemui.keyguard.KeyguardSliceProviderGoogle;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -52,7 +53,6 @@ import dagger.Component;
         SystemUIFactory.ContextHolder.class,
         SystemUIBinder.class,
         SystemUIModule.class,
-        SystemUIDefaultModule.class,
         SystemUIGoogleModule.class})
 public interface SystemUIRootComponent {
 
@@ -122,4 +122,9 @@ public interface SystemUIRootComponent {
      * Member injection into the supplied argument.
      */
     void inject(KeyguardSliceProvider keyguardSliceProvider);
+
+    /**
+     * Member injection into the supplied argument.
+     */
+    void inject(KeyguardSliceProviderGoogle keyguardSliceProvider);
 }

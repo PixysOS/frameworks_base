@@ -23,25 +23,28 @@ public class SmartSpaceCard {
     private Bitmap mIcon;
     private boolean mIconProcessed;
     private final Intent mIntent;
-    private final boolean mIsIconGrayscale;
-    private final boolean mIsWeather;
     private final long mPublishTime;
     private int mRequestCode;
-
     public SmartSpaceCard(Context context, SmartspaceCard smartspaceCard, Intent intent, boolean z, Bitmap bitmap, boolean z2, long j) {
         mContext = context.getApplicationContext();
         mCard = smartspaceCard;
-        mIsWeather = z;
         mIntent = intent;
         mIcon = bitmap;
         mPublishTime = j;
-        mIsIconGrayscale = z2;
         int i = sRequestCode + 1;
         sRequestCode = i;
         if (i > 2147483646) {
             sRequestCode = 0;
         }
         mRequestCode = sRequestCode;
+    }
+
+    public boolean isSensitive() {
+        return mCard.isSensitive;
+    }
+
+    public boolean isWorkProfile() {
+        return mCard.isWorkProfile;
     }
 
     public Intent getIntent() {
@@ -278,35 +281,6 @@ public class SmartSpaceCard {
         } catch (Exception e) {
             Log.e("SmartspaceCard", "from proto", e);
             return null;
-        }
-    }
-
-    public void performCardAction(View view) {
-        String str = "SmartspaceCard";
-        if (mCard.tapAction == null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("no tap action available: ");
-            sb.append(this);
-            Log.e(str, sb.toString());
-            return;
-        }
-        Intent intent = new Intent(getIntent());
-        int i = mCard.tapAction.actionType;
-        if (i == 1) {
-            intent.addFlags(268435456);
-            intent.setPackage("com.google.android.googlequicksearchbox");
-            try {
-                view.getContext().sendBroadcast(intent);
-            } catch (SecurityException e) {
-                Log.w(str, "Cannot perform click action", e);
-            }
-        } else if (i != 2) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append("unrecognized tap action: ");
-            sb2.append(mCard.tapAction.actionType);
-            Log.w(str, sb2.toString());
-        } else {
-            mContext.startActivity(intent);
         }
     }
 
