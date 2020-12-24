@@ -16,6 +16,8 @@
 
 package com.android.internal.util.pixys;
 
+import android.app.ActivityManager;
+import android.content.pm.ActivityInfo;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -27,6 +29,11 @@ import android.os.SystemProperties;
 import com.android.internal.R;
 
 public class PixysUtils {
+
+    private static boolean mBlurSupportedSysProp = SystemProperties
+            .getBoolean("ro.surface_flinger.supports_background_blur", false);
+    private static boolean mBlurDisabledSysProp = SystemProperties
+            .getBoolean("persist.sys.sf.disable_blurs", false);
 
     // Check to see if device is WiFi only
     public static boolean isWifiOnly(Context context) {
@@ -77,5 +84,14 @@ public class PixysUtils {
     // Check to see if device supports A/B (seamless) system updates
     public static boolean isABdevice(Context context) {
         return SystemProperties.getBoolean("ro.build.ab_update", false);
+    }
+
+    /**
+     * If this device can render blurs.
+     *
+     * @return {@code true} when supported.
+     */
+    public static boolean supportsBlur() {
+        return mBlurSupportedSysProp && !mBlurDisabledSysProp && ActivityManager.isHighEndGfx();
     }
 }
