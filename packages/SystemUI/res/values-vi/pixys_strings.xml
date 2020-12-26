@@ -13,7 +13,7 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <string name="keyguard_indication_dash_charging_time">Đang sạc nhanh (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> cho đến khi đầy)</string>
+    <string name="keyguard_indication_dash_charging_time">Đang sạc nhanh (khoảng <xliff:g id="charging_time_left" example="4 giờ and 2 phút">%s</xliff:g> sau sẽ đầy)</string>
     <string name="keyguard_plugged_in_dash_charging">Đang sạc nhanh</string>
     <!-- Heads Up QS Tile -->
     <string name="quick_settings_heads_up_label">Hiển thị thông báo</string>

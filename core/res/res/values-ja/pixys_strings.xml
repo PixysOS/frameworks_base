@@ -19,4 +19,10 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Global actions -->
+    <string name="reboot_to_bootloader_title">ブートローダーへ再起動</string>
+    <string name="reboot_to_bootloader_message">ブートローダーへ再起動中\u2026</string>
+    <string name="reboot_to_recovery_title">リカバリーへ再起動</string>
+    <string name="reboot_to_recovery_message">リカバリーへ再起動中\u2026</string>
+    <string name="reboot_system_title">システムの再起動</string>
+    <string name="reboot_system_message">システムを再起動中\u2026</string>
 </resources>

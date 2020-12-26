@@ -13,6 +13,19 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_dash_charging_time">Dash Charging (充電完了まで<xliff:g id="Charging_TIME_LEFT">%s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_dash_charging">Dash Charging</string>
     <!-- Heads Up QS Tile -->
+    <string name="quick_settings_heads_up_label">通知の表示</string>
+    <string name="accessibility_quick_settings_heads_up_off">通知の表示は無効です</string>
+    <string name="accessibility_quick_settings_heads_up_on">通知の表示は有効です</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">通知の表示を無効にしました</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">通知の表示を有効にしました</string>
     <!-- Power Menu -->
+    <string name="global_action_reboot">再起動</string>
+    <string name="global_action_reboot_more">再起動\u2026</string>
+    <string name="global_action_reboot_sub">システム</string>
+    <string name="global_action_reboot_recovery">リカバリー</string>
+    <string name="global_action_reboot_bootloader">ブートローダー</string>
+    <string name="global_action_settings">設定</string>
 </resources>

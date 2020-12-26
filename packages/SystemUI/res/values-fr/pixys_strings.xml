@@ -13,6 +13,19 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_dash_charging_time">Recharge Rapide (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> avant la charge complète)</string>
+    <string name="keyguard_plugged_in_dash_charging">Recharge Rapide</string>
     <!-- Heads Up QS Tile -->
+    <string name="quick_settings_heads_up_label">Notifications flottantes</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notifications flottantes désactivées.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notifications flottantes autorisées.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Notifications flottantes désactivées.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Notifications flottantes activées.</string>
     <!-- Power Menu -->
+    <string name="global_action_reboot">Redémarrer</string>
+    <string name="global_action_reboot_more">Redémarrer\u2026</string>
+    <string name="global_action_reboot_sub">Système</string>
+    <string name="global_action_reboot_recovery">Récupération</string>
+    <string name="global_action_reboot_bootloader">Amorçage</string>
+    <string name="global_action_settings">Paramètres</string>
 </resources>

@@ -13,6 +13,19 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_dash_charging_time">Gyorstöltés (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> teljes töltöttségig)</string>
+    <string name="keyguard_plugged_in_dash_charging">Gyorstöltés</string>
     <!-- Heads Up QS Tile -->
+    <string name="quick_settings_heads_up_label">Felugró értesítés</string>
+    <string name="accessibility_quick_settings_heads_up_off">Felugró értesítések letiltva.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Felugró értesítések engedélyezve.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Felugró értesítések kikapcsolva.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Felugró értesítések bekapcsolva.</string>
     <!-- Power Menu -->
+    <string name="global_action_reboot">Újraindítás</string>
+    <string name="global_action_reboot_more">Újraindítás\u2026</string>
+    <string name="global_action_reboot_sub">Rendszer</string>
+    <string name="global_action_reboot_recovery">Recovery</string>
+    <string name="global_action_reboot_bootloader">Bootloader</string>
+    <string name="global_action_settings">Beállítások</string>
 </resources>
