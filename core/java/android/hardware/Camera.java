@@ -54,8 +54,8 @@ import com.android.internal.app.IAppOpsService;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -284,10 +284,10 @@ public class Camera {
         String packageName = ActivityThread.currentOpPackageName();
         List<String> packageList = Arrays.asList(
                 SystemProperties.get("vendor.camera.aux.packagelist", packageName).split(","));
-        List<String> packageBlacklist = Arrays.asList(
-                SystemProperties.get("vendor.camera.aux.packageblacklist", "").split(","));
+        List<String> packageExcludelist = Arrays.asList(
+                SystemProperties.get("vendor.camera.aux.packageexcludelist", "").split(","));
 
-        return packageList.contains(packageName) && !packageBlacklist.contains(packageName);
+        return packageList.contains(packageName) && !packageExcludelist.contains(packageName);
     }
 
     /**
@@ -329,12 +329,12 @@ public class Camera {
      *    low-level failure).
      */
     public static void getCameraInfo(int cameraId, CameraInfo cameraInfo) {
-        if (cameraId >= getNumberOfCameras()) {
-            throw new RuntimeException("Unknown camera ID");
-        }
         boolean overrideToPortrait = CameraManager.shouldOverrideToPortrait(
                 ActivityThread.currentApplication().getApplicationContext());
 
+        if (cameraId >= getNumberOfCameras()) {
+            throw new RuntimeException("Unknown camera ID");
+        }
         _getCameraInfo(cameraId, overrideToPortrait, cameraInfo);
         IBinder b = ServiceManager.getService(Context.AUDIO_SERVICE);
         IAudioService audioService = IAudioService.Stub.asInterface(b);
