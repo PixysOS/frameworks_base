@@ -555,6 +555,10 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     }
 
     private void handleShow() {
+        handleShow(false);
+    }
+
+    private void handleShow(boolean custom) {
         awakenIfNecessary();
         mDialog = createDialog();
         prepareDialog();
@@ -566,7 +570,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         mDialog.getWindow().setAttributes(attrs);
         // Don't acquire soft keyboard focus, to avoid destroying state when capturing bugreports
         mDialog.getWindow().setFlags(FLAG_ALT_FOCUSABLE_IM, FLAG_ALT_FOCUSABLE_IM);
-        mDialog.show();
+        mDialog.show(custom);
         mWindowManagerFuncs.onGlobalActionsShown();
     }
 
@@ -1060,7 +1064,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             if (!mRebootMenu && showRebootSubmenu()) {
                 mRebootMenu = true;
                 mCurrentMenuActions = mRebootMenuActions;
-                handleShow();
+                handleShow(true);
             } else {
                 mHandler.sendEmptyMessage(MESSAGE_DISMISS);
                 doReboot();
@@ -2603,6 +2607,10 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
         @Override
         public void show() {
+            show(false);
+        }
+
+        public void show(boolean custom) {
             super.show();
             mShowing = true;
             mNotificationShadeWindowController.setRequestTopUi(true, TAG);
@@ -2617,7 +2625,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                         windowInsets.getStableInsetBottom());
                 return WindowInsets.CONSUMED;
             });
-            if (mControlsUiController != null) {
+            if (mControlsUiController != null && !custom) {
                 mControlsUiController.show(mControlsView, this::dismissForControlsActivity);
             }
 
