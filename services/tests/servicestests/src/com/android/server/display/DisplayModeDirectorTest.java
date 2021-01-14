@@ -1,4 +1,4 @@
-/*
+k/*
  * Copyright (C) 2019 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +16,9 @@
 
 package com.android.server.display;
 
-import static android.hardware.display.DisplayManager.DeviceConfig.KEY_FIXED_REFRESH_RATE_HIGH_AMBIENT_BRIGHTNESS_THRESHOLDS;
-import static android.hardware.display.DisplayManager.DeviceConfig.KEY_FIXED_REFRESH_RATE_HIGH_DISPLAY_BRIGHTNESS_THRESHOLDS;
-import static android.hardware.display.DisplayManager.DeviceConfig.KEY_FIXED_REFRESH_RATE_LOW_AMBIENT_BRIGHTNESS_THRESHOLDS;
-import static android.hardware.display.DisplayManager.DeviceConfig.KEY_FIXED_REFRESH_RATE_LOW_DISPLAY_BRIGHTNESS_THRESHOLDS;
-import static android.hardware.display.DisplayManager.DeviceConfig.KEY_REFRESH_RATE_IN_HIGH_ZONE;
-import static android.hardware.display.DisplayManager.DeviceConfig.KEY_REFRESH_RATE_IN_LOW_ZONE;
+import static android.hardware.display.DisplayManager.DeviceConfig.KEY_PEAK_REFRESH_RATE_AMBIENT_BRIGHTNESS_THRESHOLDS;
+import static android.hardware.display.DisplayManager.DeviceConfig.KEY_PEAK_REFRESH_RATE_DISPLAY_BRIGHTNESS_THRESHOLDS;
+import static android.hardware.display.DisplayManager.DeviceConfig.KEY_REFRESH_RATE_IN_ZONE;
 
 import static com.android.server.display.DisplayModeDirector.Vote.PRIORITY_FLICKER;
 
@@ -34,7 +31,6 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 import android.annotation.NonNull;
 import android.content.ContentResolver;
@@ -411,7 +407,7 @@ public class DisplayModeDirectorTest {
                 createDirectorFromRefreshRateArray(new float[] {60.f, 90.f}, 0);
         setPeakRefreshRate(90);
         director.getSettingsObserver().setDefaultRefreshRate(90);
-        director.getBrightnessObserver().setDefaultDisplayState(Display.STATE_ON);
+        director.getBrightnessObserver().setDefaultDisplayState(true);
 
         final FakeDeviceConfig config = mInjector.getDeviceConfig();
         config.setRefreshRateInLowZone(90);
@@ -454,12 +450,8 @@ public class DisplayModeDirectorTest {
                 createDirectorFromRefreshRateArray(new float[] {60.f, 90.f}, 0);
         setPeakRefreshRate(90 /*fps*/);
         director.getSettingsObserver().setDefaultRefreshRate(90);
-        director.getBrightnessObserver().setDefaultDisplayState(Display.STATE_ON);
-
-        final FakeDeviceConfig config = mInjector.getDeviceConfig();
-        config.setRefreshRateInHighZone(60);
-        config.setHighDisplayBrightnessThresholds(new int[] { 255 });
-        config.setHighAmbientBrightnessThresholds(new int[] { 8000 });
+        director.getBrightnessObserver().setDefaultDisplayState(true);
+        director.updateSettingForHighZone(60, new int[] {255}, new int[] {8000});
 
         Sensor lightSensor = createLightSensor();
         SensorManager sensorManager = createMockSensorManager(lightSensor);
@@ -491,43 +483,6 @@ public class DisplayModeDirectorTest {
         assertVoteForRefreshRateLocked(vote, 60 /*fps*/);
     }
 
-    @Test
-    public void testSensorRegistration() {
-        DisplayModeDirector director =
-                createDirectorFromRefreshRateArray(new float[] {60.f, 90.f}, 0);
-        setPeakRefreshRate(90 /*fps*/);
-        director.getSettingsObserver().setDefaultRefreshRate(90);
-        director.getBrightnessObserver().setDefaultDisplayState(Display.STATE_ON);
-
-        Sensor lightSensor = createLightSensor();
-        SensorManager sensorManager = createMockSensorManager(lightSensor);
-
-        director.start(sensorManager);
-        ArgumentCaptor<SensorEventListener> listenerCaptor =
-                ArgumentCaptor.forClass(SensorEventListener.class);
-        Mockito.verify(sensorManager, Mockito.timeout(TimeUnit.SECONDS.toMillis(1)))
-                .registerListener(
-                        listenerCaptor.capture(),
-                        eq(lightSensor),
-                        anyInt(),
-                        any(Handler.class));
-
-        // Dispaly state changed from On to Doze
-        director.getBrightnessObserver().setDefaultDisplayState(Display.STATE_DOZE);
-        Mockito.verify(sensorManager)
-                .unregisterListener(listenerCaptor.capture());
-
-        // Dispaly state changed from Doze to On
-        director.getBrightnessObserver().setDefaultDisplayState(Display.STATE_ON);
-        Mockito.verify(sensorManager, times(2))
-                .registerListener(
-                        listenerCaptor.capture(),
-                        eq(lightSensor),
-                        anyInt(),
-                        any(Handler.class));
-
-    }
-
     private void assertVoteForRefreshRateLocked(Vote vote, float refreshRate) {
         assertThat(vote).isNotNull();
         final DisplayModeDirector.RefreshRateRange expectedRange =
@@ -553,7 +508,7 @@ public class DisplayModeDirectorTest {
 
         void setRefreshRateInLowZone(int fps) {
             putPropertyAndNotify(
-                    DeviceConfig.NAMESPACE_DISPLAY_MANAGER, KEY_REFRESH_RATE_IN_LOW_ZONE,
+                    DeviceConfig.NAMESPACE_DISPLAY_MANAGER, KEY_REFRESH_RATE_IN_ZONE,
                     String.valueOf(fps));
         }
 
@@ -566,7 +521,7 @@ public class DisplayModeDirectorTest {
 
             putPropertyAndNotify(
                     DeviceConfig.NAMESPACE_DISPLAY_MANAGER,
-                    KEY_FIXED_REFRESH_RATE_LOW_DISPLAY_BRIGHTNESS_THRESHOLDS,
+                    KEY_PEAK_REFRESH_RATE_DISPLAY_BRIGHTNESS_THRESHOLDS,
                     thresholds);
         }
 
@@ -579,39 +534,7 @@ public class DisplayModeDirectorTest {
 
             putPropertyAndNotify(
                     DeviceConfig.NAMESPACE_DISPLAY_MANAGER,
-                    KEY_FIXED_REFRESH_RATE_LOW_AMBIENT_BRIGHTNESS_THRESHOLDS,
-                    thresholds);
-        }
-
-        void setRefreshRateInHighZone(int fps) {
-            putPropertyAndNotify(
-                    DeviceConfig.NAMESPACE_DISPLAY_MANAGER, KEY_REFRESH_RATE_IN_HIGH_ZONE,
-                    String.valueOf(fps));
-        }
-
-        void setHighDisplayBrightnessThresholds(int[] brightnessThresholds) {
-            String thresholds = toPropertyValue(brightnessThresholds);
-
-            if (DEBUG) {
-                Slog.e(TAG, "Brightness Thresholds = " + thresholds);
-            }
-
-            putPropertyAndNotify(
-                    DeviceConfig.NAMESPACE_DISPLAY_MANAGER,
-                    KEY_FIXED_REFRESH_RATE_HIGH_DISPLAY_BRIGHTNESS_THRESHOLDS,
-                    thresholds);
-        }
-
-        void setHighAmbientBrightnessThresholds(int[] ambientThresholds) {
-            String thresholds = toPropertyValue(ambientThresholds);
-
-            if (DEBUG) {
-                Slog.e(TAG, "Ambient Thresholds = " + thresholds);
-            }
-
-            putPropertyAndNotify(
-                    DeviceConfig.NAMESPACE_DISPLAY_MANAGER,
-                    KEY_FIXED_REFRESH_RATE_HIGH_AMBIENT_BRIGHTNESS_THRESHOLDS,
+                    KEY_PEAK_REFRESH_RATE_AMBIENT_BRIGHTNESS_THRESHOLDS,
                     thresholds);
         }
 
@@ -722,6 +645,11 @@ public class DisplayModeDirectorTest {
                 mPeakRefreshRateObserver.dispatchChange(false /*selfChange*/,
                         PEAK_REFRESH_RATE_URI);
             }
+        }
+
+        @Override
+        public boolean isDeviceInteractive(@NonNull Context context) {
+            return true;
         }
     }
 }
