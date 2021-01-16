@@ -90,4 +90,7 @@
 
     <!-- Name of the VPN status bar icon. -->
     <string name="status_bar_vpn">VPN</string>
+
+    <!-- Now playing lockscreen / ambient music ticker -->
+    <string name="ambientmusic_songinfo" formatted="false" translatable="false">%s • %s</string>
 </resources>
