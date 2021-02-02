@@ -5000,6 +5000,24 @@ public final class Settings {
         public static final String ARTWORK_MEDIA_BACKGROUND = "artwork_media_background";
 
         /**
+        * Show ambient icons on lockscreen
+        * @hide
+        */
+        public static final String AMBIENT_ICONS_LOCKSCREEN = "ambient_icons_lockscreen";
+
+        /**
+        * Change size of ambient icons on lockscreen
+        * @hide
+        */
+        public static final String AMBIENT_ICONS_SIZE = "ambient_icons_size";
+
+        /**
+        * Change color of ambient icons on lockscreen
+        * @hide
+        */
+        public static final String AMBIENT_ICONS_COLOR = "ambient_icons_color";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
