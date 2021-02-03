@@ -32,16 +32,13 @@ public class PixelPropsUtils {
     private static final Map<String, Object> propsToChangePixel5;
 
     private static final String[] packagesToChange = {
-            "com.google.android.apps.safetyhub",
-            "com.google.android.apps.turbo",
-            "com.google.android.apps.wallpaper",
-            "com.google.android.apps.maps",
-            "com.google.android.gms"
+            "com.google.android.googlequicksearchbox"
     };
 
     private static final String[] packagesToChangePixel5 = {
             "com.google.android.apps.safetyhub",
             "com.google.android.apps.turbo",
+            "com.google.android.as",
             "com.google.android.apps.wallpaper",
             "com.google.android.apps.maps"
     };
@@ -53,11 +50,14 @@ public class PixelPropsUtils {
         propsToChange.put("DEVICE", "crosshatch");
         propsToChange.put("PRODUCT", "crosshatch");
         propsToChange.put("MODEL", "Pixel 3 XL");
+        propsToChange.put("FINGERPRINT", "google/crosshatch/crosshatch:11/RQ1A.210205.004/7038034:user/release-keys");
         propsToChangePixel5 = new HashMap<>();
+        propsToChangePixel5.put("BRAND", "google");
+        propsToChangePixel5.put("MANUFACTURER", "Google");
         propsToChangePixel5.put("DEVICE", "redfin");
         propsToChangePixel5.put("PRODUCT", "redfin");
         propsToChangePixel5.put("MODEL", "Pixel 5");
-        propsToChangePixel5.put("FINGERPRINT", "google/redfin/redfin:11/RQ1A.201205.010/6953398:user/release-keys");
+        propsToChangePixel5.put("FINGERPRINT", "google/redfin/redfin:11/RQ1C.210205.006/7047959:user/release-keys");
     }
 
     public static void setProps(String packageName) {
