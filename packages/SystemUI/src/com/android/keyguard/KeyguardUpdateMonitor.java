@@ -1282,7 +1282,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
         @Override
         public void onAuthenticationError(int errMsgId, CharSequence errString) {
-            handleFingerprintError(errMsgId, errString.toString());
+            handleFingerprintError(errMsgId, errString != null ? errString.toString() : "");
         }
 
         @Override
@@ -1700,7 +1700,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         }
 
         // Take a guess at initial SIM state, battery status and PLMN until we get an update
-        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, false);
+        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, 0, 0, 0, false, false);
 
         // Watch for interesting updates
         final IntentFilter filter = new IntentFilter();
@@ -2585,13 +2585,26 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             return true;
         }
 
+        // change in battery temperature
+        if (old.temperature != current.temperature) {
+            return true;
+        }
+
         // change in charging current while plugged in
-        if (nowPluggedIn && current.maxChargingWattage != old.maxChargingWattage) {
+        if (nowPluggedIn &&
+              (current.maxChargingWattage != old.maxChargingWattage ||
+               current.maxChargingCurrent != old.maxChargingCurrent ||
+               current.maxChargingVoltage != old.maxChargingVoltage)) {
             return true;
         }
 
         // change in dash charging while plugged in
         if (nowPluggedIn && current.dashChargeStatus != old.dashChargeStatus) {
+            return true;
+        }
+
+        // change in warp charging while plugged in
+        if (nowPluggedIn && current.warpChargeStatus != old.warpChargeStatus) {
             return true;
         }
 
