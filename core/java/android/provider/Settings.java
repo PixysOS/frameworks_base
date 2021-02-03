@@ -4903,6 +4903,12 @@ public final class Settings {
          */
         public static final String OMNI_QS_LAYOUT_COLUMNS = "qs_layout_columns";
 
+        /** Whether to pulse ambient on new music tracks
+         *
+         * @hide
+         */
+        public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
+
         /**
          * Whether to display qs tile titles in the qs panel
          * @hide
@@ -4964,6 +4970,15 @@ public final class Settings {
          */
         public static final String[] LEGACY_RESTORE_SETTINGS = {
         };
+
+        /**
+         * Whether to show artist and title on ambient/lock screen on new music tracks
+         * 0 - don't show track info
+         * 1 - show track info on bottom of Ambient Display (Pixel style)
+         * 2 - show track info within cLock widget (AOSP style)
+         * @hide
+         */
+        public static final String AMBIENT_MUSIC_TICKER = "ambient_music_ticker";
 
         /**
          * These are all public system settings
