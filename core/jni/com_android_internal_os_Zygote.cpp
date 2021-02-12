@@ -94,6 +94,10 @@
 
 #include "nativebridge/native_bridge.h"
 
+#if defined(__BIONIC__)
+extern "C" void android_reset_stack_guards();
+#endif
+
 namespace {
 
 // TODO (chriswailes): Add a function to initialize native Zygote data.
@@ -411,6 +415,7 @@ static void sendSigChildStatus(const pid_t pid, const uid_t uid, const int statu
 }
 
 // This signal handler is for zygote mode, since the zygote must reap its children
+NO_STACK_PROTECTOR
 static void SigChldHandler(int /*signal_number*/, siginfo_t* info, void* /*ucontext*/) {
     pid_t pid;
     int status;
@@ -2214,6 +2219,7 @@ static std::set<int>* gPreloadFds = nullptr;
 static bool gPreloadFdsExtracted = false;
 
 // Utility routine to fork a process from the zygote.
+NO_STACK_PROTECTOR
 pid_t zygote::ForkCommon(JNIEnv* env, bool is_system_server,
                          const std::vector<int>& fds_to_close,
                          const std::vector<int>& fds_to_ignore,
@@ -2270,6 +2276,11 @@ pid_t zygote::ForkCommon(JNIEnv* env, bool is_system_server,
       setpriority(PRIO_PROCESS, 0, PROCESS_PRIORITY_MIN);
     }
 
+#if defined(__BIONIC__)
+    // Reset the stack guard for the new process.
+    android_reset_stack_guards();
+#endif
+
     // The child process.
     PreApplicationInit();
 
@@ -2302,6 +2313,7 @@ static void com_android_internal_os_Zygote_nativePreApplicationInit(JNIEnv*, jcl
   PreApplicationInit();
 }
 
+NO_STACK_PROTECTOR
 static jint com_android_internal_os_Zygote_nativeForkAndSpecialize(
         JNIEnv* env, jclass, jint uid, jint gid, jintArray gids, jint runtime_flags,
         jobjectArray rlimits, jint mount_external, jstring se_info, jstring nice_name,
@@ -2356,6 +2368,7 @@ static jint com_android_internal_os_Zygote_nativeForkAndSpecialize(
     return pid;
 }
 
+NO_STACK_PROTECTOR
 static jint com_android_internal_os_Zygote_nativeForkSystemServer(
         JNIEnv* env, jclass, uid_t uid, gid_t gid, jintArray gids,
         jint runtime_flags, jobjectArray rlimits, jlong permitted_capabilities,
@@ -2427,6 +2440,7 @@ static jint com_android_internal_os_Zygote_nativeForkSystemServer(
  * @param is_priority_fork  Controls the nice level assigned to the newly created process
  * @return child pid in the parent, 0 in the child
  */
+NO_STACK_PROTECTOR
 static jint com_android_internal_os_Zygote_nativeForkApp(JNIEnv* env,
                                                          jclass,
                                                          jint read_pipe_fd,
@@ -2441,6 +2455,7 @@ static jint com_android_internal_os_Zygote_nativeForkApp(JNIEnv* env,
                             args_known == JNI_TRUE, is_priority_fork == JNI_TRUE, true);
 }
 
+NO_STACK_PROTECTOR
 int zygote::forkApp(JNIEnv* env,
                     int read_pipe_fd,
                     int write_pipe_fd,
