@@ -210,7 +210,23 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.NETWORK_TRAFFIC_STATE, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.VOLUME_PANEL_ON_LEFT, BOOLEAN_VALIDATOR);
-        VALIDATORS.put(System.RINGTONE_VIBRATION_PATTERN, new InclusiveIntegerRangeValidator(0, 4));
-        VALIDATORS.put(System.CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
+        VALIDATORS.put(System.RINGTONE_VIBRATION_PATTERN, new InclusiveIntegerRangeValidator(0, 5));
+        VALIDATORS.put(System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
+                new Validator() {
+                    @Override
+                    public boolean validate(String value) {
+                        String[] args = value.split(",", 0);
+                        if (args.length != 3) return false;
+                        try {
+                            for (String str : args)
+                                if (Integer.parseInt(str) < 0)
+                                    return false;
+                        } catch (NumberFormatException e) {
+                            return false;
+                        }
+                        return true;
+                    }
+                });
+
     }
 }
