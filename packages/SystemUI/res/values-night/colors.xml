@@ -103,4 +103,10 @@
     <color name="qs_user_switcher_avatar_background">#3C4043</color>
 
     <color name="qs_tile_background_color_disabled">#1f1f1f</color>
+
+    <color name="op_qs_tile_background_color_disabled">#1C1C1E</color>
+
+    <color name="qs_tile_oos_background">#DBDBDB</color>
+
+    <color name="qs_tile_oos">#222222</color>
 </resources>
