@@ -103,6 +103,10 @@ public class QuickStatusBarHeader extends FrameLayout implements
     private StatusBarContentInsetsProvider mInsetsProvider;
 
     private int mRoundedCornerPadding = 0;
+    private int mStatusBarPaddingStart;
+    private int mStatusBarPaddingEnd;
+    private int mHeaderPaddingLeft;
+    private int mHeaderPaddingRight;
     private int mWaterfallTopInset;
     private int mCutOutPaddingLeft;
     private int mCutOutPaddingRight;
@@ -288,6 +292,11 @@ public class QuickStatusBarHeader extends FrameLayout implements
         mRoundedCornerPadding = resources.getDimensionPixelSize(
                 R.dimen.rounded_corner_content_padding);
 
+        mStatusBarPaddingStart = resources.getDimensionPixelSize(
+                R.dimen.status_bar_padding_start);
+        mStatusBarPaddingEnd = resources.getDimensionPixelSize(
+                R.dimen.status_bar_padding_end);
+
         int qsOffsetHeight = SystemBarUtils.getQuickQsOffsetHeight(mContext);
 
         mDatePrivacyView.getLayoutParams().height =
@@ -374,6 +383,12 @@ public class QuickStatusBarHeader extends FrameLayout implements
                 .addFloat(mDateView, "alpha", 0, 0, 1)
                 .addFloat(mClockDateView, "alpha", 1, 0, 0)
                 .addFloat(mQSCarriers, "alpha", 0, 1)
+                // Use statusbar paddings when collapsed,
+                // align with QS when expanded, and animate translation
+                .addFloat(mClockContainer, "translationX",
+                        mHeaderPaddingLeft + mStatusBarPaddingStart, 0)
+                .addFloat(mRightLayout, "translationX",
+                        -(mHeaderPaddingRight + mStatusBarPaddingEnd), 0)
                 .setListener(new TouchAnimator.ListenerAdapter() {
                     @Override
                     public void onAnimationAtEnd() {
@@ -479,8 +494,6 @@ public class QuickStatusBarHeader extends FrameLayout implements
                 .getStatusBarContentInsetsForCurrentRotation();
         boolean hasCornerCutout = mInsetsProvider.currentRotationHasCornerCutout();
 
-        mDatePrivacyView.setPadding(sbInsets.first, 0, sbInsets.second, 0);
-        mStatusIconsView.setPadding(sbInsets.first, 0, sbInsets.second, 0);
         LinearLayout.LayoutParams datePrivacySeparatorLayoutParams =
                 (LinearLayout.LayoutParams) mDatePrivacySeparator.getLayoutParams();
         LinearLayout.LayoutParams mClockIconsSeparatorLayoutParams =
@@ -544,34 +557,38 @@ public class QuickStatusBarHeader extends FrameLayout implements
     private void updateHeadersPadding() {
         setContentMargins(mDatePrivacyView, 0, 0);
         setContentMargins(mStatusIconsView, 0, 0);
-        int paddingLeft = 0;
-        int paddingRight = 0;
 
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) getLayoutParams();
+        // Note: these are supposedly notification_side_paddings
         int leftMargin = lp.leftMargin;
         int rightMargin = lp.rightMargin;
 
         // The clock might collide with cutouts, let's shift it out of the way.
-        // We only do that if the inset is bigger than our own padding, since it's nicer to
-        // align with
-        if (mCutOutPaddingLeft > 0) {
-            // if there's a cutout, let's use at least the rounded corner inset
-            int cutoutPadding = Math.max(mCutOutPaddingLeft, mRoundedCornerPadding);
-            paddingLeft = Math.max(cutoutPadding - leftMargin, 0);
+        // Margin will be the reference point of paddings/translations
+        // and will have to be subtracted from cutout paddings
+        boolean headerPaddingUpdated = false;
+        int headerPaddingLeft = Math.max(mCutOutPaddingLeft, mRoundedCornerPadding) - leftMargin;
+        if (headerPaddingLeft != mHeaderPaddingLeft) {
+            mHeaderPaddingLeft = headerPaddingLeft;
+            headerPaddingUpdated = true;
         }
-        if (mCutOutPaddingRight > 0) {
-            // if there's a cutout, let's use at least the rounded corner inset
-            int cutoutPadding = Math.max(mCutOutPaddingRight, mRoundedCornerPadding);
-            paddingRight = Math.max(cutoutPadding - rightMargin, 0);
+        int headerPaddingRight = Math.max(mCutOutPaddingRight, mRoundedCornerPadding) - rightMargin;
+        if (headerPaddingRight != mHeaderPaddingRight) {
+            mHeaderPaddingRight = headerPaddingRight;
+            headerPaddingUpdated = true;
         }
 
-        mDatePrivacyView.setPadding(paddingLeft,
+        // Update header animator with new paddings
+        if (headerPaddingUpdated) {
+            updateAnimators();
+        }
+        mDatePrivacyView.setPadding(mHeaderPaddingLeft + mStatusBarPaddingStart,
                 mWaterfallTopInset,
-                paddingRight,
+                mHeaderPaddingRight + mStatusBarPaddingEnd,
                 0);
-        mStatusIconsView.setPadding(paddingLeft,
+        mStatusIconsView.setPadding(0,
                 mWaterfallTopInset,
-                paddingRight,
+                0,
                 0);
     }
 
