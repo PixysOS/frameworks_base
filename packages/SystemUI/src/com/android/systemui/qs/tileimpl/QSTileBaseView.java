@@ -34,6 +34,8 @@ import android.os.Message;
 import android.service.quicksettings.Tile;
 import android.text.TextUtils;
 import android.util.Log;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.PathParser;
 import android.view.Gravity;
 import android.view.View;
@@ -124,7 +126,14 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
         mColorDisabled = Utils.getDisabled(context,
                 Utils.getColorAttrDefaultColor(context, android.R.attr.textColorTertiary));
         mColorInactive = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorSecondary);
-	owl_404 =  ColorUtils.setAlphaComponent(activeColor, 200);
+        owl_404 =  ColorUtils.setAlphaComponent(activeColor, 200);
+        boolean setQsSdp = Settings.System.getIntForUser(context.getContentResolver(),
+                    Settings.System.QS_TILE_S_PREVIEW, 0, UserHandle.USER_CURRENT) == 1;
+        if (setQsSdp) {
+	mColorActive=owl_404;
+	mColorDisabled=mColorActive;
+	mColorInactive=mColorActive;
+        }
         setPadding(0, 0, 0, 0);
         setClipChildren(false);
         setClipToPadding(false);
@@ -297,11 +306,11 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
     private int getCircleColor(int state) {
         switch (state) {
             case Tile.STATE_ACTIVE:
-                return owl_404;
-            case Tile.STATE_INACTIVE:
-		return mColorActive;
-            case Tile.STATE_UNAVAILABLE:
                 return mColorActive;
+            case Tile.STATE_INACTIVE:
+		return mColorInactive:
+            case Tile.STATE_UNAVAILABLE:
+                return mColorDisabled;
             default:
                 Log.e(TAG, "Invalid state " + state);
                 return 0;
