@@ -57,6 +57,7 @@ import com.android.settingslib.Utils;
 import com.android.systemui.Dependency;
 import com.android.systemui.Dumpable;
 import com.android.systemui.Prefs;
+import com.android.systemui.R;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.DetailAdapter;
 import com.android.systemui.plugins.qs.QSIconView;
@@ -502,6 +503,8 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
     public abstract CharSequence getTileLabel();
 
     public static int getColorForState(Context context, int state) {
+       boolean setQsSdp = Settings.System.getIntForUser(context.getContentResolver(),
+                    Settings.System.QS_TILE_S_PREVIEW, 0, UserHandle.USER_CURRENT) == 1;
         switch (state) {
             case Tile.STATE_UNAVAILABLE:
                 return Utils.getDisabled(context,
@@ -509,7 +512,10 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
             case Tile.STATE_INACTIVE:
                 return Utils.getColorAttrDefaultColor(context, android.R.attr.textColorSecondary);
             case Tile.STATE_ACTIVE:
-                return Utils.getColorAttrDefaultColor(context, android.R.attr.textColorPrimaryInverse);
+                    if (setQsSdp)
+                        return Utils.getColorAttrDefaultColor(context, android.R.attr.textColorPrimaryInverse);
+                    else
+                return Utils.getColorAttrDefaultColor(context, android.R.attr.colorAccent);
             default:
                 Log.e("QSTile", "Invalid state " + state);
                 return 0;
