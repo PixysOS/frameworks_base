@@ -28,4 +28,33 @@
     <string name="global_action_reboot_recovery">Pemulihan</string>
     <string name="global_action_reboot_bootloader">Bootloader</string>
     <string name="global_action_settings">Setelan</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_warp_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian Warp (<xliff:g id="charging_time_left" example="4 jam 2 menit">%s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_warp_charging">Pengisian Warp</string>
+    <!-- Ambient Music Ticker -->
+    <string name="ambientmusic_songinfo" formatted="false">%s oleh %s</string>
+    <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Gulir</string>
+    <!-- Caffeine QS tile -->
+    <string name="quick_settings_caffeine_label">Batas Waktu Layar</string>
+    <string name="accessibility_quick_settings_caffeine_off">Batas Waktu Layar dimatikan.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Batas Waktu Layar diaktifkan.</string>
+    <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Tampilan Ambien</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Tampilan Ambien nonaktif.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Tampilan Ambien aktif.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Tampilan Ambien telah dimatikan.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Tampilan Ambien telah diaktifkan.</string>
+    <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD nonaktif\nPenghemat baterai</string>
+    <!-- Biometric Dialog - Use Face -->
+    <string name="biometric_dialog_button_use_face">Gunakan Wajah</string>
+    <!-- App Lock -->
+    <string name="applock_locked">&#160;terkunci</string>
+    <string name="applock_fingerprint_face">, sidik jari atau wajah Anda untuk membuka kunci</string>
+    <string name="applock_face">&#160;atau wajah Anda untuk membuka kunci</string>
+    <string name="applock_fingerprint">&#160;atau sidik jari Anda untuk membuka kunci</string>
+    <string name="applock_credential">&#160;untuk membuka</string>
+    <string name="applock_unlock">Buka</string>
 </resources>

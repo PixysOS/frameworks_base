@@ -28,4 +28,33 @@
     <string name="global_action_reboot_recovery">Recovery</string>
     <string name="global_action_reboot_bootloader">Bootloader</string>
     <string name="global_action_settings">Beállítások</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_warp_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> Lassútöltes (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> a teljes töltöttségig)</string>
+    <string name="keyguard_plugged_in_warp_charging">Lassútöltés</string>
+    <!-- Ambient Music Ticker -->
+    <string name="ambientmusic_songinfo" formatted="false">%s by %s</string>
+    <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Görgetés</string>
+    <!-- Caffeine QS tile -->
+    <string name="quick_settings_caffeine_label">Koffein</string>
+    <string name="accessibility_quick_settings_caffeine_off">Koffein ki.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine be.</string>
+    <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Környezeti kijelző</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Környezeti kijelző ki.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Környezeti kijelző be.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Környezeti kijelző kikapcsolva.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Környezeti kijelző bekapcsolva.</string>
+    <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD ki\nAkkukímélő</string>
+    <!-- Biometric Dialog - Use Face -->
+    <string name="biometric_dialog_button_use_face">Az Arc használata</string>
+    <!-- App Lock -->
+    <string name="applock_locked">&#160;lezárásra került</string>
+    <string name="applock_fingerprint_face">, feloldáshoz használja az ujjlenyomat érzékelőt, vagy az arcfelismerést</string>
+    <string name="applock_face">&#160;vagy az arcod a feloldáshoz</string>
+    <string name="applock_fingerprint">&#160;vagy ujjlenyomat a feloldáshoz</string>
+    <string name="applock_credential">&#160;a feloldáshoz</string>
+    <string name="applock_unlock">Feloldás</string>
 </resources>

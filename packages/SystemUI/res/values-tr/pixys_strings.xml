@@ -13,19 +13,48 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <string name="keyguard_indication_dash_charging_time">Hızlı Şarj aktif (tam dolmasına <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> kaldı)</string>
-    <string name="keyguard_plugged_in_dash_charging">Hızlı Şarj</string>
+    <string name="keyguard_indication_dash_charging_time">Dash Şarj Oluyor (tam dolmasına <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> kaldı)</string>
+    <string name="keyguard_plugged_in_dash_charging">Dash Şarj Oluyor</string>
     <!-- Heads Up QS Tile -->
-    <string name="quick_settings_heads_up_label">Ekranda görünen bildirimler</string>
-    <string name="accessibility_quick_settings_heads_up_off">Bildirimlerin ekranda görünmesi devre dışı bırakıldı.</string>
-    <string name="accessibility_quick_settings_heads_up_on">Bildirimlerin ekranda görünmesine izin verildi.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_off">Bildirimlerin ekranda görünmesi kapatıldı.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_on">Bildirimlerin ekranda görünmesi etkinleştirildi.</string>
+    <string name="quick_settings_heads_up_label">Anlık bildirimler</string>
+    <string name="accessibility_quick_settings_heads_up_off">Anlık bildirimler devre dışı bırakıldı.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Anlık bildirimlere izin verildi.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Anlık bildirimler kapatıldı.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Anlık bildirimler açıldı.</string>
     <!-- Power Menu -->
     <string name="global_action_reboot">Yeniden başlat</string>
-    <string name="global_action_reboot_more">Yeniden başlat\u2026</string>
+    <string name="global_action_reboot_more">Yeniden başlatılıyor\u2026</string>
     <string name="global_action_reboot_sub">Sistem</string>
-    <string name="global_action_reboot_recovery">Kurtarma Modu</string>
-    <string name="global_action_reboot_bootloader">Önyükleyici</string>
+    <string name="global_action_reboot_recovery">Kurtarma</string>
+    <string name="global_action_reboot_bootloader">Ön yükleyici</string>
     <string name="global_action_settings">Ayarlar</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_warp_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g>Warp Şarj Oluyor (tam dolmasına <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> kaldı)</string>
+    <string name="keyguard_plugged_in_warp_charging">Warp Şarj Oluyor</string>
+    <!-- Ambient Music Ticker -->
+    <string name="ambientmusic_songinfo" formatted="false">%s tarafından %s</string>
+    <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Kaydırma</string>
+    <!-- Caffeine QS tile -->
+    <string name="quick_settings_caffeine_label">Kafein</string>
+    <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Kafein açık.</string>
+    <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Ortam ekranı</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Ortam ekranı kapalı.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ortam ekranı açık.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ortam ekranı kapatıldı.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ortam ekranı açıldı.</string>
+    <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD kapalı\nPil tasarrufu</string>
+    <!-- Biometric Dialog - Use Face -->
+    <string name="biometric_dialog_button_use_face">Yüzü kullan</string>
+    <!-- App Lock -->
+    <string name="applock_locked">&#160;kilitli</string>
+    <string name="applock_fingerprint_face">, kilidi açmak için parmak izi yada yüz kilidini kullanın</string>
+    <string name="applock_face">Kilidi açmak için &#160;veya yüz kilidini kullanın</string>
+    <string name="applock_fingerprint">Kilidi açmak için &#160;veya parmak izini kullanın</string>
+    <string name="applock_credential">&#160;kilidini aç</string>
+    <string name="applock_unlock">Kilidi aç</string>
 </resources>

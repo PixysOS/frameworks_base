@@ -24,4 +24,9 @@
     <!-- Recognizing fingerprint animation -->
     <dimen name="fod_animation_size">280dp</dimen>
     <dimen name="fod_animation_offset">0dp</dimen>
+    <!-- Bluetooth codecs -->
+    <string name="bluetooth_a2dp_codec_system">Sử dụng lựa chọn hệ thống (Mặc định)</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_mono">Đơn</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_stereo">Âm thanh nổi</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_dual">Kênh đôi</string>
 </resources>
