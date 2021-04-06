@@ -24,4 +24,9 @@
     <!-- Recognizing fingerprint animation -->
     <dimen name="fod_animation_size">280dp</dimen>
     <dimen name="fod_animation_offset">0dp</dimen>
+    <!-- Bluetooth codecs -->
+    <string name="bluetooth_a2dp_codec_system">A rendszer által kijelölt használata (alapértelmezett)</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_mono">Mono</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_stereo">Sztereó</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_dual">Kétcsatornás</string>
 </resources>

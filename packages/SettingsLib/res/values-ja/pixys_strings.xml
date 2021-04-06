@@ -24,4 +24,9 @@
     <!-- Recognizing fingerprint animation -->
     <dimen name="fod_animation_size">280dp</dimen>
     <dimen name="fod_animation_offset">0dp</dimen>
+    <!-- Bluetooth codecs -->
+    <string name="bluetooth_a2dp_codec_system">システムの既定を使用</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_mono">モノクロ</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_stereo">ステレオ</string>
+    <string name="bluetooth_a2dp_codec_channel_mode_dual">デュアルチャンネル</string>
 </resources>

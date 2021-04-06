@@ -13,6 +13,27 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_dash_charging_time">快速充電中 (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> 後充滿)</string>
+    <string name="keyguard_plugged_in_dash_charging">快速充電中</string>
     <!-- Heads Up QS Tile -->
+    <string name="quick_settings_heads_up_label">浮動通知</string>
+    <string name="accessibility_quick_settings_heads_up_off">浮動通知已停用。</string>
+    <string name="accessibility_quick_settings_heads_up_on">浮動通知已允許。</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">浮動通知已關閉。</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">浮動通知已開啟。</string>
     <!-- Power Menu -->
+    <string name="global_action_reboot">重啟</string>
+    <string name="global_action_reboot_more">重啟\u2026</string>
+    <string name="global_action_reboot_sub">系統</string>
+    <string name="global_action_reboot_recovery">Recovery</string>
+    <string name="global_action_reboot_bootloader">Bootloader</string>
+    <string name="global_action_settings">設定</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <!-- Ambient Music Ticker -->
+    <!-- Scrolling Screenshot string -->
+    <!-- Caffeine QS tile -->
+    <!-- Ambient display QS tile -->
+    <!-- AOD QS tile -->
+    <!-- Biometric Dialog - Use Face -->
+    <!-- App Lock -->
 </resources>

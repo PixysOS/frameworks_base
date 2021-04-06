@@ -16,16 +16,24 @@
     <string name="keyguard_indication_dash_charging_time">Cargando rápidamente, faltan (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%s</xliff:g> para completarse)</string>
     <string name="keyguard_plugged_in_dash_charging">Carga rápida</string>
     <!-- Heads Up QS Tile -->
-    <string name="quick_settings_heads_up_label">Mostrar notificación</string>
-    <string name="accessibility_quick_settings_heads_up_off">Todas las notificaciones desactivadas.</string>
-    <string name="accessibility_quick_settings_heads_up_on">Notificaciones automáticas permitidas.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_off">Notificaciones emergentes desactivadas.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_on">Notificaciones emergentes activadas.</string>
+    <string name="quick_settings_heads_up_label">Notificaciones emergentes</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notificaciones emergentes desactivadas.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notificaciones emergentes activadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Ojear notificaciones se ha apagado.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Ojear notificaciones se ha activado.</string>
     <!-- Power Menu -->
     <string name="global_action_reboot">Reiniciar</string>
-    <string name="global_action_reboot_more">Reiniciando</string>
+    <string name="global_action_reboot_more">Reiniciar\u2026</string>
     <string name="global_action_reboot_sub">Sistema</string>
-    <string name="global_action_reboot_recovery">Recuperación</string>
+    <string name="global_action_reboot_recovery">Modo Recovery</string>
     <string name="global_action_reboot_bootloader">Bootloader</string>
-    <string name="global_action_settings">Configuración</string>
+    <string name="global_action_settings">Configuración del sistema</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <!-- Ambient Music Ticker -->
+    <!-- Scrolling Screenshot string -->
+    <!-- Caffeine QS tile -->
+    <!-- Ambient display QS tile -->
+    <!-- AOD QS tile -->
+    <!-- Biometric Dialog - Use Face -->
+    <!-- App Lock -->
 </resources>
