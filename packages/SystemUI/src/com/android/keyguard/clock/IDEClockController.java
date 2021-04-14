@@ -24,6 +24,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint.Style;
 import android.provider.Settings;
+import android.util.MathUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextClock;
@@ -36,7 +37,7 @@ import com.android.systemui.plugins.ClockPlugin;
 
 import java.util.TimeZone;
 
-import static com.android.systemui.statusbar.phone.KeyguardClockPositionAlgorithm.CLOCK_USE_DEFAULT_Y;
+import static android.view.View.TEXT_ALIGNMENT_CENTER;
 
 /**
  * Plugin for the default clock face used only to provide a preview.
@@ -59,6 +60,15 @@ public class IDEClockController implements ClockPlugin {
     private final SysuiColorExtractor mColorExtractor;
 
     /**
+     * Computes preferred position of clock.
+     */
+    private float mDarkAmount;
+    private final int mStatusBarHeight;
+    private final int mKeyguardLockPadding;
+    private final int mKeyguardLockHeight;
+    private final int mBurnInOffsetY;
+
+    /**
      * Renders preview from clock view.
      */
     private final ViewPreviewer mRenderer = new ViewPreviewer();
@@ -73,7 +83,7 @@ public class IDEClockController implements ClockPlugin {
     /**
      * Root view of clock.
      */
-    private ClockLayout mView;
+    private ClockLayout mBigClockView;
 
     /**
      * Text clock for time, date, day and month
@@ -114,12 +124,16 @@ public class IDEClockController implements ClockPlugin {
         mLayoutInflater = inflater;
         mColorExtractor = colorExtractor;
         mContext = context;
+        mStatusBarHeight = res.getDimensionPixelSize(R.dimen.status_bar_height);
+        mKeyguardLockPadding = res.getDimensionPixelSize(R.dimen.keyguard_lock_padding);
+        mKeyguardLockHeight = res.getDimensionPixelSize(R.dimen.keyguard_lock_height);
+        mBurnInOffsetY = res.getDimensionPixelSize(R.dimen.burn_in_prevention_offset_y);
     }
 
     private void createViews() {
-        mView = (ClockLayout) mLayoutInflater
+        mBigClockView = (ClockLayout) mLayoutInflater
                 .inflate(R.layout.p404_ide_clock, null);
-        setViews(mView);
+        setViews(mBigClockView);
     }
 
     private void setViews(View view) {
@@ -136,7 +150,7 @@ public class IDEClockController implements ClockPlugin {
 
     @Override
     public void onDestroyView() {
-        mView = null;
+        mBigClockView = null;
         mTime = null;
         mDate = null;
         mDay = null;
@@ -174,20 +188,28 @@ public class IDEClockController implements ClockPlugin {
 
     @Override
     public View getView() {
-        if (mView == null) {
+        if (mBigClockView == null) {
             createViews();
         }
-        return mView;
+        return mBigClockView;
     }
 
     @Override
     public View getBigClockView() {
-        return null;
+        if (mBigClockView  == null) {
+            createViews();
+        }
+        return mBigClockView ;
     }
 
     @Override
     public int getPreferredY(int totalHeight) {
-        return CLOCK_USE_DEFAULT_Y;
+        // On AOD, clock needs to appear below the status bar with enough room for pixel shifting
+        int aodY = mStatusBarHeight + mKeyguardLockHeight + 2 * mKeyguardLockPadding
+                + mBurnInOffsetY + mTime.getHeight() + (mTime.getHeight() / 2);
+        // On lock screen, clock needs to appear below the lock icon
+        int lockY =  mStatusBarHeight + mKeyguardLockHeight + 2 * mKeyguardLockPadding + (mTime.getHeight() / 2);
+        return (int) MathUtils.lerp(lockY, aodY, mDarkAmount);
     }
 
     @Override
@@ -219,14 +241,17 @@ public class IDEClockController implements ClockPlugin {
 
     @Override
     public void setDarkAmount(float darkAmount) {
-        mPalette.setDarkAmount(darkAmount);
-        mView.setDarkAmount(darkAmount);
+        mDarkAmount = darkAmount;
+        if (mPalette != null) {
+            mPalette.setDarkAmount(darkAmount);
+        }
+        mBigClockView.setDarkAmount(darkAmount);
     }
 
     @Override
     public void onTimeTick() {
-        if (mView != null)
-            mView.onTimeChanged();
+        if (mBigClockView != null)
+            mBigClockView.onTimeChanged();
         if (mTime != null)
             mTime.refreshTime();
         if (mDate != null)
