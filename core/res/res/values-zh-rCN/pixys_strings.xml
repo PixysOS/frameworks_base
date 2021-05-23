@@ -19,4 +19,10 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Global actions -->
+    <string name="reboot_to_bootloader_title">重启至引导模式</string>
+    <string name="reboot_to_bootloader_message">正在重启至引导模式\u2026</string>
+    <string name="reboot_to_recovery_title">重启至恢复模式</string>
+    <string name="reboot_to_recovery_message">正在重启至恢复模式\u2026</string>
+    <string name="reboot_system_title">重启系统</string>
+    <string name="reboot_system_message">重启系统\u2026</string>
 </resources>

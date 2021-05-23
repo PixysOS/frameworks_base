@@ -31,9 +31,14 @@
     <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
     <!-- Ambient Music Ticker -->
     <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Przewijanie</string>
     <!-- Caffeine QS tile -->
     <!-- Ambient display QS tile -->
     <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_aod_off_powersave_label">Tryb AOD wyłączony\nOszczędzanie baterii</string>
     <!-- Biometric Dialog - Use Face -->
+    <string name="biometric_dialog_button_use_face">Użyj twarzy</string>
     <!-- App Lock -->
+    <string name="applock_unlock">Odblokuj</string>
 </resources>
