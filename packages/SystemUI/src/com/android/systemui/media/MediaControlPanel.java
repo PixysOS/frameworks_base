@@ -16,6 +16,7 @@
 
 package com.android.systemui.media;
 
+import static android.app.Notification.safeCharSequence;
 import static android.provider.Settings.ACTION_MEDIA_CONTROLS_SETTINGS;
 
 import android.app.PendingIntent;
@@ -295,7 +296,7 @@ public class MediaControlPanel {
 
         // Song name
         TextView titleText = mViewHolder.getTitleText();
-        titleText.setText(data.getSong());
+        titleText.setText(safeCharSequence(data.getSong()));
 
         // App title
         TextView appName = mViewHolder.getAppName();
@@ -303,7 +304,7 @@ public class MediaControlPanel {
 
         // Artist name
         TextView artistText = mViewHolder.getArtistText();
-        artistText.setText(data.getArtist());
+        artistText.setText(safeCharSequence(data.getArtist()));
 
         // Transfer chip
         mViewHolder.getSeamless().setVisibility(View.VISIBLE);
