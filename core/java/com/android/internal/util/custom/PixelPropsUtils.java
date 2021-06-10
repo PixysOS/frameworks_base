@@ -40,12 +40,19 @@ public class PixelPropsUtils {
             "com.google.android.apps.recorder",
             "com.google.android.apps.safetyhub",
             "com.google.android.apps.turbo",
+            "com.google.android.apps.turboadapter",
             "com.google.android.as",
             "com.google.android.apps.tachyon",
             "com.google.android.apps.wallpaper",
+            "com.google.pixel.dynamicwallpapers",
+            "com.google.pixel.livewallpaper",
+            "com.breel.wallpapers20",
             "com.google.android.apps.maps",
-            "com.google.android.googlequicksearchbox",
-            "com.google.android.apps.fitness"
+            "com.google.android.gms.location.history",
+            "com.google.android.dialer",
+            "com.google.android.soundpicker",
+            "com.google.android.apps.wellbeing",
+            "com.google.android.gms"
     };
 
     static {
