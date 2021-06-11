@@ -33,7 +33,8 @@ public class PixelPropsUtils {
     private static final Map<String, Object> propsToChangePixel5;
 
     private static final String[] packagesToChange = {
-            "com.google.android.googlequicksearchbox"
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.gms"
     };
 
     private static final String[] packagesToChangePixel5 = {
@@ -52,8 +53,7 @@ public class PixelPropsUtils {
             "com.google.android.gms.location.history",
             "com.google.android.dialer",
             "com.google.android.soundpicker",
-            "com.google.android.apps.wellbeing",
-            "com.google.android.gms"
+            "com.google.android.apps.wellbeing"
     };
 
     private static final String[] packagesToChangePixelXL = {
