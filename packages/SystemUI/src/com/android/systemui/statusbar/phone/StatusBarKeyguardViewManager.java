@@ -137,6 +137,7 @@ public class StatusBarKeyguardViewManager implements RemoteInputController.Callb
     private final BouncerInteractor mBouncerInteractor;
     private final BouncerViewDelegate mBouncerViewDelegate;
     private final Lazy<com.android.systemui.shade.ShadeController> mShadeController;
+    private boolean mBouncerVisible = false;
 
     private final BouncerExpansionCallback mExpansionCallback = new BouncerExpansionCallback() {
         private boolean mBouncerAnimating;
@@ -184,6 +185,7 @@ public class StatusBarKeyguardViewManager implements RemoteInputController.Callb
                     .setBouncerShowingOverDream(
                             isVisible && mDreamOverlayStateController.isOverlayActive());
 
+            mBouncerVisible = isVisible;
             if (!isVisible) {
                 mCentralSurfaces.setBouncerHiddenFraction(KeyguardBouncer.EXPANSION_HIDDEN);
             }
@@ -664,6 +666,11 @@ public class StatusBarKeyguardViewManager implements RemoteInputController.Callb
             }
         }
         updateStates();
+        mHandler.postDelayed(() -> {
+            if (mBouncerVisible) {
+                onKeyguardBouncerFullyShownChanged(mBouncerVisible);
+            }
+        }, 100);
     }
 
     private boolean isWakeAndUnlocking() {
@@ -1133,7 +1140,7 @@ public class StatusBarKeyguardViewManager implements RemoteInputController.Callb
     private void onKeyguardBouncerFullyShownChanged(boolean fullyShown){
         mKeyguardUpdateManager.onKeyguardBouncerFullyShown(fullyShown);
     }
-    
+
     protected void updateStates() {
         boolean showing = mShowing;
         boolean occluded = mOccluded;
