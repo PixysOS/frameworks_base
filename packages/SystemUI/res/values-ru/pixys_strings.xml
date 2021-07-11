@@ -29,11 +29,32 @@
     <string name="global_action_reboot_bootloader">Бутлоадер</string>
     <string name="global_action_settings">Настройки</string>
     <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_warp_charging_time" formatted="false"><xliff:g id="percentage">%2$s</xliff:g> • Медленная зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%s</xliff:g> до полной зарядки)</string>
+    <string name="keyguard_plugged_in_warp_charging">Медленная зарядка</string>
     <!-- Ambient Music Ticker -->
+    <string name="ambientmusic_songinfo" formatted="false">%s от %s</string>
     <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Прокрутка</string>
     <!-- Caffeine QS tile -->
+    <string name="quick_settings_caffeine_label">Запрет сна</string>
+    <string name="accessibility_quick_settings_caffeine_off">Запрет сна отключен.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Запрет сна включен.</string>
     <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Активный экран</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Активный экран отключен.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Активный экран включен.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Активный экран отключен.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Активный экран включен.</string>
     <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">Экран всегда включен</string>
+    <string name="quick_settings_aod_off_powersave_label">Экран всегда включен: Отключено.\nЭкономия заряда батареи</string>
     <!-- Biometric Dialog - Use Face -->
+    <string name="biometric_dialog_button_use_face">Использовать лицо</string>
     <!-- App Lock -->
+    <string name="applock_locked">&#160;заблокировано</string>
+    <string name="applock_fingerprint_face">, отпечаток пальца или лицо для разблокировки</string>
+    <string name="applock_face">&#160;или лицо для разблокировки</string>
+    <string name="applock_fingerprint">&#160;или отпечаток пальца для разблокировки</string>
+    <string name="applock_credential">&#160;для разблокировки</string>
+    <string name="applock_unlock">Разблокировать</string>
 </resources>
