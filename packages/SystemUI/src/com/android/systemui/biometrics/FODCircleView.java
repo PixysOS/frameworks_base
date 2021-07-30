@@ -16,35 +16,21 @@
 
 package com.android.systemui.biometrics;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.ContentResolver;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
-import android.hardware.biometrics.BiometricSourceType;
-import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Handler;
-import android.os.UserHandle;
 import android.os.Looper;
-import android.os.PowerManager;
 import android.os.RemoteException;
-import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
@@ -57,7 +43,6 @@ import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardUpdateMonitorCallback;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
-import com.android.systemui.tuner.TunerService;
 
 import vendor.lineage.biometrics.fingerprint.inscreen.V1_0.IFingerprintInscreen;
 import vendor.lineage.biometrics.fingerprint.inscreen.V1_0.IFingerprintInscreenCallback;
@@ -66,39 +51,13 @@ import java.util.NoSuchElementException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FODCircleView extends ImageView implements TunerService.Tunable {
-    private static final String DOZE_INTENT = "com.android.systemui.doze.pulse";
-    private static final String FOD_GESTURE = "system:" + Settings.System.FOD_GESTURE;
-    private static final int FADE_ANIM_DURATION = 125;
-    private final String SCREEN_BRIGHTNESS = "system:" + Settings.System.SCREEN_BRIGHTNESS;
-    private final int[][] BRIGHTNESS_ALPHA_ARRAY = {
-        new int[]{0, 255},
-        new int[]{1, 224},
-        new int[]{2, 213},
-        new int[]{3, 211},
-        new int[]{4, 208},
-        new int[]{5, 206},
-        new int[]{6, 203},
-        new int[]{8, 200},
-        new int[]{10, 196},
-        new int[]{15, 186},
-        new int[]{20, 176},
-        new int[]{30, 160},
-        new int[]{45, 139},
-        new int[]{70, 114},
-        new int[]{100, 90},
-        new int[]{150, 56},
-        new int[]{227, 14},
-        new int[]{255, 0}
-    };
-
+public class FODCircleView extends ImageView {
     private final int mPositionX;
     private final int mPositionY;
     private final int mSize;
     private final int mDreamingMaxOffset;
     private final int mNavigationBarSize;
     private final boolean mShouldBoostBrightness;
-    private final boolean mTargetUsesInKernelDimming;
     private final Paint mPaintFingerprintBackground = new Paint();
     private final Paint mPaintFingerprint = new Paint();
     private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
@@ -108,7 +67,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
     private IFingerprintInscreen mFingerprintInscreenDaemon;
 
     private int mDreamingOffsetX;
-    private int mCurrentBrightness;
     private int mDreamingOffsetY;
 
     private int mColor;
@@ -116,17 +74,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
     private boolean mIsBouncer;
     private boolean mIsDreaming;
-    private boolean mIsKeyguard;
     private boolean mIsCircleShowing;
-    private boolean mIsAnimating = false;
-
-    private boolean mDozeEnabled;
-    private boolean mFodGestureEnable;
-    private boolean mPressPending;
-    private boolean mScreenTurnedOn;
-
-    private PowerManager mPowerManager;
-    private PowerManager.WakeLock mWakeLock;
 
     private Handler mHandler;
 
@@ -136,33 +84,16 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
     private Timer mBurnInProtectionTimer;
 
-    private FODAnimation mFODAnimation;
-    private boolean mIsRecognizingAnimEnabled;
-
     private IFingerprintInscreenCallback mFingerprintInscreenCallback =
             new IFingerprintInscreenCallback.Stub() {
         @Override
         public void onFingerDown() {
-            if (mFodGestureEnable && !mScreenTurnedOn) {
-                if (mDozeEnabled) {
-                    mHandler.post(() -> mContext.sendBroadcast(new Intent(DOZE_INTENT)));
-                } else {
-                    mWakeLock.acquire(3000);
-                    mHandler.post(() -> mPowerManager.wakeUp(SystemClock.uptimeMillis(),
-                        PowerManager.WAKE_REASON_GESTURE, FODCircleView.class.getSimpleName()));
-                }
-                mPressPending = true;
-            } else {
-                mHandler.post(() -> showCircle());
-            }
+            mHandler.post(() -> showCircle());
         }
 
         @Override
         public void onFingerUp() {
             mHandler.post(() -> hideCircle());
-            if (mPressPending) {
-                mPressPending = false;
-            }
         }
     };
 
@@ -175,39 +106,16 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             updateAlpha();
 
             if (dreaming) {
-                if (shouldShowOnDoze()) {
-                    mBurnInProtectionTimer = new Timer();
-                    mBurnInProtectionTimer.schedule(new BurnInProtectionTask(), 0, 60 * 1000);
-                } else {
-                    setImageDrawable(null);
-                    invalidate();
-                }
-            } else {
-                if (mBurnInProtectionTimer != null) {
-                    mBurnInProtectionTimer.cancel();
-                    mBurnInProtectionTimer = null;
-                    updatePosition();
-                }
-                if (!shouldShowOnDoze()) {
-                    setImageResource(R.drawable.fod_icon_default);
-                    invalidate();
-                }
-                }
-            }
-
-        @Override
-        public void onKeyguardVisibilityChanged(boolean showing) {
-            mIsKeyguard = showing;
-            updateStyle();
-            if (mFODAnimation != null) {
-                mFODAnimation.setAnimationKeyguard(mIsKeyguard);
+                mBurnInProtectionTimer = new Timer();
+                mBurnInProtectionTimer.schedule(new BurnInProtectionTask(), 0, 60 * 1000);
+            } else if (mBurnInProtectionTimer != null) {
+                mBurnInProtectionTimer.cancel();
             }
         }
 
         @Override
         public void onKeyguardBouncerChanged(boolean isBouncer) {
             mIsBouncer = isBouncer;
-            updateStyle();
             if (mUpdateMonitor.isFingerprintDetectionRunning()) {
                 if (isPinOrPattern(mUpdateMonitor.getCurrentUser()) || !isBouncer) {
                     show();
@@ -217,45 +125,17 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             } else {
                 hide();
             }
-            if (mFODAnimation != null) {
-                mFODAnimation.setAnimationKeyguard(mIsBouncer);
-            }
         }
 
         @Override
         public void onScreenTurnedOff() {
-            mScreenTurnedOn = false;
-            if (!mFodGestureEnable) {
-                hide();
-            } else {
-                hideCircle();
-            }
-        }
-
-        @Override
-        public void onFinishedGoingToSleep(int why) {
-            if (mUpdateMonitor.isFingerprintDetectionRunning()) {
-                mHandler.post(() -> show());
-            }
+            hide();
         }
 
         @Override
         public void onScreenTurnedOn() {
-            if (mUpdateMonitor.isFingerprintDetectionRunning() && !mFodGestureEnable) {
+            if (mUpdateMonitor.isFingerprintDetectionRunning()) {
                 show();
-            }
-            if (mPressPending) {
-                mHandler.post(() -> showCircle());
-                mPressPending = false;
-            }
-            mScreenTurnedOn = true;
-        }
-
-        @Override
-        public void onBiometricHelp(int msgId, String helpString,
-                BiometricSourceType biometricSourceType) {
-            if (msgId == -1){ // Auth error
-                mHandler.post(() -> mFODAnimation.hideFODanimation());
             }
         }
     };
@@ -287,12 +167,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
         mColorBackground = res.getColor(R.color.config_fodColorBackground);
         mPaintFingerprintBackground.setColor(mColorBackground);
-        mTargetUsesInKernelDimming = res.getBoolean(com.android.internal.R.bool.config_targetUsesInKernelDimming);
         mPaintFingerprintBackground.setAntiAlias(true);
-
-        mPowerManager = context.getSystemService(PowerManager.class);
-        mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                 FODCircleView.class.getSimpleName());
 
         mWindowManager = context.getSystemService(WindowManager.class);
 
@@ -307,10 +182,9 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         mParams.format = PixelFormat.TRANSLUCENT;
 
         mParams.packageName = "android";
-        mParams.type = WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG;
+        mParams.type = WindowManager.LayoutParams.TYPE_DISPLAY_OVERLAY;
         mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
-                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
         mParams.gravity = Gravity.TOP | Gravity.LEFT;
 
         mPressedParams.copyFrom(mParams);
@@ -332,8 +206,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
         mWindowManager.addView(this, mParams);
 
-        mCustomSettingsObserver.observe();
-        mCustomSettingsObserver.update();
         updatePosition();
         hide();
 
@@ -341,105 +213,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
         mUpdateMonitor = Dependency.get(KeyguardUpdateMonitor.class);
         mUpdateMonitor.registerCallback(mMonitorCallback);
-
-        mFODAnimation = new FODAnimation(context, mPositionX, mPositionY);
-
-        Dependency.get(TunerService.class).addTunable(this, FOD_GESTURE,
-                Settings.Secure.DOZE_ENABLED);
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        mCurrentBrightness = newValue != null ? Integer.parseInt(newValue) : 0;
-        updateIconDim(false);
-        if (key.equals(FOD_GESTURE)) {
-            mFodGestureEnable = TunerService.parseIntegerSwitch(newValue, false);
-        } else if (key.equals(Settings.Secure.DOZE_ENABLED)) {
-            mDozeEnabled = TunerService.parseIntegerSwitch(newValue, true);
-        }
-    }
-
-    private CustomSettingsObserver mCustomSettingsObserver = new CustomSettingsObserver(mHandler);
-    private class CustomSettingsObserver extends ContentObserver {
-
-        CustomSettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.FOD_ANIM),
-                    false, this, UserHandle.USER_ALL);
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.FOD_ANIM))) {
-                updateStyle();
-            }
-        }
-
-        public void update() {
-            updateStyle();
-        }
-    }
-
-    private int interpolate(int i, int i2, int i3, int i4, int i5) {
-        int i6 = i5 - i4;
-        int i7 = i - i2;
-        int i8 = ((i6 * 2) * i7) / (i3 - i2);
-        int i9 = i8 / 2;
-        int i10 = i2 - i3;
-        return i4 + i9 + (i8 % 2) + ((i10 == 0 || i6 == 0) ? 0 : (((i7 * 2) * (i - i3)) / i6) / i10);
-    }
-
-    private int getDimAlpha() {
-        int length = BRIGHTNESS_ALPHA_ARRAY.length;
-        int i = 0;
-        while (i < length && BRIGHTNESS_ALPHA_ARRAY[i][0] < mCurrentBrightness) {
-            i++;
-        }
-        if (i == 0) {
-            return BRIGHTNESS_ALPHA_ARRAY[0][1];
-        }
-        if (i == length) {
-            return BRIGHTNESS_ALPHA_ARRAY[length - 1][1];
-        }
-        int[][] iArr = BRIGHTNESS_ALPHA_ARRAY;
-        int i2 = i - 1;
-        return interpolate(mCurrentBrightness, iArr[i2][0], iArr[i][0], iArr[i2][1], iArr[i][1]);
-    }
-
-    public void updateIconDim(boolean animate) {
-        if (!mIsCircleShowing && mTargetUsesInKernelDimming) {
-            if (animate && !mIsAnimating) {
-                ValueAnimator anim = new ValueAnimator();
-                anim.setIntValues(0, getDimAlpha());
-                anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        int progress = (Integer) valueAnimator.getAnimatedValue();
-                        setColorFilter(Color.argb(progress, 0, 0, 0),
-                                PorterDuff.Mode.SRC_ATOP);
-                    }
-                });
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        mIsAnimating = false;
-                    }
-                });
-                anim.setDuration(1000);
-                mIsAnimating = true;
-                anim.start();
-            } else if (!mIsAnimating) {
-                setColorFilter(Color.argb(getDimAlpha(), 0, 0, 0), PorterDuff.Mode.SRC_ATOP);
-            }
-        } else {
-            setColorFilter(Color.argb(0, 0, 0, 0), PorterDuff.Mode.SRC_ATOP);
-        }
     }
 
     @Override
@@ -467,13 +240,11 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             return true;
         }
 
-        mHandler.post(() -> mFODAnimation.hideFODanimation());
         return false;
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        updateStyle();
         updatePosition();
     }
 
@@ -532,41 +303,30 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
     public void showCircle() {
         mIsCircleShowing = true;
-        updatePosition();
 
         setKeepScreenOn(true);
 
         setDim(true);
         dispatchPress();
 
-        mHandler.post(() -> mFODAnimation.showFODanimation());
-
         setImageDrawable(null);
-        updateIconDim(false);
-        updatePosition();
         invalidate();
     }
 
     public void hideCircle() {
         mIsCircleShowing = false;
 
-        if (mIsDreaming && !shouldShowOnDoze()) {
-            setImageDrawable(null);
-        } else {
-            setImageResource(R.drawable.fod_icon_default);
-        }
+        setImageResource(R.drawable.fod_icon_default);
         invalidate();
 
         dispatchRelease();
         setDim(false);
 
-        mHandler.post(() -> mFODAnimation.hideFODanimation());
-
         setKeepScreenOn(false);
     }
 
     public void show() {
-        if (!mUpdateMonitor.isScreenOn() && !mFodGestureEnable) {
+        if (!mUpdateMonitor.isScreenOn()) {
             // Keyguard is shown just after screen turning off
             return;
         }
@@ -578,29 +338,18 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
 
         updatePosition();
 
-        Dependency.get(TunerService.class).addTunable(this, SCREEN_BRIGHTNESS);
         dispatchShow();
         setVisibility(View.VISIBLE);
     }
 
     public void hide() {
         setVisibility(View.GONE);
-        Dependency.get(TunerService.class).removeTunable(this);
         hideCircle();
         dispatchHide();
     }
 
     private void updateAlpha() {
         setAlpha(mIsDreaming ? 0.5f : 1.0f);
-    }
-
-    private void updateStyle() {
-        mIsRecognizingAnimEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.FOD_RECOGNIZING_ANIMATION, 0) != 0;
-
-        if (mFODAnimation != null) {
-            mFODAnimation.update(mIsRecognizingAnimEnabled);
-        }
     }
 
     private void updatePosition() {
@@ -638,7 +387,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         if (mIsDreaming) {
             mParams.x += mDreamingOffsetX;
             mParams.y += mDreamingOffsetY;
-            mFODAnimation.updateParams(mParams.y);
         }
 
         mWindowManager.updateViewLayout(this, mParams);
@@ -679,7 +427,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
             if (mPressedView.getParent() != null) {
                 mWindowManager.removeView(mPressedView);
             }
-            updateIconDim(true);
         }
     }
 
@@ -695,11 +442,6 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
         }
 
         return false;
-    }
-
-    private boolean shouldShowOnDoze() {
-        return Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.FOD_ON_DOZE, 1) == 1;
     }
 
     private class BurnInProtectionTask extends TimerTask {

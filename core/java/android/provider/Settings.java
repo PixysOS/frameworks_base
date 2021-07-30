@@ -4588,19 +4588,6 @@ public final class Settings {
         @UnsupportedAppUsage
         public static final String NOTIFICATION_LIGHT_PULSE = "notification_light_pulse";
 
-
-        /**
-         * FOD recognizing animation
-         * @hide
-         */
-        public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
-
-        /**
-         * FOD recognizing animation picker
-         * @hide
-         */
-        public static final String FOD_ANIM = "fod_recognizing_animation_list";
-
         /**
          * Show pointer location on screen?
          * 0 = no
@@ -4854,13 +4841,6 @@ public final class Settings {
          * @hide
          */
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
-
-
-       /**
-         * Screen off fod
-         * @hide
-         */
-        public static final String FOD_GESTURE = "fod_gesture";
 
         /**
          * Whether to show heads up only for dialer and sms apps
@@ -9372,12 +9352,6 @@ public final class Settings {
          * Whether tethering is allowed to use VPN upstreams
          */
         public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
-
-        /**
-         * Whether to show FOD on doze or AOD
-         * @hide
-         */
-        public static final String FOD_ON_DOZE = "fod_on_doze";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to

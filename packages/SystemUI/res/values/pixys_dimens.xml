@@ -60,9 +60,6 @@
     <dimen name="net_traffic_txt_img_padding">2dp</dimen>
     <dimen name="net_traffic_single_text_size_x">14dp</dimen>
 
-    <!-- Recognizing fingerprint animation -->
-    <dimen name="fod_animation_size">280dp</dimen>
-
     <!-- Width of the battery icon in the status bar when set to circle style. -->
     <dimen name="status_bar_battery_icon_circle_width">13.5dp</dimen>
 
