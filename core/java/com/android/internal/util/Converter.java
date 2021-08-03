@@ -26,4 +26,5 @@ public class Converter {
     public static int pxToDp(Context context, int px) {
         return (int) ((px / context.getResources().getDisplayMetrics().density) + 0.5);
     }
+
 }
