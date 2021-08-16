@@ -29,11 +29,32 @@
     <string name="global_action_reboot_bootloader">Bootloader</string>
     <string name="global_action_settings">Cài đặt</string>
     <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_warp_charging_time" formatted="false">&lt;xliff:g id="percentage"&gt;%2$s&lt;/xliff:g&gt; • Sạch siêu nhanh (Đầy sau &lt;xliff:g id="charging_time_left" example="4 hours and 2 minutes"&gt;&lt;/xliff:g&gt;%s&lt;/xliff:g&gt;)</string>
+    <string name="keyguard_plugged_in_warp_charging">Sạc siêu nhanh</string>
     <!-- Ambient Music Ticker -->
+    <string name="ambientmusic_songinfo" formatted="false">%s bởi %s</string>
     <!-- Scrolling Screenshot string -->
+    <string name="scrollss">Kéo xuống</string>
     <!-- Caffeine QS tile -->
+    <string name="quick_settings_caffeine_label">Caffeine</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine đang mở.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine đang tắt.</string>
     <!-- Ambient display QS tile -->
+    <string name="quick_settings_ambient_display_label">Màn hình luôn mở</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Màn hình luôn mở đang tắt.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Màn hình luôn mở đang bật.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Màn hình luôn mở đã tắt.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Màn hình luôn mở đã bật.</string>
     <!-- AOD QS tile -->
+    <string name="quick_settings_aod_label">AoD</string>
+    <string name="quick_settings_aod_off_powersave_label">AoD đang tắt\n iết kiệm pin</string>
     <!-- Biometric Dialog - Use Face -->
+    <string name="biometric_dialog_button_use_face">Sử dụng khuôn mặt</string>
     <!-- App Lock -->
+    <string name="applock_locked">&#160;đang bị khoá</string>
+    <string name="applock_fingerprint_face">, sử dụng vân tay hoặc khuôn mặt để mở</string>
+    <string name="applock_face">&#160;hoặc khuôn mặt để mở</string>
+    <string name="applock_fingerprint">&#160;hoặc vân tay để mở</string>
+    <string name="applock_credential">&#160;để mở</string>
+    <string name="applock_unlock">Mở khoá</string>
 </resources>

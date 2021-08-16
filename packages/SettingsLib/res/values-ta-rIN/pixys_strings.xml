@@ -21,8 +21,5 @@
     <string name="screen_zoom_summary_smaller">சிறிய</string>
     <!-- Description for the screen zoom level that makes interface elements smallest. [CHAR LIMIT=24] -->
     <string name="screen_zoom_summary_smallest">மிகச்சிறியது</string>
-    <!-- Recognizing fingerprint animation -->
-    <dimen name="fod_animation_size">280dp</dimen>
-    <dimen name="fod_animation_offset">0dp</dimen>
     <!-- Bluetooth codecs -->
 </resources>

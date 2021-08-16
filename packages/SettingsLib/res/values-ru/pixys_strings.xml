@@ -21,9 +21,6 @@
     <string name="screen_zoom_summary_smaller">Меньше</string>
     <!-- Description for the screen zoom level that makes interface elements smallest. [CHAR LIMIT=24] -->
     <string name="screen_zoom_summary_smallest">Самый маленький</string>
-    <!-- Recognizing fingerprint animation -->
-    <dimen name="fod_animation_size">280dp</dimen>
-    <dimen name="fod_animation_offset">0dp</dimen>
     <!-- Bluetooth codecs -->
     <string name="bluetooth_a2dp_codec_system">Использовать выбор системы (по умолчанию)</string>
     <string name="bluetooth_a2dp_codec_channel_mode_mono">Моно</string>

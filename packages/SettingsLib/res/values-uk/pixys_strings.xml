@@ -18,8 +18,5 @@
     <!-- Deep sleep info -->
     <!-- Description for the screen zoom level that makes interface elements smaller. [CHAR LIMIT=24] -->
     <!-- Description for the screen zoom level that makes interface elements smallest. [CHAR LIMIT=24] -->
-    <!-- Recognizing fingerprint animation -->
-    <dimen name="fod_animation_size">280dp</dimen>
-    <dimen name="fod_animation_offset">0dp</dimen>
     <!-- Bluetooth codecs -->
 </resources>
