@@ -654,6 +654,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private final List<DeviceKeyHandler> mDeviceKeyHandlers = new ArrayList<>();
 
+    private int mTorchActionMode;
+
     private static final int MSG_DISPATCH_MEDIA_KEY_WITH_WAKE_LOCK = 3;
     private static final int MSG_DISPATCH_MEDIA_KEY_REPEAT_WITH_WAKE_LOCK = 4;
     private static final int MSG_KEYGUARD_DRAWN_COMPLETE = 5;
@@ -825,6 +827,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ALERT_SLIDER_ORDER), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.TORCH_POWER_BUTTON_GESTURE), false, this,
+                    UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -975,7 +980,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 || handledByPowerManager || mKeyCombinationManager.isPowerKeyIntercepted();
         if (!mPowerKeyHandled) {
             if (!interactive) {
-                wakeUpFromPowerKey(event.getDownTime());
+                if (mTorchActionMode == 0) {
+                    wakeUpFromPowerKey(event.getDownTime());
+                }
             }
         } else {
             // handled by another power key policy.
@@ -1011,17 +1018,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private void powerPress(long eventTime, int count, boolean beganFromNonInteractive) {
-        // SideFPS still needs to know about suppressed power buttons, in case it needs to block
-        // an auth attempt.
-        if (count == 1) {
-            mSideFpsEventHandler.notifyPowerPressed();
-        }
-        if (mDefaultDisplayPolicy.isScreenOnEarly() && !mDefaultDisplayPolicy.isScreenOnFully()) {
-            Slog.i(TAG, "Suppressed redundant power key press while "
-                    + "already in the process of turning the screen on.");
-            return;
-        }
-
         final boolean interactive = Display.isOnState(mDefaultDisplay.getState());
 
         Slog.d(TAG, "powerPress: eventTime=" + eventTime + " interactive=" + interactive
@@ -1090,6 +1086,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     break;
                 }
             }
+        } else if (mTorchActionMode != 0 && beganFromNonInteractive) {
+            wakeUpFromPowerKey(eventTime);
         }
     }
 
@@ -2436,10 +2434,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         @Override
         void onLongPress(long eventTime) {
-            if (mSingleKeyGestureDetector.beganFromNonInteractive()
-                    && !mSupportLongPressPowerWhenNonInteractive) {
-                Slog.v(TAG, "Not support long press power when device is not interactive.");
-                return;
+            if (mSingleKeyGestureDetector.beganFromNonInteractive() || isFlashLightIsOn()) {
+                if (mTorchActionMode != 0) {
+                    performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false,
+                    "Power - Long Press - Torch");
+                    toggleCameraFlash();
+                    return;
+                }
+                if (!mSupportLongPressPowerWhenNonInteractive) {
+                    Slog.v(TAG, "Not support long press power when device is not interactive.");
+                    return;
+                }
             }
 
             powerLongPress(eventTime);
@@ -2454,6 +2459,22 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         @Override
         void onMultiPress(long downTime, int count) {
             powerPress(downTime, count, mSingleKeyGestureDetector.beganFromNonInteractive());
+        }
+    }
+
+    private boolean isFlashLightIsOn() {
+        return Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.FLASHLIGHT_ENABLED, 0) != 0;
+    }
+
+    public void toggleCameraFlash() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.toggleCameraFlash();
+            } catch (RemoteException e) {
+                Log.e(TAG, "Unable to toggle camera flash:", e);
+            }
         }
     }
 
@@ -2657,6 +2678,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mVolBtnMusicControls = Settings.System.getIntForUser(resolver,
                     Settings.System.VOLBTN_MUSIC_CONTROLS, 0,
                     UserHandle.USER_CURRENT) == 1;
+            mTorchActionMode = Settings.System.getIntForUser(resolver,
+                    Settings.System.TORCH_POWER_BUTTON_GESTURE,
+                            0, UserHandle.USER_CURRENT);
         }
         if (updateRotation) {
             updateRotation(true);
