@@ -386,4 +386,9 @@ oneway interface IStatusBar
     * @param displayId the id of the current display.
     */
     void enterDesktop(int displayId);
+
+    /**
+     * Toggles flashlight of the device
+     */
+    void toggleCameraFlash();
 }
