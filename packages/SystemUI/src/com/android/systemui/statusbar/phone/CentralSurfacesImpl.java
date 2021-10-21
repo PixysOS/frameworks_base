@@ -398,6 +398,11 @@ public class CentralSurfacesImpl implements CoreStartable, TunerService.Tunable,
         return mQSPanelController;
     }
 
+    /** */
+    public void toggleCameraFlash() {
+        mCommandQueueCallbacks.toggleCameraFlash();
+    }
+
     /**
      * The {@link StatusBarState} of the status bar.
      */

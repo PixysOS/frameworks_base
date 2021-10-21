@@ -69,6 +69,7 @@ import com.android.systemui.statusbar.disableflags.DisableFlagsLogger;
 import com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayoutController;
 import com.android.systemui.statusbar.phone.dagger.CentralSurfacesComponent;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
+import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
@@ -112,7 +113,11 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final Lazy<CameraLauncher> mCameraLauncherLazy;
     private final QuickSettingsController mQsController;
     private final QSHost mQSHost;
+<<<<<<< HEAD
     private final FeatureFlags mFeatureFlags;
+=======
+    private final FlashlightController mFlashlightController;
+>>>>>>> ec4d81d35c9f (base: Long press power button to toggle flashlight [1/2])
 
     private static final VibrationAttributes HARDWARE_FEEDBACK_VIBRATION_ATTRIBUTES =
             VibrationAttributes.createForUsage(VibrationAttributes.USAGE_HARDWARE_FEEDBACK);
@@ -151,7 +156,8 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             UserTracker userTracker,
             QSHost qsHost,
             ActivityStarter activityStarter,
-            FeatureFlags featureFlags) {
+            FeatureFlags featureFlags,
+            FlashlightController flashlightController) {
         mCentralSurfaces = centralSurfaces;
         mQsController = quickSettingsController;
         mContext = context;
@@ -179,6 +185,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
         mUserTracker = userTracker;
         mQSHost = qsHost;
         mFeatureFlags = featureFlags;
+        mFlashlightController = flashlightController;
 
         mVibrateOnOpening = resources.getBoolean(R.bool.config_vibrateOnIconAnimation);
         mCameraLaunchGestureVibrationEffect = getCameraGestureVibrationEffect(
@@ -604,6 +611,13 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             );
         } else {
             mVibratorHelper.vibrate(VibrationEffect.EFFECT_TICK);
+       }
+    }
+
+    @Override
+    public void toggleCameraFlash() {
+        if (mFlashlightController.isAvailable()) {
+            mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
         }
     }
 }
