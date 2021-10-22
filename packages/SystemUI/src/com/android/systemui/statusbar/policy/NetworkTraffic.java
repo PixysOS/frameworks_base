@@ -26,6 +26,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.PorterDuff.Mode;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.TrafficStats;
@@ -41,11 +42,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.plugins.DarkIconDispatcher;
+import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 
 import java.text.DecimalFormat;
 
-public class NetworkTraffic extends TextView {
+public class NetworkTraffic extends TextView implements DarkReceiver {
 
     private static final int MSG_PERIODIC = 0;
     private static final int MSG_UPDATE = 1;
@@ -282,6 +286,7 @@ public class NetworkTraffic extends TextView {
             getContext().registerReceiver(mIntentReceiver, filter, null, getHandler());
             mConnectivityManager.registerDefaultNetworkCallback(mNetworkCallback);
         }
+        Dependency.get(DarkIconDispatcher.class).addDarkReceiver(this);
         updateSettings();
     }
 
@@ -293,6 +298,7 @@ public class NetworkTraffic extends TextView {
             mConnectivityManager.unregisterNetworkCallback(mNetworkCallback);
             mAttached = false;
         }
+        Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(this);
     }
 
     void updateSettings() {
@@ -386,5 +392,11 @@ public class NetworkTraffic extends TextView {
 
     boolean isDisabled() {
         return !mIsEnabled || !mTrafficInHeaderView;
+    }
+
+    @Override
+    public void onDarkChanged(Rect area, float darkIntensity, int tint) {
+        setTextColor(DarkIconDispatcher.getTint(area, this, tint));
+        updateTrafficDrawable();
     }
 }
