@@ -43,6 +43,7 @@ import com.android.systemui.statusbar.policy.BrightnessMirrorController;
 import com.android.systemui.statusbar.policy.SplitShadeStateController;
 import com.android.systemui.tuner.TunerService;
 
+import android.widget.ImageView;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -103,7 +104,8 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
         mBrightnessSliderController = brightnessSliderFactory.create(getContext(), mView);
         mView.setBrightnessView(mBrightnessSliderController.getRootView());
 
-        mBrightnessController = brightnessControllerFactory.create(mBrightnessSliderController);
+        mBrightnessController = brightnessControllerFactory.create(
+                mBrightnessSliderController.getIconView(), mBrightnessSliderController);
         mBrightnessMirrorHandler = new BrightnessMirrorHandler(mBrightnessController);
         mStatusBarKeyguardViewManager = statusBarKeyguardViewManager;
         mLastDensity = view.getResources().getConfiguration().densityDpi;
@@ -166,11 +168,12 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
     }
 
     private void reinflateBrightnessSlider() {
+        ImageView icon = mBrightnessSliderController.getIconView();
         mBrightnessController.unregisterCallbacks();
         mBrightnessSliderController =
                 mBrightnessSliderControllerFactory.create(getContext(), mView);
         mView.setBrightnessView(mBrightnessSliderController.getRootView());
-        mBrightnessController = mBrightnessControllerFactory.create(mBrightnessSliderController);
+        mBrightnessController = mBrightnessControllerFactory.create(icon, mBrightnessSliderController);
         mBrightnessMirrorHandler.setBrightnessController(mBrightnessController);
         mBrightnessSliderController.init();
         if (mListening) {
