@@ -32,4 +32,8 @@
     <!-- Alert slider proc nodes paths -->
     <string name="alert_slider_state_path"></string>
     <string name="alert_slider_uevent_match_path"></string>
+
+    <!-- Whether devices suports in-display fingerprint when screen is off -->
+    <bool name="config_supportsScreenOffUdfps">false</bool>
+
 </resources>
