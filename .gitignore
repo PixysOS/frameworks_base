@@ -4,3 +4,6 @@
 gen/
 .vscode/
 *.code-workspace
+*.project
+*.settings/
+*.gradle/
