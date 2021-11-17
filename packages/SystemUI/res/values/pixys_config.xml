@@ -24,4 +24,8 @@
     <!-- Udfps vendor code -->
     <integer name="config_udfps_vendor_code">0</integer>
 
+    <!-- SystemUI Google -->
+    <bool name="flag_monet">true</bool>
+    <bool name="flag_smartspace">true</bool>
+
 </resources>
