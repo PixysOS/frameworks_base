@@ -98,5 +98,6 @@ public class SystemSettings {
         Settings.System.CUSTOM_NOTIFICATION_VIBRATION_PATTERN,
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.ENABLE_RIPPLE_EFFECT,
+        Settings.System.FULLSCREEN_GESTURES,
     };
 }
