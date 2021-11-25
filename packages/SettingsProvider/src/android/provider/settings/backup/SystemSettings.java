@@ -95,5 +95,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_VIBRATION_PATTERN,
         Settings.System.CUSTOM_NOTIFICATION_VIBRATION_PATTERN,
         Settings.System.NOTIFICATION_HEADERS,
+        Settings.System.FULLSCREEN_GESTURES,
     };
 }
