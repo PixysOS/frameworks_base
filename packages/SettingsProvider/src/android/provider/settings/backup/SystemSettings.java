@@ -98,5 +98,6 @@ public class SystemSettings {
         Settings.System.VIBRATE_ON_DISCONNECT,
         Settings.System.FLASHLIGHT_ON_CALL,
         Settings.System.LOCKSCREEN_SMALL_CLOCK,
+        Settings.System.SCREEN_OFF_FOD,
     };
 }
