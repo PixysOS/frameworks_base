@@ -98,9 +98,11 @@ android_library {
         "lottie",
         "colorkt",
         "themelib",
+        "tensorflowlite_java",
         "SystemUIGoogle-lib",
     ],
     manifest: "AndroidManifest.xml",
+    additional_manifests: ["SystemUIGoogle-Manifest.xml"],
 
     kotlincflags: ["-Xjvm-default=enable"],
 
@@ -205,6 +207,8 @@ android_app {
     static_libs: [
         "SystemUI-core",
     ],
+    jni_libs: ["libtensorflowlite_jni"],
+    use_embedded_native_libs: true,
     resource_dirs: [],
     asset_dirs: ["assets"],
     aaptflags: [
