@@ -14,14 +14,38 @@
 
 package com.android.systemui.tuner;
 
+import android.content.Context;
+import android.provider.Settings;
 import android.os.Bundle;
+import android.os.UserHandle;
+
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.SwitchPreference;
+
 import com.android.systemui.R;
 
 public class StatusbarItems extends PreferenceFragment {
 
+    private static final String IMS_ICON = "ims_icon";
+
+    private SwitchPreference mIMSIcon;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.statusbar_items);
+
+        mIMSIcon = (SwitchPreference) findPreference(IMS_ICON);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference == mIMSIcon) {
+            boolean checked = ((SwitchPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SHOW_VOLTE_VOWIFI_ICON, checked ? 1 : 0);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 }

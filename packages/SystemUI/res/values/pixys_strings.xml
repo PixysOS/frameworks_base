@@ -83,4 +83,7 @@
     <string name="quick_settings_qr_description">Tap to scan</string>
     <string name="qr_code_activity_title">QR code scanner</string>
     <string name="delete_text_history">Clear history</string>
+
+    <!-- VoLTE/VoWIFI switch -->
+    <string name="ims_switch_title">VoLTE/VoWiFi</string>
 </resources>

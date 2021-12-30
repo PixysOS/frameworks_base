@@ -79,7 +79,12 @@
         android:summary="%s"
         android:entries="@array/clock_options" />
 
-    <com.android.systemui.tuner.BatteryPreference
+    <SwitchPreference
+        android:key="ims_icon"
+        android:title="@string/ims_switch_title"
+        android:defaultValue="true" />
+
+    <!--<com.android.systemui.tuner.BatteryPreference
         android:title="@string/battery"
         android:summary="%s"
         android:entries="@array/battery_options" />
