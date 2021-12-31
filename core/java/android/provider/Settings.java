@@ -5901,6 +5901,14 @@ public final class Settings {
         @Readable
         public static final String QS_SHOW_BATTERY_ESTIMATE = "qs_show_battery_estimate";
 
+	/**
+         * Arcane Idle Manager
+         * @hide
+         */
+        @Readable
+        public static final String ARCANE_IDLE_MANAGER = "arcane_idle_manager";
+
+
         /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
