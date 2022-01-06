@@ -97,5 +97,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.FULLSCREEN_GESTURES,
         Settings.System.TORCH_POWER_BUTTON_GESTURE,
+        Settings.System.QS_SHOW_BATTERY_ESTIMATE,
     };
 }
