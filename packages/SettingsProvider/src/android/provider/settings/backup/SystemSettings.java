@@ -93,7 +93,11 @@ public class SystemSettings {
         Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
         Settings.System.RINGTONE_VIBRATION_PATTERN,
         Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
+<<<<<<< PATCH SET (2196cf base: Allow disabling ripple effect on unlock [1/2])
+        Settings.System.ENABLE_RIPPLE_EFFECT,
+=======
         Settings.System.NOTIFICATION_VIBRATION_PATTERN,
         Settings.System.CUSTOM_NOTIFICATION_VIBRATION_PATTERN,
+>>>>>>> BASE      (c3a692 AOD: Sleep when proximity is covered for 3 secs)
     };
 }
