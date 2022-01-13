@@ -28,4 +28,7 @@
 
     <!-- Bottom margin size when fingerprint in display is active -->
     <dimen name="keyguard_indication_margin_bottom_fingerprint_in_display">@dimen/keyguard_indication_margin_bottom</dimen>
+
+    <!-- Volume panel -->
+    <dimen name="volume_dialog_panel_transparent_padding_left">8dp</dimen>
 </resources>
