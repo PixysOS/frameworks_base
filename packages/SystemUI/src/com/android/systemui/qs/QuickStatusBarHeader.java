@@ -159,7 +159,7 @@ public class QuickStatusBarHeader extends FrameLayout {
         mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
-        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
 
         mIconsAlphaAnimatorFixed = new TouchAnimator.Builder()
                 .addFloat(mIconContainer, "alpha", 0, 1)
@@ -232,11 +232,7 @@ public class QuickStatusBarHeader extends FrameLayout {
     }
 
     private void updateBatteryMode() {
-        if (mConfigShowBatteryEstimate && !mHasCenterCutout) {
-            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
-        } else {
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
-        }
     }
 
     void updateResources() {
