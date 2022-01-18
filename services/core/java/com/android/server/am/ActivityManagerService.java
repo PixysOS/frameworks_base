@@ -20283,4 +20283,8 @@ public class ActivityManagerService extends IActivityManager.Stub
                 AppOpsManager.OP_RUN_ANY_IN_BACKGROUND,
                 info.uid, info.packageName) != AppOpsManager.MODE_ALLOWED;
     }
+
+    public boolean shouldForceCutoutFullscreen(String packageName) {
+        return mActivityTaskManager.shouldForceCutoutFullscreen(packageName);
+    }
 }
