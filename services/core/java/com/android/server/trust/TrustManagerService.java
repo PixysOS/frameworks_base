@@ -84,6 +84,7 @@ import com.android.internal.util.DumpUtils;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.server.SystemService;
 import com.android.server.LocalServices;
+import com.android.server.app.AppLockManagerServiceInternal;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -247,6 +248,8 @@ public class TrustManagerService extends SystemService {
 
     private boolean mTrustAgentsCanRun = false;
     private int mCurrentUser = UserHandle.USER_SYSTEM;
+
+    private AppLockManagerServiceInternal mAppLockManagerService = null;
 
     /**
      * A class for providing dependencies to {@link TrustManagerService} in both production and test
@@ -871,7 +874,15 @@ public class TrustManagerService extends SystemService {
             }
 
             setDeviceLockedForUser(id, deviceLocked);
+            getAppLockManagerService().notifyDeviceLocked(deviceLocked, id);
         }
+    }
+
+    private AppLockManagerServiceInternal getAppLockManagerService() {
+        if (mAppLockManagerService == null) {
+            mAppLockManagerService = LocalServices.getService(AppLockManagerServiceInternal.class);
+        }
+        return mAppLockManagerService;
     }
 
     private void setDeviceLockedForUser(@UserIdInt int userId, boolean locked) {
