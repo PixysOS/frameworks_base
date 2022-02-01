@@ -105,4 +105,7 @@
     <!-- Horizon Light -->
     <java-symbol type="integer" name="config_AmbientPulseLightColor" />
 
+    <!-- App lock -->
+    <java-symbol type="string" name="unlock_application" />
+    <java-symbol type="array" name="config_appLockAllowedSystemApps" />
 </resources>

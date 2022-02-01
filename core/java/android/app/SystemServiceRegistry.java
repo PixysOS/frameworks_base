@@ -1629,6 +1629,16 @@ public final class SystemServiceRegistry {
                         IPocketService service =
                                 IPocketService.Stub.asInterface(binder);
                         return new PocketManager(ctx.getOuterContext(), service);
+                   }});
+        registerService(Context.APP_LOCK_SERVICE, AppLockManager.class,
+                new CachedServiceFetcher<AppLockManager>() {
+                    @Override
+                    public AppLockManager createService(ContextImpl ctx)
+                            throws ServiceNotFoundException {
+                        IBinder binder = ServiceManager.getServiceOrThrow(
+                                Context.APP_LOCK_SERVICE);
+                        return new AppLockManager(ctx,
+                            IAppLockManagerService.Stub.asInterface(binder));
                     }});
 
         sInitializing = true;
