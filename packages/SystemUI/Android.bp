@@ -100,6 +100,7 @@ android_library {
         "themelib",
         "tensorflowlite_java",
         "SystemUIGoogle-lib",
+        "vendor-pixelatoms-java",
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["SystemUIGoogle-Manifest.xml"],
