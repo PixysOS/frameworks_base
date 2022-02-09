@@ -138,7 +138,7 @@ public interface StatusBarGooglePhoneModule {
     @Provides
     @SysUISingleton
     static StatusBar provideStatusBar(
-            Context context,
+           Context context,
             NotificationsController notificationsController,
             LightBarController lightBarController,
             AutoHideController autoHideController,
@@ -232,7 +232,6 @@ public interface StatusBarGooglePhoneModule {
             WallpaperNotifier wallpaperNotifier,
             Optional<ReverseChargingViewController> reverseChargingController,
             Lazy<Optional<NotificationVoiceReplyClient>> notificationVoiceReplyClient,
-            TunerService tunerService,
             BurnInProtectionController burnInProtectionController) {
         return new StatusBarGoogle(
                 context, notificationsController, lightBarController, autoHideController, keyguardUpdateMonitor,
@@ -258,6 +257,6 @@ public interface StatusBarGooglePhoneModule {
                 locationPublisher, statusBarIconController, lockscreenShadeTransitionController, featureFlags,
                 keyguardUnlockAnimationController, unlockedScreenOffAnimationController, startingSurfaceOptional,
                 smartSpaceController, wallpaperNotifier, reverseChargingController, notificationVoiceReplyClient,
-                tunerService, burnInProtectionController);
+                burnInProtectionController);
     }
 }
