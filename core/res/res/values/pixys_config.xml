@@ -208,4 +208,7 @@
 
     <!-- Whether to use Richtap vibration -->
     <bool name="config_usesRichtapVibration">false</bool>
+
+    <!-- Enable face auth only when swiping security view -->
+    <bool name="config_faceAuthOnlyOnSecurityView">false</bool>
 </resources>
