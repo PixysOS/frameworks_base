@@ -23,11 +23,11 @@ import com.android.internal.logging.UiEventLogger;
 import com.android.systemui.Dumpable;
 import com.android.systemui.R;
 import com.android.systemui.VendorServices;
+import com.android.systemui.ambientmusic.AmbientIndicationContainer;
 import com.android.systemui.dagger.SysUISingleton;
 import com.android.systemui.statusbar.phone.StatusBar;
+
 import com.google.android.systemui.DisplayCutoutEmulationAdapter;
-import com.google.android.systemui.ambientmusic.AmbientIndicationContainer;
-import com.google.android.systemui.ambientmusic.AmbientIndicationService;
 import com.google.android.systemui.autorotate.AutorotateDataService;
 import com.google.android.systemui.columbus.ColumbusContext;
 import com.google.android.systemui.columbus.ColumbusServiceWrapper;
@@ -73,7 +73,6 @@ public class GoogleServices extends VendorServices {
     public void start() {
         AmbientIndicationContainer ambientIndicationContainer = mStatusBar.getNotificationShadeWindowView().findViewById(R.id.ambient_indication_container);
         ambientIndicationContainer.initializeView(mStatusBar);
-        addService(new AmbientIndicationService(mContext, ambientIndicationContainer, mAlarmManager));
         addService(new DisplayCutoutEmulationAdapter(mContext));
         addService(new CoversheetService(mContext));
         mAutorotateDataService.init();
