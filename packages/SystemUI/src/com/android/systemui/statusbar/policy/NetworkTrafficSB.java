@@ -16,10 +16,6 @@
 
 package com.android.systemui.statusbar.policy;
 
-import static com.android.systemui.statusbar.StatusBarIconView.STATE_DOT;
-import static com.android.systemui.statusbar.StatusBarIconView.STATE_HIDDEN;
-import static com.android.systemui.statusbar.StatusBarIconView.STATE_ICON;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -27,14 +23,9 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import com.android.systemui.Dependency;
 import com.android.systemui.plugins.DarkIconDispatcher;
-import com.android.systemui.statusbar.StatusIconDisplayable;
+import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 
-public class NetworkTrafficSB extends NetworkTraffic implements StatusIconDisplayable {
-
-    public static final String SLOT = "networktraffic";
-
-    private int mVisibleState = -1;
-    private boolean mSystemIconVisible = true;
+public class NetworkTrafficSB extends NetworkTraffic implements DarkReceiver {
 
     public NetworkTrafficSB(Context context) {
         this(context, null);
@@ -66,57 +57,11 @@ public class NetworkTrafficSB extends NetworkTraffic implements StatusIconDispla
 
     @Override
     public void onDarkChanged(Rect area, float darkIntensity, int tint) {
-        setTextColor(DarkIconDispatcher.getTint(area, this, tint));
-        updateTrafficDrawable();
+        setTintColor(DarkIconDispatcher.getTint(area, this, tint));
     }
-
-    @Override
-    public String getSlot() {
-        return SLOT;
-    }
-
-    @Override
-    public boolean isIconVisible() {
-        return mIsEnabled && !mTrafficInHeaderView;
-    }
-
-    @Override
-    public int getVisibleState() {
-        return mVisibleState;
-    }
-
-    @Override
-    public void setVisibleState(int state, boolean animate) {
-        if (state == mVisibleState) {
-            return;
-        }
-        mVisibleState = state;
-
-        switch (state) {
-            case STATE_ICON:
-                mSystemIconVisible = true;
-                break;
-            case STATE_DOT:
-            case STATE_HIDDEN:
-            default:
-                mSystemIconVisible = false;
-                break;
-        }
-        updateSettings();
-    }
-
-    @Override
-    public void setStaticDrawableColor(int color) {
-        mTintColor = color;
-        setTextColor(mTintColor);
-        updateTrafficDrawable();
-    }
-
-    @Override
-    public void setDecorColor(int color) { }
 
     @Override
     boolean isDisabled() {
-        return !mIsEnabled || mTrafficInHeaderView || !mSystemIconVisible;
+        return !mIsEnabled || mTrafficInHeaderView;
     }
 }
