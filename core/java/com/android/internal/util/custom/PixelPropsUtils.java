@@ -69,7 +69,8 @@ public class PixelPropsUtils {
     private static final String[] packagesToChangePixel5 = {
            "com.google.android.tts",
            "com.google.android.googlequicksearchbox",
-           "com.google.android.apps.recorder"
+           "com.google.android.apps.recorder",
+            "com.google.android.apps.turboadapter"
     };
 
     private static final String[] packagesToChangePixelXL = {
@@ -110,7 +111,7 @@ public class PixelPropsUtils {
         propsToChangePixel6.put("DEVICE", "raven");
         propsToChangePixel6.put("PRODUCT", "raven");
         propsToChangePixel6.put("MODEL", "Pixel 6 Pro");
-        propsToChangePixel6.put("FINGERPRINT", "google/raven/raven:12/SQ1D.220205.003/8069835:user/release-keys");
+        propsToChangePixel6.put("FINGERPRINT", "google/raven/raven:12/SQ1D.220205.004/8151327:user/release-keys");
         propsToChangePUBG = new HashMap<>();
         propsToChangePUBG.put("MODEL", "GM1917");
         propsToChangeCOD = new HashMap<>();
