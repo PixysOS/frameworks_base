@@ -21,13 +21,24 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical|end">
 
-    <com.android.systemui.statusbar.policy.NetworkTrafficSB
-        android:id="@+id/networkTraffic"
+    <com.android.keyguard.AlphaOptimizedLinearLayout
+        android:id="@+id/network_traffic_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:gravity="center_vertical|end" />
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center_vertical|end"
+        >
+
+        <com.android.systemui.statusbar.policy.NetworkTrafficSB
+            android:id="@+id/networkTraffic"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:gravity="center_vertical|end" />
+
+    </com.android.keyguard.AlphaOptimizedLinearLayout>
 
     <com.android.systemui.statusbar.phone.StatusIconContainer android:id="@+id/statusIcons"
         android:layout_width="wrap_content"
