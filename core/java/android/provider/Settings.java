@@ -5485,12 +5485,6 @@ public final class Settings {
          */
         @Readable
         public static final String DESCENDANT_IDLE_MANAGER = "descendant_idle_manager";
- 
-        /**
-         * Whether to display 4G icon instead LTE
-         * @hide
-         */
-        public static final String SHOW_FOURG_ICON = "show_fourg_icon";
 
         /**
          * Whether to show VoLTE/VoWiFi icon or not
