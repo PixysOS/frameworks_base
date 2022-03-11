@@ -51,6 +51,7 @@ import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_TRIGGERED_FACE_LOCK
 import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_TRIGGERED_OCCLUDING_APP_REQUESTED;
 import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_TRIGGERED_ON_REACH_GESTURE_ON_AOD;
 import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_TRIGGERED_RETRY_AFTER_HW_UNAVAILABLE;
+import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_TRIGGERED_SWIPE_UP_ON_BOUNCER;
 import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_TRIGGERED_TRUST_DISABLED;
 import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_UPDATED_ASSISTANT_VISIBILITY_CHANGED;
 import static com.android.keyguard.FaceAuthUiEvent.FACE_AUTH_UPDATED_BIOMETRIC_ENABLED_ON_KEYGUARD;
@@ -2724,7 +2725,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         if (mBouncerFullyShown != fullyShow){
             mBouncerFullyShown = fullyShow;
             if (mFaceUnlockBehavior == FACE_UNLOCK_BEHAVIOR_SWIPE){
-                updateFaceListeningState();
+                updateFaceListeningState(BIOMETRIC_ACTION_UPDATE, FACE_AUTH_TRIGGERED_SWIPE_UP_ON_BOUNCER);
             }
         }
     }
