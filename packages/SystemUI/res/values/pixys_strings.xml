@@ -62,6 +62,7 @@
 
     <!-- Title of statusbar tuner -->
     <string name="status_bar_icons">Status bar icons</string>
+    <string name="status_bar_call_strength">Call strength</string>
 
     <!-- Screenshot delete action -->
     <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
