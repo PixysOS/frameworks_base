@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pixys.android.systemui.theme
+package org.protonaosp.systemui.theme
 
 import android.annotation.ColorInt
 import android.app.WallpaperColors
@@ -26,7 +26,6 @@ import android.os.UserManager
 import android.provider.Settings
 import android.util.Log
 import android.util.TypedValue
-import com.android.systemui.Dependency
 import com.android.systemui.broadcast.BroadcastDispatcher
 import com.android.systemui.dagger.SysUISingleton
 import com.android.systemui.dagger.qualifiers.Background
@@ -56,7 +55,7 @@ import kotlin.math.log10
 import kotlin.math.pow
 
 @SysUISingleton
-class PixysThemeOverlayController @Inject constructor(
+class CustomThemeOverlayController @Inject constructor(
     private val context: Context,
     broadcastDispatcher: BroadcastDispatcher,
     @Background bgHandler: Handler,
@@ -66,11 +65,12 @@ class PixysThemeOverlayController @Inject constructor(
     secureSettings: SecureSettings,
     wallpaperManager: WallpaperManager,
     userManager: UserManager,
-    dumpManager: DumpManager,
     deviceProvisionedController: DeviceProvisionedController,
     userTracker: UserTracker,
+    dumpManager: DumpManager,
     featureFlags: FeatureFlags,
     wakefulnessLifecycle: WakefulnessLifecycle,
+    private val tunerService: TunerService,
 ) : ThemeOverlayController(
     context,
     broadcastDispatcher,
@@ -81,9 +81,9 @@ class PixysThemeOverlayController @Inject constructor(
     secureSettings,
     wallpaperManager,
     userManager,
-    dumpManager,
     deviceProvisionedController,
     userTracker,
+    dumpManager,
     featureFlags,
     wakefulnessLifecycle,
 ), Tunable {
@@ -96,10 +96,10 @@ class PixysThemeOverlayController @Inject constructor(
     private var whiteLuminance: Double = Double.MIN_VALUE
     private var linearLightness: Boolean = false
     private var customColor: Boolean = false
-    private val mTunerService: TunerService = Dependency.get(TunerService::class.java)
+
     override fun start() {
-        mTunerService.addTunable(this, PREF_COLOR_OVERRIDE, PREF_WHITE_LUMINANCE,
-                PREF_CHROMA_FACTOR, PREF_ACCURATE_SHADES, 
+        tunerService.addTunable(this, PREF_COLOR_OVERRIDE, PREF_WHITE_LUMINANCE,
+                PREF_CHROMA_FACTOR, PREF_ACCURATE_SHADES,
                 PREF_LINEAR_LIGHTNESS, PREF_CUSTOM_COLOR, SYSTEM_BLACK_THEME)
         super.start()
     }
@@ -112,7 +112,6 @@ class PixysThemeOverlayController @Inject constructor(
                 chromaFactor = (Settings.Secure.getFloat(mContext.contentResolver,
                         PREF_CHROMA_FACTOR, 100.0f) / 100f).toDouble()
                 accurateShades = Settings.Secure.getInt(mContext.contentResolver, PREF_ACCURATE_SHADES, 1) != 0
-
                 whiteLuminance = parseWhiteLuminanceUser(
                     Settings.Secure.getInt(mContext.contentResolver,
                             PREF_WHITE_LUMINANCE, WHITE_LUMINANCE_USER_DEFAULT)
@@ -190,7 +189,7 @@ class PixysThemeOverlayController @Inject constructor(
     }
 
     companion object {
-        private const val TAG = "PixysThemeOverlayController"
+        private const val TAG = "CustomThemeOverlayController"
 
         private const val PREF_PREFIX = "monet_engine"
         private const val PREF_CUSTOM_COLOR = "${PREF_PREFIX}_custom_color"
