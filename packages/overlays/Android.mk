@@ -22,20 +22,16 @@ LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../../NOTICE
 LOCAL_REQUIRED_MODULES := \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
-    DisplayCutoutEmulationHoleOverlay \
+        DisplayCutoutEmulationHoleOverlay \
         AndroidBlackThemeOverlay \
 	DisplayCutoutEmulationTallOverlay \
 	DisplayCutoutEmulationWaterfallOverlay \
+	FontNotoSerifSourceOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularLauncherOverlay \
 	IconPackCircularSettingsOverlay \
 	IconPackCircularSystemUIOverlay \
 	IconPackCircularThemePickerOverlay \
-        IconPackPUIAndroidOverlay \
-        IconPackPUILauncherOverlay \
-        IconPackPUISettingsOverlay \
-        IconPackPUISystemUIOverlay \
-        IconPackPUIThemePickerOverlay \
 	IconPackVictorAndroidOverlay \
 	IconPackVictorLauncherOverlay \
 	IconPackVictorSettingsOverlay \
@@ -61,15 +57,7 @@ LOCAL_REQUIRED_MODULES := \
 	IconPackRoundedSettingsOverlay \
 	IconPackRoundedSystemUIOverlay \
 	IconPackRoundedThemePickerOverlay \
-	IconPackOOSAndroidOverlay \
-	IconPackOOSSystemUIOverlay \
-        IconPackOOSLauncherOverlay \
-        IconPackOOSSettingsOverlay \
-        IconPackOOSThemePickerOverlay \
         NavigationBarMode2ButtonOverlay \
-        IconPackAcherusAndroidOverlay \
-	IconPackAcherusSystemUIOverlay \
-	NavigationBarMode2ButtonOverlay \
 	NavigationBarMode3ButtonOverlay \
 	NavigationBarModeGesturalOverlay \
 	NavigationBarModeGesturalOverlayNarrowBack \
