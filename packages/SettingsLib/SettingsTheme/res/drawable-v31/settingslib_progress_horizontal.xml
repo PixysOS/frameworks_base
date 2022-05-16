@@ -19,18 +19,18 @@
 
     <item
         android:id="@android:id/background">
-        <shape>
+        <shape android:tint="?attr/colorProgressBackgroundNormal">
             <corners android:radius="8dp" />
-            <solid android:color="@color/settingslib_colorSurfaceVariant" />
+            <solid android:color="@color/white_disabled_material" />
         </shape>
     </item>
 
     <item
         android:id="@android:id/progress">
         <clip>
-            <shape>
+            <shape android:tint="?attr/colorControlActivated">
                 <corners android:radius="8dp" />
-                <solid android:color="?android:attr/textColorPrimary" />
+                <solid android:color="@color/white" />
             </shape>
         </clip>
     </item>
