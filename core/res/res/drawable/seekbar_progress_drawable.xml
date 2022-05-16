@@ -14,14 +14,18 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<layer-list
-  xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+            android:paddingMode="stack" >
     <item android:gravity="fill_horizontal|center" android:id="@android:id/background">
-        <shape android:tint="?android:attr/colorAccent" android:shape="rectangle" android:alpha="0.8">
-            <size android:height="20dp" />
+        <inset
+            android:insetLeft="@dimen/rounded_slider_track_inset"
+            android:insetRight="@dimen/rounded_slider_track_inset" >
+        <shape android:tint="?android:attr/colorAccent">
+           <size android:height="12dp" />
             <solid android:color="#80626161" />
             <corners android:radius="10dp" />
-        </shape>
+           </shape>
+        </inset>
     </item>
     <item android:gravity="fill_horizontal|center" android:id="@android:id/progress">
         <com.android.internal.graphics.drawable.RoundedCornerProgressDrawable
