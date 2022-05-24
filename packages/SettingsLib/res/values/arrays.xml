@@ -154,6 +154,7 @@
         <item><xliff:g id="qualcomm">Qualcomm®</xliff:g> <xliff:g id="aptx">aptX™</xliff:g> audio</item>
         <item><xliff:g id="qualcomm">Qualcomm®</xliff:g> <xliff:g id="aptx_hd">aptX™ HD</xliff:g> audio</item>
         <item>LDAC</item>
+        <item>Savitech® LHDC™ V5</item>
     </string-array>
 
     <!-- Values for Bluetooth Audio Codec selection preference. -->
@@ -166,6 +167,7 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+        <item>7</item>
     </string-array>
 
     <!-- Summaries for Bluetooth Audio Codec selection preference. [CHAR LIMIT=50]-->
@@ -176,6 +178,7 @@
         <item><xliff:g id="qualcomm">Qualcomm®</xliff:g> <xliff:g id="aptx">aptX™</xliff:g> audio</item>
         <item><xliff:g id="qualcomm">Qualcomm®</xliff:g> <xliff:g id="aptx_hd">aptX™ HD</xliff:g> audio</item>
         <item>LDAC</item>
+        <item>Savitech® LHDC™ V5</item>
     </string-array>
 
     <!-- Titles for Bluetooth Audio Codec Sample Rate selection preference. [CHAR LIMIT=50] -->
@@ -185,6 +188,8 @@
         <item>48.0 kHz</item>
         <item>88.2 kHz</item>
         <item>96.0 kHz</item>
+        <item>176.4 kHz</item>
+        <item>192.0 kHz</item>
     </string-array>
 
     <!-- Values for Bluetooth Audio Codec Sample Rate selection preference. -->
@@ -194,6 +199,8 @@
         <item>2</item>
         <item>4</item>
         <item>8</item>
+        <item>16</item>
+        <item>32</item>
     </string-array>
 
     <!-- Summaries for Bluetooth Audio Codec Sample Rate selection preference. [CHAR LIMIT=50]-->
@@ -203,6 +210,8 @@
         <item>48.0 kHz</item>
         <item>88.2 kHz</item>
         <item>96.0 kHz</item>
+        <item>176.4 kHz</item>
+        <item>192.0 kHz</item>
     </string-array>
 
     <!-- Titles for Bluetooth Audio Codec Bits Per Sample selection preference. [CHAR LIMIT=50] -->
@@ -272,6 +281,66 @@
         <item>Balanced Audio And Connection Quality</item>
         <item>Optimized for Connection Quality</item>
         <item>Best Effort (Adaptive Bit Rate)</item>
+    </string-array>
+    
+    <!-- Titles for Bluetooth Audio Codec LHDC Playback Quality selection preference. [CHAR LIMIT=70] -->
+    <string-array name="bluetooth_a2dp_codec_lhdc_playback_quality_titles" translatable="false" >
+        <item>Low bit rate 00 Quality (64kbps)</item>
+        <item>Low bit rate 01 Quality (128kbps)</item>
+        <item>Low bit rate 02 Quality (192kbps)</item>
+        <item>Low bit rate 03 Quality (256kbps)</item>
+        <item>Low bit rate 04 Quality (320kbps)</item>
+        <item>Optimized for Connection Quality (400kbps)</item>
+        <item>Balanced Audio And Connection Quality (500kbps)</item>
+        <item>High Audio Quality (900kbps)</item>
+        <item>Extremely High Audio Quality (1000kbps)</item>
+        <item>Best Effort (Auto Bit Rate)</item>
+    </string-array>
+
+    <!-- Values for Bluetooth Audio Codec LHDC Playback Quaility selection preference. -->
+    <string-array name="bluetooth_a2dp_codec_lhdc_playback_quality_values" translatable="false" >
+        <item>32768</item>
+        <item>32769</item>
+        <item>32770</item>
+        <item>32771</item>
+        <item>32772</item>
+        <item>32773</item>
+        <item>32774</item>
+        <item>32775</item>
+        <item>32776</item>
+        <item>32777</item>
+    </string-array>
+    
+    <!-- Summaries for Bluetooth Audio Codec LHDC Playback Quality selection preference. [CHAR LIMIT=70]-->
+    <string-array name="bluetooth_a2dp_codec_lhdc_playback_quality_summaries" translatable="false" >
+        <item>Low bit rate 00 Quality</item>
+        <item>Low bit rate 01 Quality</item>
+        <item>Low bit rate 02 Quality</item>
+        <item>Low bit rate 03 Quality</item>
+        <item>Low bit rate 04 Quality</item>
+        <item>Optimized for Connection Quality</item>
+        <item>Balanced Audio And Connection Quality</item>
+        <item>High Audio Quality</item>
+        <item>Extremely High Audio Quality</item>
+        <item>Best Effort (Auto Bit Rate)</item>
+    </string-array>
+    
+    <!-- Titles for Bluetooth Audio Codec LHDC Low Latency selection preference. [CHAR LIMIT=70] -->
+    <string-array name="bluetooth_a2dp_codec_lhdc_latency_titles" translatable="false" >
+        <item>Low Latency Mode Disable</item>
+        <item>Low Latency Mode Enable</item>
+    </string-array>
+    
+    <!-- Values for Bluetooth Audio Codec LHDC Latency selection preference. -->
+    <string-array name="bluetooth_a2dp_codec_lhdc_latency_values" translatable="false" >
+        <item>49152</item>
+        <item>49153</item>
+    </string-array>
+    
+    <!-- Summaries for Bluetooth Audio Codec LHDC Latency selection preference. [CHAR LIMIT=70]-->
+    <string-array name="bluetooth_a2dp_codec_lhdc_latency_summaries" translatable="false" >
+        <item>Low Latency OFF</item>
+        <item>Low Latency ON</item>
     </string-array>
 
     <!-- Summaries for Android Auto Bluetooth Audio Active Device status. [CHAR LIMIT=50]-->

@@ -49,6 +49,7 @@ public final class BluetoothCodecConfig implements Parcelable {
             SOURCE_CODEC_TYPE_APTX_ADAPTIVE,
             SOURCE_CODEC_TYPE_APTX_TWSP,
             SOURCE_QVA_CODEC_TYPE_MAX,
+            SOURCE_CODEC_TYPE_LHDCV5,
             SOURCE_CODEC_TYPE_INVALID
     })
     @Retention(RetentionPolicy.SOURCE)
@@ -70,7 +71,10 @@ public final class BluetoothCodecConfig implements Parcelable {
     public static final int SOURCE_CODEC_TYPE_LDAC = 4;
 
     @UnsupportedAppUsage
-    public static final int SOURCE_CODEC_TYPE_MAX = 5;
+    public static final int SOURCE_CODEC_TYPE_LHDCV5 = 5;
+
+    @UnsupportedAppUsage
+    public static final int SOURCE_CODEC_TYPE_MAX = 6;
 
     @UnsupportedAppUsage
     public static final int SOURCE_CODEC_TYPE_APTX_ADAPTIVE = SOURCE_CODEC_TYPE_MAX;
@@ -441,6 +445,8 @@ public final class BluetoothCodecConfig implements Parcelable {
                 return "aptX Adaptive";
             case SOURCE_CODEC_TYPE_APTX_TWSP:
                 return "aptX TWS+";
+            case SOURCE_CODEC_TYPE_LHDCV5:
+                return "LHDC V5";
             case SOURCE_CODEC_TYPE_INVALID:
                 return "INVALID CODEC";
             default:
@@ -636,7 +642,10 @@ public final class BluetoothCodecConfig implements Parcelable {
     public boolean sameAudioFeedingParameters(BluetoothCodecConfig other) {
         return (other != null && other.mSampleRate == mSampleRate
                 && other.mBitsPerSample == mBitsPerSample
-                && other.mChannelMode == mChannelMode);
+                && other.mChannelMode == mChannelMode
+                && other.mCodecSpecific1 == mCodecSpecific1
+                && other.mCodecSpecific2 == mCodecSpecific2
+                && other.mCodecSpecific3 == mCodecSpecific3);
     }
 
     /**
@@ -692,6 +701,13 @@ public final class BluetoothCodecConfig implements Parcelable {
                 }
             case SOURCE_CODEC_TYPE_APTX_ADAPTIVE:
                 if (other.mCodecSpecific4 > 0) {
+                    return false;
+                }
+                return true;
+            case SOURCE_CODEC_TYPE_LHDCV5:
+                if (mCodecSpecific1 != other.mCodecSpecific1 ||
+                    mCodecSpecific2 != other.mCodecSpecific2 || 
+                    mCodecSpecific3 != other.mCodecSpecific3) {
                     return false;
                 }
                 // fall through
