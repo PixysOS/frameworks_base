@@ -82,9 +82,6 @@
     <!-- Enable face auth only when swiping security view -->
     <bool name="config_faceAuthOnlyOnSecurityView">false</bool>
 
-    <!-- Whether to cancel fingerprint operation if not idle -->
-    <bool name="config_fpCancelIfNotIdle">false</bool>
-
     <!-- Whether to force enable multi resolution configuration for camera -->
     <bool name="config_forceMultiResolution">false</bool>
 </resources>
