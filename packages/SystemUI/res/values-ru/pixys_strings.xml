@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2018-2021 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="volume_ringer_priority_only">Приоритет</string>
+    <string name="volume_ringer_alarms_only">Будильники</string>
+    <string name="volume_ringer_dnd">Не беспокоить</string>
+    <string name="tristate_flashlight">Фонарик</string>
+    <string name="tristate_flashlight_on">Фонарик включен</string>
+    <string name="tristate_flashlight_off">Фонарик выключен</string>
+    <string name="tristate_flashlight_blink">Мигание фонарика</string>
+    <string name="tristate_brightness_bright">Максимальная яркость</string>
+    <string name="tristate_brightness_dark">Минимальная яркость</string>
+    <string name="tristate_brightness_auto">Автояркость</string>
+    <string name="tristate_rotation_auto">Автоповорот</string>
+    <string name="tristate_rotation_0">Вертикальный</string>
+    <string name="tristate_rotation_90">Горизонтально (90°)</string>
+    <string name="tristate_rotation_270">Горизонтально (270°)</string>
+    <string name="quick_settings_caffeine_label">Запрет сна</string>
+    <string name="quick_settings_caffeine_label_off">Выкл.</string>
+    <string name="accessibility_quick_settings_caffeine_off">Запрет сна выкл.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Запрет сна вкл.</string>
+    <string name="quick_settings_heads_up_label">Всплывающие уведомления</string>
+    <string name="accessibility_quick_settings_heads_up_off">Всплывающие уведомления выкл.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Всплывающие уведомления вкл.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Всплывающие уведомления отключены</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Всплывающие уведомления включены</string>
+    <string name="quick_settings_aod_label">Всегда активный экран</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD выкл.\nЭкономия батареи</string>
+    <string name="global_action_restart_advanced">Дополнительно</string>
+    <string name="global_action_restart_recovery">Рекавери</string>
+    <string name="global_action_restart_bootloader">Загрузчик</string>
+    <string name="global_action_restart_ui">Системный интерфейс</string>
+    <string name="screenrecord_delete_label">Удалить</string>
+    <string name="screenrecord_delete_description">Запись экрана удалена</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Быстрая зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%1$s</xliff:g> до полной)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Быстрая зарядка</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Медленная зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%1$s</xliff:g> до полной)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Быстрая зарядка</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%1$s</xliff:g> до полной зарядки)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC зарядка</string>
+    <string name="accessibility_quick_settings_location_off">Определение местоположения: отключено.</string>
+    <string name="quick_settings_location_secondary_battery_saving">Экономия заряда</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Местоположение: режим энергосбережения.</string>
+    <string name="quick_settings_location_secondary_gps_only">Только датчики</string>
+    <string name="accessibility_quick_settings_location_gps_only">Определение местоположения: только датчики.</string>
+    <string name="quick_settings_location_secondary_high_accuracy">Высокая точность</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Определение местоположения: режим высокой точности.</string>
+    <string name="face_unlock_recognizing">Распознавание лица...</string>
+    <string name="statusbar_items_title">Значки в строке состояния</string>
+    <string name="status_bar_vpn">VPN</string>
+    <string name="usage_data">использовано сегодня</string>
+    <string name="usage_data_default_suffix">Данные</string>
+    <string name="usage_wifi_default_suffix">Wi-Fi</string>
+</resources>
