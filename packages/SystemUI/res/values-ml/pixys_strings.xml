@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2018-2021 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="volume_ringer_priority_only">മുൻഗണന</string>
+    <string name="volume_ringer_alarms_only">അലാറങ്ങൾ</string>
+    <string name="volume_ringer_dnd">ഡിഎൻഡി</string>
+    <string name="tristate_flashlight">ടോർച്ച്</string>
+    <string name="tristate_flashlight_on">ടോർച്ച് ഓൺ</string>
+    <string name="tristate_flashlight_off">ടോർച്ച് ഓഫ്</string>
+    <string name="tristate_brightness_bright">പരമാവധി തെളിച്ചം</string>
+    <string name="tristate_brightness_dark">കുറഞ്ഞ തെളിച്ചം</string>
+    <string name="tristate_brightness_auto">സ്വയമേയുള്ള തെളിച്ചം</string>
+    <string name="tristate_rotation_auto">സ്വയം തിരിയുക</string>
+    <string name="tristate_rotation_0">പോർട്രെയ്‌റ്റ്</string>
+    <string name="tristate_rotation_90">ലാൻഡ്സ്കേപ്പ് (90°)</string>
+    <string name="tristate_rotation_270">ലാൻഡ്സ്കേപ്പ് (270°)</string>
+    <string name="quick_settings_caffeine_label">കഫീൻ</string>
+    <string name="quick_settings_caffeine_label_off">ഓഫ്</string>
+    <string name="accessibility_quick_settings_caffeine_off">കഫീൻ ഓഫ്</string>
+    <string name="accessibility_quick_settings_caffeine_on">കഫീൻ ഓൺ</string>
+    <string name="quick_settings_heads_up_label">മുന്നറിയിപ്പ്</string>
+    <string name="accessibility_quick_settings_heads_up_off">മുണറിയിപ് ഓഫ്.</string>
+    <string name="accessibility_quick_settings_heads_up_on">മുണറിയിപ് ഓൺ.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">ഹെഡ്സ് അപ്പ് ഓഫ് ചെയ്തു.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">ഹെഡ്സ് അപ്പ് ഓണ്‍ ചെയ്തു.</string>
+    <string name="quick_settings_aod_label">എല്ലായ്‌പ്പോഴും ഓൺ ആയിരിക്കുന്ന ഡിസ്പ്ലേ</string>
+    <string name="quick_settings_aod_off_powersave_label">എഓഡി ഓഫ് \n ബാറ്ററി സേവർ</string>
+    <string name="global_action_restart_advanced">വിപുലമായ</string>
+    <string name="global_action_restart_bootloader">ബൂട്ട്ലോഡര്‍</string>
+    <string name="global_action_restart_ui">സിസ്റ്റം യൂസർ ഇന്റർഫേസ്</string>
+    <string name="screenrecord_delete_label">ഡിലീറ്റ്</string>
+</resources>
