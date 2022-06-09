@@ -82,6 +82,9 @@
     <!-- Enable face auth only when swiping security view -->
     <bool name="config_faceAuthOnlyOnSecurityView">false</bool>
 
+    <!-- Whether to cancel fingerprint operation if not idle -->
+    <bool name="config_fpCancelIfNotIdle">false</bool>
+
     <!-- Whether to force enable multi resolution configuration for camera -->
     <bool name="config_forceMultiResolution">false</bool>
 
@@ -98,9 +101,6 @@
         <item>com.google.android.gm</item>
         <item>com.google.android.youtube</item>
     </string-array>
-
-    <!-- Whether to cancel fingerprint operation if not idle -->
-    <bool name="config_fpCancelIfNotIdle">false</bool>
 
     <!-- These are system packages exempted from privacy indicator -->
     <string-array name="config_indicatorExemptedPackageNames" translatable="false">
