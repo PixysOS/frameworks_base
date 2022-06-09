@@ -31,7 +31,6 @@ import com.android.server.biometrics.sensors.HalClientMonitor;
 
 import java.io.File;
 import java.util.Map;
-import java.util.function.Supplier;
 
 /**
  * Sets the HAL's current active user, and updates the framework's authenticatorId cache.
@@ -41,7 +40,7 @@ public class FingerprintUpdateActiveUserClient extends HalClientMonitor<IBiometr
     private static final String TAG = "FingerprintUpdateActiveUserClient";
     private static final String FP_DATA_DIR = "fpdata";
 
-    private final Supplier<Integer> mCurrentUserId;
+    private final int mCurrentUserId;
     private final boolean mForceUpdateAuthenticatorId;
     private final boolean mHasEnrolledBiometrics;
     private final Map<Integer, Long> mAuthenticatorIds;
@@ -49,9 +48,8 @@ public class FingerprintUpdateActiveUserClient extends HalClientMonitor<IBiometr
 
     FingerprintUpdateActiveUserClient(@NonNull Context context,
             @NonNull LazyDaemon<IBiometricsFingerprint> lazyDaemon, int userId,
-            @NonNull String owner, int sensorId, Supplier<Integer> currentUserId,
-            boolean hasEnrolledBiometrics, @NonNull Map<Integer, Long> authenticatorIds,
-            boolean forceUpdateAuthenticatorId) {
+            @NonNull String owner, int sensorId, int currentUserId, boolean hasEnrolledBiometrics,
+            @NonNull Map<Integer, Long> authenticatorIds, boolean forceUpdateAuthenticatorId) {
         super(context, lazyDaemon, null /* token */, null /* listener */, userId, owner,
                 0 /* cookie */, sensorId, BiometricsProtoEnums.MODALITY_UNKNOWN,
                 BiometricsProtoEnums.ACTION_UNKNOWN, BiometricsProtoEnums.CLIENT_UNKNOWN);
@@ -65,7 +63,7 @@ public class FingerprintUpdateActiveUserClient extends HalClientMonitor<IBiometr
     public void start(@NonNull Callback callback) {
         super.start(callback);
 
-        if (mCurrentUserId.get() == getTargetUserId() && !mForceUpdateAuthenticatorId) {
+        if (mCurrentUserId == getTargetUserId() && !mForceUpdateAuthenticatorId) {
             Slog.d(TAG, "Already user: " + mCurrentUserId + ", returning");
             callback.onClientFinished(this, true /* success */);
             return;
@@ -111,10 +109,8 @@ public class FingerprintUpdateActiveUserClient extends HalClientMonitor<IBiometr
     @Override
     protected void startHalOperation() {
         try {
-            final int targetId = getTargetUserId();
-            Slog.d(TAG, "Setting active user: " + targetId);
-            getFreshDaemon().setActiveGroup(targetId, mDirectory.getAbsolutePath());
-            mAuthenticatorIds.put(targetId, mHasEnrolledBiometrics
+            getFreshDaemon().setActiveGroup(getTargetUserId(), mDirectory.getAbsolutePath());
+            mAuthenticatorIds.put(getTargetUserId(), mHasEnrolledBiometrics
                     ? getFreshDaemon().getAuthenticatorId() : 0L);
             mCallback.onClientFinished(this, true /* success */);
         } catch (RemoteException e) {
