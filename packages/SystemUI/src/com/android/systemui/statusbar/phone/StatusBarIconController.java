@@ -465,7 +465,8 @@ public interface StatusBarIconController {
          */
         protected StatusIconDisplayable addBindableIcon(BindableIconHolder holder, int index) {
             ModernStatusBarView view = holder.getInitializer().createAndBind(mContext);
-
+            mGroup.addView(view, index, onCreateLayoutParams());
+            return view;
        }
 
         protected NetworkTrafficSB addNetworkTraffic(int index, String slot) {
