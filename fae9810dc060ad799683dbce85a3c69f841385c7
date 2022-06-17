@@ -16,6 +16,24 @@
       "message": "duplicate",
       "revId": "fae9810dc060ad799683dbce85a3c69f841385c7",
       "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e39d79_ef680aee",
+        "filename": "core/res/res/values/pixys_config.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-06-17T16:14:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d96b3_9cbb0957",
+      "revId": "fae9810dc060ad799683dbce85a3c69f841385c7",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
     }
   ]
 }
