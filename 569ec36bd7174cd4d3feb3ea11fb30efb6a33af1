@@ -16,6 +16,24 @@
       "message": "safe to remove also conflicts with volume playback gesture",
       "revId": "569ec36bd7174cd4d3feb3ea11fb30efb6a33af1",
       "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ffa55a_045659d5",
+        "filename": "services/core/java/com/android/server/policy/PhoneWindowManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2022-06-17T16:12:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5493747c_303cfa1b",
+      "revId": "569ec36bd7174cd4d3feb3ea11fb30efb6a33af1",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
     }
   ]
 }
