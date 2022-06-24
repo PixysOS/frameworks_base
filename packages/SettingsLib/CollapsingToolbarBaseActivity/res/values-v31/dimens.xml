@@ -20,4 +20,13 @@
     <dimen name="settingslib_scrim_visible_height_trigger">137dp</dimen>
     <dimen name="expanded_title_margin_start">24dp</dimen>
     <dimen name="expanded_title_margin_end">24dp</dimen>
+
+     <!-- New UI -->
+     <dimen name="pixys_pref_card_radius">28dp</dimen>
+     <dimen name="pixys_pref_card_radius-outer">5dp</dimen>
+     <dimen name="pixys_pref_card_horizontal_padding">16dp</dimen>
+     <dimen name="pixys_pref_card_horizontal_padding-negative">-16dp</dimen>
+     <dimen name="pixys_toolbar_height">160dp</dimen>
+     <dimen name="pixys_toolbar_expanded_title_margin_start">21dp</dimen>
+     <dimen name="pixys_toolbar_expanded_title_margin_end">75dp</dimen>
 </resources>
