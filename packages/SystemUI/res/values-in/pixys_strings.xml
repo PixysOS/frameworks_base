@@ -43,6 +43,14 @@
     <string name="global_action_restart_ui">SistemUI</string>
     <string name="screenrecord_delete_label">Hapus</string>
     <string name="screenrecord_delete_description">Rekaman layar dihapus</string>
+    <string name="screenrecord_stopdot_label">Tampilkan titik berhenti</string>
+    <string name="screenrecord_stopdot_summary">Tekan lama untuk memindahkannya</string>
+    <string name="screenrecord_lowquality_label">Kualitas rendah</string>
+    <string name="screenrecord_lowquality_summary">Untuk ukuran file yang lebih kecil</string>
+    <string name="screenrecord_longer_timeout_switch_label">Batas ukuran file lebih besar</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Batasi ukuran perekaman hingga 15 GB</string>
+    <string name="screenrecord_skip_time_label">Lewati penghitung waktu</string>
+    <string name="screenrecord_skip_time_summary">Hapus 3 detik menunggu</string>
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian Daya Cepat (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Daya Cepat</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian Warp (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
@@ -62,4 +70,11 @@
     <string name="usage_data">digunakan hari ini</string>
     <string name="usage_data_default_suffix">Data</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="screenshot_delete_label">Hapus</string>
+    <string name="screenshot_delete_description">Hapus tangkapan layar</string>
+    <string name="lensss">Lens</string>
+    <string name="quick_settings_qr_label">Kode QR</string>
+    <string name="quick_settings_qr_description">Ketuk untuk memindai</string>
+    <string name="qr_code_activity_title">Pemindai kode QR</string>
+    <string name="delete_text_history">Hapus riwayat</string>
 </resources>

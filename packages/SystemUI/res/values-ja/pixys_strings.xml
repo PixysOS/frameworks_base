@@ -43,6 +43,14 @@
     <string name="global_action_restart_ui">システム UI</string>
     <string name="screenrecord_delete_label">削除</string>
     <string name="screenrecord_delete_description">画面録画を削除しました</string>
+    <string name="screenrecord_stopdot_label">停止ドットを表示</string>
+    <string name="screenrecord_stopdot_summary">長押しで移動します</string>
+    <string name="screenrecord_lowquality_label">低品質にする</string>
+    <string name="screenrecord_lowquality_summary">ファイルサイズを小さくする</string>
+    <string name="screenrecord_longer_timeout_switch_label">ファイルサイズの上限を大きくする</string>
+    <string name="screenrecord_longer_timeout_switch_summary">録画サイズを15GBに制限する</string>
+    <string name="screenrecord_skip_time_label">タイマーをスキップ</string>
+    <string name="screenrecord_skip_time_summary">3秒間の待機を削除する</string>
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Dash Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Dash Charging</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
@@ -62,4 +70,11 @@
     <string name="usage_data">今日の使用量</string>
     <string name="usage_data_default_suffix">データ</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="screenshot_delete_label">削除</string>
+    <string name="screenshot_delete_description">スクリーンショットを削除</string>
+    <string name="lensss">レンズ</string>
+    <string name="quick_settings_qr_label">QR コード</string>
+    <string name="quick_settings_qr_description">タップしてスキャン</string>
+    <string name="qr_code_activity_title">QR コードスキャナー</string>
+    <string name="delete_text_history">履歴を消去</string>
 </resources>

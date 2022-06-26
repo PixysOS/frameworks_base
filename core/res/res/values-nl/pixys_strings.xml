@@ -22,4 +22,5 @@
     <string name="pocket_view_top_tag_cancel">Controleer of het blauwe gedeelte van je telefoon vrij is van belemmeringen, en verwijder vuil of stof.</string>
     <string name="pocket_view_top_tag_cancel2">Druk lang op de aan-/uitknop om pocket mode af te breken.</string>
     <string name="face_unlock_disabled_idle">Ontgrendelen via gezichtsherkenning uitgeschakeld door inactiviteit</string>
+    <string name="unlock_application">Ontgrendel <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

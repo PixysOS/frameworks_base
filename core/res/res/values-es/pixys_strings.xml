@@ -15,11 +15,12 @@
     <string name="reboot_title">Reiniciar</string>
     <string name="reboot_message">Reiniciando sistema</string>
     <string name="systemui_restart_title">Reinicio de SystemUI requerido</string>
-    <string name="systemui_restart_message">Para que todos los cambios den efecto se requiere un reinicio de SystemUI. ¿Reiniciar SystemUI?</string>
+    <string name="systemui_restart_message">Para que todos los cambios surtan efecto, se requiere un reinicio de SystemUI. ¿Deseas reiniciarlo ahora?</string>
     <string name="pocket_lock_message_long_press">Mantenga presionado el botón de encendido para desbloquear</string>
     <string name="pocket_view_title">El modo de bolsillo está encendido</string>
     <string name="pocket_view_title_cancel">Para usar tu teléfono:</string>
     <string name="pocket_view_top_tag_cancel">Verifique si el área azul de su teléfono está libre de obstrucciones y limpie cualquier suciedad o polvo.</string>
-    <string name="pocket_view_top_tag_cancel2">Mantenga presionado el botón de encendido para forzar el modo de bolsillo.</string>
-    <string name="face_unlock_disabled_idle">Desbloqueo facial deshabilitado por inactividad</string>
+    <string name="pocket_view_top_tag_cancel2">Mantenga presionado el botón de encendido para salir del modo de bolsillo.</string>
+    <string name="face_unlock_disabled_idle">Desbloqueo facial desactivado por inactividad</string>
+    <string name="unlock_application">Desbloquear <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

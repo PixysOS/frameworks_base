@@ -22,4 +22,5 @@
     <string name="pocket_view_top_tag_cancel">携帯電話の青い部分を覆わず、汚れやほこりを落として下さい。</string>
     <string name="pocket_view_top_tag_cancel2">電源ボタンを長押ししてポケットモードを強制終了します</string>
     <string name="face_unlock_disabled_idle">顔認証でのロック解除は無効です</string>
+    <string name="unlock_application"><xliff:g id="label" example="Telegram">%1$s</xliff:g>をロック解除</string>
 </resources>

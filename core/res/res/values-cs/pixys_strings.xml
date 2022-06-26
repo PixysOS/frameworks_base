@@ -22,4 +22,5 @@
     <string name="pocket_view_top_tag_cancel">Zkontrolujte, zda je modrá oblast telefonu bez jakýchkoli překážek a vyčistěte nečistoty nebo prach.</string>
     <string name="pocket_view_top_tag_cancel2">Dlouhým stiskem tlačítka Napájení vynutíte ukončení režimu v kapse.</string>
     <string name="face_unlock_disabled_idle">Odemknutí obličejem vypnuto z důvodu nečinnosti</string>
+    <string name="unlock_application">Odemknout <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

@@ -43,6 +43,14 @@
     <string name="global_action_restart_ui">SysteemUI</string>
     <string name="screenrecord_delete_label">Verwijderen</string>
     <string name="screenrecord_delete_description">Schermopname verwijderd</string>
+    <string name="screenrecord_stopdot_label">Toon stop knop</string>
+    <string name="screenrecord_stopdot_summary">Lang indrukken om te verplaatsen</string>
+    <string name="screenrecord_lowquality_label">Lagere kwaliteit</string>
+    <string name="screenrecord_lowquality_summary">Voor kleinere bestandsgrootte</string>
+    <string name="screenrecord_longer_timeout_switch_label">Grotere bestandsgrootte limiet</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Beperk opnamegrootte tot 15 GB</string>
+    <string name="screenrecord_skip_time_label">Timer overslaan</string>
+    <string name="screenrecord_skip_time_summary">Verwijder 3 seconden zelfontspanner</string>
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Dash opladen (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> tot volledig opgeladen)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Dash opladen</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp opladen (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> tot volledig opgeladen)</string>
@@ -62,4 +70,11 @@
     <string name="usage_data">vandaag gebruikt</string>
     <string name="usage_data_default_suffix">Data</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="screenshot_delete_label">Verwijderen</string>
+    <string name="screenshot_delete_description">Schermafbeelding verwijderen</string>
+    <string name="lensss">Lens</string>
+    <string name="quick_settings_qr_label">QR code</string>
+    <string name="quick_settings_qr_description">Tik om te scannen</string>
+    <string name="qr_code_activity_title">QR code scanner</string>
+    <string name="delete_text_history">Geschiedenis wissen</string>
 </resources>

@@ -43,6 +43,14 @@
     <string name="global_action_restart_ui">SystemUI</string>
     <string name="screenrecord_delete_label">Eliminar</string>
     <string name="screenrecord_delete_description">Gravação de ecrã eliminada</string>
+    <string name="screenrecord_stopdot_label">Exibir ponto de paragem</string>
+    <string name="screenrecord_stopdot_summary">Pressione e segure para movê-lo</string>
+    <string name="screenrecord_lowquality_label">Qualidade inferior</string>
+    <string name="screenrecord_lowquality_summary">Para um ficheiro de menor tamanho</string>
+    <string name="screenrecord_longer_timeout_switch_label">Limite de tamanho de ficheiros maiores</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Limitar o tamanho de gravação a 15 GB</string>
+    <string name="screenrecord_skip_time_label">Ignorar temporizador</string>
+    <string name="screenrecord_skip_time_summary">Remover espera de 3 segundos</string>
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carregamento Dash (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> até estar completo)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Carregamento Dash</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carregamento Warp (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> até estar completo)</string>
@@ -62,4 +70,11 @@
     <string name="usage_data">utilizado hoje</string>
     <string name="usage_data_default_suffix">Dados</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="screenshot_delete_label">Eliminar</string>
+    <string name="screenshot_delete_description">Eliminar captura de ecrã</string>
+    <string name="lensss">Lens</string>
+    <string name="quick_settings_qr_label">Código QR</string>
+    <string name="quick_settings_qr_description">Toque para ler</string>
+    <string name="qr_code_activity_title">Leitor de código QR</string>
+    <string name="delete_text_history">Limpar histórico</string>
 </resources>

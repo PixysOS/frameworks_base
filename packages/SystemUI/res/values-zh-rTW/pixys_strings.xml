@@ -30,8 +30,16 @@
     <string name="global_action_restart_ui">系統 UI</string>
     <string name="screenrecord_delete_label">刪除</string>
     <string name="screenrecord_delete_description">已刪除螢幕錄影</string>
+    <string name="screenrecord_lowquality_label">較低品質</string>
+    <string name="screenrecord_lowquality_summary">降低檔案大小</string>
     <string name="quick_settings_location_secondary_battery_saving">省電</string>
     <string name="usage_data">今日已用</string>
     <string name="usage_data_default_suffix">行動數據</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="screenshot_delete_label">刪除</string>
+    <string name="screenshot_delete_description">刪除螢幕快照</string>
+    <string name="quick_settings_qr_label">QR 碼</string>
+    <string name="quick_settings_qr_description">輕點即可掃描</string>
+    <string name="qr_code_activity_title">QR 碼掃描器</string>
+    <string name="delete_text_history">清除歷史記錄</string>
 </resources>

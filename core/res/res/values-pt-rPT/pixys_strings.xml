@@ -22,4 +22,5 @@
     <string name="pocket_view_top_tag_cancel">Verifique se a área azul do seu telefone está livre de obstruções e limpe qualquer sujidade ou pó.</string>
     <string name="pocket_view_top_tag_cancel2">Pressione longamente o botão de energia para forçar a saída do modo de bolso.</string>
     <string name="face_unlock_disabled_idle">Desbloqueio facial desativado devido à inatividade</string>
+    <string name="unlock_application">Desbloquear <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

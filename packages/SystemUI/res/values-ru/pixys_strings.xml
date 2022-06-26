@@ -43,6 +43,14 @@
     <string name="global_action_restart_ui">Системный интерфейс</string>
     <string name="screenrecord_delete_label">Удалить</string>
     <string name="screenrecord_delete_description">Запись экрана удалена</string>
+    <string name="screenrecord_stopdot_label">Показать точку остановки</string>
+    <string name="screenrecord_stopdot_summary">Зажмите для перемещения</string>
+    <string name="screenrecord_lowquality_label">Низкое качество</string>
+    <string name="screenrecord_lowquality_summary">Для меньшего размера файла</string>
+    <string name="screenrecord_longer_timeout_switch_label">Большой размер файла</string>
+    <string name="screenrecord_longer_timeout_switch_summary">Ограничение размера записи до 15 ГБ</string>
+    <string name="screenrecord_skip_time_label">Пропуск времени ожидания</string>
+    <string name="screenrecord_skip_time_summary">Убрать 3 секунды ожидания</string>
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Быстрая зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%1$s</xliff:g> до полной)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Быстрая зарядка</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Медленная зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%1$s</xliff:g> до полной)</string>
@@ -62,4 +70,11 @@
     <string name="usage_data">использовано сегодня</string>
     <string name="usage_data_default_suffix">Данные</string>
     <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="screenshot_delete_label">Удалить</string>
+    <string name="screenshot_delete_description">Удалить скриншот</string>
+    <string name="lensss">Объектив</string>
+    <string name="quick_settings_qr_label">QR-код</string>
+    <string name="quick_settings_qr_description">Сканировать</string>
+    <string name="qr_code_activity_title">QR-код сканер</string>
+    <string name="delete_text_history">Очистить историю</string>
 </resources>

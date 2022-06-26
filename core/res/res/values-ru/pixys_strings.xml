@@ -22,4 +22,5 @@
     <string name="pocket_view_top_tag_cancel">Убедитесь, что в синей области телефона нет никаких препятствий, и очистите ее от грязи и пыли.</string>
     <string name="pocket_view_top_tag_cancel2">Удерживайте кнопку питания для принудительного выхода из портативного режима.</string>
     <string name="face_unlock_disabled_idle">Разблокировка по лицу отключена из-за бездействия</string>
+    <string name="unlock_application">Разблокировать <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>

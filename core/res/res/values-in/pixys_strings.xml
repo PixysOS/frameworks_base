@@ -22,4 +22,5 @@
     <string name="pocket_view_top_tag_cancel">Jangan menutupi area biru ponsel Anda, dan bersihkan kotoran atau debu.</string>
     <string name="pocket_view_top_tag_cancel2">Tekan lama tombol daya untuk memaksa keluar dari mode saku.</string>
     <string name="face_unlock_disabled_idle">Face unlock dinonaktifkan karena tidak aktif</string>
+    <string name="unlock_application">Buka <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>
