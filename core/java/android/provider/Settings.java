@@ -5682,6 +5682,12 @@ public final class Settings {
          */
         public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
 
+        /**
+         * Whether to show data usage in qs footer
+         * @hide
+         */
+        public static final String QS_FOOTER_DATA_USAGE = "qs_footer_data_usage";
+
        /**
          * Whether to show volume panel on the left side
          * Defaults to com.android.systemui.R.bool.config_audioPanelOnLeftSide
@@ -10877,6 +10883,13 @@ public final class Settings {
          * @hide
          */
         public static final String SWAP_CAPACITIVE_KEYS = "swap_capacitive_keys";
+
+        /**
+         * Control whether FLAG_SECURE is ignored for all windows.
+         * @hide
+         */
+        @Readable
+        public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
 
         /**
          * These entries are considered common between the personal and the managed profile,
@@ -16959,6 +16972,23 @@ public final class Settings {
          * @hide
          */
         public static final String RESTRICTED_NETWORKING_MODE = "restricted_networking_mode";
+
+        /**
+         * Whether strict standby policy should be used. When dismissing from recents,
+         * this will force stop apps with restricted battery usage and put them into
+         * RESTRICTED standby bucket. Also all restrictions will be imposed even when
+         * device is charging.
+         * @hide
+         */
+        public static final String STRICT_STANDBY_POLICY = "strict_standby_policy";
+
+        /**
+         * Whether force background freezer should be used. This will freeze tasks with
+         * restricted battery usage when moving them to background and unfreeze them when
+         * moving to foreground.
+         * @hide
+         */
+        public static final String FORCE_BACKGROUND_FREEZER = "force_background_freezer";
     }
 
     /**
