@@ -77,4 +77,8 @@
     <string name="quick_settings_qr_description">Taramak için dokunun</string>
     <string name="qr_code_activity_title">QR kodu tarayıcı</string>
     <string name="delete_text_history">Geçmişi temizle</string>
+    <string name="screen_pinning_description_no_navbar">Siz sabitlemeyi kaldırana kadar ekranı görünür durumda tutar. Sabitlemeyi kaldırmak için Geri tuşuna basılı tutun.</string>
+    <string name="screen_pinning_toast_no_navbar">Bu ekrandaki sabitlemeyi kaldırmak için, dokunun &amp; Geri tuşuna basılı tutun</string>
+    <string name="screen_pinning_description_no_navbar_fpsensor">Bu, siz sabitlemeyi kaldırana kadar ekranda görünür tutar. Sabitlemeyi kaldırmak için parmak izi sensörüne dokunun &amp; basılı tutun.</string>
+    <string name="screen_pinning_toast_no_navbar_fpsensor">Bu ekran sabitlemesini kaldırmak için parmak izi sensörüne dokunun &amp; basılı tutun</string>
 </resources>

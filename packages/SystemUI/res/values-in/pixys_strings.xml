@@ -77,4 +77,8 @@
     <string name="quick_settings_qr_description">Ketuk untuk memindai</string>
     <string name="qr_code_activity_title">Pemindai kode QR</string>
     <string name="delete_text_history">Hapus riwayat</string>
+    <string name="screen_pinning_description_no_navbar">Ini membuatnya tetap terlihat sampai Anda melepaskan sematan. Sentuh &amp; tahan tombol Kembali untuk melepaskan sematan.</string>
+    <string name="screen_pinning_toast_no_navbar">Untuk melepaskan sematan layar ini, sentuh &amp; tahan tombol Kembali</string>
+    <string name="screen_pinning_description_no_navbar_fpsensor">Hal ini membuatnya tetap ditampilkan sampai Anda melepas sematan. Sentuh &amp; tahan sensor sidik jari untuk melepas sematan.</string>
+    <string name="screen_pinning_toast_no_navbar_fpsensor">Untuk melepas sematan pada layar ini, sentuh &amp; tahan sensor sidik jari</string>
 </resources>

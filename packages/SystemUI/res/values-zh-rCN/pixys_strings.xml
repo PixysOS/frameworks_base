@@ -12,10 +12,12 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="volume_ringer_alarms_only">闹钟</string>
     <string name="volume_ringer_dnd">勿扰模式</string>
     <string name="tristate_flashlight">手电筒</string>
     <string name="tristate_flashlight_on">手电筒已打开</string>
     <string name="tristate_flashlight_off">手电筒已关闭</string>
+    <string name="tristate_flashlight_blink">闪光灯</string>
     <string name="tristate_brightness_bright">最大亮度</string>
     <string name="tristate_brightness_dark">最小亮度</string>
     <string name="tristate_brightness_auto">自动亮度</string>
@@ -27,5 +29,20 @@
     <string name="quick_settings_caffeine_label_off">关闭</string>
     <string name="accessibility_quick_settings_caffeine_off">保持亮屏关闭</string>
     <string name="accessibility_quick_settings_caffeine_on">保持亮屏已开启</string>
+    <string name="quick_settings_heads_up_label">浮动通知</string>
+    <string name="accessibility_quick_settings_heads_up_off">浮动通知已关闭。</string>
+    <string name="accessibility_quick_settings_heads_up_on">浮动通知已开启</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">浮动通知已关闭。</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">浮动通知已开启。</string>
     <string name="quick_settings_aod_label">息屏显示</string>
+    <string name="quick_settings_aod_off_powersave_label">息屏显示关闭\n省电模式</string>
+    <string name="global_action_restart_advanced">高级设置</string>
+    <string name="global_action_restart_recovery">恢复模式</string>
+    <string name="global_action_restart_bootloader">引导模式</string>
+    <string name="global_action_restart_ui">系统界面</string>
+    <string name="screenrecord_delete_label">删除</string>
+    <string name="screenrecord_delete_description">屏幕录制已删除</string>
+    <string name="screenrecord_stopdot_label">显示停止红点</string>
+    <string name="screenrecord_stopdot_summary">长按移动</string>
+    <string name="screenrecord_lowquality_label">使用较低画质以节省存储空间</string>
 </resources>
