@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "730c47c0_463b3c00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000085
+      },
+      "writtenOn": "2022-07-07T06:06:50Z",
+      "side": 1,
+      "message": "Without this patch, screenshot option wont show on power menu (both disable and enable).\nTested on Vayu.",
+      "revId": "6c33a6f84d2bb06c8cbcab2108104800f88289d8",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
+    }
+  ]
+}
