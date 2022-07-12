@@ -5656,6 +5656,15 @@ public final class Settings {
          */
         public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
 
+	/**
+          * Enable disable CustomUI
+          *   0 = disabled
+          *   1 = enabled
+          * @author vjspranav
+          * @hide
+          */
+         public static final String CUSTOM_UI_TOGGLE = "custom_ui_toggle";
+
        /**
          * Which Vibration Pattern to use
          * 0: dzzz-dzzz
@@ -5850,6 +5859,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HIGH_TOUCH_SENSITIVITY_ENABLE);
             PRIVATE_SETTINGS.add(HIGH_TOUCH_POLLING_RATE_ENABLE);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
+            PRIVATE_SETTINGS.add(CUSTOM_UI_TOGGLE);
         }
 
         /**
