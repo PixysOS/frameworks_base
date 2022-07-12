@@ -5633,6 +5633,15 @@ public final class Settings {
          * the setting value. See an example above.
          */
 
+	/**
+          * Enable disable PixysUI
+          *   0 = disabled
+          *   1 = enabled
+          * @author vjspranav
+          * @hide
+          */
+         public static final String PIXYS_UI_TOGGLE = "pixys_ui_toggle";
+
         /**
          * Whether to display sound panel in the power menu
          *
@@ -5893,6 +5902,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VIBRATE_ON_CALLWAITING);
             PRIVATE_SETTINGS.add(VIBRATE_ON_DISCONNECT);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
+            PRIVATE_SETTINGS.add(PIXYS_UI_TOGGLE);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED);
