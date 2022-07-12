@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toolbar;
 
+import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -33,6 +34,8 @@ import com.android.settingslib.utils.BuildCompatUtils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.resources.TextAppearanceConfig;
+
+import static android.provider.Settings.System.PIXYS_UI_TOGGLE;
 
 /**
  * A base Activity that has a collapsing toolbar layout is used for the activities intending to
@@ -57,7 +60,9 @@ public class CollapsingToolbarBaseActivity extends FragmentActivity {
         }
         // Force loading font synchronously for collapsing toolbar layout
         TextAppearanceConfig.setShouldLoadFontSynchronously(true);
-        super.setContentView(R.layout.pixys_base_layout);
+            int pixysUIToggleValue = Settings.System.getInt(getApplicationContext().getContentResolver(),
+                     PIXYS_UI_TOGGLE, 0);
+            super.setContentView(pixysUIToggleValue == 1 ? R.layout.pixys_base_layout : R.layout.collapsing_toolbar_base_layout);
         mCollapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         mAppBarLayout = findViewById(R.id.app_bar);
         if (mCollapsingToolbarLayout != null) {
