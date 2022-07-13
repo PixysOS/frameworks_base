@@ -39,6 +39,7 @@ public class PixelPropsUtils {
             SystemProperties.getBoolean("ro.device.support_high_fps", false);
     private static final boolean PRODUCT_SUPPORT_CONTENT_REFRESH =
             SystemProperties.getBoolean("ro.surface_flinger.use_content_detection_for_refresh_rate", false);
+    private static final Map<String, Object> propsToChangeNOTHING;
     private static final Map<String, Object> propsToChangePUBG;
     private static final Map<String, Object> propsToChangeCOD;
     private static final Map<String, Object> propsToChangePixel6;
@@ -50,6 +51,10 @@ public class PixelPropsUtils {
         "com.android.vending",
         "com.breel.wallpapers20"
 
+    };
+
+private static final String[] packagesToChangeNOTHING = {
+       "com.nothing.smartcenter"
     };
 
     private static final String[] packagesToChangeCOD = {
@@ -128,6 +133,14 @@ public class PixelPropsUtils {
         propsToChangePixelXL.put("PRODUCT", "marlin");
         propsToChangePixelXL.put("MODEL", "Pixel XL");
         propsToChangePixelXL.put("FINGERPRINT", "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys");
+        propsToChangeNOTHING = new HashMap<>();
+        propsToChangeNOTHING.put("BRAND", "Nothing");
+        propsToChangeNOTHING.put("MANUFACTURER", "Nothing");
+        propsToChangeNOTHING.put("DEVICE", "Spacewar");
+        propsToChangeNOTHING.put("PRODUCT", "Spacewar");
+        propsToChangeNOTHING.put("MODEL", "A063");
+        propsToChangeNOTHING.put("FINGERPRINT", "Nothing/Spacewar/Spacewar:12/SKQ1.211230.001/1657023912:user/release-keys");
+
     }
 
     public static void setProps(String packageName) {
@@ -189,6 +202,16 @@ public class PixelPropsUtils {
                     Log.d(TAG, "Defining props for: " + packageName);
                 }
                 for (Map.Entry<String, Object> prop : propsToChangeCOD.entrySet()) {
+                    String key = prop.getKey();
+                    Object value = prop.getValue();
+                    setPropValue(key, value);
+                }
+            }
+            if (Arrays.asList(packagesToChangeNOTHING).contains(packageName)){
+                if (DEBUG){
+                    Log.d(TAG, "Defining props for: " + packageName);
+                }
+                for (Map.Entry<String, Object> prop : propsToChangeNOTHING.entrySet()) {
                     String key = prop.getKey();
                     Object value = prop.getValue();
                     setPropValue(key, value);
