@@ -180,6 +180,7 @@ android_library {
         "faceunlock_framework",
         "vendor.lineage.powershare-V1.0-java",
 	"googlebattery-lib",
+        "bcsmartspace-google",
     ],
     manifest: "AndroidManifest.xml",
 
