@@ -42,12 +42,18 @@ cc_defaults {
         "-Wall",
         "-Werror",
         "-Wno-unused-parameter",
+	"-O3",
+	"-mtune=native",
+	"-march=native",
     ],
     cppflags: [
         "-Wno-missing-field-initializers",
         "-fno-exceptions",
         "-fno-rtti",
         "-Wno-deprecated-declarations",
+	"-O3",
+	"-mtune=native",
+	"-march=native",
     ],
     target: {
         windows: {
