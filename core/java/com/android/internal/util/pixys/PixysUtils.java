@@ -41,6 +41,8 @@ import android.view.IWindowManager;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
+import android.util.DisplayMetrics;
+import android.text.TextUtils;
 import com.android.internal.R;
 
 import com.android.internal.statusbar.IStatusBarService;
@@ -206,5 +208,13 @@ public class PixysUtils {
             }
             return null;
         }
+    }
+
+	    // Check if device has a notch
+    public static boolean hasNotch(Context context) {
+        String displayCutout = context.getResources().getString(R.string.config_mainBuiltInDisplayCutout);
+        boolean maskDisplayCutout = context.getResources().getBoolean(R.bool.config_maskMainBuiltInDisplayCutout);
+        boolean displayCutoutExists = (!TextUtils.isEmpty(displayCutout) && !maskDisplayCutout);
+        return displayCutoutExists;
     }
 }
