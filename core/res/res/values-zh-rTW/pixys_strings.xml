@@ -15,6 +15,11 @@
     <string name="reboot_title">重新啟動</string>
     <string name="reboot_message">正在重新啟動系統</string>
     <string name="systemui_restart_title">需要重新啟動系統 UI</string>
+    <string name="systemui_restart_message">為了讓所有變更生效，需要重新啟動系統 UI。要現在重新啟動系統 UI 嗎？</string>
+    <string name="pocket_lock_message_long_press">按住電源鍵以解鎖</string>
     <string name="pocket_view_title">口袋模式已開啟</string>
+    <string name="pocket_view_title_cancel">若要使用您的手機：</string>
+    <string name="pocket_view_top_tag_cancel">檢查手機的藍色區域是否遭遮擋，並清除所有污垢或灰塵。</string>
+    <string name="pocket_view_top_tag_cancel2">長按電源鍵即可強制退出口袋模式。</string>
     <string name="unlock_application">解鎖 <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>
