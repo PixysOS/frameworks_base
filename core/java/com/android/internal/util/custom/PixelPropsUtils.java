@@ -85,6 +85,7 @@ public class PixelPropsUtils {
     };
 
     private static final String[] packagesToKeep = {
+        PACKAGE_GMS,
         "com.google.android.GoogleCamera",
         "com.google.android.GoogleCamera.Cameight",
         "com.google.android.GoogleCamera.Go",
@@ -194,6 +195,8 @@ public class PixelPropsUtils {
                     setPropValue(key, value);
                 }
             }
+        if (sIsGms) {
+                setPropValue("MODEL", Build.MODEL + " ");
         }
 
        // Set proper indexing fingerprint
