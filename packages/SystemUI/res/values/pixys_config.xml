@@ -8,4 +8,6 @@
    <!-- Allow devices override audio panel location to the left side -->
     <bool name="config_audioPanelOnLeftSide">false</bool>
 
+    <!-- Udfps vendor code -->
+    <integer name="config_udfps_vendor_code">0</integer>
 </resources>
