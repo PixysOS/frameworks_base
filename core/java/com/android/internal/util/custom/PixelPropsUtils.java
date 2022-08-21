@@ -196,7 +196,8 @@ public class PixelPropsUtils {
                 }
             }
         if (sIsGms) {
-                setPropValue("MODEL", Build.MODEL + " ");
+                setPropValue("FINGERPRINT", "google/angler/angler:6.0/MDB08L/2343525:user/release-keys");
+                setPropValue("MODEL", "angler");
         }
 
        // Set proper indexing fingerprint
