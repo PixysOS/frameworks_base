@@ -315,17 +315,17 @@ public interface BiometricFingerprintConstants {
     int FINGERPRINT_ACQUIRED_VENDOR_BASE = 1000;
 
     /**
-     * Whether the FingerprintAcquired message is a signal to turn off HBM
+     * Whether the FingerprintAcquired message is a signal to disable the UDFPS display mode.
+     * We want to disable the UDFPS mode as soon as possible to conserve power and provide better
+     * UX. For example, prolonged high-brightness illumination of optical sensors can be unpleasant
+     * to the user, can cause long term display burn-in, and can drain the battery faster.
      */
-    static boolean shouldTurnOffHbm(@FingerprintAcquired int acquiredInfo) {
+    static boolean shouldDisableUdfpsDisplayMode(@FingerprintAcquired int acquiredInfo) {
         switch (acquiredInfo) {
             case FINGERPRINT_ACQUIRED_START:
-                // Authentication just began
+                // Keep the UDFPS mode because the authentication just began.
                 return false;
             case FINGERPRINT_ACQUIRED_GOOD:
-                // Good image captured. Turn off HBM. Success/Reject comes after, which is when
-                // hideUdfpsOverlay will be called.
-                return true;
             case FINGERPRINT_ACQUIRED_PARTIAL:
             case FINGERPRINT_ACQUIRED_INSUFFICIENT:
             case FINGERPRINT_ACQUIRED_IMAGER_DIRTY:
@@ -336,6 +336,7 @@ public interface BiometricFingerprintConstants {
             case FINGERPRINT_ACQUIRED_VENDOR:
             case FINGERPRINT_ACQUIRED_UNKNOWN:
             default:
+                // Keep the UDFPS mode in case of an unknown message.
                 return false;
         }
     }
