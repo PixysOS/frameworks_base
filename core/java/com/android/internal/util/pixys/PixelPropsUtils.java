@@ -34,8 +34,8 @@ public class PixelPropsUtils {
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
     private static final boolean DEBUG = false;
 
-    private static volatile boolean sIsGms = false;
-    public static final String PACKAGE_GMS = "com.google.android.gms";
+    private static final String PACKAGE_GMS = "com.google.android.gms";
+    private static final String PACKAGE_FINSKY = "com.android.vending";
     private static final boolean PRODUCT_SUPPORT_HIGH_FPS =
             SystemProperties.getBoolean("ro.device.support_high_fps", false);
     private static final boolean PRODUCT_SUPPORT_CONTENT_REFRESH =
@@ -49,7 +49,6 @@ public class PixelPropsUtils {
     private static final String[] extraPackagesToChange = {
         "com.android.chrome",
         "com.breel.wallpapers20"
-
     };
 
     private static final String[] packagesToChangeCOD = {
@@ -92,6 +91,8 @@ public class PixelPropsUtils {
     };
 
     private static final String[] packagesToKeep = {
+	PACKAGE_FINSKY,
+	PACKAGE_GMS,
         "com.google.android.GoogleCamera",
         "com.google.android.GoogleCamera.Cameight",
         "com.google.android.GoogleCamera.Go",
@@ -140,12 +141,6 @@ public class PixelPropsUtils {
     public static void setProps(String packageName) {
         if (packageName == null) {
             return;
-        }
-        if (packageName.equals(PACKAGE_GMS)) {
-                final String processName = Application.getProcessName();
-                if (processName.equals("com.google.android.gms.unstable")) {
-                    sIsGms = true;
-                }
         }
         if (Arrays.asList(packagesToKeep).contains(packageName)) {
             return;
@@ -214,18 +209,6 @@ public class PixelPropsUtils {
             field.setAccessible(false);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             Log.e(TAG, "Failed to set prop " + key, e);
-        }
-    }
-
-    private static boolean isCallerSafetyNet() {
-        return Arrays.stream(Thread.currentThread().getStackTrace())
-                .anyMatch(elem -> elem.getClassName().contains("DroidGuard"));
-    }
-
-    public static void onEngineGetCertificateChain() {
-        // Check stack for SafetyNet
-        if (sIsGms && isCallerSafetyNet()) {
-            throw new UnsupportedOperationException();
         }
     }
 }
