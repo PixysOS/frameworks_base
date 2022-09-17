@@ -59,4 +59,12 @@
     <!-- SoundSearch Tile -->
     <string name="quick_settings_sound_search">Sound search</string>
     <string name="quick_settings_sound_search_no_app">Install a sound search app first</string>
+
+    <!-- QuickSettings: InternetDialog: Summary for how many devices are connected to the 
+    hotspot [CHAR LIMIT=NONE] --> 
+    <plurals name="quick_settings_internet_hotspot_summary_num_devices">
+        <item quantity="one">%d device connected</item> 
+        <item quantity="other">%d devices connected</item>
+    </plurals>
+
 </resources>
