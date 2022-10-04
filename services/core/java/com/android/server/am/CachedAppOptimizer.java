@@ -986,6 +986,17 @@ public final class CachedAppOptimizer {
         }
 
         try {
+            freezeBinder(pid, false);
+        } catch (RuntimeException e) {
+            Slog.e(TAG_AM, "Unable to force unfreeze binder for " + pid + " " + app.processName
+                    + ". Killing it");
+            app.killLocked("Unable to force unfreeze",
+                    ApplicationExitInfo.REASON_OTHER,
+                    ApplicationExitInfo.SUBREASON_FREEZER_BINDER_IOCTL, true);
+            return;
+        }
+
+        try {
             Process.setProcessFrozen(pid, app.uid, false);
 
             opt.setFreezeUnfreezeTime(SystemClock.uptimeMillis());
@@ -1447,6 +1458,25 @@ public final class CachedAppOptimizer {
 
                 if (pid == 0 || opt.isFrozen())
                     return;
+
+                try {
+                    if (freezeBinder(pid, true) != 0) {
+                        // Reschedule.
+                        Slog.i(TAG_AM, "Reschedule force freeze for " + pid + " " + name);
+                        freezeAppAsyncLSPForce(proc);
+                        return;
+                    }
+                } catch (RuntimeException e) {
+                    Slog.e(TAG_AM, "Unable to force freeze binder for " + pid + " " + name);
+                    mFreezeHandler.post(() -> {
+                        synchronized (mAm) {
+                            proc.killLocked("Unable to force freeze binder interface",
+                                    ApplicationExitInfo.REASON_OTHER,
+                                    ApplicationExitInfo.SUBREASON_FREEZER_BINDER_IOCTL, true);
+                        }
+                    });
+                    return;
+                }
 
                 try {
                     Process.setProcessFrozen(pid, proc.uid, true);
