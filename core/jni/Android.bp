@@ -458,4 +458,8 @@ cc_library_shared_for_libandroid_runtime {
             ],
         },
     },
+
+    lto: {
+        thin: true,
+    },
 }
