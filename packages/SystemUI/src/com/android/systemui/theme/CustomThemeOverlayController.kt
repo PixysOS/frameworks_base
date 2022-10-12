@@ -43,6 +43,7 @@ import com.android.systemui.dagger.qualifiers.Main
 import com.android.systemui.dump.DumpManager
 import com.android.systemui.flags.FeatureFlags
 import com.android.systemui.keyguard.WakefulnessLifecycle
+import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.Style
 import com.android.systemui.settings.UserTracker
 import com.android.systemui.statusbar.policy.ConfigurationController
@@ -212,7 +213,7 @@ class CustomThemeOverlayController @Inject constructor(
 
     // Seed colors
     override fun getNeutralColor(colors: WallpaperColors) = colors.primaryColor.toArgb()
-    override fun getAccentColor(colors: WallpaperColors) = getNeutralColor(colors)
+    override fun getAccentColor(colors: WallpaperColors) = ColorScheme.getSeedColor(colors)
 
     override protected fun getOverlay(color: Int, type: Int, style: Style): FabricatedOverlay {
         // Generate color scheme
