@@ -67,7 +67,8 @@ public class PixelPropsUtils {
     };
 
     private static final String[] packagesToChangePixel7Pro = {
-            "com.google.android.gms"
+            "com.google.android.gms",
+            "com.google.android.apps.privacy.wildlife"
     };
 
     private static final String[] packagesToChangePixelXL = {
