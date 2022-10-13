@@ -42,7 +42,7 @@ public class PixelPropsUtils {
             SystemProperties.getBoolean("ro.surface_flinger.use_content_detection_for_refresh_rate", false);
     private static final Map<String, Object> propsToChangePUBG;
     private static final Map<String, Object> propsToChangeCOD;
-    private static final Map<String, Object> propsToChangePixel6;
+    private static final Map<String, Object> propsToChangePixel7Pro;
     private static final Map<String, Object> propsToChangePixel5;
     private static final Map<String, Object> propsToChangePixelXL;
     private static final Map<String, ArrayList<String>> propsToKeep;
@@ -66,7 +66,7 @@ public class PixelPropsUtils {
         "com.gameloft.android.ANMP.GloftA9HM" // Asphalt 9
     };
 
-    private static final String[] packagesToChangePixel6 = {
+    private static final String[] packagesToChangePixel7Pro = {
             "com.google.android.gms"
     };
 
@@ -103,13 +103,13 @@ public class PixelPropsUtils {
     static {
         propsToKeep = new HashMap<>();
         propsToKeep.put("com.google.android.settings.intelligence", new ArrayList<>(Collections.singletonList("FINGERPRINT")));
-        propsToChangePixel6 = new HashMap<>();
-        propsToChangePixel6.put("BRAND", "google");
-        propsToChangePixel6.put("MANUFACTURER", "Google");
-        propsToChangePixel6.put("DEVICE", "raven");
-        propsToChangePixel6.put("PRODUCT", "raven");
-        propsToChangePixel6.put("MODEL", "Pixel 6 Pro");
-        propsToChangePixel6.put("FINGERPRINT", "google/raven/raven:13/TP1A.220624.021/8877034:user/release-keys");
+        propsToChangePixel7Pro = new HashMap<>();
+        propsToChangePixel7Pro.put("BRAND", "google");
+        propsToChangePixel7Pro.put("MANUFACTURER", "Google");
+        propsToChangePixel7Pro.put("DEVICE", "cheetah");
+        propsToChangePixel7Pro.put("PRODUCT", "cheetah");
+        propsToChangePixel7Pro.put("MODEL", "Pixel 7 Pro");
+        propsToChangePixel7Pro.put("FINGERPRINT", "google/cheetah/cheetah:13/TD1A.220804.031/9071314:user/release-keys");
         propsToChangePUBG = new HashMap<>();
         propsToChangePUBG.put("MODEL", "GM1917");
         propsToChangeCOD = new HashMap<>();
@@ -147,8 +147,8 @@ public class PixelPropsUtils {
                 || Arrays.asList(extraPackagesToChange).contains(packageName)) {
             Map<String, Object> propsToChange = propsToChangePixel5;
 
-            if (Arrays.asList(packagesToChangePixel6).contains(packageName)) {
-                propsToChange = propsToChangePixel6;
+            if (Arrays.asList(packagesToChangePixel7Pro).contains(packageName)) {
+                propsToChange = propsToChangePixel7Pro;
             }
 
             if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
