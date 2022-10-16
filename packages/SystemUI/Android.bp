@@ -125,6 +125,8 @@ android_library {
         "jsr330",
         "lottie",
         "LowLightDreamLib",
+        "colorkt",
+        "themelib",
     ],
     manifest: "AndroidManifest.xml",
 
