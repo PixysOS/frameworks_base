@@ -5516,6 +5516,14 @@ public final class Settings {
         public static final String DESKTOP_MODE = "desktop_mode";
 
         /**
+         * Whether to show volume panel on the left side
+         * Defaults to com.android.systemui.R.bool.config_audioPanelOnLeftSide
+         * @hide
+         */
+        @Readable
+        public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
