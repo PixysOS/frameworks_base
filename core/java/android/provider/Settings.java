@@ -11153,6 +11153,13 @@ public final class Settings {
         public static final String MONET_ENGINE_ACCURATE_SHADES = "monet_engine_accurate_shades";
 
         /**
+         *  Toggle the media squiggle animation
+         *  0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String SHOW_MEDIA_SQUIGGLE_ANIMATION = "show_media_squiggle_animation";
+
+        /**
          * Color override (default null)
          * @hide
          */
