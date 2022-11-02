@@ -73,7 +73,10 @@ public class PixelPropsUtils {
             "com.google.android.apps.wallpaper",
             "com.google.android.apps.subscriptions.red",
             "com.google.android.inputmethod.latin",
-            "com.google.android.apps.wellbeing"
+            "com.google.android.apps.wellbeing",
+	    "com.google.android.as",
+            "com.google.android.gms.persistent",
+	    "com.google.android.googlequicksearchbox"
 
     };
 
