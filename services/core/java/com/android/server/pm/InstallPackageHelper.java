@@ -81,6 +81,7 @@ import static com.android.server.pm.PackageManagerService.SCAN_NEW_INSTALL;
 import static com.android.server.pm.PackageManagerService.SCAN_NO_DEX;
 import static com.android.server.pm.PackageManagerService.SCAN_REQUIRE_KNOWN;
 import static com.android.server.pm.PackageManagerService.SCAN_UPDATE_SIGNATURE;
+import static com.android.server.pm.PackageManagerService.SIGNATURE_RESET_PROP;
 import static com.android.server.pm.PackageManagerService.TAG;
 import static com.android.server.pm.PackageManagerServiceUtils.comparePackageSignatures;
 import static com.android.server.pm.PackageManagerServiceUtils.compareSignatures;
@@ -204,6 +205,7 @@ final class InstallPackageHelper {
     private final ViewCompiler mViewCompiler;
     private final SharedLibrariesImpl mSharedLibraries;
     private final PackageManagerServiceInjector mInjector;
+    private boolean mResetSignatures;
 
     // TODO(b/198166813): remove PMS dependency
     InstallPackageHelper(PackageManagerService pm, AppDataHelper appDataHelper) {
@@ -1266,7 +1268,13 @@ final class InstallPackageHelper {
                 final KeySetManagerService ksms = mPm.mSettings.getKeySetManagerService();
                 final SharedUserSetting signatureCheckSus = mPm.mSettings.getSharedUserSettingLPr(
                         signatureCheckPs);
-                if (ksms.shouldCheckUpgradeKeySetLocked(signatureCheckPs, signatureCheckSus,
+                SharedUserSetting sharedUserSetting = mPm.mSettings.getSharedUserSettingLPr(parsedPackage.getPackageName());
+                if (mResetSignatures) {
+                    Slog.d(TAG, "resetting signatures on package " + parsedPackage.getPackageName());
+                    if (sharedUserSetting != null) {
+                        sharedUserSetting.signatures.mSigningDetails = parsedPackage.getSigningDetails();
+                    }
+                } else if (ksms.shouldCheckUpgradeKeySetLocked(signatureCheckPs, signatureCheckSus,
                         scanFlags)) {
                     if (!ksms.checkUpgradeKeySetLocked(signatureCheckPs, parsedPackage)) {
                         throw new PrepareFailure(INSTALL_FAILED_UPDATE_INCOMPATIBLE, "Package "
@@ -1689,6 +1697,7 @@ final class InstallPackageHelper {
                     final boolean product = oldPackage.isProduct();
                     final boolean odm = oldPackage.isOdm();
                     final boolean systemExt = oldPackage.isSystemExt();
+                    mResetSignatures = SystemProperties.getBoolean(SIGNATURE_RESET_PROP, true);
                     final @ParsingPackageUtils.ParseFlags int systemParseFlags = parseFlags;
                     final @PackageManagerService.ScanFlags int systemScanFlags = scanFlags
                             | SCAN_AS_SYSTEM
