@@ -522,6 +522,8 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
 
     private static final String COMPANION_PACKAGE_NAME = "com.android.companiondevicemanager";
 
+    public static final String SIGNATURE_RESET_PROP = "ro.persist.sys.signatures.reset";
+
     // Compilation reasons.
     public static final int REASON_FIRST_BOOT = 0;
     public static final int REASON_BOOT_AFTER_OTA = 1;
