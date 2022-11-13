@@ -77,4 +77,10 @@
     <string name="quick_settings_qr_description">Toque para ler</string>
     <string name="qr_code_activity_title">Leitor de código QR</string>
     <string name="delete_text_history">Limpar histórico</string>
+    <string name="screen_pinning_description_no_navbar">Vai ficar visível até soltar. Prima e segure Voltar para soltar.</string>
+    <string name="screen_pinning_toast_no_navbar">Para soltar este ecrã, prima e segure o botão Voltar</string>
+    <string name="screen_pinning_description_no_navbar_fpsensor">Vai ficar visível até soltar. Prima e segure o sensor de impressão digital para soltar.</string>
+    <string name="screen_pinning_toast_no_navbar_fpsensor">Para soltar este ecrã, prima e segure o sensor de impressão digital</string>
+    <string name="on_the_spot_deny">Não, obrigado</string>
+    <string name="on_the_spot_confirm">OK</string>
 </resources>

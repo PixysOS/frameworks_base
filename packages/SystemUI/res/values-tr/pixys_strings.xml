@@ -81,4 +81,6 @@
     <string name="screen_pinning_toast_no_navbar">Bu ekrandaki sabitlemeyi kaldırmak için, dokunun &amp; Geri tuşuna basılı tutun</string>
     <string name="screen_pinning_description_no_navbar_fpsensor">Bu, siz sabitlemeyi kaldırana kadar ekranda görünür tutar. Sabitlemeyi kaldırmak için parmak izi sensörüne dokunun &amp; basılı tutun.</string>
     <string name="screen_pinning_toast_no_navbar_fpsensor">Bu ekran sabitlemesini kaldırmak için parmak izi sensörüne dokunun &amp; basılı tutun</string>
+    <string name="on_the_spot_deny">Hayır teşekkürler</string>
+    <string name="on_the_spot_confirm">Tamam</string>
 </resources>

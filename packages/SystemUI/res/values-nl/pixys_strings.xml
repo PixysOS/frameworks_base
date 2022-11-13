@@ -81,4 +81,6 @@
     <string name="screen_pinning_toast_no_navbar">Om dit scherm los te maken, selecteer &amp; en houd de Terug knop ingedrukt</string>
     <string name="screen_pinning_description_no_navbar_fpsensor">Dit blijft op het scherm tot je het losmaakt. Tik &amp; en gebruik de vingerafdruk scanner(houd ingedrukt) om los te laten.</string>
     <string name="screen_pinning_toast_no_navbar_fpsensor">Selecteer &amp; en houd de vingerafdrukscanner ingedrukt om dit scherm los te maken</string>
+    <string name="on_the_spot_deny">Nee bedankt</string>
+    <string name="on_the_spot_confirm">Oke</string>
 </resources>
