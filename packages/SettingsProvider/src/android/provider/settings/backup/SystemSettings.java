@@ -109,5 +109,9 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_COOLDOWN_VIBRATE_UNLOCKED,
         Settings.System.NETWORK_TRAFFIC_STATE,
         Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
+        Settings.System.RINGTONE_VIBRATION_PATTERN,
+        Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
+        Settings.System.NOTIFICATION_VIBRATION_PATTERN,
+        Settings.System.CUSTOM_NOTIFICATION_VIBRATION_PATTERN,
     };
 }
