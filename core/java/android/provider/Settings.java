@@ -5784,14 +5784,6 @@ public final class Settings {
          */
         public static final String ADAPTIVE_PLAYBACK_TIMEOUT = "adaptive_playback_timeout";
 
-
-       /**
-         * Volume panel on left
-         * @hide
-         */
-        public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
-
-
         /**
          * Whether to enable the ripple animation on fingerprint unlock
          * @hide
@@ -5976,7 +5968,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE_VENDOR_HINT);
-            PRIVATE_SETTINGS.add(VOLUME_PANEL_ON_LEFT);
             PRIVATE_SETTINGS.add(VIBRATE_ON_CONNECT);
             PRIVATE_SETTINGS.add(VIBRATE_ON_CALLWAITING);
             PRIVATE_SETTINGS.add(VIBRATE_ON_DISCONNECT);
