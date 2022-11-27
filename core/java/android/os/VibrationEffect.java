@@ -1460,6 +1460,12 @@ public abstract class VibrationEffect implements Parcelable {
             new Parcelable.Creator<VibrationEffect>() {
                 @Override
                 public VibrationEffect createFromParcel(Parcel in) {
+                    int token = in.readInt();
+                    if (RichTapVibrationEffect.isExtendedEffect(token)) {
+                        return RichTapVibrationEffect.createExtendedEffect(in);
+                    }
+                    int offset = in.dataPosition() - 4;
+                    in.setDataPosition(offset);
                     return new Composed(in);
                 }
                 @Override
