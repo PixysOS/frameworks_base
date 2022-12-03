@@ -28,4 +28,11 @@ public interface DeviceKeyHandler {
      * @return null if event is consumed, KeyEvent to be handled otherwise
      */
     public KeyEvent handleKeyEvent(KeyEvent event);
+
+    /**
+     * Invoked when in pocket state changes
+     *
+     * @param inPocket Whether in pocket or not
+     */
+    public void onPocketStateChanged(boolean inPocket);
 }
