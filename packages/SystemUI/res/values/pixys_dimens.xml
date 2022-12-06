@@ -31,4 +31,7 @@
 
      <!-- QQS & QS margin top -->
     <dimen name="qqs_margin_top">16dp</dimen>
+
+    <!-- Maximum vertical offset of statusbar for burn-in protection -->
+    <dimen name="status_bar_offset_max_y">4dp</dimen>
 </resources>
