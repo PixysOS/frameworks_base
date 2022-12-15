@@ -1394,7 +1394,6 @@ public class CentralSurfacesImpl implements CoreStartable, TunerService.Tunable,
                             .withDefault(this::createDefaultQSFragment)
                             .build());
             mBrightnessMirrorController = new BrightnessMirrorController(
-                    mContext,
                     mNotificationShadeWindowView,
                     mNotificationPanelViewController,
                     mNotificationShadeDepthControllerLazy.get(),
