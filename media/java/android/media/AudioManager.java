@@ -6955,6 +6955,15 @@ public class AudioManager {
         for (Integer format : formatsList) {
             int btSourceCodec = AudioSystem.audioFormatToBluetoothSourceCodec(format);
             if (btSourceCodec != BluetoothCodecConfig.SOURCE_CODEC_TYPE_INVALID) {
+                // Savitech Patch - START  Offload
+                // Add all LHDC series codecs to offload path
+                /*
+                if (btSourceCodec == BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV5) {
+                    codecConfigList.add(new BluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV2));
+                    codecConfigList.add(new BluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV3));
+                }
+                */
+                // Savitech Patch - END
                 codecConfigList.add(
                         new BluetoothCodecConfig.Builder().setCodecType(btSourceCodec).build());
             }
