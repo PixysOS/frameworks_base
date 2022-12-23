@@ -247,6 +247,10 @@ public class AudioSystem
     public static final int AUDIO_FORMAT_LC3            = 0x2B000000;
     /** @hide */
     public static final int AUDIO_FORMAT_OPUS           = 0x08000000;
+    /** @hide */
+    public static final int AUDIO_FORMAT_LHDC           = 0x28000000;
+    /** @hide */
+    public static final int AUDIO_FORMAT_LHDC_LL        = 0x29000000;
 
 
     /** @hide */
@@ -259,8 +263,10 @@ public class AudioSystem
             AUDIO_FORMAT_APTX_HD,
             AUDIO_FORMAT_LDAC,
             AUDIO_FORMAT_LC3,
-            AUDIO_FORMAT_OPUS
-           }
+            AUDIO_FORMAT_OPUS,
+            AUDIO_FORMAT_LHDC,
+            AUDIO_FORMAT_LHDC_LL,
+            }
     )
     @Retention(RetentionPolicy.SOURCE)
     public @interface AudioFormatNativeEnumForBtCodec {}
@@ -294,6 +300,8 @@ public class AudioSystem
             case AUDIO_FORMAT_LDAC: return BluetoothCodecConfig.SOURCE_CODEC_TYPE_LDAC;
             case AUDIO_FORMAT_LC3: return BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3;
             case AUDIO_FORMAT_OPUS: return SOURCE_CODEC_TYPE_OPUS; // TODO update in U
+            case AUDIO_FORMAT_LHDC: return BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV5;
+            case AUDIO_FORMAT_LHDC_LL: return BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV5;
             default:
                 Log.e(TAG, "Unknown audio format 0x" + Integer.toHexString(audioFormat)
                         + " for conversion to BT codec");
@@ -338,6 +346,12 @@ public class AudioSystem
                 return AudioSystem.AUDIO_FORMAT_LC3;
             case SOURCE_CODEC_TYPE_OPUS: // TODO update in U
                 return AudioSystem.AUDIO_FORMAT_OPUS;
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV3:
+                return AudioSystem.AUDIO_FORMAT_LHDC;
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV2:
+                return AudioSystem.AUDIO_FORMAT_LHDC;
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_LHDCV5:
+                return AudioSystem.AUDIO_FORMAT_LHDC;
             default:
                 Log.e(TAG, "Unknown BT codec 0x" + Integer.toHexString(btCodec)
                         + " for conversion to audio format");
