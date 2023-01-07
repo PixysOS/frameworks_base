@@ -80,7 +80,8 @@ public class PixelPropsUtils {
             "com.android.chrome",
             "com.android.vending",
             "com.breel.wallpapers20",
-            "com.nothing.smartcenter"
+            "com.nothing.smartcenter",
+            "com.snapchat.android"
     };
 
     private static final String[] packagesToChangePixelXL = {
@@ -107,7 +108,8 @@ public class PixelPropsUtils {
             "com.google.android.apps.youtube.kids",
             "com.google.android.apps.youtube.music",
             "com.google.android.apps.recorder",
-            "com.google.android.apps.wearables.maestro.companion"
+            "com.google.android.apps.wearables.maestro.companion",
+            "com.google.android.apps.security.securityhub"
     };
 
     // Codenames for currently supported Pixels by Google
