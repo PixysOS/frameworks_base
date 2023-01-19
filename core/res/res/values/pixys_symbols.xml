@@ -118,4 +118,6 @@
     <!-- Camera -->
     <java-symbol type="array" name="config_cameraHFRPrivAppList" />
 
+    <!-- Display color inversion availability -->
+    <java-symbol type="bool" name="config_displayInversionAvailable" />
 </resources>
