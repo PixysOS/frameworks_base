@@ -12417,6 +12417,15 @@ public final class Settings {
         public static final String STYLUS_POINTER_ICON_ENABLED = "stylus_pointer_icon_enabled";
 
         /**
+         * Whether the nav bar back/recents button positions should be swapped.
+         * When enabled, the back is on the right of the nav bar.
+         *
+         * @hide
+         */
+        public static final String NAV_BAR_BUTTON_SWAP_ENABLED =
+                "nav_bar_button_swap_enabled";
+
+        /**
          * These entries are considered common between the personal and the managed profile,
          * since the managed profile doesn't get to change them.
          */
