@@ -46,11 +46,18 @@ public class PixelPropsUtils {
     private static final Map<String, Object> propsToChangeMI11;
     private static final Map<String, ArrayList<String>> propsToKeep;
 
-    private static final String[] packagesToChangePixel5 = {
+    private static final String[] packagesToChangePixel7Pro = {
             "com.google.android.gms",
+            "com.google.android.apps.privacy.wildlife",
+            "com.google.android.apps.wallpaper.pixel",
+            "com.google.android.apps.wallpaper",
+            "com.google.android.apps.subscriptions.red",
             "com.google.android.inputmethod.latin",
-            "com.google.android.googlequicksearchbox",
-            "com.google.android.tts"
+            "com.google.android.apps.wellbeing",
+            "com.google.android.as",
+            "com.google.android.gms.persistent",
+            "com.google.android.googlequicksearchbox"
+
     };
 
     private static final String[] packagesToChangePixelXL = {
@@ -198,7 +205,6 @@ public class PixelPropsUtils {
         propsToChangeMI11.put("DEVICE", "star");
         propsToChangeMI11.put("PRODUCT", "star");
         propsToChangeMI11.put("MODEL", "M2102K1G");
-
     }
 
     public static void setProps(String packageName) {
@@ -218,7 +224,7 @@ public class PixelPropsUtils {
                     propsToChange.putAll(propsToChangePixelXL);
                 } else {
                     if (isPixelDevice) return;
-                    propsToChange.putAll(propsToChangePixel7Pro);
+                    propsToChange.putAll(propsToChangePixel5);
                 }
             } else if (packageName.equals("com.netflix.mediaclient") && 
                         !SystemProperties.getBoolean("persist.sys.pixelprops.netflix", false)) {
@@ -230,12 +236,12 @@ public class PixelPropsUtils {
                 sIsFinsky = true;
                 return;
             } else {
-                if (Arrays.asList(packagesToChangePixel5).contains(packageName)) {
-                    propsToChange.putAll(propsToChangePixel5);
+                if (Arrays.asList(packagesToChangePixel7Pro).contains(packageName)) {
+                    propsToChange.putAll(propsToChangePixel7Pro);
                 } else if (Arrays.asList(packagesToChangePixelXL).contains(packageName)) {
                     propsToChange.putAll(propsToChangePixelXL);
                 } else {
-                    propsToChange.putAll(propsToChangePixel7Pro);
+                    propsToChange.putAll(propsToChangePixel5);
                 }
             }
 
