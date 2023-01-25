@@ -56,7 +56,8 @@ public class PixelPropsUtils {
             "com.google.android.apps.wellbeing",
             "com.google.android.as",
             "com.google.android.gms.persistent",
-            "com.google.android.googlequicksearchbox"
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.tts"
 
     };
 
