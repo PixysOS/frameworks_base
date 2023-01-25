@@ -670,8 +670,10 @@ public class UserBackupManagerService {
                 new BackupManagerMonitorDumpsysUtils();
         mBackupHandler.postDelayed(backupManagerMonitorDumpsysUtils::deleteExpiredBMMEvents,
                 INITIALIZATION_DELAY_MILLIS);
-
-        mBackupPreferences = new UserBackupPreferences(mContext, mBaseStateDir);
+    
+        final Context userContext = context.createContextAsUser(UserHandle.of(userId),
+                0 /* flags */);
+        mBackupPreferences = new UserBackupPreferences(userContext, mBaseStateDir);
 
         // Power management
         mWakelock = new BackupWakeLock(
