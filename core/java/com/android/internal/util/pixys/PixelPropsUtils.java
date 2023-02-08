@@ -357,10 +357,12 @@ public class PixelPropsUtils {
     }
 
     private static void spoofBuildGms() {
-        // Alter model name and fingerprint to avoid hardware attestation enforcement
-        setBuildField("FINGERPRINT", "google/angler/angler:6.0/MDB08L/2343525:user/release-keys");
-        setBuildField("MODEL", Build.MODEL + "\u200b");
-        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.S);
+        // Alter build parameters to pixel 2 for avoiding hardware attestation enforcement
+        setBuildField("DEVICE", "walleye");
+        setBuildField("FINGERPRINT", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
+        setBuildField("MODEL", "Pixel 2");
+        setBuildField("PRODUCT", "walleye");
+        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.O);
     }
 
     private static boolean isCallerSafetyNet() {
