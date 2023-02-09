@@ -129,6 +129,7 @@ android_library {
         "themelib",
         "vendor.lineage.powershare-V1.0-java",
         "faceunlock_framework",
+        "bcsmartspace-google",
     ],
     manifest: "AndroidManifest.xml",
 
