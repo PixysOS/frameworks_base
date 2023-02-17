@@ -49,7 +49,6 @@ public class PixelPropsUtils {
 
     private static final String[] packagesToChangePixel7Pro = {
             "com.google.android.apps.googleassistant",
-            "com.google.android.gms",
             "com.google.android.apps.privacy.wildlife",
             "com.google.android.apps.wallpaper.pixel",
             "com.google.android.apps.wallpaper",
@@ -58,7 +57,6 @@ public class PixelPropsUtils {
             "com.google.android.as",
             "com.google.android.gms.persistent",
             "com.google.android.googlequicksearchbox"
-
     };
 
     private static final String[] packagesToChangePixelXL = {
@@ -103,7 +101,8 @@ public class PixelPropsUtils {
             "com.google.android.youtube",
             "com.google.android.apps.youtube.kids",
             "com.google.android.apps.youtube.music",
-            "com.google.android.apps.recorder"
+            "com.google.android.apps.recorder",
+            "com.google.android.gms",
     };
 
     private static final String[] packagesToChangeROG1 = {
@@ -226,10 +225,6 @@ public class PixelPropsUtils {
                     if (isPixelDevice) return;
                     propsToChange.putAll(propsToChangePixel5);
                 }
-            } else if (packageName.equals("com.netflix.mediaclient") && 
-                        !SystemProperties.getBoolean("persist.sys.pixelprops.netflix", false)) {
-                    if (DEBUG) Log.d(TAG, "Netflix spoofing disabled by system prop");
-                    return;
             } else if (isPixelDevice) {
                 return;
             } else if (packageName.equals("com.android.vending")) {
