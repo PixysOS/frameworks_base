@@ -48,8 +48,8 @@ public class PixelPropsUtils {
     private static final Map<String, ArrayList<String>> propsToKeep;
 
     private static final String[] packagesToChangePixel7Pro = {
+            "com.google.android.apps.tachyon", 
             "com.google.android.apps.googleassistant",
-            "com.google.android.gms",
             "com.google.android.apps.privacy.wildlife",
             "com.google.android.apps.wallpaper.pixel",
             "com.google.android.apps.wallpaper",
@@ -57,7 +57,8 @@ public class PixelPropsUtils {
             "com.google.android.apps.wellbeing",
             "com.google.android.as",
             "com.google.android.gms.persistent",
-            "com.google.android.googlequicksearchbox"
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.inputmethod.latin"
 
     };
 
@@ -76,7 +77,6 @@ public class PixelPropsUtils {
 
     private static final String[] extraPackagesToChange = {
             "com.android.chrome",
-            "com.android.vending",
             "com.breel.wallpapers20",
             "com.nhs.online.nhsonline",
             "com.netflix.mediaclient",
@@ -85,6 +85,7 @@ public class PixelPropsUtils {
     };
 
     private static final String[] packagesToKeep = {
+            "com.google.android.gms",
             "com.google.android.GoogleCamera",
             "com.google.android.GoogleCamera.Cameight",
             "com.google.android.GoogleCamera.Go",
@@ -226,10 +227,6 @@ public class PixelPropsUtils {
                     if (isPixelDevice) return;
                     propsToChange.putAll(propsToChangePixel5);
                 }
-            } else if (packageName.equals("com.netflix.mediaclient") && 
-                        !SystemProperties.getBoolean("persist.sys.pixelprops.netflix", false)) {
-                    if (DEBUG) Log.d(TAG, "Netflix spoofing disabled by system prop");
-                    return;
             } else if (isPixelDevice) {
                 return;
             } else if (packageName.equals("com.android.vending")) {
