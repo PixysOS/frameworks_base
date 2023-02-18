@@ -69,7 +69,8 @@ public class PixelPropsUtils {
             "com.samsung.android.gearnplugin",
             "com.samsung.android.modenplugin",
             "com.samsung.android.neatplugin",
-            "com.samsung.android.waterplugin"
+            "com.samsung.android.waterplugin",
+            "com.snapchat.android"
     };
 
     private static final String[] extraPackagesToChange = {
@@ -77,8 +78,7 @@ public class PixelPropsUtils {
             "com.breel.wallpapers20",
             "com.nhs.online.nhsonline",
             "com.netflix.mediaclient",
-            "com.nothing.smartcenter",
-            "com.snapchat.android"
+            "com.nothing.smartcenter"
     };
 
     private static final String[] packagesToKeep = {
