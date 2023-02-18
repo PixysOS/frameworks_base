@@ -56,6 +56,8 @@ public class PixelPropsUtils {
             "com.google.android.apps.wellbeing",
             "com.google.android.as",
             "com.google.android.gms.persistent",
+            "com.google.android.gms.ui",
+            "com.google.android.gms.learning",
             "com.google.android.googlequicksearchbox"
     };
 
