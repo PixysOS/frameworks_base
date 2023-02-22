@@ -408,8 +408,9 @@ cc_library_shared {
         },
     },
 
+    // Workaround Clang LTO crash.
     lto: {
-        thin: true,
+        never: true,
     },
 }
 
