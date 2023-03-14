@@ -319,5 +319,5 @@
     <bool name="def_wearable_tiltToBrightEnabled">false</bool>
 
     <!-- Whether vibrate icon is shown in the status bar by default. -->
-    <integer name="def_statusBarVibrateIconEnabled">0</integer>
+    <integer name="def_statusBarVibrateIconEnabled">1</integer>
 </resources>
