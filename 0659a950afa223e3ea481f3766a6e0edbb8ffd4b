@@ -34,6 +34,24 @@
       "parentUuid": "2e329b45_85880824",
       "revId": "0659a950afa223e3ea481f3766a6e0edbb8ffd4b",
       "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01205404_06a14ba6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-03-15T11:05:44Z",
+      "side": 1,
+      "message": "yes , fixed in https://gerrit.pixysos.com/c/PixysOS/frameworks_base/+/25322 , anyway its seems to be fine in QPR2 even with cheetah",
+      "parentUuid": "c021dfbc_0fa6b018",
+      "revId": "0659a950afa223e3ea481f3766a6e0edbb8ffd4b",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
     }
   ]
 }
