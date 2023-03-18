@@ -659,6 +659,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private int mKeyguardDrawnTimeout = 1000;
 
     private int mTorchActionMode;
+    private boolean mUnhandledTorchPower = false;
+    private static final int TORCH_ACTION_NONE = 0;
+    private static final int TORCH_ACTION_DOUBLE = 1;
+    private static final int TORCH_ACTION_LONG = 2;
 
     private final List<DeviceKeyHandler> mDeviceKeyHandlers = new ArrayList<>();
 
@@ -1017,8 +1021,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         if (!mPowerKeyHandled) {
             if (!interactive) {
-                if (mTorchActionMode == 0) {
+                if (mTorchActionMode == TORCH_ACTION_NONE) {
                     wakeUpFromPowerKey(event.getDownTime());
+                } else {
+                    mUnhandledTorchPower = true;
                 }
             }
         } else {
@@ -1056,13 +1062,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private void powerPress(long eventTime, int count, boolean beganFromNonInteractive) {
         if (mDefaultDisplayPolicy.isScreenOnEarly() && !mDefaultDisplayPolicy.isScreenOnFully()
-            && mTorchActionMode != 1) {
+            && mTorchActionMode != TORCH_ACTION_DOUBLE) {
             Slog.i(TAG, "Suppressed redundant power key press while "
                     + "already in the process of turning the screen on.");
             return;
         }
 
         final boolean interactive = Display.isOnState(mDefaultDisplay.getState());
+        final boolean torchActionEnabled = mTorchActionMode != TORCH_ACTION_NONE;
 
         Slog.d(TAG, "powerPress: eventTime=" + eventTime + " interactive=" + interactive
                 + " count=" + count + " beganFromNonInteractive=" + beganFromNonInteractive
@@ -1074,6 +1081,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             powerMultiPressAction(eventTime, interactive, mTriplePressOnPowerBehavior);
         } else if (count > 3 && count <= getMaxMultiPressPowerCount()) {
             Slog.d(TAG, "No behavior defined for power press count " + count);
+        } else if (count == 1 && interactive && beganFromNonInteractive &&
+                mUnhandledTorchPower && beganFromNonInteractive && torchActionEnabled) {
+            wakeUpFromPowerKey(eventTime);
+            return;
         } else if (count == 1 && interactive && !beganFromNonInteractive) {
             if (mSideFpsEventHandler.shouldConsumeSinglePress(eventTime)) {
                 Slog.i(TAG, "Suppressing power key because the user is interacting with the "
@@ -1130,7 +1141,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     break;
                 }
             }
-        } else if (mTorchActionMode != 0 && beganFromNonInteractive) {
+        }
+        if (mUnhandledTorchPower && torchActionEnabled && beganFromNonInteractive) {
             wakeUpFromPowerKey(eventTime);
         }
     }
@@ -1298,7 +1310,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             return 3;
         }
         if (mDoublePressOnPowerBehavior != MULTI_PRESS_POWER_NOTHING ||
-                mTorchActionMode == 1) {
+                mTorchActionMode == TORCH_ACTION_DOUBLE) {
             return 2;
         }
         return 1;
@@ -2515,23 +2527,26 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         @Override
         void onMultiPress(long downTime, int count) {
-            if (mSingleKeyGestureDetector.beganFromNonInteractive()) {
+            final boolean beganFromNonInteractive =
+                    mSingleKeyGestureDetector.beganFromNonInteractive();
+            if (beganFromNonInteractive) {
                 if (handleTorchPress(false)) {
                     mSingleKeyGestureDetector.reset();
                     return;
                 }
             }
-            powerPress(downTime, count, mSingleKeyGestureDetector.beganFromNonInteractive());
+            powerPress(downTime, count, beganFromNonInteractive);
         }
     }
 
     public boolean handleTorchPress(boolean longpress) {
-        if (mTorchActionMode == 2 && longpress) {
+        if (mIsDeviceInPocket) return false;
+        if (mTorchActionMode == TORCH_ACTION_LONG && longpress) {
             performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false,
                     "Power - Long Press - Torch");
             PixysUtils.toggleCameraFlash();
             return true;
-        } else if (mTorchActionMode == 1 && !longpress) {
+        } else if (mTorchActionMode == TORCH_ACTION_DOUBLE && !longpress) {
             performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false,
                       "Power - Double Press - Torch");
             PixysUtils.toggleCameraFlash();
@@ -2742,7 +2757,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_CURRENT) == 1;
             mTorchActionMode = Settings.System.getIntForUser(resolver,
                     Settings.System.TORCH_POWER_BUTTON_GESTURE,
-                            0, UserHandle.USER_CURRENT);
+                    TORCH_ACTION_NONE, UserHandle.USER_CURRENT);
         }
         if (updateRotation) {
             updateRotation(true);
@@ -4491,9 +4506,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             return;
         }
 
-        if (event.getKeyCode() == KEYCODE_POWER && event.getAction() == KeyEvent.ACTION_DOWN
-                && mTorchActionMode != 1) {
-            mPowerKeyHandled = handleCameraGesture(event, interactive);
+        if (event.getKeyCode() == KEYCODE_POWER && event.getAction() == KeyEvent.ACTION_DOWN) {
+            mPowerKeyHandled = mTorchActionMode != TORCH_ACTION_DOUBLE
+                    && handleCameraGesture(event, interactive);
             if (mPowerKeyHandled) {
                 // handled by camera gesture.
                 mSingleKeyGestureDetector.reset();
