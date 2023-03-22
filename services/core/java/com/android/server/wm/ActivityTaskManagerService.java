@@ -164,6 +164,8 @@ import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
 import android.app.PictureInPictureUiState;
 import android.app.ProfilerInfo;
+import android.app.RemoteAction;
+import android.app.RemoteTaskConstants;
 import android.app.WaitResult;
 import android.app.admin.DevicePolicyCache;
 import android.app.admin.DeviceStateCache;
@@ -200,6 +202,7 @@ import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.DeviceIntegrationUtils;
 import android.os.FactoryTest;
 import android.os.FileUtils;
 import android.os.Handler;
@@ -799,6 +802,8 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
     TaskOrganizerController mTaskOrganizerController;
     TaskFragmentOrganizerController mTaskFragmentOrganizerController;
 
+    final RemoteTaskManager mRemoteTaskManager;
+
     @Nullable
     private BackgroundActivityStartCallback mBackgroundActivityStartCallback;
 
@@ -880,6 +885,11 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
         mTaskFragmentOrganizerController =
                 mWindowOrganizerController.mTaskFragmentOrganizerController;
         mBackNavigationController = new BackNavigationController();
+        if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION) {
+            mRemoteTaskManager = new RemoteTaskManager(this);
+        } else {
+            mRemoteTaskManager = null;
+        }
     }
 
     public void onSystemReady() {
@@ -898,6 +908,10 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                     GrammaticalInflectionManagerInternal.class);
         }
         mAppStandbyInternal = LocalServices.getService(AppStandbyInternal.class);
+    }
+
+    public RemoteTaskManager getRemoteTaskManager() {
+        return mRemoteTaskManager;
     }
 
     public void onInitPowerManagement() {
@@ -1073,6 +1087,10 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
             mTaskSupervisor.setWindowManager(wm);
             mRootWindowContainer.setWindowManager(wm);
             mBackNavigationController.setWindowManager(wm);
+            if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION
+                && mRemoteTaskManager != null) {
+                mRemoteTaskManager.setRootWindowContainer(mRootWindowContainer);
+            }
         }
     }
 
@@ -3759,6 +3777,15 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                 ? new Transition(TRANSIT_PIP, 0 /* flags */,
                         getTransitionController(), mWindowManager.mSyncEngine)
                 : null;
+
+        // Device Integration: Essentially we don't want a task who live in remote task could enter PIP mode,
+        // that may somehow cause difficulty for handling the Launch same app scenarios. In addition,
+        // pip mode comes with bad user experiences(whole black screen) when shows in Virtual Display
+        // in some cases, so we have to relinquish this mode.
+        if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION
+             && getRemoteTaskManager().anyTaskExist(r.getTask())) {
+            return false;
+        }
 
         if (r.getTaskFragment() != null && r.getTaskFragment().isEmbeddedWithBoundsOverride()
                 && transition != null) {

@@ -62,6 +62,7 @@ import android.os.BaseBundle;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Debug;
+import android.os.DeviceIntegrationUtils;
 import android.os.Environment;
 import android.os.FactoryTest;
 import android.os.FileUtils;
@@ -239,6 +240,7 @@ import com.android.server.vr.VrManagerService;
 import com.android.server.wearable.WearableSensingManagerService;
 import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.ActivityTaskManagerService;
+import com.android.server.wm.CrossDeviceService;
 import com.android.server.wm.WindowManagerGlobalLock;
 import com.android.server.wm.WindowManagerService;
 import com.android.server.lineage.health.HealthInterfaceService;
@@ -2987,6 +2989,12 @@ public final class SystemServer implements Dumpable {
         t.traceBegin("MakePackageManagerServiceReady");
         mPackageManagerService.systemReady();
         t.traceEnd();
+
+        if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION) {
+            t.traceBegin("StartCrossDeviceService");
+            ServiceManager.addService(Context.CROSS_DEVICE_SERVICE, new CrossDeviceService(mSystemContext, mActivityManagerService.mActivityTaskManager));
+            t.traceEnd();
+        }
 
         t.traceBegin("MakeDisplayManagerServiceReady");
         try {

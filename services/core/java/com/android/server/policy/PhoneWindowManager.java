@@ -66,6 +66,8 @@ import static android.view.WindowManager.LayoutParams.TYPE_NOTIFICATION_SHADE;
 import static android.view.WindowManager.LayoutParams.TYPE_PRESENTATION;
 import static android.view.WindowManager.LayoutParams.TYPE_PRIVATE_PRESENTATION;
 import static android.view.WindowManager.LayoutParams.TYPE_QS_DIALOG;
+import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_BLACKSCREEN_OVERLAY;
+import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_DRAGDROP_OVERLAY;
 import static android.view.WindowManager.LayoutParams.TYPE_TOAST;
 import static android.view.WindowManager.LayoutParams.TYPE_VOICE_INTERACTION;
 import static android.view.WindowManager.LayoutParams.TYPE_WALLPAPER;
@@ -108,6 +110,7 @@ import android.app.ActivityManagerInternal;
 import android.app.ActivityTaskManager;
 import android.app.ActivityTaskManager.RootTaskInfo;
 import android.app.AppOpsManager;
+import android.app.CrossDeviceManager;
 import android.app.IActivityManager;
 import android.app.IUiModeManager;
 import android.app.NotificationManager;
@@ -149,6 +152,7 @@ import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.DeviceIdleManager;
+import android.os.DeviceIntegrationUtils;
 import android.os.FactoryTest;
 import android.os.Handler;
 import android.os.IBinder;
@@ -250,6 +254,7 @@ import com.android.server.vibrator.VibratorFrameworkStatsLogger;
 import com.android.server.vr.VrManagerInternal;
 import com.android.server.wallpaper.WallpaperManagerInternal;
 import com.android.server.wm.ActivityTaskManagerInternal;
+import com.android.server.wm.BlackScreenWindowManager;
 import com.android.server.wm.DisplayPolicy;
 import com.android.server.wm.DisplayRotation;
 import com.android.server.wm.WindowManagerInternal;
@@ -1215,6 +1220,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         } else if (count > 3 && count <= getMaxMultiPressPowerCount()) {
             Slog.d(TAG, "No behavior defined for power press count " + count);
         } else if (count == 1 && shouldHandleShortPressPowerAction(interactive, eventTime)) {
+
+            // Device Integration: If the power button is handled by black screen, then do nothing
+            if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION
+                && BlackScreenWindowManager.getInstance().interceptPowerKey()) {
+                return;
+            }
+
             switch (mShortPressOnPowerBehavior) {
                 case SHORT_PRESS_POWER_NOTHING:
                     break;
@@ -3292,6 +3304,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 case TYPE_NAVIGATION_BAR_PANEL:
                     // The window manager will check these.
                     return ADD_OKAY;
+                case TYPE_SYSTEM_DRAGDROP_OVERLAY:
+                case TYPE_SYSTEM_BLACKSCREEN_OVERLAY:
+                    if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION) {
+                        // Device Integration: permission check
+                        return (CrossDeviceManager.isCallerAllowed(mContext)) ? ADD_OKAY : ADD_PERMISSION_DENIED;
+                    }
             }
 
             return (mContext.checkCallingOrSelfPermission(INTERNAL_SYSTEM_WINDOW)

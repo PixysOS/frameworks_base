@@ -42,6 +42,7 @@ import android.media.INearbyMediaDevicesProvider;
 import android.media.MediaRoute2Info;
 import android.os.Binder;
 import android.os.Bundle;
+import android.os.DeviceIntegrationUtils;
 import android.os.Handler;
 import android.os.HandlerExecutor;
 import android.os.IBinder;
@@ -179,6 +180,9 @@ public class CommandQueue extends IStatusBar.Stub implements
     private static final int MSG_SET_QS_TILES = 79 << MSG_SHIFT;
     private static final int MSG_ENTER_DESKTOP = 80 << MSG_SHIFT;
     private static final int MSG_TOGGLE_CAMERA_FLASH = 81 << MSG_SHIFT;
+
+    // Device Integration: new case to handler disable message from VirtualDisplay
+    private static final int MSG_DISABLE_VD = 100 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -616,13 +620,20 @@ public class CommandQueue extends IStatusBar.Stub implements
             boolean animate) {
         synchronized (mLock) {
             setDisabled(displayId, state1, state2);
-            mHandler.removeMessages(MSG_DISABLE);
+
+            int msgType = MSG_DISABLE;
+            if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION && displayId != mDisplayTracker.getDefaultDisplayId()){
+                msgType = MSG_DISABLE_VD;
+            }
+
+            mHandler.removeMessages(msgType);
             final SomeArgs args = SomeArgs.obtain();
             args.argi1 = displayId;
             args.argi2 = state1;
             args.argi3 = state2;
             args.argi4 = animate ? 1 : 0;
-            Message msg = mHandler.obtainMessage(MSG_DISABLE, args);
+            Message msg = mHandler.obtainMessage(msgType, args);
+
             if (Looper.myLooper() == mHandler.getLooper()) {
                 // If its the right looper execute immediately so hides can be handled quickly.
                 mHandler.handleMessage(msg);
@@ -1476,6 +1487,7 @@ public class CommandQueue extends IStatusBar.Stub implements
                     break;
                 }
                 case MSG_DISABLE:
+                case MSG_DISABLE_VD:
                     SomeArgs args = (SomeArgs) msg.obj;
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).disable(args.argi1, args.argi2, args.argi3,
