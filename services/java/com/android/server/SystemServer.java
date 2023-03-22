@@ -62,6 +62,7 @@ import android.os.BaseBundle;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Debug;
+import android.os.DeviceIntegrationUtils;
 import android.os.Environment;
 import android.os.FactoryTest;
 import android.os.FileUtils;
@@ -2861,9 +2862,11 @@ public final class SystemServer implements Dumpable {
         mPackageManagerService.systemReady();
         t.traceEnd();
 
-        t.traceBegin("StartCrossDeviceService");
-        ServiceManager.addService(Context.CROSS_DEVICE_SERVICE, new CrossDeviceService(mSystemContext, mActivityManagerService.mActivityTaskManager));
-        t.traceEnd();
+        if (!DeviceIntegrationUtils.DISABLE_DEVICE_INTEGRATION) {
+            t.traceBegin("StartCrossDeviceService");
+            ServiceManager.addService(Context.CROSS_DEVICE_SERVICE, new CrossDeviceService(mSystemContext, mActivityManagerService.mActivityTaskManager));
+            t.traceEnd();
+        }
 
         t.traceBegin("MakeDisplayManagerServiceReady");
         try {
