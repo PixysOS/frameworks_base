@@ -360,6 +360,10 @@
         <item>0x88E3</item>
     </integer-array>
 
+    <!-- Flag indicating whether notification and ringtone volumes
+         are controlled together (aliasing is true) or not. -->
+    <bool name="config_alias_ring_notif_stream_types">false</bool>
+
     <!-- Default value for ConnectivityManager.getMultipathPreference() on metered networks. Actual
          device behaviour is controlled by Settings.Global.NETWORK_METERED_MULTIPATH_PREFERENCE.
          This is the default value of that setting. -->
@@ -2049,10 +2053,6 @@
          one single stream. If true, all audio streams are mapped to
          STREAM_MUSIC as if it's on TV platform. -->
     <bool name="config_single_volume">false</bool>
-
-    <!-- Flag indicating whether notification and ringtone volumes
-         are controlled together (aliasing is true) or not. -->
-    <bool name="config_alias_ring_notif_stream_types">false</bool>
 
     <!-- The number of volume steps for the notification stream -->
     <integer name="config_audio_notif_vol_steps">7</integer>
