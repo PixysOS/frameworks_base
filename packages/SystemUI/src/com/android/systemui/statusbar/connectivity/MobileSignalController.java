@@ -25,6 +25,8 @@ import android.database.ContentObserver;
 import android.net.NetworkCapabilities;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemProperties;
+import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.telephony.AccessNetworkConstants;
 import android.telephony.CellSignalStrength;
@@ -292,7 +294,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         };
         mMobileStatusTracker = mobileStatusTrackerFactory.createTracker(mMobileCallback);
         mImsMmTelManager = ImsMmTelManager.createForSubscriptionId(info.getSubscriptionId());
-        mProviderModelBehavior = featureFlags.isEnabled(Flags.COMBINED_STATUS_BAR_SIGNAL_ICONS);
+        mProviderModelBehavior = SystemProperties.getBoolean("persist.sys.flags.combined_signal_icons", false);
         mTunerService = Dependency.get(TunerService.class);
     }
 
