@@ -11425,6 +11425,12 @@ public final class Settings {
          */
         public static final String ADAPTIVE_CONNECTIVITY_ENABLED = "adaptive_connectivity_enabled";
 
+	/**
+         * Boolean value whether to separate ringtone and notification volume
+         * @hide
+         */
+        public static final String VOLUME_SEPARATE_NOTIFICATION = "volume_separate_notification";
+
         /**
          * Whether to turn on black theme
          * @hide
