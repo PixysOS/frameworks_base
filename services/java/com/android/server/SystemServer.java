@@ -176,6 +176,7 @@ import com.android.server.policy.PermissionPolicyService;
 import com.android.server.policy.PhoneWindowManager;
 import com.android.server.policy.role.RoleServicePlatformHelperImpl;
 import com.android.server.power.PowerManagerService;
+import com.android.server.power.PowerOffAlarmService;
 import com.android.server.power.ShutdownThread;
 import com.android.server.power.ThermalManagerService;
 import com.android.server.power.hint.HintManagerService;
@@ -1684,6 +1685,10 @@ public final class SystemServer implements Dumpable {
                 mSystemServiceManager.startService(AutoAODService.class);
                 t.traceEnd();
             }
+
+            t.traceBegin("StartPowerOffAlarmService");
+            mSystemServiceManager.startService(PowerOffAlarmService.class);
+            t.traceEnd();
 
         } catch (Throwable e) {
             Slog.e("System", "******************************************");
