@@ -34,7 +34,7 @@ cc_defaults {
         "hwui_static_deps",
         "skia_deps",
         //"hwui_bugreport_font_cache_usage",
-        //"hwui_compile_for_perf",
+        "hwui_compile_for_perf",
         "hwui_lto",
     ],
 
@@ -55,6 +55,10 @@ cc_defaults {
         // GCC false-positives on this warning, and since we -Werror that's
         // a problem
         "-Wno-free-nonheap-object",
+
+        // Do not de-optimise cold code paths in AFDO.
+        // Some code paths might be infrequently executed but critical to latency.
+        "-fno-profile-sample-accurate",
     ],
 
     include_dirs: [
@@ -153,9 +157,7 @@ cc_defaults {
     name: "hwui_compile_for_perf",
     // TODO: Non-arm?
     cflags: [
-        "-fno-omit-frame-pointer",
-        "-marm",
-        "-mapcs",
+        "-O3",
     ],
 }
 
@@ -674,6 +676,7 @@ cc_test {
     srcs: [
         "tests/unit/main.cpp",
         "tests/unit/ABitmapTests.cpp",
+        "tests/unit/AutoBackendTextureReleaseTests.cpp",
         "tests/unit/CacheManagerTests.cpp",
         "tests/unit/CanvasContextTests.cpp",
         "tests/unit/CanvasOpTests.cpp",

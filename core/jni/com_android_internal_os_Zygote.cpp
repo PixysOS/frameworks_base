@@ -337,6 +337,7 @@ enum MountExternalKind {
 // Must match values in com.android.internal.os.Zygote.
 enum RuntimeFlags : uint32_t {
     DEBUG_ENABLE_JDWP = 1,
+    PROFILE_SYSTEM_SERVER = 1 << 14,
     PROFILE_FROM_SHELL = 1 << 15,
     MEMORY_TAG_LEVEL_MASK = (1 << 19) | (1 << 20),
     MEMORY_TAG_LEVEL_TBI = 1 << 19,
@@ -1779,10 +1780,16 @@ static void SpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArray gids, 
     // since the directory is owned by root.
     if (!is_system_server && getuid() == 0) {
         const int rc = createProcessGroup(uid, getpid());
-        if (rc == -EROFS) {
-            ALOGW("createProcessGroup failed, kernel missing CONFIG_CGROUP_CPUACCT?");
-        } else if (rc != 0) {
-            ALOGE("createProcessGroup(%d, %d) failed: %s", uid, /* pid= */ 0, strerror(-rc));
+        if (rc != 0) {
+            if (rc == -ESRCH) {
+                // If process is dead, treat this as a non-fatal error
+                ALOGE("createProcessGroup(%d, %d) failed: %s", uid, /* pid= */ 0, strerror(-rc));
+            } else {
+                fail_fn(rc == -EROFS ? CREATE_ERROR("createProcessGroup failed, kernel missing "
+                                                    "CONFIG_CGROUP_CPUACCT?")
+                                     : CREATE_ERROR("createProcessGroup(%d, %d) failed: %s", uid,
+                                                    /* pid= */ 0, strerror(-rc)));
+            }
         }
     }
 
@@ -1797,9 +1804,11 @@ static void SpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArray gids, 
                                            instruction_set.value().c_str());
     }
 
-    if (is_system_server) {
+    if (is_system_server && !(runtime_flags & RuntimeFlags::PROFILE_SYSTEM_SERVER)) {
         // Prefetch the classloader for the system server. This is done early to
         // allow a tie-down of the proper system server selinux domain.
+        // We don't prefetch when the system server is being profiled to avoid
+        // loading AOT code.
         env->CallStaticObjectMethod(gZygoteInitClass, gGetOrCreateSystemServerClassLoader);
         if (env->ExceptionCheck()) {
             // Be robust here. The Java code will attempt to create the classloader
