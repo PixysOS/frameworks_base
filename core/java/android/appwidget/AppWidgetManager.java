@@ -1006,6 +1006,8 @@ public class AppWidgetManager {
                 info.updateDimensions(mDisplayMetrics);
             }
             return providers.getList();
+        } catch (IllegalStateException e) {
+            return Collections.emptyList();
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
