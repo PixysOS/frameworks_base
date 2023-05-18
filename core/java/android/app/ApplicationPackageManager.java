@@ -862,6 +862,12 @@ public class ApplicationPackageManager extends PackageManager {
                 (name.contains("PIXEL_2022_EXPERIENCE") ||
                 name.contains("PIXEL_2022_MIDYEAR_EXPERIENCE"))) {
             return false;
+        } else if (packageName != null &&
+                packageName.contains("com.google.android.apps.nexuslauncher") &&
+                (name.contains("PIXEL_2022_EXPERIENCE") ||
+                name.contains("PIXEL_2021_EXPERIENCE") ||
+                name.contains("PIXEL_2021_MIDYEAR_EXPERIENCE") ||
+                name.contains("PIXEL_2022_MIDYEAR_EXPERIENCE"))) {
         }
         return mHasSystemFeatureCache.query(new HasSystemFeatureQuery(name, version));
     }
