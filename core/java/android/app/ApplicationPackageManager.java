@@ -807,7 +807,7 @@ public class ApplicationPackageManager extends PackageManager {
                 }
             };
 
-    private static final String[] p21Codenames = {
+    private static final String[] pTensorCodenames = {
             "cheetah",
             "panther",
             "bluejay",
@@ -831,7 +831,7 @@ public class ApplicationPackageManager extends PackageManager {
             "com.google.android.feature.GOOGLE_EXPERIENCE"
     };
 
-    private static final String[] featuresP21 = {
+    private static final String[] featuresTensor = {
             "com.google.android.feature.PIXEL_2022_EXPERIENCE",
             "com.google.android.feature.PIXEL_2022_MIDYEAR_EXPERIENCE",
             "com.google.android.feature.PIXEL_2021_EXPERIENCE",
@@ -850,19 +850,19 @@ public class ApplicationPackageManager extends PackageManager {
                 packageName.equals("com.google.android.apps.photos") &&
                 SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true)) {
             if (Arrays.asList(featuresPixel).contains(name)) return false;
-            if (Arrays.asList(featuresP21).contains(name)) return false;
+            if (Arrays.asList(featuresTensor).contains(name)) return false;
             if (Arrays.asList(featuresNexus).contains(name)) return true;
         }
         if (Arrays.asList(featuresPixel).contains(name)) return true;
-        if (Arrays.asList(featuresP21).contains(name) &&
-                !Arrays.asList(p21Codenames).contains(SystemProperties.get("ro.product.device"))) {
+        if (Arrays.asList(featuresTensor).contains(name) &&
+                !Arrays.asList(pTensorCodenames).contains(SystemProperties.get("ro.product.device"))) {
             return false;
-        } else if (packageName != null &&
-                packageName.contains("com.google.android.as") &&
-                (name.contains("PIXEL_2022_EXPERIENCE") ||
-                name.contains("PIXEL_2022_MIDYEAR_EXPERIENCE"))) {
+    } else if (packageName != null && Arrays.asList(featuresTensor).contains(name)) {
+        if (packageName.contains("com.google.android.as") || packageName.contains("com.google.android.apps.nexuslauncher")) {
             return false;
         }
+    }
+
         return mHasSystemFeatureCache.query(new HasSystemFeatureQuery(name, version));
     }
 
