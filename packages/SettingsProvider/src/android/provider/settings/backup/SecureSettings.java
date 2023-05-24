@@ -261,6 +261,7 @@ public class SecureSettings {
         Settings.Secure.EVEN_DIMMER_ACTIVATED,
         Settings.Secure.EVEN_DIMMER_MIN_NITS,
         Settings.Secure.DOZE_DOUBLE_TAP_GESTURE_AMBIENT,
-        Settings.Secure.DOZE_PICK_UP_GESTURE_AMBIENT
+        Settings.Secure.DOZE_PICK_UP_GESTURE_AMBIENT,
+        Settings.Secure.DOZE_SINGLE_TAP_GESTURE_AMBIENT,
     };
 }
