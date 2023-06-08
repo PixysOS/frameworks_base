@@ -72,7 +72,8 @@ public class PixelPropsUtils {
             "com.google.android.apps.googleassistant",
             "com.google.android.gms",
             "com.google.android.googlequicksearchbox",
-            "com.google.android.inputmethod.latin"
+            "com.google.android.inputmethod.latin",
+            "com.google.android.as"
     };
 
     private static final String[] packagesToChangePixelXL = {
