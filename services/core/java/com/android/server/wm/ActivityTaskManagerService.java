@@ -291,6 +291,8 @@ import com.android.wm.shell.Flags;
 import com.android.internal.util.pixys.PixelPropsUtils;
 import com.android.server.usage.AppStandbyInternal;
 
+import com.android.internal.util.pixys.PixelPropsUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileDescriptor;
