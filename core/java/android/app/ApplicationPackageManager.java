@@ -857,11 +857,11 @@ public class ApplicationPackageManager extends PackageManager {
         if (Arrays.asList(featuresTensor).contains(name) &&
                 !Arrays.asList(pTensorCodenames).contains(SystemProperties.get("ro.product.device"))) {
             return false;
-    } else if (packageName != null && Arrays.asList(featuresTensor).contains(name)) {
-        if (packageName.contains("com.google.android.as") || packageName.contains("com.google.android.apps.nexuslauncher")) {
-            return false;
+        } else if (packageName != null &&
+                packageName.contains("com.google.android.apps.nexuslauncher") &&
+                Arrays.asList(featuresTensor).contains(name)) {
+           return false;
         }
-    }
 
         return mHasSystemFeatureCache.query(new HasSystemFeatureQuery(name, version));
     }
