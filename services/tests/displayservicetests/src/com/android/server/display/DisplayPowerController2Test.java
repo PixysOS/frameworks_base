@@ -122,7 +122,8 @@ public final class DisplayPowerController2Test {
     private PowerManager mPowerManagerMock;
     @Mock
     private ColorDisplayService.ColorDisplayServiceInternal mCdsiMock;
-
+    @Mock
+    private DisplayWhiteBalanceController mDisplayWhiteBalanceControllerMock;
     @Captor
     private ArgumentCaptor<SensorEventListener> mSensorEventListenerCaptor;
 
@@ -1091,6 +1092,18 @@ public final class DisplayPowerController2Test {
                 .getThermalBrightnessThrottlingDataMapByThrottlingId();
     }
 
+    @Test
+    public void testDwbcCallsHappenOnHandler() {
+        mHolder = createDisplayPowerController(DISPLAY_ID, UNIQUE_ID);
+
+        mHolder.dpc.setAutomaticScreenBrightnessMode(true);
+        verify(mDisplayWhiteBalanceControllerMock, never()).setStrongModeEnabled(true);
+
+        // dispatch handler looper
+        advanceTime(1);
+        verify(mDisplayWhiteBalanceControllerMock, times(1)).setStrongModeEnabled(true);
+    }
+
     /**
      * Creates a mock and registers it to {@link LocalServices}.
      */
@@ -1379,6 +1392,12 @@ public final class DisplayPowerController2Test {
                 Runnable hbmChangeCallback, HighBrightnessModeMetadata hbmMetadata,
                 Context context) {
             return mHighBrightnessModeController;
+        }
+
+        @Override
+        DisplayWhiteBalanceController getDisplayWhiteBalanceController(Handler handler,
+                SensorManager sensorManager, Resources resources) {
+            return mDisplayWhiteBalanceControllerMock;
         }
     }
 }
