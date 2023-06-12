@@ -858,11 +858,6 @@ public class ApplicationPackageManager extends PackageManager {
                 !Arrays.asList(pTensorCodenames).contains(SystemProperties.get("ro.product.device"))) {
             return false;
         } else if (packageName != null &&
-                packageName.contains("com.google.android.as") &&
-                (name.contains("PIXEL_2022_EXPERIENCE") ||
-                name.contains("PIXEL_2022_MIDYEAR_EXPERIENCE"))) {
-            return false;
-        } else if (packageName != null &&
                 packageName.contains("com.google.android.apps.nexuslauncher") &&
                 Arrays.asList(featuresTensor).contains(name)) {
            return false;
