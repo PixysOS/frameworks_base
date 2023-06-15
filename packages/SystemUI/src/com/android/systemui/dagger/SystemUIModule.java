@@ -64,6 +64,8 @@ import com.android.systemui.pixys.HeadsUpModule;
 import com.android.systemui.pixys.DataSwitchModule;
 import com.android.systemui.pixys.PowerShareModule;
 import com.android.systemui.pixys.SoundSearchModule;
+import com.android.systemui.pixys.CellularModule;
+import com.android.systemui.pixys.WifiModule;
 import com.android.systemui.people.PeopleModule;
 import com.android.systemui.plugins.BcSmartspaceConfigPlugin;
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
@@ -156,6 +158,8 @@ import dagger.Provides;
 @Module(includes = {
             AccessibilityModule.class,
             AODModule.class,
+            CellularModule.class,
+            WifiModule.class,
             AppOpsModule.class,
             AssistModule.class,
             BiometricsModule.class,
