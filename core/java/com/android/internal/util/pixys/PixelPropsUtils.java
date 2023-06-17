@@ -49,7 +49,7 @@ public class PixelPropsUtils {
 
     private static final boolean DEBUG = false;
 
-    private static final Map<String, Object> propsToChangeUserdebug;
+    private static final Map<String, Object> propsToChangeEng;
     private static final Map<String, Object> propsToChangePixel5;
     private static final Map<String, Object> propsToChangePixel7Pro;
     private static final Map<String, Object> propsToChangePixel6Pro;
@@ -161,7 +161,7 @@ public class PixelPropsUtils {
             "com.tencent.tmgp.sgame"
     };
 
-    private static final String[] packagesToChangeUserdebug = {
+    private static final String[] packagesToChangeEng = {
             "com.google.android.apps.nexuslauncher"
     };
 
@@ -185,8 +185,8 @@ public class PixelPropsUtils {
         propsToKeep = new HashMap<>();
 
         propsToKeep.put("com.google.android.settings.intelligence", new ArrayList<>(Collections.singletonList("FINGERPRINT")));
-        propsToChangeUserdebug = new HashMap<>();
-        propsToChangeUserdebug.put("TYPE", "userdebug");
+        propsToChangeEng = new HashMap<>();
+        propsToChangeEng.put("TYPE", "eng");
         propsToChangePixel7Pro = new HashMap<>();
         propsToChangePixel7Pro.put("BRAND", "google");
         propsToChangePixel7Pro.put("MANUFACTURER", "Google");
@@ -272,8 +272,8 @@ public class PixelPropsUtils {
                 } else {
                     propsToChange.putAll(propsToChangePixel5);
                 }
-               if (Arrays.asList(packagesToChangeUserdebug).contains(packageName)) {
-                    propsToChange.putAll(propsToChangeUserdebug);
+               if (Arrays.asList(packagesToChangeEng).contains(packageName)) {
+                    propsToChange.putAll(propsToChangeEng);
                 }
             }
 
