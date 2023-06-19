@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2018-2021 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_caffeine_label">保持亮屏</string>
+    <string name="quick_settings_caffeine_label_off">关闭</string>
+    <string name="accessibility_quick_settings_caffeine_off">保持亮屏关闭</string>
+    <string name="accessibility_quick_settings_caffeine_on">保持亮屏已开启</string>
+    <string name="quick_settings_heads_up_label">浮动通知</string>
+    <string name="accessibility_quick_settings_heads_up_off">浮动通知已关闭。</string>
+    <string name="accessibility_quick_settings_heads_up_on">浮动通知已开启</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">浮动通知已关闭。</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">浮动通知已开启。</string>
+    <string name="qs_data_switch_label">切换移动数据卡</string>
+    <string name="qs_data_switch_toast_0">当前未插入 SIM 卡</string>
+    <string name="qs_data_switch_toast_1">当前仅插入了一张 SIM 卡</string>
+    <string name="qs_data_switch_text_1">SIM 卡 1</string>
+    <string name="qs_data_switch_text_2">SIM 卡 2</string>
+    <string name="qs_data_switch_changed_1">已将移动数据卡切换到 SIM 卡 1</string>
+    <string name="qs_data_switch_changed_2">已将移动数据卡切换到 SIM 卡 2</string>
+    <string name="quick_settings_powershare_label">无线反向充电</string>
+    <string name="quick_settings_powershare_off_powersave_label">无线反向充电已关闭\n省电模式</string>
+    <string name="quick_settings_powershare_off_low_battery_label">无线反向充电已关闭\n电量过低</string>
+    <string name="quick_settings_powershare_enabled_label">无线反向充电已启用</string>
+    <string name="global_action_reboot">重启</string>
+    <string name="global_action_reboot_more">重启\u2026</string>
+    <string name="global_action_reboot_sub">系統</string>
+    <string name="global_action_reboot_recovery">恢复模式</string>
+    <string name="global_action_reboot_bootloader">引导模式</string>
+    <string name="global_action_settings">设置</string>
+    <string name="screenrecord_delete_label">删除</string>
+    <string name="screenrecord_delete_description">屏幕录制已删除</string>
+    <string name="usage_data">今日已用</string>
+    <string name="usage_data_default_suffix">数据</string>
+    <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="status_bar_icons">状态栏图标</string>
+    <string name="status_bar_call_strength">通话强度</string>
+    <string name="screenshot_delete_label">删除</string>
+    <string name="screenshot_delete_description">删除屏幕截图</string>
+    <string name="status_bar_nfc">NFC</string>
+    <string name="accessibility_status_bar_nfc">Nfc</string>
+    <string name="quick_settings_aod_label">息屏显示</string>
+    <string name="quick_settings_aod_off_powersave_label">息屏显示关闭\n省电模式</string>
+    <string name="lensss">智能镜头</string>
+    <string name="lens_unavailable">未安装 Google 智能镜头</string>
+    <string name="turn_on_bluetooth">启用蓝牙</string>
+    <string name="bluetooth_is_off">蓝牙已关闭</string>
+    <string name="tap_a_device_to_connect">点击要连接的设备</string>
+</resources>

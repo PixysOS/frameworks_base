@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2018-2021 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_caffeine_label">Cafeïne</string>
+    <string name="quick_settings_caffeine_label_off">Uit</string>
+    <string name="accessibility_quick_settings_caffeine_off">Cafeïne uit</string>
+    <string name="accessibility_quick_settings_caffeine_on">Cafeïne aan</string>
+    <string name="quick_settings_heads_up_label">Pop-up melding</string>
+    <string name="accessibility_quick_settings_heads_up_off">Pop-up meldingen uit.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Pop-up meldingen aan.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Pop-up meldingen uitgeschakeld.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Pop-up meldingen ingeschakeld.</string>
+    <string name="global_action_reboot_recovery">Herstelmodus</string>
+    <string name="global_action_reboot_bootloader">Bootloader</string>
+    <string name="screenrecord_delete_label">Verwijderen</string>
+    <string name="screenrecord_delete_description">Schermopname verwijderd</string>
+    <string name="usage_data">vandaag gebruikt</string>
+    <string name="usage_data_default_suffix">Data</string>
+    <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="screenshot_delete_label">Verwijderen</string>
+    <string name="screenshot_delete_description">Schermafbeelding verwijderen</string>
+    <string name="quick_settings_aod_label">AOD (scherm altijd aan)</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD uit\nBatterijbesparing</string>
+    <string name="lensss">Lens</string>
+</resources>

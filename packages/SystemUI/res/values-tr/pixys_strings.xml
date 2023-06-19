@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2018-2021 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_caffeine_label">Kafein</string>
+    <string name="quick_settings_caffeine_label_off">Kapalı</string>
+    <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı</string>
+    <string name="accessibility_quick_settings_caffeine_on">Kafein açık</string>
+    <string name="quick_settings_heads_up_label">Bildirim pencereleri</string>
+    <string name="accessibility_quick_settings_heads_up_off">Bildirim pencereleri kapalı.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Bildirim pencereleri açık.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Bildirim pencereleri kapatıldı.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Bildirim pencereleri açıldı.</string>
+    <string name="qs_data_switch_label">Veri kartını değiştir</string>
+    <string name="qs_data_switch_toast_0">Şuan takılı SIM kart yok</string>
+    <string name="qs_data_switch_toast_1">Şuan sadece bir SIM kart takılı</string>
+    <string name="qs_data_switch_text_1">SIM 1</string>
+    <string name="qs_data_switch_text_2">SIM 2</string>
+    <string name="qs_data_switch_changed_1">Veri kartı SIM 1 olarak değiştirildi.</string>
+    <string name="qs_data_switch_changed_2">Veri kartı SIM 2 olarak değiştirildi.</string>
+    <string name="quick_settings_powershare_label">Pil Paylaşımı</string>
+    <string name="quick_settings_powershare_off_powersave_label">Pil Paylaşımı kapalı\nPil tasarrufu</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Pil Paylaşımı kapalı\nPil çok düşük</string>
+    <string name="quick_settings_powershare_enabled_label">Pil Paylaşımı etkin</string>
+    <string name="global_action_reboot">Yeniden başlat</string>
+    <string name="global_action_reboot_more">Yeniden başlatılıyor\u2026</string>
+    <string name="global_action_reboot_sub">Sistem</string>
+    <string name="global_action_reboot_recovery">Kurtarma</string>
+    <string name="global_action_reboot_bootloader">Ön yükleyici</string>
+    <string name="global_action_settings">Ayarlar</string>
+    <string name="screenrecord_delete_label">Sil</string>
+    <string name="screenrecord_delete_description">Ekran kaydı silindi</string>
+    <string name="usage_data">bugün kullanılan</string>
+    <string name="usage_data_default_suffix">Veri</string>
+    <string name="usage_wifi_default_suffix">Wi-Fi</string>
+    <string name="status_bar_icons">Durum çubuğu simgeleri</string>
+    <string name="status_bar_call_strength">Arama gücü</string>
+    <string name="screenshot_delete_label">Sil</string>
+    <string name="screenshot_delete_description">Ekran görüntüsünü sil</string>
+    <string name="status_bar_nfc">NFC</string>
+    <string name="accessibility_status_bar_nfc">Nfc</string>
+    <string name="quick_settings_sound_search">Ses arama</string>
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_aod_on_charge_label">Şarj olurken AOD</string>
+    <string name="quick_settings_aod_off_label">AOD kapalı</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD kapalı\nPil tasarrufu</string>
+    <string name="lensss">Lens</string>
+    <string name="lens_unavailable">Google Lens yüklü değil</string>
+    <string name="turn_on_bluetooth">Bluetooth\'u kullan</string>
+    <string name="bluetooth_is_off">Bluetooth kapalı</string>
+    <string name="tap_a_device_to_connect">Bağlanmak için bir cihaza dokunun</string>
+    <string name="screen_pinning_description_no_navbar">Bu, siz sabitlemeyi kaldırana kadar ekranı görünür durumda tutar. Sabitlemeyi kaldırmak için Geri\'ye dokunun &amp; basılı tutun.</string>
+    <string name="screen_pinning_toast_no_navbar">Bu ekrandaki sabitlemeyi kaldırmak için, dokunun &amp; Geri tuşuna basılı tutun</string>
+    <string name="screen_pinning_description_no_navbar_fpsensor">Bu, siz sabitlemeyi kaldırana kadar ekranda görünür tutar. Sabitlemeyi kaldırmak için parmak izi sensörüne dokunun &amp; basılı tutun.</string>
+    <string name="screen_pinning_toast_no_navbar_fpsensor">Bu ekran sabitlemesini kaldırmak için parmak izi sensörüne dokunun &amp; basılı tutun</string>
+</resources>

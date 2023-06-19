@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+**
+** Copyright 2022, PixysOS
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reboot_to_bootloader_title">Перезагрузить загрузчик</string>
+    <string name="reboot_to_bootloader_message">Перезагрузка в загрузчик\u2026</string>
+    <string name="reboot_to_recovery_title">Перезагрузка в рекавери</string>
+    <string name="reboot_to_recovery_message">Перезагрузка в рекавери\u2026</string>
+    <string name="reboot_system_title">Перезагрузка системы</string>
+    <string name="reboot_system_message">Перезагрузка системы\u2026</string>
+    <string name="aerr_copy">Копировать URL журнала ошибки</string>
+    <string name="url_copy_success">URL скопирован успешно</string>
+    <string name="url_copy_failed">Произошла ошибка при загрузке журнала в Memochō.</string>
+    <string name="pocket_lock_message_long_press">Нажмите и удерживайте кнопку питания для разблокировки</string>
+    <string name="pocket_view_title">Включен портативный режим</string>
+    <string name="pocket_view_title_cancel">Для использования вашего телефона:</string>
+    <string name="pocket_view_top_tag_cancel">Убедитесь, что в синей области телефона нет никаких препятствий, и очистите ее от грязи и пыли.</string>
+    <string name="pocket_view_top_tag_cancel2">Удерживайте кнопку питания для принудительного выхода из портативного режима.</string>
+    <string name="unlock_application">Разблокировать <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+    <string name="systemui_restart_title">Требует перезапуска SystemUI</string>
+    <string name="systemui_restart_message">Для применения изменений нужно перезапустить SystemUI. Хотите перезапустить SystemUI сейчас?</string>
+    <string name="notification_channel_poweroff_alarm">Выключить будильник</string>
+    <string name="poweroff_alarm_title">Выключение будильника установлено</string>
+    <string name="poweroff_alarm_body">Обнаружен будильник и устройство будет включено за 2 минуты, прежде чем оно начнется</string>
+    <string name="face_unlock_disabled_idle">Разблокировка по лицу отключена из-за бездействия</string>
+</resources>

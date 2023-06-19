@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2018-2021 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_caffeine_label">Caffeine</string>
+    <string name="quick_settings_caffeine_label_off">Tắt</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine tắt</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine bật</string>
+    <string name="quick_settings_heads_up_label">Thông báo nổi</string>
+    <string name="accessibility_quick_settings_heads_up_off">Tắt thông báo nổi.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Bật thông báo nổi.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Thông báo nổi đã tắt.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Thông báo nổi đã bật.</string>
+    <string name="qs_data_switch_label">Chuyển Sim dữ liệu</string>
+    <string name="qs_data_switch_toast_0">Hiện tại không có thẻ SIM nào được lắp vào</string>
+    <string name="qs_data_switch_toast_1">Hiện tại chỉ có một thẻ SIM được lắp vào</string>
+    <string name="qs_data_switch_text_1">SIM 1</string>
+    <string name="qs_data_switch_text_2">SIM 2</string>
+    <string name="qs_data_switch_changed_1">Đã chuyển sang SIM 1 cho dữ liệu.</string>
+    <string name="qs_data_switch_changed_2">Đã chuyển sang SIM 2 cho dữ liệu.</string>
+    <string name="quick_settings_powershare_label">Chia Sẻ Pin</string>
+    <string name="quick_settings_powershare_off_powersave_label">Tắt Chia Sẻ Pin\nTrình tiết kiệm pin</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Tắt Chia Sẻ Pin\nPin quá thấp</string>
+    <string name="quick_settings_powershare_enabled_label">Chia sẻ Pin được bật</string>
+    <string name="global_action_reboot">Khởi động lại</string>
+    <string name="global_action_reboot_more">Khởi động lại\u2026</string>
+    <string name="global_action_reboot_sub">Hệ thống</string>
+    <string name="global_action_reboot_recovery">Recovery</string>
+    <string name="global_action_reboot_bootloader">Bootloader</string>
+    <string name="global_action_settings">Cài đặt</string>
+    <string name="screenrecord_delete_label">Xóa</string>
+    <string name="screenrecord_delete_description">Đã xóa bản ghi màn hình</string>
+    <string name="usage_data">đã sử dụng hôm nay</string>
+    <string name="usage_data_default_suffix">Dữ liệu</string>
+    <string name="usage_wifi_default_suffix">Wifi</string>
+    <string name="status_bar_icons">Biểu tượng thanh trạng thái</string>
+    <string name="status_bar_call_strength">Cường độ cuộc gọi</string>
+    <string name="screenshot_delete_label">Xóa</string>
+    <string name="screenshot_delete_description">Xóa ảnh chụp màn hình</string>
+    <string name="status_bar_nfc">NFC</string>
+    <string name="accessibility_status_bar_nfc">Nfc</string>
+    <string name="quick_settings_sound_search">Tìm kiếm âm thanh</string>
+    <string name="quick_settings_aod_label">AoD</string>
+    <string name="quick_settings_aod_on_charge_label">AOD khi sạc</string>
+    <string name="quick_settings_aod_off_label">Màn hình luôn bật tắt</string>
+    <string name="quick_settings_aod_off_powersave_label">AoD đang tắt\n iết kiệm pin</string>
+    <string name="lensss">Ống Kính</string>
+    <string name="lens_unavailable">Google Ống kính chưa được cài đặt</string>
+    <string name="turn_on_bluetooth">Sử dụng bluetooth</string>
+    <string name="bluetooth_is_off">Bluetooth đang tắt</string>
+    <string name="tap_a_device_to_connect">Chọn thiết bị để kết nối</string>
+    <string name="screen_pinning_description_no_navbar">Thao tác này sẽ duy trì hiển thị màn hình cho đến khi bạn bỏ ghim. Chạm &amp; giữ Quay lại để bỏ ghim.</string>
+    <string name="screen_pinning_toast_no_navbar">Để bỏ ghim màn hình này, chạm &amp; giữ nút Quay lại</string>
+    <string name="screen_pinning_description_no_navbar_fpsensor">Thao tác này sẽ duy trì hiển thị màn hình cho đến khi bạn bỏ ghim. Chạm &amp; giữ cảm biến vân tay để bỏ ghim.</string>
+    <string name="screen_pinning_toast_no_navbar_fpsensor">Để bỏ ghim màn hình này, chạm &amp; giữ cảm biến vân tay</string>
+</resources>

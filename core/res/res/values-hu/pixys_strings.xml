@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+**
+** Copyright 2022, PixysOS
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reboot_to_bootloader_title">Újraindítás Bootloader módba</string>
+    <string name="reboot_to_bootloader_message">Újraindítás Bootloader módba\u2026</string>
+    <string name="reboot_to_recovery_title">Újraindítás Recovery módban</string>
+    <string name="reboot_to_recovery_message">Újraindítás recovery módba\u2026</string>
+    <string name="reboot_system_title">Rendszer újraindítása</string>
+    <string name="reboot_system_message">Rendszer újraindítása\u2026</string>
+    <string name="aerr_copy">Összeomlási napló URL másolása</string>
+    <string name="url_copy_success">Az URL sikeresen másolva</string>
+    <string name="url_copy_failed">Hiba történt a napló Memochō-re való feltöltése során</string>
+    <string name="pocket_lock_message_long_press">Tartsa lenyomva a bekapcsoló gombot a feloldáshoz</string>
+    <string name="pocket_view_title">Zsebmód bekapcsolva</string>
+    <string name="pocket_view_title_cancel">A telefon használatához:</string>
+    <string name="pocket_view_top_tag_cancel">Ellenőrizze, hogy a kék területen nincs-e valami, és távolítsa el a szennyeződéseket és a port.</string>
+    <string name="pocket_view_top_tag_cancel2">A Bekapcsológomb hosszan nyomása azonnal kikapcsolja a zsebmódot.</string>
+    <string name="unlock_application">Feloldás: <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+    <string name="systemui_restart_title">Rendszerfelület-újraindítás szükséges</string>
+    <string name="systemui_restart_message">Az összes módosítások érvénybe léptetéséhez szükséges a rendszerfelület újraindítása. Újraindítja most?</string>
+    <string name="face_unlock_disabled_idle">Inaktivitás miatt az arcfeloldás letiltásra került</string>
+</resources>
