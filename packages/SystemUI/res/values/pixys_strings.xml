@@ -104,4 +104,10 @@
     <string name="screen_pinning_description_no_navbar_fpsensor">This keeps it in view until you unpin. Touch &amp; hold fingerprint sensor to unpin.</string>
     <!-- Notify use that they are in Lock-to-app (for devices without navbar and with gestures on fingerprint sensor)-->
     <string name="screen_pinning_toast_no_navbar_fpsensor">To unpin this screen, touch &amp; hold fingerprint sensor</string>
+
+    <!-- Name of the HD calling status bar icon. -->
+    <string name="status_bar_hd_calling">HD calling (VoLTE/VoNR)</string>
+
+    <!-- Name of the VoWiFi status bar icon. -->
+    <string name="status_bar_vowifi">Wi-Fi calling (VoWiFi)</string>
 </resources>
