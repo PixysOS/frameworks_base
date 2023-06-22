@@ -49,6 +49,7 @@ public class PixelPropsUtils {
 
     private static final boolean DEBUG = false;
 
+    private static final Map<String, Object> propsToChangePixelTab;
     private static final Map<String, Object> propsToChangePixel7Pro;
     private static final Map<String, Object> propsToChangePixel6Pro;
     private static final Map<String, Object> propsToChangePixel5;
@@ -60,6 +61,10 @@ public class PixelPropsUtils {
     private static final Map<String, Object> propsToChangeMI11;
     private static final Map<String, ArrayList<String>> propsToKeep;
 
+    private static final String[] packagesToChangePixelTab = {
+           "com.google.android.apps.googleassistant"
+    };
+
     private static final String[] packagesToChangePixel7Pro = {
             "com.google.android.apps.privacy.wildlife",
             "com.google.android.apps.wallpaper.pixel",
@@ -70,7 +75,6 @@ public class PixelPropsUtils {
 
    private static final String[] packagesToChangePixel6Pro = {
             "com.google.android.apps.googleassistant",
-            "com.google.android.googlequicksearchbox",
             "com.google.android.inputmethod.latin",
             "com.google.android.as",
             "com.google.android.wallpaper.effects",
@@ -179,6 +183,13 @@ public class PixelPropsUtils {
     static {
         propsToKeep = new HashMap<>();
         propsToKeep.put("com.google.android.settings.intelligence", new ArrayList<>(Collections.singletonList("FINGERPRINT")));
+        propsToChangePixelTab = new HashMap<>();
+        propsToChangePixelTab.put("BRAND", "google");
+        propsToChangePixelTab.put("MANUFACTURER", "Google");
+        propsToChangePixelTab.put("DEVICE", "tangorpro");
+        propsToChangePixelTab.put("PRODUCT", "tangorpro");
+        propsToChangePixelTab.put("MODEL", "Pixel Tablet");
+        propsToChangePixelTab.put("FINGERPRINT", "google/tangorpro/tangorpro:13/TQ3A.230605.009.A1/10100517:user/release-keys");
         propsToChangePixel7Pro = new HashMap<>();
         propsToChangePixel7Pro.put("BRAND", "google");
         propsToChangePixel7Pro.put("MANUFACTURER", "Google");
@@ -306,6 +317,8 @@ public class PixelPropsUtils {
                     propsToChange.putAll(propsToChangePixelXL);
                 } else if (Arrays.asList(packagesToChangePixel6Pro).contains(packageName)) {
                     propsToChange.putAll(propsToChangePixel6Pro);
+                } else if (Arrays.asList(packagesToChangePixelTab).contains(packageName)) {
+                    propsToChange.putAll(propsToChangePixelTab);
                 } else {
                     propsToChange.putAll(propsToChangePixel5);
                 }
