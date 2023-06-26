@@ -136,6 +136,8 @@ public class CameraDeviceImpl extends CameraDevice
     private final int mTotalPartialCount;
     private final Context mContext;
 
+    private final boolean mForceMultiResolution;
+
     private static final long NANO_PER_SECOND = 1000000000; //ns
 
     /**
@@ -309,6 +311,9 @@ public class CameraDeviceImpl extends CameraDevice
             mTotalPartialCount = partialCount;
         }
         mIsPrivilegedApp = checkPrivilegedAppList();
+
+        mForceMultiResolution = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_forceMultiResolution);
     }
 
     public CameraDeviceCallbacks getCallbacks() {
@@ -456,7 +461,11 @@ public class CameraDeviceImpl extends CameraDevice
                     "any output streams");
         }
 
-        checkInputConfiguration(inputConfig);
+        try {
+            checkInputConfiguration(inputConfig);
+        } catch (IllegalArgumentException e) {
+            Log.w(TAG, "Check input configuration failed due to: " + e.getMessage());
+        }
 
         boolean success = false;
 
@@ -1544,7 +1553,7 @@ public class CameraDeviceImpl extends CameraDevice
             return;
         }
         int inputFormat = inputConfig.getFormat();
-        if (inputConfig.isMultiResolution()) {
+        if (inputConfig.isMultiResolution() || mForceMultiResolution) {
             MultiResolutionStreamConfigurationMap configMap = mCharacteristics.get(
                     CameraCharacteristics.SCALER_MULTI_RESOLUTION_STREAM_CONFIGURATION_MAP);
 
@@ -2272,6 +2281,12 @@ public class CameraDeviceImpl extends CameraDevice
                 } else {
                     List<CaptureResult> partialResults =
                             mFrameNumberTracker.popPartialResults(frameNumber);
+                    if (mBatchOutputMap.containsKey(requestId)) {
+                        int requestCount = mBatchOutputMap.get(requestId);
+                        for (int i = 1; i < requestCount; i++) {
+                            mFrameNumberTracker.popPartialResults(frameNumber - (requestCount - i));
+                        }
+                    }
 
                     final long sensorTimestamp =
                             result.get(CaptureResult.SENSOR_TIMESTAMP);

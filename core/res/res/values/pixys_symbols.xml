@@ -111,4 +111,11 @@
 
     <!-- Enable face auth only when swiping security view -->
     <java-symbol type="bool" name="config_faceAuthOnlyOnSecurityView" />
+
+    <!-- Whether to force enable multi resolution configuration for camera -->
+    <java-symbol type="bool" name="config_forceMultiResolution" />
+
+    <!-- Camera -->
+    <java-symbol type="array" name="config_cameraHFRPrivAppList" />
+
 </resources>
