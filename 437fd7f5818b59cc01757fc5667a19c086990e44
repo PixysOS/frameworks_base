@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db0ed6c7_a0914379",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-06-27T07:59:48Z",
+      "side": 1,
+      "message": "seems to increse the ripple duration",
+      "revId": "437fd7f5818b59cc01757fc5667a19c086990e44",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
+    }
+  ]
+}
