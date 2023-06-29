@@ -5851,13 +5851,6 @@ public final class Settings {
         public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
 
         /**
-         * Whether to scramble a pin unlock layout
-         * @hide
-         */
-        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT =
-                "lockscreen_scramble_pin_layout";
-
-       /**
          * Whether to show heads up only for dialer and sms apps
          * @hide
          */
@@ -11695,7 +11688,6 @@ public final class Settings {
         public static final String SWAP_CAPACITIVE_KEYS = "swap_capacitive_keys";
 
         /**
-<<<<<<< HEAD
          * Whether to show ambient instead of waking for the dt2w gesture
          * @hide
          */
