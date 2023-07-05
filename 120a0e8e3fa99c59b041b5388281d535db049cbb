@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28b9d88f_701f37ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-07-05T08:59:47Z",
+      "side": 1,
+      "message": "used to break portrait mode on stock camera of nothing phone (1)\n\nhttps://gerrit.pixysos.com/c/PixysOS/frameworks_base/+/25253",
+      "revId": "120a0e8e3fa99c59b041b5388281d535db049cbb",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
+    }
+  ]
+}
