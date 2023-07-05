@@ -34,6 +34,23 @@
       "parentUuid": "28b9d88f_701f37ea",
       "revId": "120a0e8e3fa99c59b041b5388281d535db049cbb",
       "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c7b29f3_7099de4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2023-07-05T12:10:31Z",
+      "side": 1,
+      "message": "only applicable for devices that ship prebuilt camservice from Android 12\nso should be fine without it . moreover  we can patch lib and will be fine",
+      "revId": "120a0e8e3fa99c59b041b5388281d535db049cbb",
+      "serverId": "dc9c43de-f401-424a-9bd3-945633c9f028"
     }
   ]
 }
