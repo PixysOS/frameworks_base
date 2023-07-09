@@ -63,7 +63,8 @@ public class PixelPropsUtils {
     private static final Map<String, ArrayList<String>> propsToKeep;
 
     private static final String[] packagesToChangePixel5 = {
-            "com.breel.wallpapers20"
+            "com.breel.wallpapers20",
+            "com.google.android.apps.nexuslauncher"
     };
 
    private static final String[] packagesToChangePixel6Pro = {
