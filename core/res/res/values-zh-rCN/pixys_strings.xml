@@ -34,5 +34,8 @@
     <string name="unlock_application">解锁 <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
     <string name="systemui_restart_title">需要重启系统界面</string>
     <string name="systemui_restart_message">要使所有更改生效，需要重新启动系统界面。现在重新启动系统界面吗？</string>
+    <string name="notification_channel_poweroff_alarm">关闭闹钟</string>
+    <string name="poweroff_alarm_title">关机闹钟已设置</string>
+    <string name="poweroff_alarm_body">检测到闹钟已设置，设备将在响铃前两分钟开机</string>
     <string name="face_unlock_disabled_idle">由于处于非活动状态，面部解锁已禁用</string>
 </resources>

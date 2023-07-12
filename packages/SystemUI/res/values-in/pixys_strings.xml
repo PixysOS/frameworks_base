@@ -63,4 +63,6 @@
     <string name="screen_pinning_toast_no_navbar">Untuk melepaskan sematan layar ini, sentuh &amp; tahan tombol Kembali</string>
     <string name="screen_pinning_description_no_navbar_fpsensor">Hal ini membuatnya tetap ditampilkan sampai Anda melepas sematan. Sentuh &amp; tahan sensor sidik jari untuk melepas sematan.</string>
     <string name="screen_pinning_toast_no_navbar_fpsensor">Untuk melepas sematan pada layar ini, sentuh &amp; tahan sensor sidik jari</string>
+    <string name="status_bar_hd_calling">Panggilan HD (VoLTE/VoNR)</string>
+    <string name="status_bar_vowifi">Panggilan Wi-Fi (VoWiFi)</string>
 </resources>

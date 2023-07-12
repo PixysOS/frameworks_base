@@ -49,11 +49,18 @@
     <string name="screenshot_delete_description">删除屏幕截图</string>
     <string name="status_bar_nfc">NFC</string>
     <string name="accessibility_status_bar_nfc">Nfc</string>
+    <string name="quick_settings_sound_search">声音搜索</string>
     <string name="quick_settings_aod_label">息屏显示</string>
+    <string name="quick_settings_aod_on_charge_label">在充电时显示息屏显示</string>
+    <string name="quick_settings_aod_off_label">息屏显示已关闭</string>
     <string name="quick_settings_aod_off_powersave_label">息屏显示关闭\n省电模式</string>
     <string name="lensss">智能镜头</string>
     <string name="lens_unavailable">未安装 Google 智能镜头</string>
     <string name="turn_on_bluetooth">启用蓝牙</string>
     <string name="bluetooth_is_off">蓝牙已关闭</string>
     <string name="tap_a_device_to_connect">点击要连接的设备</string>
+    <string name="screen_pinning_description_no_navbar">这将会固定显示此屏幕，直到您取消固定为止。点按 &amp; 并按住“返回”即可取消固定屏幕。</string>
+    <string name="screen_pinning_toast_no_navbar">要取消固定此屏幕，请触摸 &amp; 并按住“返回”按钮。</string>
+    <string name="screen_pinning_description_no_navbar_fpsensor">这将会固定显示此屏幕，直到您取消固定为止。触摸并按住 &amp; 即可取消固定屏幕。</string>
+    <string name="screen_pinning_toast_no_navbar_fpsensor">要取消固定此屏幕，请触摸 &amp; 并按住指纹传感器。</string>
 </resources>

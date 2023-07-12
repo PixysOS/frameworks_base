@@ -63,4 +63,6 @@
     <string name="screen_pinning_toast_no_navbar">Чтобы открепить экран, нажмите и удерживайте кнопку \"Назад\"</string>
     <string name="screen_pinning_description_no_navbar_fpsensor">Он будет виден до тех пор, пока вы не открепите его. Чтобы открепить, нажмите и удерживайте сканер отпечатка пальца.</string>
     <string name="screen_pinning_toast_no_navbar_fpsensor">Что бы открепить этот экран, нажмите и удерживайте сканер отпечатка пальца</string>
+    <string name="status_bar_hd_calling">Звонки HD (VoLTE/VoNR)</string>
+    <string name="status_bar_vowifi">Wi-Fi звонки (VoWiFi)</string>
 </resources>

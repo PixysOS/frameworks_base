@@ -63,4 +63,6 @@
     <string name="screen_pinning_toast_no_navbar">Stisknutím a podržením tlačítka Zpět uvolníte obrazovku</string>
     <string name="screen_pinning_description_no_navbar_fpsensor">Obsah bude připnut v zobrazení, dokud jej neuvolníte. Uvolníte jej stisknutím a podržením snímače otisků prstů.</string>
     <string name="screen_pinning_toast_no_navbar_fpsensor">Stisknutím a podržením snímače otisků prstů uvolníte obrazovku</string>
+    <string name="status_bar_hd_calling">HD volání (VoLTE/VoNR)</string>
+    <string name="status_bar_vowifi">Wi-Fi volání (VoWiFi)</string>
 </resources>

@@ -17,6 +17,15 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reboot_to_bootloader_title">Reiniciar para o Bootloader</string>
+    <string name="reboot_to_bootloader_message">Reiniciando no bootloader...\u2026</string>
+    <string name="reboot_to_recovery_title">Reiniciar recuperação</string>
+    <string name="reboot_to_recovery_message">Reiniciando para a recuperação\u2026</string>
+    <string name="reboot_system_title">Reiniciar sistema</string>
+    <string name="reboot_system_message">Reiniciando o sistema\u2026</string>
+    <string name="aerr_copy">Copiar URL do log de erro</string>
+    <string name="url_copy_success">URL copiada com sucesso</string>
+    <string name="url_copy_failed">Ocorreu um erro ao fazer o upload do log para o Memochō</string>
     <string name="pocket_lock_message_long_press">Pressione e segure o botão liga/desliga para desbloquear</string>
     <string name="pocket_view_title">Modo bolso está ativado</string>
     <string name="pocket_view_title_cancel">Para usar seu telefone:</string>
@@ -25,5 +34,8 @@
     <string name="unlock_application">Desbloquear <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
     <string name="systemui_restart_title">É necessário reiniciar a Interface do Sistema</string>
     <string name="systemui_restart_message">Para que todas as alterações tenham efeito, é necessário reiniciar a interface do sistema. Deseja reiniciar a interface do sistema agora?</string>
+    <string name="notification_channel_poweroff_alarm">Alarme com o dispositivo desligado</string>
+    <string name="poweroff_alarm_title">Definir alarme com o dispositivo desligado</string>
+    <string name="poweroff_alarm_body">Um alarme foi detectado e o dispositivo será ligado 2 minutos antes de despertar</string>
     <string name="face_unlock_disabled_idle">Desbloqueio facial desativado devido à inatividade</string>
 </resources>
