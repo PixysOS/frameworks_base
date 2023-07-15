@@ -62,21 +62,16 @@ public class PixelPropsUtils {
     private static final Map<String, Object> propsToChangeK30U;
     private static final Map<String, ArrayList<String>> propsToKeep;
 
-    private static final String[] packagesToChangePixel7Pro = {
-            "com.google.android.apps.privacy.wildlife",
-            "com.google.android.apps.wallpaper.pixel",
-            "com.google.android.apps.wallpaper",
-            "com.google.android.apps.subscriptions.red",
-            "com.google.pixel.livewallpaper"
+    private static final String[] packagesToChangePixel5 = {
+            "com.breel.wallpapers20"
     };
 
    private static final String[] packagesToChangePixel6Pro = {
             "com.google.android.apps.googleassistant",
             "com.google.android.googlequicksearchbox",
-            "com.google.android.inputmethod.latin",
             "com.google.android.as",
-            "com.google.android.wallpaper.effects",
-            "com.google.android.apps.emojiwallpaper",
+            "com.google.android.inputmethod.latin",
+            "com.google.android.gms"
     };
 
     private static final String[] packagesToChangePixelXL = {
@@ -96,7 +91,6 @@ public class PixelPropsUtils {
     private static final String[] extraPackagesToChange = {
             "com.android.chrome",
             "com.android.vending",
-            "com.breel.wallpapers20",
             "com.nhs.online.nhsonline",
             "com.netflix.mediaclient",
             "com.nothing.smartcenter"
@@ -310,14 +304,14 @@ public class PixelPropsUtils {
             } else if (isPixelDevice) {
                 return;
             } else {
-                if (Arrays.asList(packagesToChangePixel7Pro).contains(packageName)) {
-                    propsToChange.putAll(propsToChangePixel7Pro);
+                if (Arrays.asList(packagesToChangePixel5).contains(packageName)) {
+                    propsToChange.putAll(propsToChangePixel5);
                 } else if (Arrays.asList(packagesToChangePixelXL).contains(packageName)) {
                     propsToChange.putAll(propsToChangePixelXL);
                 } else if (Arrays.asList(packagesToChangePixel6Pro).contains(packageName)) {
                     propsToChange.putAll(propsToChangePixel6Pro);
                 } else {
-                    propsToChange.putAll(propsToChangePixel5);
+                    propsToChange.putAll(propsToChangePixel7Pro);
                 }
             }
 
