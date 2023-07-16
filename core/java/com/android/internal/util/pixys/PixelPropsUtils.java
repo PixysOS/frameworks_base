@@ -61,7 +61,6 @@ public class PixelPropsUtils {
             "com.google.android.apps.wallpaper.pixel",
             "com.google.android.apps.wallpaper",
             "com.google.android.apps.subscriptions.red",
-            "com.google.pixel.livewallpaper",
             "com.google.android.apps.customization.pixel"
     };
 
@@ -71,6 +70,7 @@ public class PixelPropsUtils {
             "com.google.android.inputmethod.latin",
             "com.google.android.wallpaper.effects",
             "com.google.android.apps.emojiwallpaper",
+            "com.google.pixel.livewallpaper",
             "com.google.android.as"
     };
 
