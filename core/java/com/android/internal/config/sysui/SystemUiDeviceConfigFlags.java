@@ -564,7 +564,7 @@ public final class SystemUiDeviceConfigFlags {
     /**
      * (boolean) Whether to show notification volume control slider separate from ring.
      */
-    public static final String VOLUME_SEPARATE_NOTIFICATION = "volume_separate_notification";
+    public static final String VOLUME_SEPARATE_NOTIFICATION = "separate_notification_volume";
 
     /**
      * (boolean) Whether widget provider info would be saved to / loaded from system persistence
