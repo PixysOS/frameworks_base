@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2018 The Android Open Source Project
@@ -89,5 +90,6 @@
         <permission name="android.permission.READ_SAFETY_CENTER_STATUS" />
         <permission name="android.permission.SET_UNRESTRICTED_KEEP_CLEAR_AREAS" />
         <permission name="android.permission.READ_SEARCH_INDEXABLES" />
+        <permission name="android.permission.ACCESS_CONTEXT_HUB" />
     </privapp-permissions>
 </permissions>
