@@ -812,7 +812,8 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
         boolean nightMode = (mResources.getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
         boolean skipNeutral = false;
-        if (mOverlayManager != null && nightMode) {
+        boolean enableNeutral = false;
+        if (mOverlayManager != null) {
             OverlayInfo info = null;
             try {
                 info = mOverlayManager.getOverlayInfo(DARK_OVERLAY_NAME, mUserTracker.getUserId());
@@ -820,13 +821,14 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
                 Log.e(TAG, "Failed getting overlay " + DARK_OVERLAY_NAME + " info");
                 e.printStackTrace();
             }
-            skipNeutral = info != null && info.isEnabled();
+            skipNeutral = nightMode && info != null && info.isEnabled();
+            enableNeutral = !nightMode && info != null && info.isEnabled();
         }
 
         // Compatibility with legacy themes, where full packages were defined, instead of just
         // colors.
         if (!categoryToPackage.containsKey(OVERLAY_CATEGORY_SYSTEM_PALETTE)
-                && mNeutralOverlay != null && !skipNeutral) {
+                && mNeutralOverlay != null && (!skipNeutral || enableNeutral)) {
             categoryToPackage.put(OVERLAY_CATEGORY_SYSTEM_PALETTE,
                     mNeutralOverlay.getIdentifier());
         }
@@ -872,7 +874,7 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
             FabricatedOverlay[] fOverlay = new FabricatedOverlay[skipNeutral ? 2 : 3];
             int c = 0;
             fOverlay[c++] = mSecondaryOverlay;
-            if (!skipNeutral) fOverlay[c++] = mNeutralOverlay;
+            if (!skipNeutral || enableNeutral) fOverlay[c++] = mNeutralOverlay;
             fOverlay[c++] = mDynamicOverlay;
             mThemeManager.applyCurrentUserOverlays(categoryToPackage, fOverlay,
                    currentUser, managedProfiles, onCompleteCallback);
