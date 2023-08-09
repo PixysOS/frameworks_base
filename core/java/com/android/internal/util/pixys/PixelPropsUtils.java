@@ -197,13 +197,17 @@ public class PixelPropsUtils {
 
                 dlog("Spoofing build for GMS");
                 // Alter build parameters to pixel 2 for avoiding hardware attestation enforcement
-                setPropValue("FINGERPRINT", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
-                setPropValue("MODEL", "walleye");
-                setPropValue("PRODUCT", "walleye");
-                setPropValue("DEVICE", "Pixel 2");
+                setBuildField("DEVICE", "walleye");
+                setBuildField("FINGERPRINT", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
+                setBuildField("MODEL", "Pixel 2");
+                setBuildField("PRODUCT", "walleye");
                 setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.O);
-                return;
+            } else if (processName.toLowerCase().contains("persistent")
+                    || processName.toLowerCase().contains("ui")
+                    || processName.toLowerCase().contains("learning")) {
+                propsToChange.putAll(propsToChangePixel6Pro);
             }
+            return;
         }
 
         if (packageName.startsWith("com.google.")
