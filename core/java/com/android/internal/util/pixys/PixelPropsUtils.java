@@ -70,8 +70,7 @@ public class PixelPropsUtils {
             "com.google.android.apps.googleassistant",
             "com.google.android.inputmethod.latin",
             "com.google.android.wallpaper.effects",
-            "com.google.android.apps.emojiwallpaper",
-            "com.google.android.as"
+            "com.google.android.apps.emojiwallpaper"
     };
 
     private static final String[] packagesToChangePixelXL = {
@@ -96,7 +95,10 @@ public class PixelPropsUtils {
             "com.google.android.apps.recorder",
             "com.google.android.apps.wearables.maestro.companion",
             "com.google.android.apps.tachyon",
-            "com.google.android.apps.tycho"
+            "com.google.android.apps.tycho",
+            "com.google.android.apps.motionsense.bridge",
+            "com.google.oslo",
+            "com.google.android.as"
     };
 
     private static final String[] customGoogleCameraPackages = {
