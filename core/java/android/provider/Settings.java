@@ -5891,12 +5891,6 @@ public final class Settings {
 
 
         /**
-         * Whether to enable fingerprint wake-and-unlock.
-         * @hide
-         */
-        public static final String FINGERPRINT_WAKE_UNLOCK = "fingerprint_wake_unlock";
-
-        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
