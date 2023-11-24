@@ -270,6 +270,7 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
     private boolean mIsOnDefaultDisplay;
     public boolean mHomeBlockedThisTouch;
 
+    private int mCurrentRotation;
     private final DeadZone mDeadZone;
     private boolean mImeVisible;
     private final Rect mSamplingBounds = new Rect();
@@ -344,6 +345,9 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
                 public void updateRotationWatcherState(int rotation) {
                     if (mIsOnDefaultDisplay && mView != null) {
                         mView.getRotationButtonController().onRotationWatcherChanged(rotation);
+                        if (mView.needsReorient(rotation)) {
+                            repositionNavigationBar(rotation);
+                        }
                     }
                 }
             };
@@ -355,6 +359,10 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
                     mOverviewProxyService.isEnabled());
             mView.setShouldShowSwipeUpUi(mOverviewProxyService.shouldShowSwipeUpUI());
             updateScreenPinningGestures();
+        }
+
+        @Override
+        public void onPrioritizedRotation(@Surface.Rotation int rotation) {
         }
 
         @Override
@@ -640,6 +648,9 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
         mView.setTouchHandler(mTouchHandler);
         setNavBarMode(mNavBarMode);
         mEdgeBackGestureHandler.setStateChangeCallback(mView::updateStates);
+        mEdgeBackGestureHandler.setButtonForcedVisibleChangeCallback((forceVisible) -> {
+            repositionNavigationBar(mCurrentRotation);
+        });
         mNavigationBarTransitions.addListener(this::onBarTransition);
         mView.updateRotationButton();
 
@@ -728,6 +739,7 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
         setWindowVisible(isNavBarWindowVisible());
         mView.setBehavior(mBehavior);
         setNavBarMode(mNavBarMode);
+        repositionNavigationBar(mCurrentRotation);
         mView.setUpdateActiveTouchRegionsCallback(
                 () -> mOverviewProxyService.onActiveNavBarRegionChanges(
                         getButtonLocations(
@@ -835,11 +847,15 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
             mLayoutDirection = ld;
             refreshLayout(ld);
         }
+        repositionNavigationBar(rotation);
         // NOTE(b/260220098): In some cases, the recreated nav bar will already have the right
         // configuration, which means that NavBarView will not receive a configuration change to
         // propagate to EdgeBackGestureHandler (which is injected into this and NBV). As such, we
         // should also force-update the gesture handler to ensure it updates to the right bounds
         mEdgeBackGestureHandler.onConfigurationChanged(newConfig);
+        if (rotation != mCurrentRotation) {
+            mCurrentRotation = rotation;
+        }
     }
 
     
@@ -885,6 +901,7 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
 
     public void dump(PrintWriter pw) {
         pw.println("NavigationBar (displayId=" + mDisplayId + "):");
+        pw.println("  mCurrentRotation=" + mCurrentRotation);
         pw.println("  mHomeButtonLongPressDurationMs=" + mHomeButtonLongPressDurationMs);
         pw.println("  mLongPressHomeEnabled=" + mLongPressHomeEnabled);
         pw.println("  mNavigationBarWindowState="
@@ -1104,6 +1121,14 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
                 || (mDisabledFlags1 & StatusBarManager.DISABLE_SEARCH) != 0;
     }
 
+    private void repositionNavigationBar(int rotation) {
+        if (mView == null || !mView.isAttachedToWindow()) return;
+
+        prepareNavigationBarView();
+
+        mWindowManager.updateViewLayout(mFrame, getBarLayoutParams(rotation));
+    }
+
     private void updateScreenPinningGestures() {
         // Change the cancel pin gesture to home and back if recents button is invisible
         ButtonDispatcher backButton = mView.getBackButton();
@@ -1128,6 +1153,8 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
     }
 
     private void prepareNavigationBarView() {
+        mView.reorient();
+
         ButtonDispatcher recentsButton = mView.getRecentsButton();
         recentsButton.setOnClickListener(this::onRecentsClick);
         recentsButton.setOnTouchListener(this::onRecentsTouch);
