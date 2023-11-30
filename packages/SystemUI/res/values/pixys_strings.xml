@@ -42,4 +42,7 @@
     <string name="quick_settings_ambient_display_label">Ambient display</string>
     <string name="accessibility_quick_settings_ambient_display_off">Ambient display off.</string>
     <string name="accessibility_quick_settings_ambient_display_on">Ambient display on.</string>
+
+    <!-- Face unlock -->
+    <string name="face_unlock_recognizing">Recognizing face...</string>
 </resources>
