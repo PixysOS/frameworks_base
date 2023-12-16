@@ -1523,6 +1523,10 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
         }
     }
 
+    public void updateMaxDisplayedNotificationsWrapper(boolean recompute) {
+        updateMaxDisplayedNotifications(recompute);
+    }
+
     private boolean shouldAvoidChangingNotificationsCount() {
         return mHintAnimationRunning || mUnlockedScreenOffAnimationController.isAnimationPlaying();
     }
@@ -3198,6 +3202,14 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
         mNotificationStackScrollLayoutController.setPulsing(pulsing, animatePulse);
 
         updateKeyguardStatusViewAlignment(/* animate= */ true);
+    }
+
+    public void setAmbientIndicationBottomPadding(int bottomPadding) {
+        mAmbientIndicationBottomPadding = bottomPadding;
+    }
+
+    public int getAmbientIndicationBottomPadding() {
+        return mAmbientIndicationBottomPadding;
     }
 
     @Override
@@ -5358,5 +5370,16 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
             return super.performAccessibilityAction(host, action, args);
         }
     }
+
+    @Override
+    public NotificationStackScrollLayoutController getScrollerLayoutController() {
+        return mNotificationStackScrollLayoutController;
+    }
+
+    @Override
+    public KeyguardBottomAreaView getKeyguardBottomAreaView() {
+        return mKeyguardBottomArea;
+    }
+
 }
 

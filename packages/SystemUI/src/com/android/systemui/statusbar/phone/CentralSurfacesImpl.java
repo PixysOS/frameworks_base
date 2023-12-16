@@ -1655,11 +1655,11 @@ public class CentralSurfacesImpl implements CoreStartable, TunerService.Tunable,
         mCommandQueue.addCallback(mCommandQueueCallbacks);
     }
 
-    protected NotificationShadeWindowViewController getNotificationShadeWindowViewController() {
+    public NotificationShadeWindowViewController getNotificationShadeWindowViewController() {
         return mNotificationShadeWindowViewControllerLazy.get();
     }
 
-    protected NotificationShadeWindowView getNotificationShadeWindowView() {
+    public NotificationShadeWindowView getNotificationShadeWindowView() {
         return getNotificationShadeWindowViewController().getView();
     }
 
@@ -3352,6 +3352,22 @@ public class CentralSurfacesImpl implements CoreStartable, TunerService.Tunable,
         }
     };
 
+    public void startActivity(Intent intent, boolean dismissShade) {
+        mActivityStarter.startActivityDismissingKeyguard(intent, false /* onlyProvisioned */, dismissShade);
+    }
+
+    public void startPendingIntentDismissingKeyguard(PendingIntent intent) {
+        mActivityStarter.startPendingIntentDismissingKeyguard(intent);
+    }
+
+    public ShadeViewController getNotificationPanelViewController() {
+        return mShadeSurface;
+    }
+    
+    public void wakeUpDeviceifDozing() {
+        mPowerInteractor.wakeUpIfDozing("AMBIENT MUSIC", PowerManager.WAKE_REASON_GESTURE);
+    }
+
     @Override
     public void awakenDreams() {
         mUiBgExecutor.execute(() -> {
@@ -3805,5 +3821,23 @@ public class CentralSurfacesImpl implements CoreStartable, TunerService.Tunable,
     public ActivityLaunchAnimator.Controller getAnimatorControllerFromNotification(
             ExpandableNotificationRow associatedView) {
         return mNotificationAnimationProvider.getAnimatorController(associatedView);
+    }
+
+    public void collapseShade() {
+        if (mShadeController != null) {
+            mShadeController.collapseShade();
+        }
+    }
+
+    public void postAnimateCollapsePanels() {
+        if (mShadeController != null) {
+            mShadeController.animateCollapseShade();
+        }
+    }
+
+    public void animateExpandNotificationsPanel() {
+        if (mCommandQueueCallbacks != null) {
+            mCommandQueueCallbacks.animateExpandNotificationsPanel();
+        }
     }
 }
