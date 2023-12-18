@@ -81,13 +81,7 @@ public class AmbientDisplayConfiguration {
                 || tapGestureEnabled(user)
                 || doubleTapGestureEnabled(user)
                 || quickPickupSensorEnabled(user)
-                || screenOffUdfpsEnabled(user)
-                || isAmbientTickerEnabled(user);
-    }
-
-    /** @hide */
-    public boolean isAmbientTickerEnabled(int user) {
-        return boolSettingDefaultOn(Settings.Secure.PULSE_ON_NEW_TRACKS, user);
+                || screenOffUdfpsEnabled(user);
     }
 
     /** @hide */
