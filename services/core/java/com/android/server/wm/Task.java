@@ -4648,6 +4648,8 @@ class Task extends TaskFragment {
                                 topActivity.getOrCreateFixedRotationLeash(
                                         topActivity.getSyncTransaction());
                             }
+                            // Reset the activity windowing mode to match the parent.
+                            topActivity.setWindowingMode(WINDOWING_MODE_UNDEFINED);
                             lastParentBeforePip.moveToFront("movePinnedActivityToOriginalTask");
                         }
                     }
