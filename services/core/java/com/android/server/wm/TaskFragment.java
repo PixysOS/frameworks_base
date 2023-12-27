@@ -85,7 +85,9 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.HardwareBuffer;
+import android.hardware.power.Boost;
 import android.os.IBinder;
+import android.os.PowerManagerInternal;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.util.DisplayMetrics;
@@ -103,6 +105,7 @@ import android.window.TaskFragmentOrganizerToken;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.protolog.common.ProtoLog;
 import com.android.server.am.HostingRecord;
+import com.android.server.LocalServices;
 import com.android.server.pm.pkg.AndroidPackage;
 
 import java.io.FileDescriptor;
@@ -1383,6 +1386,9 @@ class TaskFragment extends WindowContainer<WindowContainer> {
                 dc.prepareAppTransition(TRANSIT_NONE);
             } else {
                 dc.prepareAppTransition(TRANSIT_OPEN);
+                if (next != null) {
+                    doActivityBoost();
+                }
             }
         }
 
@@ -1553,6 +1559,13 @@ class TaskFragment extends WindowContainer<WindowContainer> {
         }
 
         return true;
+    }
+
+    protected void doActivityBoost() {
+        PowerManagerInternal mPowerManagerInternal = LocalServices.getService(PowerManagerInternal.class);
+        if (mPowerManagerInternal != null) {
+            mPowerManagerInternal.setPowerBoost(Boost.DISPLAY_UPDATE_IMMINENT, 80);
+        }
     }
 
     boolean shouldSleepOrShutDownActivities() {
