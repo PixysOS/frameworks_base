@@ -183,6 +183,13 @@ public class PixelPropsUtils {
     private static boolean shouldTryToCertifyDevice() {
         if (!sIsGms) return false;
 
+        final String processName = Application.getProcessName();
+        if (!processName.toLowerCase().contains("unstable")
+                && !processName.toLowerCase().contains("pixelmigrate")
+                && !processName.toLowerCase().contains("instrumentation")) {
+            return false;
+        }
+
         final boolean[] shouldCertify = {true};
 
         setPropValue("TIME", System.currentTimeMillis());
