@@ -62,11 +62,11 @@ public class PixelPropsUtils {
 
     private static final Map<String, Object> propsToChangeRecentPixel =
             createGoogleSpoofProps("Pixel 8 Pro",
-                    "google/husky/husky:14/UQ1A.231205.015/11084887:user/release-keys");
+                    "google/husky/husky:14/UQ1A.240105.004.A1/11206926:user/release-keys");
 
     private static final Map<String, Object> propsToChangePixel5a =
             createGoogleSpoofProps("Pixel 5a",
-                    "google/barbet/barbet:14/UQ1A.231205.014/11049176:user/release-keys");
+                    "google/barbet/barbet:14/UQ1A.240105.002/11129216:user/release-keys");
 
     private static final Map<String, Object> propsToChangePixelXL =
             createGoogleSpoofProps("Pixel XL",
