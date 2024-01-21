@@ -220,21 +220,21 @@ public class PixelPropsUtils {
     private static void spoofBuildGms() {
         if (sCertifiedProps == null || sCertifiedProps.length == 0) return;
         // Alter model name and fingerprint to avoid hardware attestation enforcement
-        setPropValue("BRAND", sCertifiedProps[0]);
-        setPropValue("MANUFACTURER", sCertifiedProps[1]);
-        setPropValue("ID", sCertifiedProps[2].isEmpty() ? getBuildID(sCertifiedProps[6]) : sCertifiedProps[2]);
-        setPropValue("DEVICE", sCertifiedProps[3].isEmpty() ? getDeviceName(sCertifiedProps[6]) : sCertifiedProps[3]);
-        setPropValue("PRODUCT", sCertifiedProps[4].isEmpty() ? getDeviceName(sCertifiedProps[6]) : sCertifiedProps[4]);
-        setPropValue("MODEL", sCertifiedProps[5]);
-        setPropValue("FINGERPRINT", sCertifiedProps[6]);
-        setPropValue("TYPE", sCertifiedProps[7].isEmpty() ? "user" : sCertifiedProps[7]);
-        setPropValue("TAGS", sCertifiedProps[8].isEmpty() ? "release-keys" : sCertifiedProps[8]);
-        if (!sCertifiedProps[9].isEmpty()) {
-            setVersionFieldString("SECURITY_PATCH", sCertifiedProps[9]);
+        setPropValue("PRODUCT", sCertifiedProps[0].isEmpty() ? getDeviceName(sCertifiedProps[4]) : sCertifiedProps[0]);
+        setPropValue("DEVICE", sCertifiedProps[1].isEmpty() ? getDeviceName(sCertifiedProps[4]) : sCertifiedProps[1]);
+        setPropValue("MANUFACTURER", sCertifiedProps[2]);
+        setPropValue("BRAND", sCertifiedProps[3]);
+        setPropValue("MODEL", sCertifiedProps[4]);
+        setPropValue("FINGERPRINT", sCertifiedProps[5]);
+        if (!sCertifiedProps[6].isEmpty()) {
+            setVersionFieldString("SECURITY_PATCH", sCertifiedProps[6]);
         }
-        if (!sCertifiedProps[10].isEmpty() && sCertifiedProps[10].matches("\\d+")) {
-            setVersionFieldInt("DEVICE_INITIAL_SDK_INT", Integer.parseInt(sCertifiedProps[10]));
+        if (!sCertifiedProps[7].isEmpty() && sCertifiedProps[7].matches("\\d+")) {
+            setVersionFieldInt("DEVICE_INITIAL_SDK_INT", Integer.parseInt(sCertifiedProps[7]));
         }
+        setPropValue("ID", sCertifiedProps[8].isEmpty() ? getBuildID(sCertifiedProps[4]) : sCertifiedProps[8]);
+        setPropValue("TYPE", sCertifiedProps[9].isEmpty() ? "user" : sCertifiedProps[9]);
+        setPropValue("TAGS", sCertifiedProps[10].isEmpty() ? "release-keys" : sCertifiedProps[10]);
     }
 
     public static void setProps(Application app) {
