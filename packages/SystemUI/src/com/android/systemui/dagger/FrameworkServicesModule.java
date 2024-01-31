@@ -91,6 +91,7 @@ import android.telecom.TelecomManager;
 import android.telephony.CarrierConfigManager;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.telephony.ims.ImsManager;
 import android.view.Choreographer;
 import android.view.CrossWindowBlurListeners;
 import android.view.IWindowManager;
@@ -650,7 +651,7 @@ public class FrameworkServicesModule {
     static PermissionManager providePermissionManager(Context context) {
         PermissionManager pm = context.getSystemService(PermissionManager.class);
         if (pm != null) {
-            pm.initializeUsageHelper();
+           pm.initializeUsageHelper();
         }
         return pm;
     }
@@ -711,5 +712,11 @@ public class FrameworkServicesModule {
         return IUriGrantsManager.Stub.asInterface(
                 ServiceManager.getService(Context.URI_GRANTS_SERVICE)
         );
+    }
+
+    @Provides
+    @Singleton
+    static ImsManager provideImsManager(Context context) {
+        return context.getSystemService(ImsManager.class);
     }
 }
