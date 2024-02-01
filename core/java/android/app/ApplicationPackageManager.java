@@ -901,6 +901,17 @@ public class ApplicationPackageManager extends PackageManager {
             if (Arrays.asList(featuresTensor).contains(name)) return false;
             if (Arrays.asList(featuresNexus).contains(name)) return true;
         }
+
+        if (packageName != null &&
+		packageName.equals("com.google.android.googlequicksearchbox") &&
+                SystemProperties.getBoolean("persist.sys.pixelprops.velvet", true)) {
+            if (Arrays.asList(featuresPixel).contains(name)) return true;
+	    if (Arrays.asList(featuresPixelOthers).contains(name)) return true;
+	    if (Arrays.asList(featuresP23).contains(name)) return true;
+	    if (Arrays.asList(featuresTensor).contains(name)) return true;
+	    if (Arrays.asList(featuresNexus).contains(name)) return true;
+        }
+
         if (Arrays.asList(featuresTensor).contains(name) &&
                 !Arrays.asList(pTensorCodenames).contains(SystemProperties.get("ro.product.device"))) {
             return false;

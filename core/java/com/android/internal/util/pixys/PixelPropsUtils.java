@@ -311,7 +311,6 @@ public class PixelPropsUtils {
             }
 
 	  if (!processName.toLowerCase().contains("ui")
-	     && !processName.toLowerCase().contains("search")
 	     && !processName.toLowerCase().contains("gservice")
 	     && !processName.toLowerCase().contains("gapps")
              && !processName.toLowerCase().contains("learning")
@@ -324,6 +323,13 @@ public class PixelPropsUtils {
                     propsToChange = propsToChangePixelXL;
                 }
             }
+
+	    if (procName.equals("com.google.android.googlequicksearchbox")) {
+	        if (SystemProperties.getBoolean("persist.sys.pixelprops.velvet", true)) {
+                    propsToChange = propsToChangeRecentPixel;
+                }
+	   }
+
         }
         if (propsToChange == null || propsToChange.isEmpty()) return;
         dlog("Defining props for: " + procName);
