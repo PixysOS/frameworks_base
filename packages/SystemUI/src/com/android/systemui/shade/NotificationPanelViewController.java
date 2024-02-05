@@ -3222,7 +3222,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
                 !mDozeParameters.getDisplayNeedsBlanking() && mDozeParameters.getAlwaysOn();
         ContentResolver resolver = mView.getContext().getContentResolver();
         boolean pulseLights = Settings.System.getIntForUser(resolver,
-                Settings.System.AMBIENT_NOTIFICATION_LIGHT, 1, UserHandle.USER_CURRENT) != 0;
+                Settings.System.AMBIENT_NOTIFICATION_LIGHT, 0, UserHandle.USER_CURRENT) != 0;
         ExpandableNotificationRow row = mStackScrollLayout.getFirstActiveClearableNotification(ROWS_HIGH_PRIORITY);
         boolean activeNotif = row != null;
         int pulseReason = Settings.System.getIntForUser(resolver,
@@ -4609,7 +4609,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
             if (mPulsing) {
                 ContentResolver resolver = mView.getContext().getContentResolver();
                 boolean pulseLights = Settings.System.getIntForUser(resolver,
-                        Settings.System.AMBIENT_NOTIFICATION_LIGHT, 1, UserHandle.USER_CURRENT) != 0;
+                        Settings.System.AMBIENT_NOTIFICATION_LIGHT, 0, UserHandle.USER_CURRENT) != 0;
                 boolean pulseColorAutomatic = Settings.System.getIntForUser(resolver,
                         Settings.System.AMBIENT_NOTIFICATION_LIGHT_AUTOMATIC, 1, UserHandle.USER_CURRENT) != 0;
                 if (pulseLights && pulseColorAutomatic) {

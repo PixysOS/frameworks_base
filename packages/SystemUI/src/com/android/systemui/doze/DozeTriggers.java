@@ -615,9 +615,10 @@ public class DozeTriggers implements DozeMachine.Part {
                     runIfNotNull(onPulseSuppressedListener);
                     return;
                 }
-            Settings.System.putIntForUser(mContext.getContentResolver(),
-                    Settings.System.PULSE_TRIGGER_REASON, reason,
-                    UserHandle.USER_CURRENT);
+
+                Settings.System.putIntForUser(mContext.getContentResolver(),
+                        Settings.System.PULSE_TRIGGER_REASON, reason,
+                        UserHandle.USER_CURRENT);
                 mMachine.requestPulse(reason);
             }
         }, !mDozeParameters.getProxCheckBeforePulse() || performedProxCheck, reason);
