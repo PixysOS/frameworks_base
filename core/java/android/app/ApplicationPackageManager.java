@@ -903,8 +903,7 @@ public class ApplicationPackageManager extends PackageManager {
         }
 
         if (packageName != null &&
-		packageName.equals("com.google.android.googlequicksearchbox") &&
-                SystemProperties.getBoolean("persist.sys.pixelprops.velvet", true)) {
+		packageName.equals("com.google.android.googlequicksearchbox")) {
             if (Arrays.asList(featuresPixel).contains(name)) return true;
 	    if (Arrays.asList(featuresPixelOthers).contains(name)) return true;
 	    if (Arrays.asList(featuresP23).contains(name)) return true;
