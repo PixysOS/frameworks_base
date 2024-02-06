@@ -89,7 +89,6 @@ public class PixelPropsUtils {
     private static final ArrayList<String> packagesToChangeRecentPixel = 
         new ArrayList<String> (
             Arrays.asList(
-                "com.breel.wallpapers20",
                 "com.google.android.apps.emojiwallpaper",
                 "com.google.android.wallpaper.effects",
                 "com.google.pixel.livewallpaper",
@@ -98,13 +97,15 @@ public class PixelPropsUtils {
                 "com.google.android.apps.customization.pixel",
                 "com.google.android.apps.privacy.wildlife",
                 "com.google.android.apps.subscriptions.red",
-                "com.google.android.apps.photos"
+                "com.google.android.apps.photos",
+		"com.google.android.googlequicksearchbox"
         ));
 
    private static final ArrayList<String> packagesToChangePixel5a = 
         new ArrayList<String> (
             Arrays.asList(
-		"com.google.android.tts"
+		"com.google.android.tts",
+		"com.breel.wallpapers20"
        ));
 
     private static final ArrayList<String> extraPackagesToChange = 
@@ -146,9 +147,7 @@ public class PixelPropsUtils {
                 "com.google.oslo",
                 "it.ingdirect.app",
                 "com.google.android.apps.nexuslauncher",
-		"com.google.intelligence.sense",
-		"com.google.android.googlequicksearchbox",
-		"com.google.android.gms"
+		"com.google.intelligence.sense"
         ));
 
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
@@ -314,6 +313,7 @@ public class PixelPropsUtils {
 	     && !processName.toLowerCase().contains("gservice")
 	     && !processName.toLowerCase().contains("gapps")
              && !processName.toLowerCase().contains("learning")
+	     && !processName.toLowerCase().contains("search")
              && !processName.toLowerCase().contains("persistent")) {
 	       propsToChange = propsToChangeRecentPixel;
             }
@@ -323,12 +323,6 @@ public class PixelPropsUtils {
                     propsToChange = propsToChangePixelXL;
                 }
             }
-
-	    if (procName.equals("com.google.android.googlequicksearchbox")) {
-	        if (SystemProperties.getBoolean("persist.sys.pixelprops.velvet", true)) {
-                    propsToChange = propsToChangeRecentPixel;
-                }
-	   }
 
         }
         if (propsToChange == null || propsToChange.isEmpty()) return;
