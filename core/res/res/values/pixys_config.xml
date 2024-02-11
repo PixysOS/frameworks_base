@@ -11,23 +11,6 @@
     <!-- Whether Pixel props is enabled -->
     <bool name="config_enablePixelProps">true</bool>
 
-    <!-- Build properties from a GMS certified device -->
-    <string-array name="config_certifiedBuildProperties" translatable="false">
-      <!--
-        <item>Build.PRODUCT</item>
-        <item>Build.DEVICE</item>
-	<item>Build.MANUFACTURER</item>
-        <item>Build.BRAND</item>
-        <item>Build.MODEL</item>
-        <item>Build.FINGERPRINT</item>
-        <item>Build.SECURITY_PATCH</item>
-	 <item>Build.DEVICE_INITIAL_SDK_INT</item>
-        <item>Build.ID</item>
-        <item>Build.TYPE</item>
-        <item>Build.TAGS</item>
-      -->
-    </string-array>
-
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <bool name="config_cleanupUnusedFingerprints">true</bool>
 
