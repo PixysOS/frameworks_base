@@ -86,12 +86,12 @@ object Flags {
     // TODO(b/277338665): Tracking Bug
     @JvmField
     val NOTIFICATION_SHELF_REFACTOR =
-        unreleasedFlag("notification_shelf_refactor", teamfood = true)
+        releasedFlag("notification_shelf_refactor")
 
     // TODO(b/290787599): Tracking Bug
     @JvmField
     val NOTIFICATION_ICON_CONTAINER_REFACTOR =
-        unreleasedFlag("notification_icon_container_refactor")
+        releasedFlag("notification_icon_container_refactor")
 
     // TODO(b/288326013): Tracking Bug
     @JvmField
