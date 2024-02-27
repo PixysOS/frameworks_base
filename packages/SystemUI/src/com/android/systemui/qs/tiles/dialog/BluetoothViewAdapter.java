@@ -97,8 +97,8 @@ public class BluetoothViewAdapter extends
      * @param devices the updated bluetooth devices.
      */
     public void setBluetoothDevices(List<CachedBluetoothDevice> devices) {
-        if (mDevices == devices) {
-            return;
+        if (mDevices ==  null || !mDevices.equals(devices)) {
+           return;
         }
         mDevices = devices;
         mDevicesCount = Math.min(devices.size(), mMaxDevicesCount);
@@ -106,7 +106,7 @@ public class BluetoothViewAdapter extends
     }
 
     public void setActiveDevice(@Nullable CachedBluetoothDevice device) {
-        if (mActiveDevice == device) {
+	if (mActiveDevice == null || !mActiveDevice.equals(device)) {
             return;
         }
         mActiveDevice = device;
