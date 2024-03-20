@@ -217,7 +217,7 @@ object MobileIconBinder {
                                 networkTypeView.imageTintList = tint
                             }
 
-			    mobileHdView.imageTintList = tint
+                            mobileHdView.imageTintList = tint
                             activityIn.imageTintList = tint
                             activityOut.imageTintList = tint
                             dotView.setDecorColor(colors.tint)
