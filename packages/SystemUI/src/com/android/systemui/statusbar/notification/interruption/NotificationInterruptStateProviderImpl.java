@@ -28,6 +28,7 @@ import static com.android.systemui.statusbar.notification.interruption.Notificat
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.hardware.display.AmbientDisplayConfiguration;
 import android.os.Handler;
@@ -88,6 +89,7 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     private final SystemClock mSystemClock;
     private final GlobalSettings mGlobalSettings;
     private final EventLog mEventLog;
+    private final ContentResolver mContentResolver;
 
     @VisibleForTesting
     protected boolean mUseHeadsUp = false;
@@ -126,6 +128,7 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
 
     @Inject
     public NotificationInterruptStateProviderImpl(
+	    ContentResolver contentResolver,
             Context context,
             PowerManager powerManager,
             AmbientDisplayConfiguration ambientDisplayConfiguration,
@@ -143,6 +146,7 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
             SystemClock systemClock,
             GlobalSettings globalSettings,
             EventLog eventLog) {
+        mContentResolver = contentResolver;
         mContext = context;
         mTm = (TelecomManager) context.getSystemService(Context.TELECOM_SERVICE);
         mPowerManager = powerManager;
