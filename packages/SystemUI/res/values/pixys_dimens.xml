@@ -3,6 +3,10 @@
 
     <!-- Network traffic -->
     <dimen name="network_traffic_width">25sp</dimen>
+
+    <!-- Ambient indication -->
+    <dimen name="ambient_indication_icon_size">20.0dip</dimen>
+    <dimen name="ambient_indication_note_icon_size">14.0dip</dimen>
    
     <!-- Maximum vertical offset of statusbar for burn-in protection -->
     <dimen name="status_bar_offset_max_y">4dp</dimen>

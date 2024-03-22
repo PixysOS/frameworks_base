@@ -379,6 +379,10 @@
     <protected-broadcast android:name="com.android.systemui.STARTED" />
 
 
+    <!-- Now Playing -->
+    <permission android:name="com.google.android.ambientindication.permission.AMBIENT_INDICATION" android:protectionLevel="signature|system"/>
+    <uses-permission android:name="com.google.android.ambientindication.permission.AMBIENT_INDICATION"/>
+
     <!-- Smartspace -->
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
     <permission android:name="com.android.systemui.permission.SEND_ALERT_BROADCASTS" android:protectionLevel="preinstalled|signature"/>

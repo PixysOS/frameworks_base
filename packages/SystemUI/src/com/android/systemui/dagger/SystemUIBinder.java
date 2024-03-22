@@ -16,11 +16,18 @@
 
 package com.android.systemui.dagger;
 
+import com.android.systemui.CoreStartable;
+
 import com.android.systemui.keyguard.dagger.KeyguardModule;
 import com.android.systemui.recents.RecentsModule;
 import com.android.systemui.statusbar.dagger.CentralSurfacesModule;
 
+import com.google.android.systemui.GoogleServices;
+
+import dagger.Binds;
 import dagger.Module;
+import dagger.multibindings.ClassKey;
+import dagger.multibindings.IntoMap;
 
 /**
  * SystemUI objects that are injectable should go here.
@@ -31,4 +38,12 @@ import dagger.Module;
         KeyguardModule.class,
 })
 public abstract class SystemUIBinder {
+
+    /**
+     * Inject into GoogleServices.
+     */
+    @Binds
+    @IntoMap
+    @ClassKey(GoogleServices.class)
+    public abstract CoreStartable bindGoogleServices(GoogleServices sysui);
 }
