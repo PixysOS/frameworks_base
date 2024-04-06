@@ -98,8 +98,8 @@ public class GamesPropsUtils {
         propsToChange.put("ROG3", createROG3Props());
         packagesToChange.put("ROG3", new String[]{
                 "com.ea.gp.fifamobile",
-                "com.pearlabyss.blackdesertm",
-                "com.pearlabyss.blackdesertm.gl"
+                "com.pearlabyss.blackdesertm.gl",
+                "com.pearlabyss.blackdesertm"
         });
 
         propsToChange.put("ROG6", createROG6Props());
@@ -114,8 +114,8 @@ public class GamesPropsUtils {
 
         propsToChange.put("XP5", createXP5Props());
         packagesToChange.put("XP5", new String[]{
-                "com.tencent.tmgp.kr.codm",
                 "com.garena.game.codm",
+                "com.tencent.tmgp.kr.codm",
                 "com.vng.codmvn"
         });
     }
