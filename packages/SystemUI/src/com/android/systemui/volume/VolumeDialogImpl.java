@@ -116,6 +116,7 @@ import com.android.internal.graphics.drawable.BackgroundBlurDrawable;
 import com.android.internal.jank.InteractionJankMonitor;
 import com.android.internal.view.RotationPolicy;
 import com.android.settingslib.Utils;
+import com.android.settingslib.media.flags.Flags;
 import com.android.systemui.Dumpable;
 import com.android.systemui.Prefs;
 import com.android.systemui.dump.DumpManager;
@@ -1272,7 +1273,9 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
         if (mSettingsView != null) {
             mSettingsView.setVisibility(
                     mDeviceProvisionedController.isCurrentUserSetup() &&
-                            lockTaskModeState == LOCK_TASK_MODE_NONE ? VISIBLE : GONE);
+                            lockTaskModeState == LOCK_TASK_MODE_NONE &&
+                            Flags.useMediaRouter2ForInfoMediaManager()
+                            ? VISIBLE : GONE);
         }
         if (mSettingsIcon != null) {
             mSettingsIcon.setOnClickListener(v -> {
