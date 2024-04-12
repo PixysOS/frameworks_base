@@ -38,4 +38,13 @@
         android:visibility="gone"
         android:importantForAccessibility="no"
     />
+
+    <ImageView
+        android:id="@+id/appArrow"
+        android:layout_width="@dimen/qs_icon_size"
+        android:layout_height="@dimen/qs_icon_size"
+        android:src="@*android:drawable/expand_circle_right"
+        android:visibility="gone"
+        android:importantForAccessibility="no"
+    />
 </FrameLayout>
