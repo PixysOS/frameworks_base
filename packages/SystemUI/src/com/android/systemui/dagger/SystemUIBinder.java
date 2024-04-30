@@ -45,5 +45,5 @@ public abstract class SystemUIBinder {
     @Binds
     @IntoMap
     @ClassKey(GoogleServices.class)
-    public abstract CoreStartable bindStatixServices(GoogleServices sysui);
+    public abstract CoreStartable bindGoogleServices(GoogleServices sysui);
 }
