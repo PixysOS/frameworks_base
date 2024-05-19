@@ -76,15 +76,10 @@ public class GamesPropsUtils {
         propsToChange.put("OP8P", createOP8PProps());
         packagesToChange.put("OP8P", new String[]{
                 "com.netease.lztgglobal",
-                "com.pubg.imobile",
-                "com.pubg.krmobile",
-                "com.rekoo.pubgm",
                 "com.riotgames.league.wildrift",
                 "com.riotgames.league.wildrifttw",
                 "com.riotgames.league.wildriftvn",
-                "com.tencent.ig",
-                "com.tencent.tmgp.pubgmhd",
-                "com.vng.pubgmobile"
+                "com.tencent.ig"
         });
 
         propsToChange.put("OP9P", createOP9PProps());
@@ -110,6 +105,15 @@ public class GamesPropsUtils {
                 "com.riotgames.league.teamfighttactics",
                 "com.riotgames.league.teamfighttacticstw",
                 "com.riotgames.league.teamfighttacticsvn"
+        });
+
+        propsToChange.put("ROG8", createROG8Props());
+        packagesToChange.put("ROG8", new String[]{
+                "com.pubg.imobile",
+                "com.pubg.krmobile",
+                "com.rekoo.pubgm",
+                "com.tencent.tmgp.pubgmhd",
+                "com.vng.pubgmobile"
         });
 
         propsToChange.put("XP5", createXP5Props());
@@ -200,6 +204,14 @@ public class GamesPropsUtils {
         props.put("BRAND", "asus");
         props.put("MANUFACTURER", "asus");
         props.put("MODEL", "ASUS_AI2201");
+        return props;
+    }
+
+    private static Map<String, Object> createROG8Props() {
+        Map<String, Object> props = new HashMap<>();
+        props.put("BRAND", "asus");
+        props.put("MANUFACTURER", "asus");
+        props.put("MODEL", "ASUS_AI2401_A");
         return props;
     }
 
