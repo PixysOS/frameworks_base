@@ -439,15 +439,19 @@ public class PixelPropsUtils {
     }
 
     private static boolean isCallerSafetyNet() {
-        return sIsGms && Arrays.stream(Thread.currentThread().getStackTrace())
-                            .anyMatch(elem -> elem.getClassName().toLowerCase()
-                                .contains("droidguard"));
+        return Arrays.stream(Thread.currentThread().getStackTrace())
+                        .anyMatch(elem -> elem.getClassName().toLowerCase()
+                            .contains("droidguard"));
     }
 
     public static void onEngineGetCertificateChain() {
         // Check stack for SafetyNet or Play Integrity
-	if ((isCallerSafetyNet() || sIsFinsky) && !sIsSetupWizard && shouldTryToCertifyDevice()) {
-            dlog("Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky);
+        if (sIsSetupWizard) {
+            Process.killProcess(Process.myPid());
+            return;
+        }
+        if (isCallerSafetyNet() || sIsFinsky) {
+            dlog("Blocked key attestation");
             throw new UnsupportedOperationException();
         }
     }
