@@ -78,8 +78,7 @@ public class GamesPropsUtils {
                 "com.netease.lztgglobal",
                 "com.riotgames.league.wildrift",
                 "com.riotgames.league.wildrifttw",
-                "com.riotgames.league.wildriftvn",
-                "com.tencent.ig"
+                "com.riotgames.league.wildriftvn"
         });
 
         propsToChange.put("OP9P", createOP9PProps());
@@ -112,6 +111,7 @@ public class GamesPropsUtils {
                 "com.pubg.imobile",
                 "com.pubg.krmobile",
                 "com.rekoo.pubgm",
+                "com.tencent.ig",
                 "com.tencent.tmgp.pubgmhd",
                 "com.vng.pubgmobile"
         });
