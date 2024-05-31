@@ -108,4 +108,8 @@
     <!-- Horizon Light -->
     <java-symbol type="integer" name="config_AmbientPulseLightColor" />
 
+    <!-- Package Restart -->
+    <java-symbol type="string" name="package_restart_title" />
+    <java-symbol type="string" name="package_restart_message" />
+
 </resources>

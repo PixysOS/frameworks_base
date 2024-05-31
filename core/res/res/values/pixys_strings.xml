@@ -53,4 +53,8 @@
     <string name="charging_control_notification_content_limit_reached">Battery is charged to %1$d%%</string>
     <string name="charging_control_notification_content_target">Battery will be fully charged at %1$s</string>
     <string name="charging_control_notification_content_target_reached">Battery is charged</string>
+
+    <!-- Package Restart -->
+    <string name="package_restart_title">App restart required</string>
+    <string name="package_restart_message">For all changes to take effect, a restart of the app is required. Restart the app now?</string>
 </resources>
