@@ -1,11 +1,12 @@
 /*
  * Copyright (C) 2022 The Pixel Experience Project
- *               2021-2022 crDroid Android Project
- * Copyright (C) 2022 Paranoid Android
- * Copyright (C) 2022 StatiXOS
- * Copyright (C) 2023 the RisingOS Android Project
+ *           (C) 2021-2022 crDroid Android Project
+ *           (C) 2022 Paranoid Android
+ *           (C) 2022 StatiXOS
+ *           (C) 2023 the RisingOS Android Project
  *           (C) 2023 ArrowOS
  *           (C) 2023 The LibreMobileOS Foundation
+ *           (C) 2024 StagOS
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,7 +96,7 @@ public class PixelPropsUtils {
                 "com.google.android.apps.privacy.wildlife",
                 "com.google.android.apps.subscriptions.red",
                 "com.google.android.apps.photos",
-		"com.google.android.googlequicksearchbox",
+		        "com.google.android.googlequicksearchbox",
                 "com.google.android.gms.ui",
                 "com.google.android.gms.learning",
                 "com.google.android.gms.persistent"
@@ -148,15 +149,21 @@ public class PixelPropsUtils {
                 "com.google.oslo",
                 "it.ingdirect.app",
                 "com.google.android.apps.nexuslauncher",
-		"com.google.intelligence.sense",
-		"com.google.android.apps.tips",
-		"com.google.android.apps.dreamliner",
-		"com.google.android.apps.dreamlinerupdater",
-		"com.google.android.gms.update"
+                "com.google.intelligence.sense",
+                "com.google.android.apps.tips",
+                "com.google.android.apps.dreamliner",
+                "com.google.android.apps.dreamlinerupdater",
+                "com.google.android.gms.update"
         ));
+
+    private static final String PROP_SECURITY_PATCH = "persist.sys.pihooks.security_patch";
+    private static final String PROP_FIRST_API_LEVEL = "persist.sys.pihooks.first_api_level";
 
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
+
+    private static volatile String[] sCertifiedProps;
+    private static volatile String sStockFp;
 
     private static volatile boolean sIsGms, sIsFinsky, sIsSetupWizard, sIsGoogle, sIsSamsung;
 
@@ -243,37 +250,33 @@ public class PixelPropsUtils {
     }
 
     private static void spoofBuildGms() { 
-            String[] sCertifiedProps = { 
-	    SystemProperties.get("persist.sys.pihooks.product_name", ""), 
-	    SystemProperties.get("persist.sys.pihooks.product_device", ""), 
-            SystemProperties.get("persist.sys.pihooks.manufacturer", ""), 
-	    SystemProperties.get("persist.sys.pihooks.brand", ""), 
-     	    SystemProperties.get("persist.sys.pihooks.product_model", ""), 
-            SystemProperties.get("persist.sys.pihooks.build_fingerprint", ""), 
-            SystemProperties.get("persist.sys.pihooks.security_patch", ""), 
-            SystemProperties.get("persist.sys.pihooks.first_api_level", ""), 
-            SystemProperties.get("persist.sys.pihooks.build_id", ""), 
-	    SystemProperties.get("persist.sys.pihooks.build_type", ""), 
-	    SystemProperties.get("persist.sys.pihooks.build_tags", "")
-        };
-
-        if (sCertifiedProps == null || sCertifiedProps.length == 0) return;
-        // Alter model name and fingerprint to avoid hardware attestation enforcement
-        setPropValue("PRODUCT", sCertifiedProps[0].isEmpty() ? getDeviceName(sCertifiedProps[4]) : sCertifiedProps[0]);
-        setPropValue("DEVICE", sCertifiedProps[1].isEmpty() ? getDeviceName(sCertifiedProps[4]) : sCertifiedProps[1]);
-        setPropValue("MANUFACTURER", sCertifiedProps[2]);
-        setPropValue("BRAND", sCertifiedProps[3]);
-        setPropValue("MODEL", sCertifiedProps[4]);
-        setPropValue("FINGERPRINT", sCertifiedProps[5]);
-        if (!sCertifiedProps[6].isEmpty()) {
-            setPropValue("SECURITY_PATCH", sCertifiedProps[6]);
+        String allKeys = SystemProperties.get("persist.sys.pihooks.gms.list");
+        if (allKeys != null && !allKeys.isEmpty()) {
+            String[] keys = allKeys.split("\\+");
+            for (String key : keys) {
+                String value = SystemProperties.get("persist.sys.pihooks.gms." + key);
+                if (key.equals("SECURITY_PATCH")) {
+                    setSystemProperty(PROP_SECURITY_PATCH, value);
+                } else if (key.equals("FIRST_API_LEVEL")) {
+                    setSystemProperty(PROP_FIRST_API_LEVEL, value);
+                } else {
+                    setPropValue(key, value);
+                }
+            }
+        } else {
+            for (String entry : sCertifiedProps) {
+                // Each entry must be of the format FIELD:value
+                final String[] fieldAndProp = entry.split(":", 2);
+                if (fieldAndProp.length != 2) {
+                    Log.e(TAG, "Invalid entry in certified props: " + entry);
+                    continue;
+                }
+                setPropValue(fieldAndProp[0], fieldAndProp[1]);
+            }
+            setSystemProperty(PROP_SECURITY_PATCH, Build.VERSION.SECURITY_PATCH);
+            setSystemProperty(PROP_FIRST_API_LEVEL,
+                    Integer.toString(Build.VERSION.DEVICE_INITIAL_SDK_INT));
         }
-        if (!sCertifiedProps[7].isEmpty() && sCertifiedProps[7].matches("\\d+")) {
-            setPropValue("DEVICE_INITIAL_SDK_INT", Integer.parseInt(sCertifiedProps[7]));
-        }
-        setPropValue("ID", sCertifiedProps[8].isEmpty() ? getBuildID(sCertifiedProps[4]) : sCertifiedProps[8]);
-        setPropValue("TYPE", sCertifiedProps[9].isEmpty() ? "user" : sCertifiedProps[9]);
-        setPropValue("TAGS", sCertifiedProps[10].isEmpty() ? "release-keys" : sCertifiedProps[10]);
     }
 
     public static void setProps(Context context) {
@@ -403,6 +406,15 @@ public class PixelPropsUtils {
             dlog(TAG + " Failed to set prop " + key);
         } catch (NumberFormatException e) {
             dlog(TAG + " Failed to parse value for field " + key);
+        }
+    }
+
+    private static void setSystemProperty(String name, String value) {
+        try {
+            SystemProperties.set(name, value);
+            dlog("Set system prop " + name + "=" + value);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to set system prop " + name + "=" + value, e);
         }
     }
 

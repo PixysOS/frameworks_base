@@ -11,6 +11,19 @@
     <!-- Whether Pixel props is enabled -->
     <bool name="config_enablePixelProps">true</bool>
 
+    <!-- Build properties from a GMS certified device against current platform SPL level -->
+    <string-array name="config_certifiedBuildProperties" translatable="false">
+      <!--
+        <item>Build.DEVICE</item>
+        <item>Build.PRODUCT</item>
+        <item>Build.MODEL</item>
+        <item>Build.FINGERPRINT</item>
+      -->
+    </string-array>
+
+    <!-- Build fingerprint from stock ROM -->
+    <string name="config_stockFingerprint" translatable="false"></string>
+
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <bool name="config_cleanupUnusedFingerprints">true</bool>
 
