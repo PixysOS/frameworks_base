@@ -163,7 +163,6 @@ public class PixelPropsUtils {
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
 
     private static volatile String[] sCertifiedProps;
-    private static volatile String sStockFp;
 
     private static volatile boolean sIsGms, sIsFinsky, sIsSetupWizard, sIsGoogle, sIsSamsung;
 
@@ -208,10 +207,7 @@ public class PixelPropsUtils {
         if (!sIsGms) return false;
 
         final String processName = Application.getProcessName();
-        if (!processName.toLowerCase().contains("unstable")
-		&& !processName.toLowerCase().contains("chimera")
-                && !processName.toLowerCase().contains("pixelmigrate")
-                && !processName.toLowerCase().contains("instrumentation")) {
+        if (!processName.toLowerCase().contains("unstable")) {
             return false;
         }
 
@@ -315,7 +311,7 @@ public class PixelPropsUtils {
 
         sIsGoogle = packageName.toLowerCase().contains("com.google");
         sIsSamsung = packageName.toLowerCase().contains("samsung") || processName.toLowerCase().contains("samsung");
-        sIsGms = processName.equals("com.google.android.gms.unstable");
+        sIsGms = packageName.equals("com.google.android.gms") && processName.equals("com.google.android.gms.unstable");
         sIsFinsky = packageName.equals("com.android.vending");
         sIsSetupWizard = packageName.equals("com.google.android.setupwizard");
 
