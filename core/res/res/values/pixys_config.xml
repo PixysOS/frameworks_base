@@ -134,4 +134,8 @@
          that should also be considered platform signatures. -->
     <string-array name="config_googlePlatformSignatures">
     </string-array>
+   <!-- The list of Microsoft platform package signatures
+         that should also be considered platform signatures. -->
+    <string-array name="config_microsoftPlatformSignatures">
+    </string-array>
 </resources>
