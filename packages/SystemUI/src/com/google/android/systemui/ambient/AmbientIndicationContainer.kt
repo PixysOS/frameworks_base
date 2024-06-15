@@ -37,6 +37,7 @@ import com.android.systemui.util.wakelock.DelayedWakeLock
 import com.android.systemui.util.wakelock.WakeLock
 import com.android.systemui.util.wakelock.WakeLockLogger
 import com.android.systemui.res.R
+import dagger.Lazy
 
 class AmbientIndicationContainer(private val context: Context, attrs: AttributeSet) :
     AutoReinflateContainer(context, attrs),
@@ -81,6 +82,8 @@ class AmbientIndicationContainer(private val context: Context, attrs: AttributeS
         powerInteractor: PowerInteractor,
         activityStarter: ActivityStarter,
         wakelockLogger: WakeLockLogger,
+        bgHandler: Lazy<Handler>,
+        mainHandler: Lazy<Handler>,
     ) {
         this.activityStarter = activityStarter
         this.powerInteractor = powerInteractor
@@ -88,7 +91,7 @@ class AmbientIndicationContainer(private val context: Context, attrs: AttributeS
         this.shadeViewController = shadeViewController
         wakeLock =
             DelayedWakeLock(
-                handler, WakeLock.createPartial(context, wakeLockLogger, "AmbientIndication"))
+                bgHandler, mainHandler, context, wakeLockLogger, "AmbientIndication")
         addInflateListener {
             textView = findViewById(R.id.ambient_indication_text)!!
             iconView = findViewById(R.id.ambient_indication_icon)!!
