@@ -39,6 +39,7 @@ import android.annotation.Nullable;
 import android.app.ActivityManager;
 import android.app.ActivityOptions;
 import android.app.ExitTransitionCoordinator;
+import android.app.ExitTransitionCoordinator.ExitTransitionCallbacks;
 import android.app.ICompatCameraControlCallback;
 import android.app.Notification;
 import android.app.assist.AssistContent;
@@ -53,6 +54,7 @@ import android.graphics.Insets;
 import android.graphics.Rect;
 import android.hardware.display.DisplayManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.UserHandle;
@@ -86,12 +88,13 @@ import com.android.internal.logging.UiEventLogger;
 import com.android.internal.policy.PhoneWindow;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.settingslib.applications.InterestingConfigChanges;
+import com.android.systemui.res.R;
 import com.android.systemui.broadcast.BroadcastSender;
 import com.android.systemui.clipboardoverlay.ClipboardOverlayController;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.flags.FeatureFlags;
 import com.android.systemui.flags.Flags;
-import com.android.systemui.res.R;
+import com.android.systemui.screenshot.ScreenshotController.SavedImageData.ActionTransition;
 import com.android.systemui.screenshot.TakeScreenshotService.RequestCallback;
 import com.android.systemui.util.Assert;
 
@@ -109,6 +112,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import javax.inject.Provider;
 
@@ -168,16 +172,31 @@ public class ScreenshotController {
      */
     static class SavedImageData {
         public Uri uri;
+        public Supplier<ActionTransition> shareTransition;
+        public Supplier<ActionTransition> editTransition;
+        public Notification.Action deleteAction;
         public List<Notification.Action> smartActions;
         public Notification.Action quickShareAction;
         public UserHandle owner;
         public String subject;  // Title for sharing
 
         /**
+         * POD for shared element transition.
+         */
+        static class ActionTransition {
+            public Bundle bundle;
+            public Notification.Action action;
+            public Runnable onCancelRunnable;
+        }
+
+        /**
          * Used to reset the return data on error
          */
         public void reset() {
             uri = null;
+            shareTransition = null;
+            editTransition = null;
+            deleteAction = null;
             smartActions = null;
             quickShareAction = null;
             subject = null;
@@ -454,9 +473,8 @@ public class ScreenshotController {
 
         if (!shouldShowUi()) {
             saveScreenshotInWorkerThread(
-                    screenshot.getUserHandle(), finisher, this::logSuccessOnActionsReady,
-                    (ignored) -> {
-                    });
+                screenshot.getUserHandle(), finisher, this::logSuccessOnActionsReady,
+                (ignored) -> {});
             return;
         }
 
@@ -475,7 +493,7 @@ public class ScreenshotController {
         if (screenshot.getType() == WindowManager.TAKE_SCREENSHOT_PROVIDED_IMAGE) {
             if (screenshot.getScreenBounds() != null
                     && aspectRatiosMatch(screenshot.getBitmap(), screenshot.getInsets(),
-                    screenshot.getScreenBounds())) {
+                            screenshot.getScreenBounds())) {
                 showFlash = false;
             } else {
                 showFlash = true;
@@ -629,12 +647,6 @@ public class ScreenshotController {
             }
 
             @Override
-            public void onAction(Intent intent, UserHandle owner, boolean overrideTransition) {
-                mActionExecutor.launchIntentAsync(
-                        intent, createWindowTransition(), owner, overrideTransition);
-            }
-
-            @Override
             public void onDismiss() {
                 finishDismiss();
             }
@@ -643,7 +655,7 @@ public class ScreenshotController {
             public void onTouchOutside() {
                 dismissScreenshot(SCREENSHOT_DISMISSED_OTHER);
             }
-        }, mFlags);
+        }, mActionExecutor, mFlags);
         mScreenshotView.setDefaultDisplay(mDisplayId);
         mScreenshotView.setDefaultTimeoutMillis(mScreenshotHandler.getDefaultTimeoutMillis());
 
@@ -955,35 +967,6 @@ public class ScreenshotController {
         mScreenshotAnimation.start();
     }
 
-    /**
-     * Supplies the necessary bits for the shared element transition to share sheet.
-     * Note that once called, the action intent to share must be sent immediately after.
-     */
-    private Pair<ActivityOptions, ExitTransitionCoordinator> createWindowTransition() {
-        ExitTransitionCoordinator.ExitTransitionCallbacks callbacks =
-                new ExitTransitionCoordinator.ExitTransitionCallbacks() {
-                    @Override
-                    public boolean isReturnTransitionAllowed() {
-                        return false;
-                    }
-
-                    @Override
-                    public void hideSharedElements() {
-                        finishDismiss();
-                    }
-
-                    @Override
-                    public void onFinish() {
-                    }
-                };
-        Pair<ActivityOptions, ExitTransitionCoordinator> transition =
-                ActivityOptions.startSharedElementAnimation(mWindow, callbacks, null,
-                        Pair.create(mScreenshotView.getScreenshotPreview(),
-                                ChooserActivity.FIRST_IMAGE_PREVIEW_TRANSITION_NAME));
-
-        return transition;
-    }
-
     /** Reset screenshot view and then call onCompleteRunnable */
     private void finishDismiss() {
         Log.d(TAG, "finishDismiss");
@@ -1031,7 +1014,7 @@ public class ScreenshotController {
         }
 
         mSaveInBgTask = new SaveImageInBackgroundTask(mContext, mFlags, mImageExporter,
-                mScreenshotSmartActions, data,
+                mScreenshotSmartActions, data, getActionTransitionSupplier(),
                 mScreenshotNotificationSmartActionsProvider);
         mSaveInBgTask.execute();
     }
@@ -1095,6 +1078,26 @@ public class ScreenshotController {
                 }
             });
         }
+    }
+
+    /**
+     * Supplies the necessary bits for the shared element transition to share sheet.
+     * Note that once supplied, the action intent to share must be sent immediately after.
+     */
+    private Supplier<ActionTransition> getActionTransitionSupplier() {
+        return () -> {
+            Pair<ActivityOptions, ExitTransitionCoordinator> transition =
+                    ActivityOptions.startSharedElementAnimation(
+                            mWindow, new ScreenshotExitTransitionCallbacksSupplier(true).get(),
+                            null, Pair.create(mScreenshotView.getScreenshotPreview(),
+                                    ChooserActivity.FIRST_IMAGE_PREVIEW_TRANSITION_NAME));
+            transition.second.startExit();
+
+            ActionTransition supply = new ActionTransition();
+            supply.bundle = transition.first.toBundle();
+            supply.onCancelRunnable = () -> ActivityOptions.stopSharedElementAnimation(mWindow);
+            return supply;
+        };
     }
 
     /**
@@ -1184,6 +1187,36 @@ public class ScreenshotController {
                     + ", bounds: " + boundsAspect);
         }
         return matchWithinTolerance;
+    }
+
+    private class ScreenshotExitTransitionCallbacksSupplier implements
+            Supplier<ExitTransitionCallbacks> {
+        final boolean mDismissOnHideSharedElements;
+
+        ScreenshotExitTransitionCallbacksSupplier(boolean dismissOnHideSharedElements) {
+            mDismissOnHideSharedElements = dismissOnHideSharedElements;
+        }
+
+        @Override
+        public ExitTransitionCallbacks get() {
+            return new ExitTransitionCallbacks() {
+                @Override
+                public boolean isReturnTransitionAllowed() {
+                    return false;
+                }
+
+                @Override
+                public void hideSharedElements() {
+                    if (mDismissOnHideSharedElements) {
+                        finishDismiss();
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+                }
+            };
+        }
     }
 
     /** Injectable factory to create screenshot controller instances for a specific display. */

@@ -16,8 +16,6 @@
 
 package com.android.systemui.screenshot
 
-import android.app.ActivityOptions
-import android.app.ExitTransitionCoordinator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -25,7 +23,6 @@ import android.os.Process.myUserHandle
 import android.os.RemoteException
 import android.os.UserHandle
 import android.util.Log
-import android.util.Pair
 import android.view.IRemoteAnimationFinishedCallback
 import android.view.IRemoteAnimationRunner
 import android.view.RemoteAnimationAdapter
@@ -67,18 +64,18 @@ constructor(
      */
     fun launchIntentAsync(
         intent: Intent,
-        transition: Pair<ActivityOptions, ExitTransitionCoordinator>?,
+        options: Bundle?,
         user: UserHandle,
         overrideTransition: Boolean,
     ) {
         applicationScope.launch("$TAG#launchIntentAsync") {
-            launchIntent(intent, transition, user, overrideTransition)
+            launchIntent(intent, options, user, overrideTransition)
         }
     }
 
     suspend fun launchIntent(
         intent: Intent,
-        transition: Pair<ActivityOptions, ExitTransitionCoordinator>?,
+        options: Bundle?,
         user: UserHandle,
         overrideTransition: Boolean,
     ) {
@@ -90,14 +87,11 @@ constructor(
         } else {
             dismissKeyguard()
         }
-        transition?.second?.startExit()
 
         if (user == myUserHandle()) {
-            withContext(mainDispatcher) {
-                context.startActivity(intent, transition?.first?.toBundle())
-            }
+            withContext(mainDispatcher) { context.startActivity(intent, options) }
         } else {
-            launchCrossProfileIntent(user, intent, transition?.first?.toBundle())
+            launchCrossProfileIntent(user, intent, options)
         }
 
         if (overrideTransition) {
