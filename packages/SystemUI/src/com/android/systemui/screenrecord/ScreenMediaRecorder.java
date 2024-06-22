@@ -53,9 +53,8 @@ import android.util.Size;
 import android.view.Surface;
 import android.view.WindowManager;
 
-import com.android.internal.R;
 import com.android.systemui.mediaprojection.MediaProjectionCaptureTarget;
-import com.android.systemui.R;
+import com.android.systemui.res.R;
 
 import java.io.Closeable;
 import java.io.File;
@@ -381,11 +380,11 @@ public class ScreenMediaRecorder extends MediaProjection.Callback {
     private Size getRequiredThumbnailSize() {
         boolean isLowRam = ActivityManager.isLowRamDeviceStatic();
         int thumbnailIconHeight = mContext.getResources().getDimensionPixelSize(isLowRam
-                ? R.dimen.notification_big_picture_max_height_low_ram
-                : R.dimen.notification_big_picture_max_height);
+                ? com.android.internal.R.dimen.notification_big_picture_max_height_low_ram
+                : com.android.internal.R.dimen.notification_big_picture_max_height);
         int thumbnailIconWidth = mContext.getResources().getDimensionPixelSize(isLowRam
-                ? R.dimen.notification_big_picture_max_width_low_ram
-                : R.dimen.notification_big_picture_max_width);
+                ? com.android.internal.R.dimen.notification_big_picture_max_width_low_ram
+                : com.android.internal.R.dimen.notification_big_picture_max_width);
         return new Size(thumbnailIconWidth, thumbnailIconHeight);
     }
 
