@@ -838,6 +838,7 @@ public class ApplicationPackageManager extends PackageManager {
             "com.google.android.apps.photos.PIXEL_2019_MIDYEAR_PRELOAD",
             "com.google.android.apps.photos.PIXEL_2018_PRELOAD",
             "com.google.android.apps.photos.PIXEL_2017_PRELOAD",
+            "com.google.android.feature.PIXEL_2021_MIDYEAR_EXPERIENCE",
             "com.google.android.feature.PIXEL_2020_EXPERIENCE",
             "com.google.android.feature.PIXEL_2020_MIDYEAR_EXPERIENCE",
             "com.google.android.feature.PIXEL_2019_EXPERIENCE",
@@ -867,18 +868,16 @@ public class ApplicationPackageManager extends PackageManager {
             "com.google.android.apps.dialer.SUPPORTED"
     };
 
-    private static final String[] featuresP23 = {
+    private static final String[] featuresTensor = {
+            "com.google.android.feature.PIXEL_2025_EXPERIENCE",
+            "com.google.android.feature.PIXEL_2025_MIDYEAR_EXPERIENCE",
             "com.google.android.feature.PIXEL_2024_EXPERIENCE",
             "com.google.android.feature.PIXEL_2024_MIDYEAR_EXPERIENCE",
             "com.google.android.feature.PIXEL_2023_EXPERIENCE",
-            "com.google.android.feature.PIXEL_2023_MIDYEAR_EXPERIENCE"
-    };
-
-    private static final String[] featuresTensor = {
+            "com.google.android.feature.PIXEL_2023_MIDYEAR_EXPERIENCE",
             "com.google.android.feature.PIXEL_2022_EXPERIENCE",
             "com.google.android.feature.PIXEL_2022_MIDYEAR_EXPERIENCE",
-            "com.google.android.feature.PIXEL_2021_EXPERIENCE",
-            "com.google.android.feature.PIXEL_2021_MIDYEAR_EXPERIENCE"
+            "com.google.android.feature.PIXEL_2021_EXPERIENCE"
     };
 
     private static final String[] featuresNexus = {
@@ -892,33 +891,56 @@ public class ApplicationPackageManager extends PackageManager {
     @Override
     public boolean hasSystemFeature(String name, int version) {
         String packageName = ActivityThread.currentPackageName();
-        if (packageName != null &&
-                packageName.equals("com.google.android.apps.photos") &&
-                SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true)) {
-            if (Arrays.asList(featuresPixel).contains(name)) return false;
-            if (Arrays.asList(featuresPixelOthers).contains(name)) return true;
-            if (Arrays.asList(featuresP23).contains(name)) return false;
-            if (Arrays.asList(featuresTensor).contains(name)) return false;
-            if (Arrays.asList(featuresNexus).contains(name)) return true;
+        String deviceCodename = SystemProperties.get("ro.product.device");
+        boolean isGPhotosSpoofed = SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true);
+        boolean isTensorDevice = Arrays.asList(pTensorCodenames).contains(deviceCodename);
+
+        if (packageName != null) {
+            if (packageName.equals("com.google.android.googlequicksearchbox")) {
+                if (containsAny(name, featuresPixel, featuresPixelOthers, featuresTensor, featuresNexus)) {
+                    return true;
+                }
+            }
+
+            if (packageName.equals("com.google.android.apps.photos") && isGPhotosSpoofed) {
+                if (Arrays.asList(featuresPixel).contains(name)) {
+                    return false;
+                }
+                if (containsAny(name, featuresPixelOthers, featuresNexus)) {
+                    return true;
+                }
+            }
+
+            if (packageName.equals("com.google.android.as")) {
+                if (Arrays.asList(featuresTensor).contains(name)) {
+                    if (!isTensorDevice) {
+                        return false;
+                    }
+                }
+                if (containsAny(name, featuresPixel, featuresPixelOthers, featuresNexus)) {
+                    return true;
+                }
+            }
+
+            if (Arrays.asList(featuresTensor).contains(name) && !isTensorDevice) {
+                return false;
+            }
+
+            if (containsAny(name, featuresPixel, featuresPixelOthers)) {
+                return true;
+            }
         }
 
-        if (packageName != null &&
-		(packageName.equals("com.google.android.googlequicksearchbox") ||
-		     packageName.equals("com.google.android.apps.nexuslauncher"))) {
-            if (Arrays.asList(featuresPixel).contains(name)) return true;
-	    if (Arrays.asList(featuresPixelOthers).contains(name)) return true;
-	    if (Arrays.asList(featuresP23).contains(name)) return true;
-	    if (Arrays.asList(featuresTensor).contains(name)) return true;
-	    if (Arrays.asList(featuresNexus).contains(name)) return true;
-        }
-
-        if (Arrays.asList(featuresTensor).contains(name) &&
-                !Arrays.asList(pTensorCodenames).contains(SystemProperties.get("ro.product.device"))) {
-            return false;
-        }
-        if (Arrays.asList(featuresPixel).contains(name)) return true;
-        if (Arrays.asList(featuresPixelOthers).contains(name)) return true;
         return mHasSystemFeatureCache.query(new HasSystemFeatureQuery(name, version));
+    }
+
+    private boolean containsAny(String name, String[]... arrays) {
+        for (String[] array : arrays) {
+            if (Arrays.asList(array).contains(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** @hide */
