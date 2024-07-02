@@ -56,6 +56,9 @@ public class PixelPropsUtils {
     private static final Boolean sEnablePixelProps =
             Resources.getSystem().getBoolean(R.bool.config_enablePixelProps);
 
+    private static final String sDeviceModel =
+            SystemProperties.get("ro.product.model", Build.MODEL);
+
     private static final Map<String, Object> propsToChangeGeneric;
 
     private static final Map<String, Object> propsToChangeRecentPixel =
@@ -96,7 +99,7 @@ public class PixelPropsUtils {
                 "com.google.android.apps.privacy.wildlife",
                 "com.google.android.apps.subscriptions.red",
                 "com.google.android.apps.photos",
-		        "com.google.android.googlequicksearchbox",
+	        "com.google.android.googlequicksearchbox",
                 "com.google.android.gms.ui",
                 "com.google.android.gms.learning",
                 "com.google.android.gms.persistent"
@@ -362,6 +365,11 @@ public class PixelPropsUtils {
         // Set proper indexing fingerprint
         if (packageName.equals("com.google.android.settings.intelligence")) {
             setPropValue("FINGERPRINT", Build.VERSION.INCREMENTAL);
+            return;
+        }
+        // Show correct model name on gms services
+        if ("com.google.android.gms.ui".equals(processName)) {
+            setPropValue("MODEL", sDeviceModel);
             return;
         }
     }
