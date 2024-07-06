@@ -903,7 +903,8 @@ public class ApplicationPackageManager extends PackageManager {
         }
 
         if (packageName != null &&
-		packageName.equals("com.google.android.googlequicksearchbox")) {
+		(packageName.equals("com.google.android.googlequicksearchbox") ||
+		     packageName.equals("com.google.android.apps.nexuslauncher"))) {
             if (Arrays.asList(featuresPixel).contains(name)) return true;
 	    if (Arrays.asList(featuresPixelOthers).contains(name)) return true;
 	    if (Arrays.asList(featuresP23).contains(name)) return true;
@@ -914,10 +915,6 @@ public class ApplicationPackageManager extends PackageManager {
         if (Arrays.asList(featuresTensor).contains(name) &&
                 !Arrays.asList(pTensorCodenames).contains(SystemProperties.get("ro.product.device"))) {
             return false;
-        } else if (packageName != null && Arrays.asList(featuresTensor).contains(name)) {
-            if (packageName.contains("com.google.android.apps.nexuslauncher")) {
-                return false;
-            }
         }
         if (Arrays.asList(featuresPixel).contains(name)) return true;
         if (Arrays.asList(featuresPixelOthers).contains(name)) return true;

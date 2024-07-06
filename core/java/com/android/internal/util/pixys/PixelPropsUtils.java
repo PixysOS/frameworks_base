@@ -102,7 +102,8 @@ public class PixelPropsUtils {
 	        "com.google.android.googlequicksearchbox",
                 "com.google.android.gms.ui",
                 "com.google.android.gms.learning",
-                "com.google.android.gms.persistent"
+                "com.google.android.gms.persistent",
+                "com.google.android.apps.nexuslauncher"
         ));
 
    private static final ArrayList<String> packagesToChangePixel5a = 
@@ -137,7 +138,7 @@ public class PixelPropsUtils {
     private static final ArrayList<String> packagesToKeep = 
         new ArrayList<String> (
             Arrays.asList(
-               "com.google.android.as",
+                "com.google.android.as",
                 "com.google.android.apps.motionsense.bridge",
                 "com.google.android.euicc",
                 "com.google.ar.core",
@@ -151,12 +152,12 @@ public class PixelPropsUtils {
                 "com.google.android.apps.restore",
                 "com.google.oslo",
                 "it.ingdirect.app",
-                "com.google.android.apps.nexuslauncher",
                 "com.google.intelligence.sense",
                 "com.google.android.apps.tips",
                 "com.google.android.apps.dreamliner",
                 "com.google.android.apps.dreamlinerupdater",
-                "com.google.android.gms.update"
+                "com.google.android.gms.update",
+		"com.google.android.apps.recorder"
         ));
 
     private static final String PROP_SECURITY_PATCH = "persist.sys.pihooks.security_patch";
