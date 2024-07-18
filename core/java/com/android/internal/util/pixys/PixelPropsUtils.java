@@ -69,10 +69,6 @@ public class PixelPropsUtils {
             createGoogleSpoofProps("Pixel 5a",
 		    "google/barbet/barbet:14/AP2A.240705.004/11875680:user/release-keys");
 
-   private static final Map<String, Object> propsToChangePixel6 =
-            createGoogleSpoofProps("Pixel 6 Pro",
-		    "google/raven/raven:14/AP2A.240705.004/11875680:user/release-keys");
-
     private static final Map<String, Object> propsToChangePixelXL =
             createGoogleSpoofProps("Pixel XL",
                     "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys");
@@ -100,16 +96,18 @@ public class PixelPropsUtils {
                 "com.google.android.apps.subscriptions.red",
                 "com.google.android.apps.photos",
 	        "com.google.android.googlequicksearchbox",
-                "com.google.android.gms.ui",
+                "com.google.android.gms.gservice",
+                "com.google.android.gms.search",
                 "com.google.android.gms.learning",
                 "com.google.android.gms.persistent",
-                "com.google.android.apps.nexuslauncher"
+                "com.google.android.apps.nexuslauncher",
+                "com.google.android.tts",
+                "com.google.android.inputmethod.latin"
         ));
 
    private static final ArrayList<String> packagesToChangePixel5a = 
         new ArrayList<String> (
             Arrays.asList(
-		"com.google.android.tts",
 		"com.breel.wallpapers20"
        ));
 
@@ -125,39 +123,6 @@ public class PixelPropsUtils {
                 "com.netflix.mediaclient",
                 "in.startv.hotstar",
                 "jp.id_credit_sp2.android"
-        ));
-
-    private static final ArrayList<String> customGoogleCameraPackages = 
-        new ArrayList<String> (
-            Arrays.asList(
-                "com.google.android.MTCL83",
-                "com.google.android.UltraCVM",
-                "com.google.android.apps.cameralite"
-        ));
-
-    private static final ArrayList<String> packagesToKeep = 
-        new ArrayList<String> (
-            Arrays.asList(
-                "com.google.android.as",
-                "com.google.android.apps.motionsense.bridge",
-                "com.google.android.euicc",
-                "com.google.ar.core",
-                "com.google.android.youtube",
-                "com.google.android.apps.youtube.kids",
-                "com.google.android.apps.youtube.music",
-                "com.google.android.apps.wearables.maestro.companion",
-                "com.google.android.apps.subscriptions.red",
-                "com.google.android.apps.tachyon",
-                "com.google.android.apps.tycho",
-                "com.google.android.apps.restore",
-                "com.google.oslo",
-                "it.ingdirect.app",
-                "com.google.intelligence.sense",
-                "com.google.android.apps.tips",
-                "com.google.android.apps.dreamliner",
-                "com.google.android.apps.dreamlinerupdater",
-                "com.google.android.gms.update",
-		"com.google.android.apps.recorder"
         ));
 
     private static final String PROP_SECURITY_PATCH = "persist.sys.pihooks.security_patch";
@@ -200,11 +165,6 @@ public class PixelPropsUtils {
         props.put("TYPE", "user");
         props.put("TAGS", "release-keys");
         return props;
-    }
-
-    private static boolean isGoogleCameraPackage(String packageName){
-        return packageName.contains("GoogleCamera") ||
-            customGoogleCameraPackages.contains(packageName);
     }
 
     private static boolean shouldTryToCertifyDevice() {
@@ -322,10 +282,7 @@ public class PixelPropsUtils {
         if (shouldTryToCertifyDevice()) {
             return;
         }
-        if (packagesToKeep.contains(packageName)
-            || packagesToKeep.contains(processName)) {
-            return;
-        }
+
         Map<String, Object> propsToChange = new HashMap<>();
         if (sIsGoogle || sIsSamsung
             || extraPackagesToChange.contains(packageName)
@@ -336,19 +293,12 @@ public class PixelPropsUtils {
                 propsToChange = propsToChangeRecentPixel;
             } else if (packagesToChangePixel5a.contains(packageName)) {
                 propsToChange = propsToChangePixel5a;
-            } else {
-                propsToChange = propsToChangePixel6;
-
             }
 
             if (packageName.equals("com.google.android.apps.photos")) {
                 if (SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true)) {
                     propsToChange = propsToChangePixelXL;
                 }
-            }
-            // skip spoofing for GoogleCamera packages
-            if (isGoogleCameraPackage(packageName)) {
-                return;
             }
         }
         if (propsToChange == null || propsToChange.isEmpty()) return;
